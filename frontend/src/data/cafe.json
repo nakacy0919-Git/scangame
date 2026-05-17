@@ -1,0 +1,884 @@
+[
+  {
+    "id": "CAFE_001",
+    "situation_ja": "徹夜明けの学生",
+    "situation_en": "Sleepy student",
+    "card_a": {
+      "text": "I studied all night. I need a really strong, ice-cold drink to keep me awake during class.",
+      "text_ja": "一晩中勉強しました。授業中に眠気を覚ますために、本当に強くて冷たい飲み物が必要です。"
+    },
+    "card_b": {
+      "text": "I recommend our Venti Cold Brew with an extra shot. It has plenty of caffeine!",
+      "text_ja": "エキストラショットを追加したヴェンティサイズのコールドブリューをお勧めします。カフェインがたっぷり入っています！"
+    },
+    "vocabulary": [
+      {
+        "word": "awake",
+        "part_of_speech": "adjective",
+        "meaning": "目が覚めて、眠気のない",
+        "level": "B1"
+      },
+      {
+        "word": "recommend",
+        "part_of_speech": "動詞",
+        "meaning": "〜を勧める、推奨する",
+        "level": "B1"
+      },
+      {
+        "word": "caffeine",
+        "part_of_speech": "noun",
+        "meaning": "カフェイン",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_002",
+    "situation_ja": "焦るビジネスマン",
+    "situation_en": "Nervous businessman",
+    "card_a": {
+      "text": "My laptop is dying, and my online meeting starts in 5 minutes! Where can I charge it?",
+      "text_ja": "パソコンの充電が切れそうで、5分後にオンライン会議が始まります！どこで充電できますか？"
+    },
+    "card_b": {
+      "text": "The long wooden counter at the back has power outlets and the strongest Wi-Fi.",
+      "text_ja": "奥にある長い木製のカウンター席にコンセントがあり、Wi-Fiの電波も一番強いです。"
+    },
+    "vocabulary": [
+      {
+        "word": "nervous",
+        "part_of_speech": "adjective",
+        "meaning": "緊張した、焦っている、不安な",
+        "level": "B1"
+      },
+      {
+        "word": "outlet",
+        "part_of_speech": "noun",
+        "meaning": "（電気の）コンセント、差し込み口",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_003",
+    "situation_ja": "ヨガ帰りの女性",
+    "situation_en": "Woman in yoga pants",
+    "card_a": {
+      "text": "I love creamy lattes, but I recently found out I'm allergic to dairy. Any alternatives?",
+      "text_ja": "クリーミーなラテが大好きなのですが、最近乳製品アレルギーだと分かりました。何か代わりのものはありますか？"
+    },
+    "card_b": {
+      "text": "We can substitute cow's milk with oat milk or soy milk without losing the rich flavor.",
+      "text_ja": "コクのある風味を損なうことなく、牛乳をオーツミルクやソイミルク（豆乳）に代えることができます。"
+    },
+    "vocabulary": [
+      {
+        "word": "allergic",
+        "part_of_speech": "adjective",
+        "meaning": "アレルギーの、アレルギー体質の",
+        "level": "B2"
+      },
+      {
+        "word": "dairy",
+        "part_of_speech": "noun",
+        "meaning": "乳製品、酪農製品",
+        "level": "B2"
+      },
+      {
+        "word": "alternative",
+        "part_of_speech": "noun",
+        "meaning": "代わりのもの、選択肢",
+        "level": "B2"
+      },
+      {
+        "word": "substitute",
+        "part_of_speech": "verb",
+        "meaning": "〜を代わりに用いる、代用する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_004",
+    "situation_ja": "お気に入りを探す生徒",
+    "situation_en": "Student looking for a gift",
+    "card_a": {
+      "text": "I want to thank my teacher, but I don't know if he prefers sweet or bitter coffee.",
+      "text_ja": "先生にお礼を言いたいのですが、甘いコーヒーと苦いコーヒーのどちらが好みか分かりません。"
+    },
+    "card_b": {
+      "text": "A Starbucks Gift Card is perfect! He can choose his favorite drink whenever he wants.",
+      "text_ja": "スターバックスのギフトカードが最適です！先生がいつでも好きな時に好みのドリンクを選ぶことができます。"
+    },
+    "vocabulary": [
+      {
+        "word": "prefer",
+        "part_of_speech": "verb",
+        "meaning": "〜を（他よりも）好む、〜の方を選ぶ",
+        "level": "B1"
+      },
+      {
+        "word": "bitter",
+        "part_of_speech": "adjective",
+        "meaning": "苦い、苦味のある",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_005",
+    "situation_ja": "泣き出しそうな女の子",
+    "situation_en": "Gloomy girl",
+    "card_a": {
+      "text": "My best friend failed her test and is crying. I want the sweetest drink to cheer her up.",
+      "text_ja": "親友がテストに落ちて泣いています。彼女を元気づけるために、一番甘い飲み物が欲しいです。"
+    },
+    "card_b": {
+      "text": "A Hot Chocolate with extra whipped cream and caramel will definitely make her smile.",
+      "text_ja": "ホイップクリームとキャラメルを追加したホットチョコレートなら、間違いなく彼女を笑顔にできますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "gloomy",
+        "part_of_speech": "adjective",
+        "meaning": "憂鬱な、落ち込んだ、暗い",
+        "level": "B2"
+      },
+      {
+        "word": "cheer up",
+        "part_of_speech": "idiom",
+        "meaning": "〜を元気づける、励ます",
+        "level": "B1"
+      },
+      {
+        "word": "definitely",
+        "part_of_speech": "adverb",
+        "meaning": "絶対に、間違いなく",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_006",
+    "situation_ja": "エコなハイカー",
+    "situation_en": "Eco-friendly hiker",
+    "card_a": {
+      "text": "I brought my own stainless steel tumbler to reduce plastic waste. Can you use this?",
+      "text_ja": "プラスチックゴミを減らすために、自分のステンレス製タンブラーを持ってきました。これを使っていただけますか？"
+    },
+    "card_b": {
+      "text": "Thank you for being eco-friendly! We'll give you a 20-yen discount for bringing your own cup.",
+      "text_ja": "環境に配慮していただきありがとうございます！マイカップの持参で20円引きにさせていただきます。"
+    },
+    "vocabulary": [
+      {
+        "word": "reduce",
+        "part_of_speech": "verb",
+        "meaning": "〜を減らす、削減する",
+        "level": "B1"
+      },
+      {
+        "word": "waste",
+        "part_of_speech": "noun",
+        "meaning": "ゴミ、廃棄物、無駄",
+        "level": "B1"
+      },
+      {
+        "word": "discount",
+        "part_of_speech": "noun",
+        "meaning": "割引、値引き",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_007",
+    "situation_ja": "スマホを構えた若者",
+    "situation_en": "Trendy influencer",
+    "card_a": {
+      "text": "I need a drink that is colorful and looks amazing for my next Instagram post.",
+      "text_ja": "次のインスタグラムの投稿用に、カラフルで見栄えの素晴らしいドリンクが必要です。"
+    },
+    "card_b": {
+      "text": "Our Matcha Cream Frappuccino with bright green and white layers is very photogenic!",
+      "text_ja": "鮮やかな緑と白の層がある当店の抹茶クリームフラペチーノは、とても写真映え（インスタ映え）しますよ！"
+    },
+    "vocabulary": [
+      {
+        "word": "trendy",
+        "part_of_speech": "adjective",
+        "meaning": "最新流行の、トレンディな",
+        "level": "B1"
+      },
+      {
+        "word": "influencer",
+        "part_of_speech": "noun",
+        "meaning": "インフルエンサー、影響力のある人",
+        "level": "B2"
+      },
+      {
+        "word": "photogenic",
+        "part_of_speech": "adjective",
+        "meaning": "写真映えする、写真写りの良い",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_008",
+    "situation_ja": "筋肉自慢の男性",
+    "situation_en": "Bodybuilder",
+    "card_a": {
+      "text": "I'm on a strict diet for a competition. I want a refreshing drink with zero sugar.",
+      "text_ja": "大会に向けて厳しい食事制限をしています。砂糖ゼロのすっきりしたドリンクが欲しいです。"
+    },
+    "card_b": {
+      "text": "An Iced Shaken Espresso with sugar-free syrup is light and has almost no calories.",
+      "text_ja": "シュガーフリーシロップを使ったアイスシェイクンエスプレッソなら、軽やかでカロリーもほとんどありません。"
+    },
+    "vocabulary": [
+      {
+        "word": "strict",
+        "part_of_speech": "adjective",
+        "meaning": "厳格な、厳しい",
+        "level": "B2"
+      },
+      {
+        "word": "competition",
+        "part_of_speech": "noun",
+        "meaning": "競技会、大会、競争",
+        "level": "B1"
+      },
+      {
+        "word": "refreshing",
+        "part_of_speech": "adjective",
+        "meaning": "爽やかな、すっきりさせる",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_009",
+    "situation_ja": "時計を見るジョガー",
+    "situation_en": "Rushed jogger",
+    "card_a": {
+      "text": "I'm in a huge hurry and only have two minutes. What's the fastest hot drink I can get?",
+      "text_ja": "ものすごく急いでいて、2分しかありません。一番早く提供できる温かい飲み物は何ですか？"
+    },
+    "card_b": {
+      "text": "Our daily Drip Coffee is already brewed. We can serve it to you in ten seconds!",
+      "text_ja": "本日のドリップコーヒーはすでに抽出してあります。10秒でお出しできますよ！"
+    },
+    "vocabulary": [
+      {
+        "word": "rushed",
+        "part_of_speech": "adjective",
+        "meaning": "急いでいる、大忙しの",
+        "level": "B1"
+      },
+      {
+        "word": "brew",
+        "part_of_speech": "verb",
+        "meaning": "（コーヒーや茶を）淹れる、抽出する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_010",
+    "situation_ja": "革ジャンのバイカー",
+    "situation_en": "Tough biker",
+    "card_a": {
+      "text": "I usually drink black coffee, but I'm freezing today. Can I have something hot with just a little sweetness?",
+      "text_ja": "普段はブラックコーヒーを飲むのですが、今日は凍えるほど寒いです。ほんの少しだけ甘みのある温かいものはありますか？"
+    },
+    "card_b": {
+      "text": "A Caffè Misto with one pump of vanilla syrup gives a warm, subtle sweetness.",
+      "text_ja": "バニラシロップを1ポンプ入れたカフェミストなら、温かく、ほんのりとした優しい甘みを楽しめます。"
+    },
+    "vocabulary": [
+      {
+        "word": "freezing",
+        "part_of_speech": "adjective",
+        "meaning": "凍えるほど寒い、極寒の",
+        "level": "B1"
+      },
+      {
+        "word": "subtle",
+        "part_of_speech": "adjective",
+        "meaning": "かすかな、ほんのりとした、繊細な",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_011",
+    "situation_ja": "犬の散歩中の人",
+    "situation_en": "Dog owner",
+    "card_a": {
+      "text": "I'm walking my dog outside. Do you have anything special for pets?",
+      "text_ja": "外で犬の散歩をしています。ペット向けの特別なメニューはありますか？"
+    },
+    "card_b": {
+      "text": "We can make a \"Puppuccino\"—just a small paper cup of plain whipped cream for your dog!",
+      "text_ja": "「パプチーノ」をお作りできますよ！小さな紙コップに入った、ワンちゃん用の味付けなしのホイップクリームです。"
+    },
+    "vocabulary": [
+      {
+        "word": "plain",
+        "part_of_speech": "adjective",
+        "meaning": "味付けしていない、飾りのない、普通の",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_012",
+    "situation_ja": "道に迷った観光客",
+    "situation_en": "Lost tourist",
+    "card_a": {
+      "text": "I'm completely lost. I just want a classic Japanese flavor before I catch my train.",
+      "text_ja": "完全に道に迷ってしまいました。電車に乗る前に、定番の日本らしい味を楽しみたいです。"
+    },
+    "card_b": {
+      "text": "Our Matcha Tea Latte is very popular among tourists and tastes exactly like Japan.",
+      "text_ja": "当店の抹茶ティーラテは観光客の方に非常に人気があり、まさに日本そのものの味がします。"
+    },
+    "vocabulary": [
+      {
+        "word": "completely",
+        "part_of_speech": "adverb",
+        "meaning": "完全に、すっかり",
+        "level": "B1"
+      },
+      {
+        "word": "classic",
+        "part_of_speech": "adjective",
+        "meaning": "定番の、伝統的な、典型的な",
+        "level": "B2"
+      },
+      {
+        "word": "exactly",
+        "part_of_speech": "adverb",
+        "meaning": "正確に、まさに、ちょうど",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_013",
+    "situation_ja": "初デート前の男子",
+    "situation_en": "Nervous boy on a date",
+    "card_a": {
+      "text": "I'm meeting my date soon. I want a drink that doesn't make my breath smell like strong coffee.",
+      "text_ja": "もうすぐデートの相手と合流します。息が強いコーヒーの臭いにならないようなドリンクが欲しいです。"
+    },
+    "card_b": {
+      "text": "Our Peach Citrus Tea is fruity, refreshing, and will keep your breath smelling great.",
+      "text_ja": "当店のピーチシトラスティーなら、フルーティーで爽やかですし、お口の臭いも素敵な状態に保てますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "breath",
+        "part_of_speech": "noun",
+        "meaning": "息、呼吸",
+        "level": "B1"
+      },
+      {
+        "word": "citrus",
+        "part_of_speech": "noun",
+        "meaning": "柑橘類",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_014",
+    "situation_ja": "喉を押さえるバンドマン",
+    "situation_en": "Singer with a sore throat",
+    "card_a": {
+      "text": "I have a singing contest tomorrow, and my throat hurts. What's good for a sore throat?",
+      "text_ja": "明日歌のコンテストがあるのですが、喉が痛いです。喉の痛みに効くものはありますか？"
+    },
+    "card_b": {
+      "text": "The Chamomile Tea with a little honey added will warm and soothe your throat perfectly.",
+      "text_ja": "ハチミツを少し加えたカモミールティーなら、喉をしっかりと温め、完璧に和らげてくれます。"
+    },
+    "vocabulary": [
+      {
+        "word": "sore throat",
+        "part_of_speech": "noun",
+        "meaning": "喉の痛み、咽頭痛",
+        "level": "B1"
+      },
+      {
+        "word": "soothe",
+        "part_of_speech": "verb",
+        "meaning": "（痛みを）和らげる、なだめる",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_015",
+    "situation_ja": "優柔不断な客",
+    "situation_en": "Indecisive customer",
+    "card_a": {
+      "text": "Everything looks so good! I really can't decide between chocolate and strawberry.",
+      "text_ja": "どれも美味しそうで困ります！チョコレートかストロベリーか、本当に決められません。"
+    },
+    "card_b": {
+      "text": "Why not both? You can order a Strawberry Frappuccino and add chocolate chips to it!",
+      "text_ja": "両方選んでみてはいかがですか？ストロベリーフラペチーノを注文して、そこにチョコチップを追加できますよ！"
+    },
+    "vocabulary": [
+      {
+        "word": "indecisive",
+        "part_of_speech": "adjective",
+        "meaning": "優柔不断な、決断力のない",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_016",
+    "situation_ja": "お腹を空かせたアスリート",
+    "situation_en": "Hungry athlete",
+    "card_a": {
+      "text": "I just finished a heavy workout and I'm starving. I need something filling to eat with my coffee.",
+      "text_ja": "きついトレーニングを終えたばかりで、お腹がペコペコです。コーヒーと一緒に食べられる、お腹にたまるものが欲しいです。"
+    },
+    "card_b": {
+      "text": "Our Teriyaki Chicken Sandwich is packed with protein and will satisfy your hunger.",
+      "text_ja": "当店のテリヤキチキンサンドイッチなら、タンパク質が豊富に詰まっていて、お腹をしっかり満たしてくれますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "athlete",
+        "part_of_speech": "noun",
+        "meaning": "アスリート、運動選手",
+        "level": "B1"
+      },
+      {
+        "word": "starving",
+        "part_of_speech": "adjective",
+        "meaning": "非常に空腹な、飢えそうな",
+        "level": "B1"
+      },
+      {
+        "word": "filling",
+        "part_of_speech": "adjective",
+        "meaning": "（食べ物が）お腹にたまる、満腹感を与える",
+        "level": "B2"
+      },
+      {
+        "word": "satisfy",
+        "part_of_speech": "verb",
+        "meaning": "（要望や飢えを）満たす、満足させる",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_017",
+    "situation_ja": "慌てる子供",
+    "situation_en": "Clumsy kid",
+    "card_a": {
+      "text": "I'm so sorry! I accidentally dropped my Frappuccino and spilled it on the floor.",
+      "text_ja": "ごめんなさい！うっかりフラペチーノを落として、床にこぼしてしまいました。"
+    },
+    "card_b": {
+      "text": "Don't worry at all. Let me clean that up, and I'll make you a new one for free.",
+      "text_ja": "全然気にしなくて大丈夫ですよ。すぐに片付けますので、新しいものを無料で作り直しますね。"
+    },
+    "vocabulary": [
+      {
+        "word": "clumsy",
+        "part_of_speech": "adjective",
+        "meaning": "おっちょこちょいな、不器用な",
+        "level": "B2"
+      },
+      {
+        "word": "accidentally",
+        "part_of_speech": "adverb",
+        "meaning": "誤って、うっかり、偶然に",
+        "level": "B2"
+      },
+      {
+        "word": "spill",
+        "part_of_speech": "verb",
+        "meaning": "（液体を）こぼす",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_018",
+    "situation_ja": "汗だくの男性",
+    "situation_en": "Sweaty man",
+    "card_a": {
+      "text": "It's melting hot outside! I need the largest, coldest drink with lots of extra ice.",
+      "text_ja": "外は溶けそうなほど暑いです！氷をたくさん追加した、一番大きくて冷たいドリンクをください。"
+    },
+    "card_b": {
+      "text": "I'll make you a Venti Iced Mango Passion Tea with extra ice to cool you down immediately.",
+      "text_ja": "すぐに体が冷えるよう、氷を多めに入れたヴェンティサイズのアイスマンゴーパッションティーをお作りしますね。"
+    },
+    "vocabulary": [
+      {
+        "word": "sweaty",
+        "part_of_speech": "adjective",
+        "meaning": "汗だくの、汗をかいた",
+        "level": "B1"
+      },
+      {
+        "word": "immediately",
+        "part_of_speech": "adverb",
+        "meaning": "すぐに、直ちに",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_019",
+    "situation_ja": "分厚い本を持った女性",
+    "situation_en": "Quiet lady reading a book",
+    "card_a": {
+      "text": "I want to read my book for a few hours. Is there a quiet spot away from the noisy speakers?",
+      "text_ja": "数時間本を読みたいです。うるさいスピーカーから離れた、静かな場所はありますか？"
+    },
+    "card_b": {
+      "text": "The small sofa corner by the window is very quiet and has great natural light for reading.",
+      "text_ja": "窓際の小さなソファのコーナー席なら非常に静かですし、読書に最適な自然光も入りますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "noisy",
+        "part_of_speech": "adjective",
+        "meaning": "騒がしい、うるさい",
+        "level": "B1"
+      },
+      {
+        "word": "natural light",
+        "part_of_speech": "noun",
+        "meaning": "自然光、日光",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_020",
+    "situation_ja": "パニックの学生",
+    "situation_en": "Panicked student",
+    "card_a": {
+      "text": "Oh no, I forgot my wallet! Can I pay using an app on my smartphone instead?",
+      "text_ja": "大変だ、財布を忘れてしまいました！代わりにスマートフォンのアプリを使って支払うことはできますか？"
+    },
+    "card_b": {
+      "text": "Absolutely. We accept Apple Pay, Google Pay, and our official Starbucks app barcode.",
+      "text_ja": "もちろんです。Apple PayやGoogle Pay、当店の公式アプリのバーコード決済がご利用いただけます。"
+    },
+    "vocabulary": [
+      {
+        "word": "panicked",
+        "part_of_speech": "adjective",
+        "meaning": "パニックになった、うろたえた",
+        "level": "B2"
+      },
+      {
+        "word": "wallet",
+        "part_of_speech": "noun",
+        "meaning": "財布",
+        "level": "A2/B1"
+      },
+      {
+        "word": "official",
+        "part_of_speech": "adjective",
+        "meaning": "公式の、公認の",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_021",
+    "situation_ja": "疲れたお母さん",
+    "situation_en": "Tired mother",
+    "card_a": {
+      "text": "I've been chasing my kids all day. I want something incredibly sweet as a reward.",
+      "text_ja": "一日中子供たちを追いかけ回していました。自分へのご褒美に、信じられないくらい甘いものが欲しいです。"
+    },
+    "card_b": {
+      "text": "A Caramel Macchiato with extra caramel drizzle on top is the perfect sweet treat for you.",
+      "text_ja": "キャラメルソースを上に多めにトッピングしたキャラメルマキアートなら、ご褒美にぴったりの甘さですよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "chase",
+        "part_of_speech": "verb",
+        "meaning": "〜を追いかける",
+        "level": "B1"
+      },
+      {
+        "word": "incredibly",
+        "part_of_speech": "adverb",
+        "meaning": "信じられないほど、ものすごく",
+        "level": "B1"
+      },
+      {
+        "word": "reward",
+        "part_of_speech": "noun",
+        "meaning": "ご褒美、報酬",
+        "level": "B1"
+      },
+      {
+        "word": "drizzle",
+        "part_of_speech": "noun",
+        "meaning": "（線状にかける）ソース、シロップ",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_022",
+    "situation_ja": "妊娠中の女性",
+    "situation_en": "Pregnant woman",
+    "card_a": {
+      "text": "I really crave the taste of coffee, but I can't have any caffeine right now.",
+      "text_ja": "どうしてもコーヒーの味が恋しい（飲みたい）のですが、今はカフェインを摂ることができません。"
+    },
+    "card_b": {
+      "text": "We can make any espresso drink, like your favorite latte, completely Decaf!",
+      "text_ja": "お気に入りのラテなど、すべてのエスプレッソドリンクを完全にカフェインレス（デカフェ）でお作りできますよ！"
+    },
+    "vocabulary": [
+      {
+        "word": "pregnant",
+        "part_of_speech": "adjective",
+        "meaning": "妊娠している",
+        "level": "B1"
+      },
+      {
+        "word": "crave",
+        "part_of_speech": "verb",
+        "meaning": "〜を強く切望する、どうしても欲する",
+        "level": "C1"
+      },
+      {
+        "word": "decaf",
+        "part_of_speech": "adjective",
+        "meaning": "カフェインレスの、デカフェの",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_023",
+    "situation_ja": "初めて来たおじいさん",
+    "situation_en": "Confused grandpa",
+    "card_a": {
+      "text": "This is my first time here. I don't understand the sizes like 'Tall' or 'Grande.'",
+      "text_ja": "ここに来るのは初めてです。「トール」や「グランデ」といったサイズがよく分かりません。"
+    },
+    "card_b": {
+      "text": "No problem! 'Tall' is medium, and 'Grande' is large. Which one would you prefer?",
+      "text_ja": "大丈夫ですよ！「トール」が中サイズで、「グランデ」が大サイズになります。どちらになさいますか？"
+    },
+    "vocabulary": [
+      {
+        "word": "confused",
+        "part_of_speech": "adjective",
+        "meaning": "混乱した、戸惑っている",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_024",
+    "situation_ja": "常連の会社員",
+    "situation_en": "Office worker / Rewards member",
+    "card_a": {
+      "text": "I have a lot of stars saved up on my app. Can I use them to get something free today?",
+      "text_ja": "アプリにたくさん「スター」が貯まっています。今日、これを使って何か無料でもらうことはできますか？"
+    },
+    "card_b": {
+      "text": "Yes! You have enough stars to get any drink or food item on the menu completely for free.",
+      "text_ja": "はい！メニューにあるお好きなドリンクやフードをどれでも完全に無料で引き換えられるだけのスターをお持ちです。"
+    },
+    "vocabulary": [
+      {
+        "word": "saved up",
+        "part_of_speech": "verb",
+        "meaning": "（貯金やポイントを）貯める、蓄える",
+        "level": "B1"
+      },
+      {
+        "word": "item",
+        "part_of_speech": "noun",
+        "meaning": "品目、アイテム、商品",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_025",
+    "situation_ja": "こだわりの強い若者",
+    "situation_en": "Picky teenager",
+    "card_a": {
+      "text": "I want a Vanilla Latte, but with half the syrup, extra hot, and whipped cream on top.",
+      "text_ja": "バニララテをください。シロップは半分、エクストラホット（すごく熱め）で、上にホイップクリームをトッピングしてください。"
+    },
+    "card_b": {
+      "text": "Got it! A half-sweet, extra-hot Vanilla Latte with whipped cream coming right up.",
+      "text_ja": "かしこまりました！甘さ半分、とても熱めのホイップクリーム付きバニララテですね。すぐにお作りします。"
+    },
+    "vocabulary": [
+      {
+        "word": "picky",
+        "part_of_speech": "adjective",
+        "meaning": "好みがうるさい、こだわりが強い、選り好みする",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_026",
+    "situation_ja": "グループ学習の生徒たち",
+    "situation_en": "Group of students",
+    "card_a": {
+      "text": "We have a group project with 6 people. Do you have a table big enough for all of us?",
+      "text_ja": "6人でグループ学習をしています。全員が一緒に座れる十分な大きさのテーブルはありますか？"
+    },
+    "card_b": {
+      "text": "The large community table in the center can easily fit your entire group and your laptops.",
+      "text_ja": "中央にある大きなコミュニティテーブルなら、皆様のグループ全員とパソコンも簡単に収まりますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "project",
+        "part_of_speech": "noun",
+        "meaning": "課題、研究、プロジェクト",
+        "level": "B1"
+      },
+      {
+        "word": "community",
+        "part_of_speech": "noun",
+        "meaning": "コミュニティ、地域社会、共同体",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_027",
+    "situation_ja": "アレルギーを心配する男性",
+    "situation_en": "Cautious man with allergies",
+    "card_a": {
+      "text": "I have a severe nut allergy. Are there peanuts or almonds in this chocolate pastry?",
+      "text_ja": "重度のナッツアレルギーを持っています。このチョコレートの焼き菓子にピーナッツやアーモンドは入っていますか？"
+    },
+    "card_b": {
+      "text": "That pastry does contain almonds. I recommend the plain butter croissant instead to be safe.",
+      "text_ja": "そちらの焼き菓子にはアーモンドが含まれております。安全のため、代わりにプレーンなバタークロワッサンをお勧めします。"
+    },
+    "vocabulary": [
+      {
+        "word": "cautious",
+        "part_of_speech": "adjective",
+        "meaning": "慎重な、注意深い",
+        "level": "B2"
+      },
+      {
+        "word": "severe",
+        "part_of_speech": "adjective",
+        "meaning": "深刻な、重度の",
+        "level": "B2"
+      },
+      {
+        "word": "pastry",
+        "part_of_speech": "noun",
+        "meaning": "焼き菓子、ペイストリー",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_028",
+    "situation_ja": "がっかりした様子の客",
+    "situation_en": "Disappointed customer",
+    "card_a": {
+      "text": "Excuse me, this Caramel Frappuccino is way too sweet for me. Can you fix it?",
+      "text_ja": "すみません、このキャラメルフラペチーノは私には甘すぎます。直していただくことはできますか？"
+    },
+    "card_b": {
+      "text": "I apologize! Let me remake it for you with less syrup and an extra shot of espresso to balance it.",
+      "text_ja": "大変申し訳ございません！シロップを減らし、バランスを整えるためにエスプレッソのショットを追加して作り直させてください。"
+    },
+    "vocabulary": [
+      {
+        "word": "disappointed",
+        "part_of_speech": "adjective",
+        "meaning": "がっかりした、失望した",
+        "level": "B1"
+      },
+      {
+        "word": "apologize",
+        "part_of_speech": "verb",
+        "meaning": "謝る、謝罪する",
+        "level": "B1"
+      },
+      {
+        "word": "balance",
+        "part_of_speech": "verb",
+        "meaning": "〜のバランスをとる、調和させる",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_029",
+    "situation_ja": "自宅でコーヒーを淹れる人",
+    "situation_en": "Home barista",
+    "card_a": {
+      "text": "I want to buy coffee beans to brew at home, but I don't have a coffee grinder.",
+      "text_ja": "自宅で淹れるためにコーヒー豆を買いたいのですが、コーヒーミル（グラインダー）を持っていません。"
+    },
+    "card_b": {
+      "text": "We can grind the whole beans for you right here, perfectly matched for your paper filter!",
+      "text_ja": "お持ちのペーパーフィルターに完璧に合わせて、この場で豆を挽くことができますよ！"
+    },
+    "vocabulary": [
+      {
+        "word": "grinder",
+        "part_of_speech": "noun",
+        "meaning": "グラインダー、粉砕機、コーヒーミル",
+        "level": "B2"
+      },
+      {
+        "word": "perfectly",
+        "part_of_speech": "adverb",
+        "meaning": "完璧に、申し分なく",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "CAFE_030",
+    "situation_ja": "閉店間際の客",
+    "situation_en": "Late night worker",
+    "card_a": {
+      "text": "I know you close in 10 minutes. Is it still possible to order a hot drink to take out?",
+      "text_ja": "あと10分で閉店なのは分かっているのですが、まだテイクアウトで温かい飲み物を注文することは可能ですか？"
+    },
+    "card_b": {
+      "text": "Of course! We can quickly make any drink in a to-go paper cup before we close.",
+      "text_ja": "もちろんです！閉店時間までに、お持ち帰り用の紙コップですぐにお作りいたしますね。"
+    },
+    "vocabulary": [
+      {
+        "word": "possible",
+        "part_of_speech": "adjective",
+        "meaning": "可能な、できる",
+        "level": "A2/B1"
+      }
+    ]
+  }
+]

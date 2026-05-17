@@ -1,0 +1,866 @@
+[
+  {
+    "id": "AIR_001",
+    "situation_ja": "重量オーバー",
+    "situation_en": "Overweight Baggage",
+    "card_a": {
+      "text": "My suitcase is 3 kilograms over the limit. Do I have to pay an excess baggage fee?",
+      "text_ja": "スーツケースが制限を3キロオーバーしています。超過手荷物料金を払わなければなりませんか？"
+    },
+    "card_b": {
+      "text": "You can either pay the $50 fee or take some items out and put them in your carry-on bag.",
+      "text_ja": "50ドルの料金をお支払いいただくか、いくつか荷物を取り出して機内持ち込み手荷物に入れることもできます。"
+    },
+    "vocabulary": [
+      {
+        "word": "excess",
+        "part_of_speech": "adjective",
+        "meaning": "超過した、余分の",
+        "level": "C1"
+      },
+      {
+        "word": "carry-on",
+        "part_of_speech": "noun",
+        "meaning": "機内持ち込み手荷物",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_002",
+    "situation_ja": "座席の希望",
+    "situation_en": "Seat Request",
+    "card_a": {
+      "text": "I get airsick easily. Is it possible to change my middle seat to an aisle seat?",
+      "text_ja": "飛行機酔いしやすいです。真ん中の席を通路側の席に変更することは可能ですか？"
+    },
+    "card_b": {
+      "text": "Let me check the system. Yes, we have one aisle seat available near the emergency exit.",
+      "text_ja": "システムを確認いたします。はい、非常口近くに通路側の席が1つ空いております。"
+    },
+    "vocabulary": [
+      {
+        "word": "airsick",
+        "part_of_speech": "adjective",
+        "meaning": "飛行機酔いした",
+        "level": "B2"
+      },
+      {
+        "word": "aisle",
+        "part_of_speech": "noun",
+        "meaning": "通路",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_003",
+    "situation_ja": "液体の持ち込み",
+    "situation_en": "Liquids in Carry-on",
+    "card_a": {
+      "text": "I bought this expensive lotion, but security says I can't take it on the plane.",
+      "text_ja": "この高価な化粧水を買ったのですが、保安検査で機内に持ち込めないと言われました。"
+    },
+    "card_b": {
+      "text": "Liquids over 100ml must go in your checked baggage. You'll need to go back to the check-in counter.",
+      "text_ja": "100mlを超える液体は預け入れ荷物に入れなければなりません。チェックインカウンターに戻る必要があります。"
+    },
+    "vocabulary": [
+      {
+        "word": "liquid",
+        "part_of_speech": "noun",
+        "meaning": "液体",
+        "level": "B1"
+      },
+      {
+        "word": "checked baggage",
+        "part_of_speech": "noun",
+        "meaning": "預け入れ荷物",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_004",
+    "situation_ja": "金属探知機",
+    "situation_en": "Metal Detector",
+    "card_a": {
+      "text": "The metal detector keeps beeping, but I've already taken off my watch and belt.",
+      "text_ja": "金属探知機が鳴り続けていますが、時計とベルトはすでに外しました。"
+    },
+    "card_b": {
+      "text": "Please step aside. Do you have any coins in your pockets, or shoes with metal accessories?",
+      "text_ja": "脇へお寄りください。ポケットに小銭が入っていたり、金属の装飾がついた靴を履いていませんか？"
+    },
+    "vocabulary": [
+      {
+        "word": "beep",
+        "part_of_speech": "verb",
+        "meaning": "ピーッと鳴る",
+        "level": "B2"
+      },
+      {
+        "word": "step aside",
+        "part_of_speech": "phrasal verb",
+        "meaning": "脇へよける",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_005",
+    "situation_ja": "入国審査（目的）",
+    "situation_en": "Immigration (Purpose)",
+    "card_a": {
+      "text": "The immigration officer asked for the purpose of my visit. I'm here for a conference.",
+      "text_ja": "入国審査官に滞在目的を聞かれました。会議のためにここに来ました。"
+    },
+    "card_b": {
+      "text": "Please present your passport, return ticket, and the invitation letter from the conference organizer.",
+      "text_ja": "パスポート、帰りの航空券、そして会議の主催者からの招待状を提示してください。"
+    },
+    "vocabulary": [
+      {
+        "word": "immigration",
+        "part_of_speech": "noun",
+        "meaning": "入国審査",
+        "level": "B1"
+      },
+      {
+        "word": "purpose",
+        "part_of_speech": "noun",
+        "meaning": "目的",
+        "level": "B1"
+      },
+      {
+        "word": "present",
+        "part_of_speech": "verb",
+        "meaning": "提示する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_006",
+    "situation_ja": "乗り継ぎの遅延",
+    "situation_en": "Connecting Flight Delay",
+    "card_a": {
+      "text": "My first flight was delayed, and I missed my connecting flight to Paris.",
+      "text_ja": "最初のフライトが遅れ、パリへの乗り継ぎ便に乗り遅れました。"
+    },
+    "card_b": {
+      "text": "I apologize. We have rebooked you on the next available flight and issued a meal voucher.",
+      "text_ja": "申し訳ございません。次に空いている便に予約を変更し、お食事券を発行いたしました。"
+    },
+    "vocabulary": [
+      {
+        "word": "connecting flight",
+        "part_of_speech": "noun",
+        "meaning": "乗り継ぎ便",
+        "level": "B1"
+      },
+      {
+        "word": "rebook",
+        "part_of_speech": "verb",
+        "meaning": "予約し直す",
+        "level": "C1"
+      },
+      {
+        "word": "voucher",
+        "part_of_speech": "noun",
+        "meaning": "引換券、クーポン",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_007",
+    "situation_ja": "荷物の紛失",
+    "situation_en": "Lost Baggage",
+    "card_a": {
+      "text": "I've been waiting at the baggage carousel for an hour, but my suitcase hasn't appeared.",
+      "text_ja": "手荷物受取所で1時間待っていますが、私のスーツケースが出てきません。"
+    },
+    "card_b": {
+      "text": "Please fill out this Property Irregularity Report. We will deliver it to your hotel once it arrives.",
+      "text_ja": "こちらの「手荷物事故報告書」にご記入ください。到着し次第、お客様のホテルまでお届けいたします。"
+    },
+    "vocabulary": [
+      {
+        "word": "carousel",
+        "part_of_speech": "noun",
+        "meaning": "（空港の）手荷物受取所の回転コンベア",
+        "level": "C1"
+      },
+      {
+        "word": "irregularity",
+        "part_of_speech": "noun",
+        "meaning": "不規則、異常",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_008",
+    "situation_ja": "税関申告",
+    "situation_en": "Customs Declaration",
+    "card_a": {
+      "text": "I bought three bottles of wine as souvenirs. Do I need to declare them at customs?",
+      "text_ja": "お土産としてワインを3本買いました。税関で申告する必要がありますか？"
+    },
+    "card_b": {
+      "text": "The duty-free limit is two bottles. You will need to pay import tax on the third bottle.",
+      "text_ja": "免税の制限は2本までです。3本目については輸入関税をお支払いいただく必要があります。"
+    },
+    "vocabulary": [
+      {
+        "word": "declare",
+        "part_of_speech": "verb",
+        "meaning": "申告する",
+        "level": "B2"
+      },
+      {
+        "word": "customs",
+        "part_of_speech": "noun",
+        "meaning": "税関",
+        "level": "B1"
+      },
+      {
+        "word": "duty-free",
+        "part_of_speech": "adjective",
+        "meaning": "免税の",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_009",
+    "situation_ja": "搭乗ゲートの変更",
+    "situation_en": "Gate Change",
+    "card_a": {
+      "text": "My boarding pass says Gate 12, but there's a different flight displayed on the screen here.",
+      "text_ja": "搭乗券には12番ゲートとありますが、ここの画面には違う便が表示されています。"
+    },
+    "card_b": {
+      "text": "Attention passengers, the departure gate for flight 402 has been changed to Gate 25.",
+      "text_ja": "お客様にお知らせいたします。402便の出発ゲートは25番ゲートに変更となりました。"
+    },
+    "vocabulary": [
+      {
+        "word": "boarding pass",
+        "part_of_speech": "noun",
+        "meaning": "搭乗券",
+        "level": "A2/B1"
+      },
+      {
+        "word": "departure",
+        "part_of_speech": "noun",
+        "meaning": "出発",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_010",
+    "situation_ja": "機内持ち込みの棚",
+    "situation_en": "Overhead Bin Full",
+    "card_a": {
+      "text": "The overhead bin above my seat is completely full. Where can I put my backpack?",
+      "text_ja": "私の席の上の収納棚が完全に満杯です。リュックはどこに置けばいいですか？"
+    },
+    "card_b": {
+      "text": "Please slide it under the seat in front of you. Ensure the aisle remains completely clear.",
+      "text_ja": "前の座席の下に滑り込ませてください。通路は完全に空けたままにしておいてください。"
+    },
+    "vocabulary": [
+      {
+        "word": "overhead bin",
+        "part_of_speech": "noun",
+        "meaning": "（機内の）頭上の収納棚",
+        "level": "B2"
+      },
+      {
+        "word": "ensure",
+        "part_of_speech": "verb",
+        "meaning": "確実にする、保証する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_011",
+    "situation_ja": "ターミナル移動",
+    "situation_en": "Terminal Transfer",
+    "card_a": {
+      "text": "My domestic flight arrives at Terminal 1, but my international flight departs from Terminal 3.",
+      "text_ja": "国内線が第1ターミナルに到着するのですが、国際線は第3ターミナルから出発します。"
+    },
+    "card_b": {
+      "text": "You can take the free shuttle bus outside the arrivals hall. It runs every ten minutes.",
+      "text_ja": "到着ロビーの外から無料のシャトルバスに乗ることができます。10分間隔で運行しています。"
+    },
+    "vocabulary": [
+      {
+        "word": "domestic",
+        "part_of_speech": "adjective",
+        "meaning": "国内の",
+        "level": "B1"
+      },
+      {
+        "word": "shuttle",
+        "part_of_speech": "noun",
+        "meaning": "定期往復便",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_012",
+    "situation_ja": "車椅子のリクエスト",
+    "situation_en": "Wheelchair Request",
+    "card_a": {
+      "text": "My grandmother cannot walk long distances through the airport. Can we get some assistance?",
+      "text_ja": "祖母は空港内の長距離を歩くことができません。サポートをお願いできますか？"
+    },
+    "card_b": {
+      "text": "I will arrange a wheelchair and a staff member to escort you directly to the boarding gate.",
+      "text_ja": "車椅子と、搭乗ゲートまで直接ご案内するスタッフを手配いたします。"
+    },
+    "vocabulary": [
+      {
+        "word": "assistance",
+        "part_of_speech": "noun",
+        "meaning": "支援、サポート",
+        "level": "B2"
+      },
+      {
+        "word": "escort",
+        "part_of_speech": "verb",
+        "meaning": "付き添う、案内する",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_013",
+    "situation_ja": "破損した手荷物",
+    "situation_en": "Damaged Baggage",
+    "card_a": {
+      "text": "When I picked up my suitcase, the handle was completely broken and there's a huge dent.",
+      "text_ja": "スーツケースを受け取った時、取っ手が完全に壊れていて、大きなへこみがありました。"
+    },
+    "card_b": {
+      "text": "Please file a damage claim at the baggage service office before you leave the airport.",
+      "text_ja": "空港を出る前に、手荷物サービスオフィスで破損のクレーム（請求）を申請してください。"
+    },
+    "vocabulary": [
+      {
+        "word": "dent",
+        "part_of_speech": "noun",
+        "meaning": "へこみ",
+        "level": "C1"
+      },
+      {
+        "word": "file",
+        "part_of_speech": "verb",
+        "meaning": "（書類などを）提出する、申請する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_014",
+    "situation_ja": "機内食の確認",
+    "situation_en": "In-flight Meal",
+    "card_a": {
+      "text": "I requested a vegetarian meal when I booked the ticket online, but I just want to confirm it.",
+      "text_ja": "ネットで航空券を予約した際にベジタリアンミールをお願いしたのですが、確認したいです。"
+    },
+    "card_b": {
+      "text": "Yes, we have a strict vegetarian meal reserved under your name. We will serve it first.",
+      "text_ja": "はい、お客様のお名前で厳格なベジタリアンミールを予約しております。最初にお持ちいたします。"
+    },
+    "vocabulary": [
+      {
+        "word": "confirm",
+        "part_of_speech": "verb",
+        "meaning": "確認する",
+        "level": "B1"
+      },
+      {
+        "word": "strict",
+        "part_of_speech": "adjective",
+        "meaning": "厳格な",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_015",
+    "situation_ja": "免税店での購入",
+    "situation_en": "Duty-Free Shopping",
+    "card_a": {
+      "text": "I want to buy this perfume, but I have a connecting flight. Can I bring it on the next plane?",
+      "text_ja": "この香水を買いたいのですが、乗り継ぎ便があります。次の飛行機に持ち込めますか？"
+    },
+    "card_b": {
+      "text": "We will seal it in a special security bag. Do not open it until you reach your final destination.",
+      "text_ja": "特別な保安袋に入れて封印します。最終目的地に到着するまで開けないでください。"
+    },
+    "vocabulary": [
+      {
+        "word": "seal",
+        "part_of_speech": "verb",
+        "meaning": "封印する、密閉する",
+        "level": "B2"
+      },
+      {
+        "word": "destination",
+        "part_of_speech": "noun",
+        "meaning": "目的地",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_016",
+    "situation_ja": "ビジネスクラスへのアップグレード",
+    "situation_en": "Business Class Upgrade",
+    "card_a": {
+      "text": "I have accumulated a lot of frequent flyer miles. Can I use them to upgrade to Business Class?",
+      "text_ja": "マイレージがたくさん貯まっています。これを使ってビジネスクラスにアップグレードできますか？"
+    },
+    "card_b": {
+      "text": "There is one seat left in Business Class. I can process the upgrade for 25,000 miles.",
+      "text_ja": "ビジネスクラスに1席空きがございます。25,000マイルでアップグレードの手続きが可能です。"
+    },
+    "vocabulary": [
+      {
+        "word": "accumulate",
+        "part_of_speech": "verb",
+        "meaning": "蓄積する、貯める",
+        "level": "C1"
+      },
+      {
+        "word": "process",
+        "part_of_speech": "verb",
+        "meaning": "処理する、手続きする",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_017",
+    "situation_ja": "ラウンジの利用",
+    "situation_en": "Lounge Access",
+    "card_a": {
+      "text": "I have a six-hour layover. Is there a lounge where I can take a shower and rest?",
+      "text_ja": "6時間の待ち時間（乗り継ぎ）があります。シャワーを浴びて休めるラウンジはありますか？"
+    },
+    "card_b": {
+      "text": "Our premium lounge offers shower suites and a buffet, available for $40 or free for Gold members.",
+      "text_ja": "当社のプレミアムラウンジにはシャワールームとビュッフェがあり、40ドル、またはゴールド会員様は無料でご利用いただけます。"
+    },
+    "vocabulary": [
+      {
+        "word": "layover",
+        "part_of_speech": "noun",
+        "meaning": "乗り継ぎ待ちの時間",
+        "level": "C1"
+      },
+      {
+        "word": "premium",
+        "part_of_speech": "adjective",
+        "meaning": "高級な",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_018",
+    "situation_ja": "パスポートの紛失",
+    "situation_en": "Lost Passport",
+    "card_a": {
+      "text": "I can't find my passport anywhere! I might have left it at the coffee shop in the departure hall.",
+      "text_ja": "パスポートがどこにも見つかりません！出発ロビーのコーヒーショップに置き忘れたかもしれません。"
+    },
+    "card_b": {
+      "text": "Don't panic. I will contact airport security immediately to retrace your steps and locate it.",
+      "text_ja": "慌てないでください。お客様の足取りをたどって見つけ出すため、すぐに空港警備に連絡します。"
+    },
+    "vocabulary": [
+      {
+        "word": "panic",
+        "part_of_speech": "verb",
+        "meaning": "パニックになる",
+        "level": "B2"
+      },
+      {
+        "word": "retrace",
+        "part_of_speech": "verb",
+        "meaning": "引き返す、たどる",
+        "level": "C2"
+      },
+      {
+        "word": "locate",
+        "part_of_speech": "verb",
+        "meaning": "見つける、位置を突き止める",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_019",
+    "situation_ja": "搭乗の最終案内",
+    "situation_en": "Final Call",
+    "card_a": {
+      "text": "Is flight 702 to London still boarding? I got stuck at the security checkpoint for an hour.",
+      "text_ja": "ロンドン行きの702便はまだ搭乗中ですか？保安検査場で1時間も足止めされてしまって。"
+    },
+    "card_b": {
+      "text": "This is the final call. Please run to Gate 15 immediately, they are about to close the doors.",
+      "text_ja": "最終案内（ファイナルコール）です。すぐに15番ゲートまで走ってください、ドアが閉まるところです。"
+    },
+    "vocabulary": [
+      {
+        "word": "stuck",
+        "part_of_speech": "adjective",
+        "meaning": "足止めされて、動けない",
+        "level": "B2"
+      },
+      {
+        "word": "checkpoint",
+        "part_of_speech": "noun",
+        "meaning": "検問所、検査場",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_020",
+    "situation_ja": "時差ぼけ",
+    "situation_en": "Jet Lag",
+    "card_a": {
+      "text": "I'm exhausted from the 12-hour flight and the time difference. How can I recover from jet lag?",
+      "text_ja": "12時間のフライトと時差で疲れ果てました。時差ぼけからどうすれば回復できますか？"
+    },
+    "card_b": {
+      "text": "Try to stay awake until local bedtime and drink plenty of water to keep yourself hydrated.",
+      "text_ja": "現地の就寝時間まで起きているように努め、水をたくさん飲んで水分補給を心がけてください。"
+    },
+    "vocabulary": [
+      {
+        "word": "exhausted",
+        "part_of_speech": "adjective",
+        "meaning": "疲れ果てた",
+        "level": "B2"
+      },
+      {
+        "word": "jet lag",
+        "part_of_speech": "noun",
+        "meaning": "時差ぼけ",
+        "level": "B2"
+      },
+      {
+        "word": "hydrated",
+        "part_of_speech": "adjective",
+        "meaning": "水分補給された",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_021",
+    "situation_ja": "SIMカードの購入",
+    "situation_en": "Buying a SIM Card",
+    "card_a": {
+      "text": "My smartphone has no signal here. Where can I buy a prepaid SIM card with unlimited data?",
+      "text_ja": "ここでスマホの電波が入りません。データ無制限のプリペイドSIMカードはどこで買えますか？"
+    },
+    "card_b": {
+      "text": "There is a telecommunications kiosk in the arrivals hall just past the customs clearance area.",
+      "text_ja": "税関を抜けたすぐ先の到着ロビーに、通信会社の売店（キオスク）がありますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "unlimited",
+        "part_of_speech": "adjective",
+        "meaning": "無制限の",
+        "level": "B2"
+      },
+      {
+        "word": "clearance",
+        "part_of_speech": "noun",
+        "meaning": "通過、通関手続き",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_022",
+    "situation_ja": "空港からの移動",
+    "situation_en": "Airport Taxi",
+    "card_a": {
+      "text": "I want to go to the city center safely. Are the taxis waiting outside officially licensed?",
+      "text_ja": "安全に市街地に行きたいです。外で待っているタクシーは公式に許可されたものですか？"
+    },
+    "card_b": {
+      "text": "Only use the official taxi stand. Ignore anyone inside the terminal offering you a ride.",
+      "text_ja": "公式のタクシー乗り場のみをご利用ください。ターミナル内で乗車を勧めてくる人は無視してください。"
+    },
+    "vocabulary": [
+      {
+        "word": "officially",
+        "part_of_speech": "adverb",
+        "meaning": "公式に",
+        "level": "B2"
+      },
+      {
+        "word": "licensed",
+        "part_of_speech": "adjective",
+        "meaning": "許可された、免許を持った",
+        "level": "C1"
+      },
+      {
+        "word": "ignore",
+        "part_of_speech": "verb",
+        "meaning": "無視する",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_023",
+    "situation_ja": "子どもの一人旅",
+    "situation_en": "Unaccompanied Minor",
+    "card_a": {
+      "text": "My 10-year-old son is flying alone to visit his grandparents. Will someone take care of him?",
+      "text_ja": "10歳の息子が祖父母を訪ねるために一人で飛行機に乗ります。誰か面倒を見てくれますか？"
+    },
+    "card_b": {
+      "text": "Our unaccompanied minor service ensures a flight attendant escorts him from check-in to arrival.",
+      "text_ja": "当社の「お子様の一人旅サポート」により、客室乗務員がチェックインから到着までエスコートいたします。"
+    },
+    "vocabulary": [
+      {
+        "word": "unaccompanied",
+        "part_of_speech": "adjective",
+        "meaning": "同伴者のいない",
+        "level": "C2"
+      },
+      {
+        "word": "minor",
+        "part_of_speech": "noun",
+        "meaning": "未成年者",
+        "level": "C1"
+      },
+      {
+        "word": "flight attendant",
+        "part_of_speech": "noun",
+        "meaning": "客室乗務員",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_024",
+    "situation_ja": "欠航の案内",
+    "situation_en": "Flight Cancellation",
+    "card_a": {
+      "text": "The departure board says my flight is cancelled due to a severe snowstorm. What should I do?",
+      "text_ja": "出発案内板に、猛吹雪のため私のフライトが欠航になったと書いてあります。どうすればいいですか？"
+    },
+    "card_b": {
+      "text": "Please join the customer service line. We will arrange hotel accommodations for tonight.",
+      "text_ja": "カスタマーサービスの列にお並びください。今夜のホテルの宿泊（手配）をご用意いたします。"
+    },
+    "vocabulary": [
+      {
+        "word": "cancellation",
+        "part_of_speech": "noun",
+        "meaning": "キャンセル、欠航",
+        "level": "B2"
+      },
+      {
+        "word": "severe",
+        "part_of_speech": "adjective",
+        "meaning": "厳しい、猛烈な",
+        "level": "B2"
+      },
+      {
+        "word": "accommodation",
+        "part_of_speech": "noun",
+        "meaning": "宿泊施設",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_025",
+    "situation_ja": "スタンバイ（空席待ち）",
+    "situation_en": "Standby Passenger",
+    "card_a": {
+      "text": "I have a flexible ticket. Can I be put on the standby list for the earlier flight to New York?",
+      "text_ja": "変更可能なチケットを持っています。ニューヨーク行きの早い便の空席待ちリストに入れてもらえますか？"
+    },
+    "card_b": {
+      "text": "You are number three on the standby list. Please wait near the gate until all passengers board.",
+      "text_ja": "空席待ちリストの3番目です。すべての乗客が搭乗するまで、ゲートの近くでお待ちください。"
+    },
+    "vocabulary": [
+      {
+        "word": "flexible",
+        "part_of_speech": "adjective",
+        "meaning": "柔軟な、変更可能な",
+        "level": "B2"
+      },
+      {
+        "word": "standby",
+        "part_of_speech": "noun",
+        "meaning": "キャンセル待ち、待機",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_026",
+    "situation_ja": "ブランケットの要求",
+    "situation_en": "Requesting a Blanket",
+    "card_a": {
+      "text": "The air conditioning in the cabin is too strong and I'm freezing. Could I get an extra blanket?",
+      "text_ja": "機内のエアコンが強すぎて凍えそうです。追加のブランケットをもらえませんか？"
+    },
+    "card_b": {
+      "text": "I'm sorry, we've run out of blankets, but I can ask the pilot to adjust the cabin temperature.",
+      "text_ja": "申し訳ありません、ブランケットを切らしておりますが、機長に機内の温度を調整するよう頼むことができます。"
+    },
+    "vocabulary": [
+      {
+        "word": "cabin",
+        "part_of_speech": "noun",
+        "meaning": "機内、客室",
+        "level": "B2"
+      },
+      {
+        "word": "adjust",
+        "part_of_speech": "verb",
+        "meaning": "調整する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_027",
+    "situation_ja": "機内エンターテインメント",
+    "situation_en": "In-flight Entertainment",
+    "card_a": {
+      "text": "The screen on my seat isn't responding to my touch, and my headphones don't have any sound.",
+      "text_ja": "座席の画面がタッチに反応せず、ヘッドフォンからも音が全く出ません。"
+    },
+    "card_b": {
+      "text": "Let me reset your entertainment system from the main console. It should restart in a minute.",
+      "text_ja": "メインコンソールからお客様のエンターテインメントシステムをリセットいたします。1分ほどで再起動します。"
+    },
+    "vocabulary": [
+      {
+        "word": "respond",
+        "part_of_speech": "verb",
+        "meaning": "反応する、応答する",
+        "level": "B2"
+      },
+      {
+        "word": "console",
+        "part_of_speech": "noun",
+        "meaning": "制御盤、コンソール",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_028",
+    "situation_ja": "入国カードの書き方",
+    "situation_en": "Arrival Card",
+    "card_a": {
+      "text": "I'm not sure how to fill out this arrival card. What should I write in the 'address' section?",
+      "text_ja": "この入国カードの書き方がよく分かりません。「住所」の欄には何を書けばいいですか？"
+    },
+    "card_b": {
+      "text": "You should write the name and full address of the hotel where you will be staying tonight.",
+      "text_ja": "今夜滞在するホテルの名前と、詳細な（完全な）住所を記入してください。"
+    },
+    "vocabulary": [
+      {
+        "word": "fill out",
+        "part_of_speech": "phrasal verb",
+        "meaning": "（書類に）記入する",
+        "level": "B1"
+      },
+      {
+        "word": "section",
+        "part_of_speech": "noun",
+        "meaning": "欄、部分",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "AIR_029",
+    "situation_ja": "免税枠の超過",
+    "situation_en": "Exceeding Duty-Free",
+    "card_a": {
+      "text": "I didn't realize electronic devices were taxed. I bought two expensive laptops abroad.",
+      "text_ja": "電子機器に税金がかかるとは気づきませんでした。海外で高価なノートパソコンを2台買いました。"
+    },
+    "card_b": {
+      "text": "Since the value exceeds the personal allowance, you are required to pay a 10% import duty.",
+      "text_ja": "金額が個人の免税枠を超えているため、10%の輸入関税を支払う義務があります。"
+    },
+    "vocabulary": [
+      {
+        "word": "exceed",
+        "part_of_speech": "verb",
+        "meaning": "超過する、超える",
+        "level": "B2"
+      },
+      {
+        "word": "allowance",
+        "part_of_speech": "noun",
+        "meaning": "許容量、手当、免税枠",
+        "level": "C1"
+      },
+      {
+        "word": "duty",
+        "part_of_speech": "noun",
+        "meaning": "関税、義務",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "AIR_030",
+    "situation_ja": "手荷物カートの利用",
+    "situation_en": "Luggage Cart",
+    "card_a": {
+      "text": "I have three heavy boxes. Where can I find a luggage cart to transport them to the parking lot?",
+      "text_ja": "重い箱が3つあります。駐車場まで運ぶための手荷物カートはどこにありますか？"
+    },
+    "card_b": {
+      "text": "The baggage carts are located near the exit. You need to insert a two-dollar coin to unlock one.",
+      "text_ja": "手荷物カートは出口付近にあります。ロックを解除するには2ドル硬貨を入れる必要があります。"
+    },
+    "vocabulary": [
+      {
+        "word": "transport",
+        "part_of_speech": "verb",
+        "meaning": "運ぶ、輸送する",
+        "level": "B1"
+      },
+      {
+        "word": "insert",
+        "part_of_speech": "verb",
+        "meaning": "挿入する、入れる",
+        "level": "B2"
+      }
+    ]
+  }
+]

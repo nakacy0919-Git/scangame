@@ -1,0 +1,938 @@
+[
+  {
+    "id": "ZOO_001",
+    "situation_ja": "ペンギンの餌やり",
+    "situation_en": "Penguin Feeding",
+    "card_a": {
+      "text": "I really want to see the penguins eating. Do you know what time they are fed?",
+      "text_ja": "ペンギンが餌を食べているところをどうしても見たいです。何時に餌が与えられるか知っていますか？"
+    },
+    "card_b": {
+      "text": "The penguin feeding time is at 2:00 PM. The zookeeper also gives a small presentation then.",
+      "text_ja": "ペンギンの餌やりは午後2時です。その際、飼育員による短い解説（プレゼンテーション）もありますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "feed (fed)",
+        "part_of_speech": "verb",
+        "meaning": "餌を与える",
+        "level": "B1"
+      },
+      {
+        "word": "zookeeper",
+        "part_of_speech": "noun",
+        "meaning": "飼育員",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_002",
+    "situation_ja": "ガラスを叩く",
+    "situation_en": "Tapping the Glass",
+    "card_a": {
+      "text": "Look! The monkey is sleeping right next to the glass. Let's tap on it to wake him up.",
+      "text_ja": "見て！サルがガラスのすぐそばで寝てる。ガラスを叩いて起こそうよ。"
+    },
+    "card_b": {
+      "text": "Please do not tap the glass. Loud noises and vibrations cause severe stress to the animals.",
+      "text_ja": "ガラスを叩かないでください。大きな音や振動は動物たちに深刻なストレスを与えます。"
+    },
+    "vocabulary": [
+      {
+        "word": "tap",
+        "part_of_speech": "verb",
+        "meaning": "軽く叩く",
+        "level": "B2"
+      },
+      {
+        "word": "vibration",
+        "part_of_speech": "noun",
+        "meaning": "振動",
+        "level": "C1"
+      },
+      {
+        "word": "severe",
+        "part_of_speech": "adjective",
+        "meaning": "深刻な",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_003",
+    "situation_ja": "迷子",
+    "situation_en": "Lost Child",
+    "card_a": {
+      "text": "Excuse me, I've lost my five-year-old daughter. She is wearing a yellow hat and a red shirt.",
+      "text_ja": "すみません、5歳の娘が迷子になりました。黄色い帽子と赤いシャツを着ています。"
+    },
+    "card_b": {
+      "text": "I'll immediately broadcast an announcement. Please wait at the information desk until security finds her.",
+      "text_ja": "すぐに館内放送（アナウンス）を流します。警備員が彼女を見つけるまで、インフォメーションデスクでお待ちください。"
+    },
+    "vocabulary": [
+      {
+        "word": "broadcast",
+        "part_of_speech": "verb",
+        "meaning": "放送する",
+        "level": "B2"
+      },
+      {
+        "word": "announcement",
+        "part_of_speech": "noun",
+        "meaning": "アナウンス、発表",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_004",
+    "situation_ja": "夜行性動物館",
+    "situation_en": "Nocturnal Animals",
+    "card_a": {
+      "text": "Why is it so dark inside this building? I can barely see the animals in the cages.",
+      "text_ja": "この建物の中はどうしてこんなに暗いのですか？檻の中の動物がほとんど見えません。"
+    },
+    "card_b": {
+      "text": "This is the nocturnal house. We reverse their day-night cycle so you can see them active.",
+      "text_ja": "こちらは夜行性動物館です。活動している姿を見られるよう、彼らの昼夜のサイクルを逆転させています。"
+    },
+    "vocabulary": [
+      {
+        "word": "barely",
+        "part_of_speech": "adverb",
+        "meaning": "かろうじて、ほとんど〜ない",
+        "level": "B2"
+      },
+      {
+        "word": "nocturnal",
+        "part_of_speech": "adjective",
+        "meaning": "夜行性の",
+        "level": "C2"
+      },
+      {
+        "word": "reverse",
+        "part_of_speech": "verb",
+        "meaning": "逆転させる",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_005",
+    "situation_ja": "チーターとヒョウの違い",
+    "situation_en": "Cheetah vs Leopard",
+    "card_a": {
+      "text": "Those two spotted cats look exactly the same to me. How can you tell them apart?",
+      "text_ja": "あの2匹の斑点のあるネコ科動物は全く同じに見えます。どうやって見分けるのですか？"
+    },
+    "card_b": {
+      "text": "Cheetahs have distinct black 'tear marks' on their faces and are built for incredible speed.",
+      "text_ja": "チーターには顔に特徴的な黒い「涙の跡」があり、驚異的なスピードが出る体つきをしています。"
+    },
+    "vocabulary": [
+      {
+        "word": "spotted",
+        "part_of_speech": "adjective",
+        "meaning": "斑点のある",
+        "level": "B2"
+      },
+      {
+        "word": "tell apart",
+        "part_of_speech": "phrasal verb",
+        "meaning": "見分ける",
+        "level": "C1"
+      },
+      {
+        "word": "distinct",
+        "part_of_speech": "adjective",
+        "meaning": "はっきりとわかる、特徴的な",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_006",
+    "situation_ja": "フラッシュ撮影の禁止",
+    "situation_en": "No Flash Photography",
+    "card_a": {
+      "text": "It's too dark to take a good picture of the owls. I'm going to turn on my camera flash.",
+      "text_ja": "フクロウのいい写真を撮るには暗すぎます。カメラのフラッシュを焚きますね。"
+    },
+    "card_b": {
+      "text": "Flash photography is strictly prohibited here. Sudden bright lights can blind and frighten the birds.",
+      "text_ja": "ここではフラッシュ撮影は固く禁じられています。突然の強い光は鳥の目を眩ませ、怯えさせてしまいます。"
+    },
+    "vocabulary": [
+      {
+        "word": "prohibit",
+        "part_of_speech": "verb",
+        "meaning": "禁止する",
+        "level": "B2"
+      },
+      {
+        "word": "blind",
+        "part_of_speech": "verb",
+        "meaning": "目を眩ませる、盲目にする",
+        "level": "C1"
+      },
+      {
+        "word": "frighten",
+        "part_of_speech": "verb",
+        "meaning": "怯えさせる、怖がらせる",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_007",
+    "situation_ja": "動物が隠れている",
+    "situation_en": "Hiding Animal",
+    "card_a": {
+      "text": "I've been looking at the tiger enclosure for ten minutes, but it's completely empty.",
+      "text_ja": "トラの展示場（囲い）を10分見ていますが、完全に空っぽです。"
+    },
+    "card_b": {
+      "text": "The tiger is likely resting in the shade behind the rocks to escape the afternoon heat.",
+      "text_ja": "トラは午後の暑さを逃れるため、岩の後ろの木陰で休んでいると思われます（可能性が高いです）。"
+    },
+    "vocabulary": [
+      {
+        "word": "enclosure",
+        "part_of_speech": "noun",
+        "meaning": "囲い、展示場",
+        "level": "C1"
+      },
+      {
+        "word": "shade",
+        "part_of_speech": "noun",
+        "meaning": "日陰",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_008",
+    "situation_ja": "ふれあい広場",
+    "situation_en": "Petting Zoo",
+    "card_a": {
+      "text": "Can my children feed the goats and sheep? They brought some carrots from home.",
+      "text_ja": "子どもたちがヤギやヒツジに餌をあげてもいいですか？家からニンジンを持ってきました。"
+    },
+    "card_b": {
+      "text": "Outside food is not allowed to prevent illness. You can purchase special animal feed from the vending machine.",
+      "text_ja": "病気を防ぐため、外部からの食べ物は持ち込み禁止です。自動販売機で専用の動物の餌を購入できます。"
+    },
+    "vocabulary": [
+      {
+        "word": "prevent",
+        "part_of_speech": "verb",
+        "meaning": "防ぐ、予防する",
+        "level": "B1"
+      },
+      {
+        "word": "illness",
+        "part_of_speech": "noun",
+        "meaning": "病気",
+        "level": "A2/B1"
+      },
+      {
+        "word": "vending machine",
+        "part_of_speech": "noun",
+        "meaning": "自動販売機",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_009",
+    "situation_ja": "絶滅危惧種の保護",
+    "situation_en": "Endangered Species",
+    "card_a": {
+      "text": "Why are there only a few Sumatran rhinos left in the world? What happened to them?",
+      "text_ja": "どうしてスマトラサイは世界に少ししか残っていないのですか？彼らに何が起きたのですか？"
+    },
+    "card_b": {
+      "text": "They are critically endangered due to illegal poaching for their horns and severe habitat destruction.",
+      "text_ja": "角を狙った違法な密猟と深刻な生息地の破壊により、彼らは絶滅の危機（絶滅危惧種）に瀕しています。"
+    },
+    "vocabulary": [
+      {
+        "word": "critically",
+        "part_of_speech": "adverb",
+        "meaning": "極めて、危機的に",
+        "level": "C1"
+      },
+      {
+        "word": "endangered",
+        "part_of_speech": "adjective",
+        "meaning": "絶滅の危機に瀕した",
+        "level": "B2"
+      },
+      {
+        "word": "poaching",
+        "part_of_speech": "noun",
+        "meaning": "密猟",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_010",
+    "situation_ja": "ゾウの鼻の役割",
+    "situation_en": "Elephant Trunk",
+    "card_a": {
+      "text": "An elephant's trunk is so long and flexible. What do they mainly use it for besides drinking?",
+      "text_ja": "ゾウの鼻はとても長くて柔軟ですね。水を飲むこと以外に、主に何に使っているのですか？"
+    },
+    "card_b": {
+      "text": "It contains thousands of muscles, allowing them to grasp objects, communicate, and even shower themselves.",
+      "text_ja": "鼻には数万の筋肉があり、物を掴んだり、コミュニケーションをとったり、自分にシャワーをかけたりすることができます。"
+    },
+    "vocabulary": [
+      {
+        "word": "flexible",
+        "part_of_speech": "adjective",
+        "meaning": "柔軟な",
+        "level": "B2"
+      },
+      {
+        "word": "grasp",
+        "part_of_speech": "verb",
+        "meaning": "しっかり掴む",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_011",
+    "situation_ja": "冬眠",
+    "situation_en": "Hibernation",
+    "card_a": {
+      "text": "The bears seem very inactive today. Are they sick or just tired?",
+      "text_ja": "クマが今日はとても動きが鈍い（不活発）ようです。病気ですか、それともただ疲れているだけですか？"
+    },
+    "card_b": {
+      "text": "As winter approaches, they eat heavily and slow down to prepare for a long period of hibernation.",
+      "text_ja": "冬が近づくにつれ、彼らはたくさん食べて動きを遅くし、長い冬眠期間に備えます。"
+    },
+    "vocabulary": [
+      {
+        "word": "inactive",
+        "part_of_speech": "adjective",
+        "meaning": "不活発な、活動していない",
+        "level": "B2"
+      },
+      {
+        "word": "hibernation",
+        "part_of_speech": "noun",
+        "meaning": "冬眠",
+        "level": "C2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_012",
+    "situation_ja": "保護プログラム（繁殖）",
+    "situation_en": "Breeding Program",
+    "card_a": {
+      "text": "Are these baby pandas going to stay in this zoo forever, or will they go back to the wild?",
+      "text_ja": "この赤ちゃんパンダはずっとこの動物園にいるのですか、それとも野生に帰るのですか？"
+    },
+    "card_b": {
+      "text": "They are part of an international captive breeding program to increase the population before release.",
+      "text_ja": "彼らは野生に放つ前に個体数を増やすための、国際的な飼育下繁殖プログラムの一部です。"
+    },
+    "vocabulary": [
+      {
+        "word": "captive",
+        "part_of_speech": "adjective",
+        "meaning": "捕らわれた、飼育下の",
+        "level": "C1"
+      },
+      {
+        "word": "breeding",
+        "part_of_speech": "noun",
+        "meaning": "繁殖、飼育",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_013",
+    "situation_ja": "迷彩・擬態",
+    "situation_en": "Camouflage",
+    "card_a": {
+      "text": "I can't see the stick insect in this exhibit. It just looks like a bunch of dead branches.",
+      "text_ja": "この展示の中にナナフシ（枝虫）が見えません。ただの枯れ枝の束にしか見えません。"
+    },
+    "card_b": {
+      "text": "That's exactly its survival strategy. Camouflage protects them from predators in the wild.",
+      "text_ja": "それこそがまさに彼らの生存戦略です。カモフラージュ（擬態）は、野生において捕食者から彼らを守ります。"
+    },
+    "vocabulary": [
+      {
+        "word": "exhibit",
+        "part_of_speech": "noun",
+        "meaning": "展示（物）",
+        "level": "B2"
+      },
+      {
+        "word": "camouflage",
+        "part_of_speech": "noun",
+        "meaning": "擬態、迷彩",
+        "level": "C1"
+      },
+      {
+        "word": "predator",
+        "part_of_speech": "noun",
+        "meaning": "捕食者",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_014",
+    "situation_ja": "ベビーカーのレンタル",
+    "situation_en": "Stroller Rental",
+    "card_a": {
+      "text": "My toddler is too tired to walk the entire zoo. Do you have any strollers available for rent?",
+      "text_ja": "幼児が疲れてしまって、動物園全体を歩き回れません。レンタルできるベビーカーはありますか？"
+    },
+    "card_b": {
+      "text": "Yes, you can rent a stroller at the main entrance for a small fee. We also offer double strollers.",
+      "text_ja": "はい、正面玄関で少額の料金でベビーカーをレンタルできます。2人乗り用のベビーカーもご用意しております。"
+    },
+    "vocabulary": [
+      {
+        "word": "toddler",
+        "part_of_speech": "noun",
+        "meaning": "よちよち歩きの幼児",
+        "level": "C1"
+      },
+      {
+        "word": "stroller",
+        "part_of_speech": "noun",
+        "meaning": "ベビーカー",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_015",
+    "situation_ja": "鳥の渡り",
+    "situation_en": "Bird Migration",
+    "card_a": {
+      "text": "How do these migratory birds know exactly where to fly thousands of miles every single year?",
+      "text_ja": "この渡り鳥たちは、毎年何千マイルも飛んでいく場所をどうやって正確に知っているのですか？"
+    },
+    "card_b": {
+      "text": "They navigate using the Earth's magnetic field, the position of the sun, and geographical landmarks.",
+      "text_ja": "彼らは地球の磁場、太陽の位置、そして地理的な目印を使ってナビゲート（進路を見つける）します。"
+    },
+    "vocabulary": [
+      {
+        "word": "migratory",
+        "part_of_speech": "adjective",
+        "meaning": "移住性の、渡りをする",
+        "level": "C2"
+      },
+      {
+        "word": "navigate",
+        "part_of_speech": "verb",
+        "meaning": "航行する、進路を見つける",
+        "level": "B2"
+      },
+      {
+        "word": "magnetic field",
+        "part_of_speech": "noun",
+        "meaning": "磁場",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_016",
+    "situation_ja": "は虫類の体温調節",
+    "situation_en": "Reptile Temperature",
+    "card_a": {
+      "text": "Why do the iguanas and snakes spend so much time just lying motionless on those hot rocks?",
+      "text_ja": "どうしてイグアナやヘビは、あんな熱い岩の上でじっと動かずに長い時間を過ごすのですか？"
+    },
+    "card_b": {
+      "text": "They are cold-blooded reptiles. They need to absorb heat from their environment to regulate their body temperature.",
+      "text_ja": "彼らは冷血動物（変温動物）の爬虫類です。体温を調節するために環境から熱を吸収する必要があります。"
+    },
+    "vocabulary": [
+      {
+        "word": "motionless",
+        "part_of_speech": "adjective",
+        "meaning": "動かない、静止した",
+        "level": "C1"
+      },
+      {
+        "word": "reptile",
+        "part_of_speech": "noun",
+        "meaning": "爬虫類",
+        "level": "C1"
+      },
+      {
+        "word": "regulate",
+        "part_of_speech": "verb",
+        "meaning": "調節する、規制する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_017",
+    "situation_ja": "お土産屋への道順",
+    "situation_en": "Souvenir Shop",
+    "card_a": {
+      "text": "We've seen all the animals and want to buy some stuffed toys before we leave. Where is the gift shop?",
+      "text_ja": "すべての動物を見たので、帰る前にぬいぐるみをいくつか買いたいです。お土産屋さんはどこですか？"
+    },
+    "card_b": {
+      "text": "Follow this path past the flamingo pond. The gift shop is located right next to the exit gates.",
+      "text_ja": "フラミンゴの池を通り過ぎて、この道に沿って進んでください。お土産屋は出口ゲートのすぐ隣にあります。"
+    },
+    "vocabulary": [
+      {
+        "word": "stuffed toy",
+        "part_of_speech": "noun",
+        "meaning": "ぬいぐるみ",
+        "level": "B2"
+      },
+      {
+        "word": "pond",
+        "part_of_speech": "noun",
+        "meaning": "池",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_018",
+    "situation_ja": "サルの知能",
+    "situation_en": "Primate Intelligence",
+    "card_a": {
+      "text": "That chimpanzee is using a stick to get food out of a hole. I didn't know they could use tools!",
+      "text_ja": "あのチンパンジー、穴から食べ物を取るために木の枝を使っている。道具を使えるなんて知りませんでした！"
+    },
+    "card_b": {
+      "text": "Primates are highly intelligent. They often craft tools, solve complex puzzles, and show empathy.",
+      "text_ja": "霊長類は非常に高い知能を持っています。彼らはよく道具を作り、複雑なパズルを解き、共感（思いやり）を示します。"
+    },
+    "vocabulary": [
+      {
+        "word": "primate",
+        "part_of_speech": "noun",
+        "meaning": "霊長類",
+        "level": "C2"
+      },
+      {
+        "word": "craft",
+        "part_of_speech": "verb",
+        "meaning": "精巧に作る",
+        "level": "B2"
+      },
+      {
+        "word": "empathy",
+        "part_of_speech": "noun",
+        "meaning": "共感",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_019",
+    "situation_ja": "獣医の治療",
+    "situation_en": "Veterinary Care",
+    "card_a": {
+      "text": "The lion looks like it's limping. Is there anyone taking care of its injured leg?",
+      "text_ja": "ライオンが足を引きずっているように見えます。怪我をした足の手当てをしている人はいるのですか？"
+    },
+    "card_b": {
+      "text": "Yes, our on-site veterinary team is monitoring him closely and administering pain relief medication.",
+      "text_ja": "はい、当園の常駐の獣医チームが彼を注意深く監視し、痛み止めの薬を投与しています。"
+    },
+    "vocabulary": [
+      {
+        "word": "limp",
+        "part_of_speech": "verb",
+        "meaning": "足を引きずる",
+        "level": "C1"
+      },
+      {
+        "word": "veterinary",
+        "part_of_speech": "adjective",
+        "meaning": "獣医の",
+        "level": "C1"
+      },
+      {
+        "word": "administer",
+        "part_of_speech": "verb",
+        "meaning": "投与する、管理する",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_020",
+    "situation_ja": "有袋類の特徴",
+    "situation_en": "Marsupial Pouch",
+    "card_a": {
+      "text": "Look at the baby kangaroo! It just jumped headfirst back into its mother's stomach.",
+      "text_ja": "赤ちゃんのカンガルーを見て！母親のお腹の中に、頭から飛び込んで戻っていったよ。"
+    },
+    "card_b": {
+      "text": "Kangaroos are marsupials. The mother's pouch provides a safe and warm environment for the joey to develop.",
+      "text_ja": "カンガルーは有袋類です。母親の袋（ポーチ）は、子供（ジョーイ）が成長するための安全で暖かい環境を提供します。"
+    },
+    "vocabulary": [
+      {
+        "word": "headfirst",
+        "part_of_speech": "adverb",
+        "meaning": "真っ逆さまに、頭から先に",
+        "level": "C1"
+      },
+      {
+        "word": "marsupial",
+        "part_of_speech": "noun",
+        "meaning": "有袋類",
+        "level": "C2"
+      },
+      {
+        "word": "pouch",
+        "part_of_speech": "noun",
+        "meaning": "袋、小袋",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_021",
+    "situation_ja": "肉食動物の食事",
+    "situation_en": "Carnivore Diet",
+    "card_a": {
+      "text": "It's a bit scary seeing the tigers eating raw chunks of meat with bones still attached.",
+      "text_ja": "トラが骨のついたままの生肉の塊を食べているのを見るのは、少し怖いですね。"
+    },
+    "card_b": {
+      "text": "As strict carnivores, tearing meat and chewing bones is crucial for their dental health and digestion.",
+      "text_ja": "完全な肉食動物として、肉を引き裂き、骨を噛むことは彼らの歯の健康と消化にとって不可欠なのです。"
+    },
+    "vocabulary": [
+      {
+        "word": "chunk",
+        "part_of_speech": "noun",
+        "meaning": "（大きな）塊",
+        "level": "B2"
+      },
+      {
+        "word": "carnivore",
+        "part_of_speech": "noun",
+        "meaning": "肉食動物",
+        "level": "C1"
+      },
+      {
+        "word": "digestion",
+        "part_of_speech": "noun",
+        "meaning": "消化",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_022",
+    "situation_ja": "両生類の皮膚",
+    "situation_en": "Amphibian Skin",
+    "card_a": {
+      "text": "Why is the zookeeper wearing special wet gloves before handling that tiny green frog?",
+      "text_ja": "あの小さな緑色のカエルを触る前に、どうして飼育員は特別な濡れた手袋をしているのですか？"
+    },
+    "card_b": {
+      "text": "Amphibians absorb water and oxygen through their delicate skin. Dry hands can severely damage it.",
+      "text_ja": "両生類は繊細な皮膚を通して水と酸素を吸収します。乾いた手はそれに深刻なダメージを与える可能性があるのです。"
+    },
+    "vocabulary": [
+      {
+        "word": "amphibian",
+        "part_of_speech": "noun",
+        "meaning": "両生類",
+        "level": "C1"
+      },
+      {
+        "word": "absorb",
+        "part_of_speech": "verb",
+        "meaning": "吸収する",
+        "level": "B2"
+      },
+      {
+        "word": "delicate",
+        "part_of_speech": "adjective",
+        "meaning": "繊細な、傷つきやすい",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_023",
+    "situation_ja": "保護とリハビリ",
+    "situation_en": "Rescue & Rehabilitation",
+    "card_a": {
+      "text": "This bald eagle has a broken wing. Will it have to stay in this enclosure for the rest of its life?",
+      "text_ja": "このハクトウワシは羽が折れています。一生この展示場にとどまらなければならないのですか？"
+    },
+    "card_b": {
+      "text": "We are currently rehabilitating it. Once it regains its strength, we plan to release it back into the wild.",
+      "text_ja": "現在リハビリ（野生復帰訓練）を行っています。体力を取り戻せば、野生に帰す予定です。"
+    },
+    "vocabulary": [
+      {
+        "word": "rehabilitate",
+        "part_of_speech": "verb",
+        "meaning": "社会（野生）復帰させる、リハビリする",
+        "level": "C1"
+      },
+      {
+        "word": "regain",
+        "part_of_speech": "verb",
+        "meaning": "取り戻す、回復する",
+        "level": "B2"
+      },
+      {
+        "word": "release",
+        "part_of_speech": "verb",
+        "meaning": "解放する、放つ",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_024",
+    "situation_ja": "動物の豊かな環境",
+    "situation_en": "Animal Enrichment",
+    "card_a": {
+      "text": "Why are they hiding food inside cardboard boxes and freezing fruit in blocks of ice for the bears?",
+      "text_ja": "どうしてクマのために、ダンボール箱の中に食べ物を隠したり、果物を氷の塊に凍らせたりしているのですか？"
+    },
+    "card_b": {
+      "text": "It's called environmental enrichment. It stimulates their natural hunting instincts and prevents boredom.",
+      "text_ja": "それは「環境エンリッチメント（環境を豊かにすること）」と呼ばれます。彼らの自然な狩りの本能を刺激し、退屈を防ぐのです。"
+    },
+    "vocabulary": [
+      {
+        "word": "enrichment",
+        "part_of_speech": "noun",
+        "meaning": "豊かにすること",
+        "level": "C1"
+      },
+      {
+        "word": "stimulate",
+        "part_of_speech": "verb",
+        "meaning": "刺激する",
+        "level": "B2"
+      },
+      {
+        "word": "instinct",
+        "part_of_speech": "noun",
+        "meaning": "本能",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_025",
+    "situation_ja": "マイクロチップの挿入",
+    "situation_en": "Microchipping",
+    "card_a": {
+      "text": "I saw the vet inject something small into the rhino's neck. Was it a vaccine?",
+      "text_ja": "獣医がサイの首に小さなものを注射するのを見ました。ワクチンですか？"
+    },
+    "card_b": {
+      "text": "It was a tiny microchip. It helps us track their health records and prevent illegal trafficking.",
+      "text_ja": "それは小さなマイクロチップです。私たちが彼らの健康記録を追跡し、違法な密売を防ぐのに役立ちます。"
+    },
+    "vocabulary": [
+      {
+        "word": "inject",
+        "part_of_speech": "verb",
+        "meaning": "注射する、注入する",
+        "level": "C1"
+      },
+      {
+        "word": "track",
+        "part_of_speech": "verb",
+        "meaning": "追跡する",
+        "level": "B2"
+      },
+      {
+        "word": "trafficking",
+        "part_of_speech": "noun",
+        "meaning": "密売、不正取引",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_026",
+    "situation_ja": "里親（スポンサー）制度",
+    "situation_en": "Adoption Program",
+    "card_a": {
+      "text": "I love the red pandas so much. Is there any way I can financially support their care and conservation?",
+      "text_ja": "レッサーパンダが本当に大好きです。彼らの世話や保護を財政的に支援する方法はありますか？"
+    },
+    "card_b": {
+      "text": "You can join our animal adoption program. Your monthly donation will go directly towards their food and habitat.",
+      "text_ja": "動物の里親（スポンサー）制度にご参加いただけます。月々の寄付は、彼らの食事と生息環境の整備に直接役立てられます。"
+    },
+    "vocabulary": [
+      {
+        "word": "financially",
+        "part_of_speech": "adverb",
+        "meaning": "財政的に、金銭的に",
+        "level": "B2"
+      },
+      {
+        "word": "conservation",
+        "part_of_speech": "noun",
+        "meaning": "保護、保全",
+        "level": "B2"
+      },
+      {
+        "word": "donation",
+        "part_of_speech": "noun",
+        "meaning": "寄付",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_027",
+    "situation_ja": "生息地の喪失",
+    "situation_en": "Habitat Loss",
+    "card_a": {
+      "text": "The sign says orangutans might disappear in 20 years. Why are their numbers dropping so fast?",
+      "text_ja": "看板に、オランウータンは20年後に消滅するかもしれないと書いてあります。なぜそんなに早く数が減っているのですか？"
+    },
+    "card_b": {
+      "text": "Their rainforest homes are being burned down rapidly to make way for massive palm oil plantations.",
+      "text_ja": "巨大なパーム油の農園を作るために、彼らの故郷である熱帯雨林が急速に焼き払われているからです。"
+    },
+    "vocabulary": [
+      {
+        "word": "disappear",
+        "part_of_speech": "verb",
+        "meaning": "消滅する、姿を消す",
+        "level": "B1"
+      },
+      {
+        "word": "rapidly",
+        "part_of_speech": "adverb",
+        "meaning": "急速に",
+        "level": "B2"
+      },
+      {
+        "word": "plantation",
+        "part_of_speech": "noun",
+        "meaning": "大農園、プランテーション",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_028",
+    "situation_ja": "爬虫類館の湿度",
+    "situation_en": "Humidity Control",
+    "card_a": {
+      "text": "As soon as I walked into the tropical bird exhibit, my glasses fogged up completely.",
+      "text_ja": "熱帯の鳥の展示に入った途端、メガネが完全に曇ってしまいました。"
+    },
+    "card_b": {
+      "text": "We maintain a constant 80% humidity in there to replicate the dense atmosphere of the Amazon basin.",
+      "text_ja": "アマゾン盆地の密林の空気（大気）を再現するために、常に80%の湿度を維持しているからです。"
+    },
+    "vocabulary": [
+      {
+        "word": "humidity",
+        "part_of_speech": "noun",
+        "meaning": "湿度",
+        "level": "B2"
+      },
+      {
+        "word": "replicate",
+        "part_of_speech": "verb",
+        "meaning": "再現する、複製する",
+        "level": "C1"
+      },
+      {
+        "word": "dense",
+        "part_of_speech": "adjective",
+        "meaning": "密集した、濃い",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_029",
+    "situation_ja": "園内の移動手段",
+    "situation_en": "Zoo Tram",
+    "card_a": {
+      "text": "My feet are killing me, and the safari zone is all the way on the other side of the park.",
+      "text_ja": "足が痛くてたまらないのに、サファリゾーンは公園の反対側のずっと遠くにあります。"
+    },
+    "card_b": {
+      "text": "You can catch the free zoo tram at the next stop. It loops around the entire park every 15 minutes.",
+      "text_ja": "次の停留所で無料の動物園トラムに乗ることができます。15分おきに公園全体を一周していますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "loop",
+        "part_of_speech": "verb",
+        "meaning": "輪を描いて進む、一周する",
+        "level": "C1"
+      },
+      {
+        "word": "entire",
+        "part_of_speech": "adjective",
+        "meaning": "全体の、全部の",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "ZOO_030",
+    "situation_ja": "飼育員の仕事",
+    "situation_en": "Zookeeper Duties",
+    "card_a": {
+      "text": "Feeding the animals looks like a fun job. Is that all the zookeepers do all day?",
+      "text_ja": "動物に餌をあげるのは楽しい仕事に見えます。飼育員は一日中それだけをしているのですか？"
+    },
+    "card_b": {
+      "text": "Not at all. They also clean enclosures, observe behavior, and assist the vets with medical procedures.",
+      "text_ja": "とんでもないです。彼らは展示場の掃除、行動の観察、そして獣医の医療処置の補助も行います。"
+    },
+    "vocabulary": [
+      {
+        "word": "observe",
+        "part_of_speech": "verb",
+        "meaning": "観察する",
+        "level": "B2"
+      },
+      {
+        "word": "assist",
+        "part_of_speech": "verb",
+        "meaning": "手伝う、補助する",
+        "level": "B2"
+      },
+      {
+        "word": "procedure",
+        "part_of_speech": "noun",
+        "meaning": "処置、手順",
+        "level": "B2"
+      }
+    ]
+  }
+]

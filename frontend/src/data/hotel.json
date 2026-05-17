@@ -1,0 +1,548 @@
+[
+  {
+    "id": "HOTEL_001",
+    "situation_ja": "アーリーチェックイン",
+    "situation_en": "Early Check-in",
+    "card_a": {
+      "text": "My flight arrived early. Is it possible to check in to my room before 3 PM?",
+      "text_ja": "飛行機が早く着きました。午後3時より前に部屋にチェックインすることは可能ですか？"
+    },
+    "card_b": {
+      "text": "Your room isn't ready yet, but we can store your luggage securely at the front desk until it is.",
+      "text_ja": "お部屋の準備はまだできておりませんが、準備が整うまでフロントデスクでお荷物を安全にお預かりいたします。"
+    },
+    "vocabulary": [
+      {"word": "securely", "part_of_speech": "adverb", "meaning": "安全に、しっかりと", "level": "B2"},
+      {"word": "luggage", "part_of_speech": "noun", "meaning": "手荷物", "level": "B1"}
+    ]
+  },
+  {
+    "id": "HOTEL_002",
+    "situation_ja": "タオルの追加",
+    "situation_en": "Extra Towels",
+    "card_a": {
+      "text": "We've run out of clean towels. Could you have housekeeping bring some more to room 402?",
+      "text_ja": "清潔なタオルがなくなってしまいました。ハウスキーピングに402号室までもう少し持ってきてもらえますか？"
+    },
+    "card_b": {
+      "text": "Certainly. I'll send someone up with fresh towels and extra toiletries right away.",
+      "text_ja": "かしこまりました。すぐに新しいタオルと追加のアメニティを持たせて向かわせます。"
+    },
+    "vocabulary": [
+      {"word": "run out of", "part_of_speech": "phrasal verb", "meaning": "〜を使い果たす、切らす", "level": "B2"},
+      {"word": "housekeeping", "part_of_speech": "noun", "meaning": "客室清掃係", "level": "B1"},
+      {"word": "toiletries", "part_of_speech": "noun", "meaning": "洗面用具、アメニティ", "level": "C1"}
+    ]
+  },
+  {
+    "id": "HOTEL_003",
+    "situation_ja": "エアコンの故障",
+    "situation_en": "Broken Air Conditioner",
+    "card_a": {
+      "text": "The air conditioning in my room seems to be broken. It's getting unbearably hot.",
+      "text_ja": "部屋のエアコンが壊れているようです。耐えられないほど暑くなってきています。"
+    },
+    "card_b": {
+      "text": "I apologize for the inconvenience. I'll dispatch a maintenance technician immediately to fix it.",
+      "text_ja": "ご不便をおかけして申し訳ございません。修理のためにすぐメンテナンスの技術者を派遣いたします。"
+    },
+    "vocabulary": [
+      {"word": "unbearably", "part_of_speech": "adverb", "meaning": "耐えられないほどに", "level": "C1"},
+      {"word": "inconvenience", "part_of_speech": "noun", "meaning": "不便、迷惑", "level": "B2"},
+      {"word": "dispatch", "part_of_speech": "verb", "meaning": "〜を派遣する、特派する", "level": "C1"},
+      {"word": "maintenance", "part_of_speech": "noun", "meaning": "保守、メンテナンス", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_004",
+    "situation_ja": "レストランの予約",
+    "situation_en": "Restaurant Reservation",
+    "card_a": {
+      "text": "I'd like to celebrate my anniversary tonight. Can you recommend a fine dining restaurant nearby?",
+      "text_ja": "今夜は記念日のお祝いをしたいです。近くでおすすめの高級レストランはありますか？"
+    },
+    "card_b": {
+      "text": "Absolutely. There's an authentic Italian restaurant just two blocks away. I'd be happy to make a reservation for you.",
+      "text_ja": "もちろんです。2ブロック先に本格的なイタリアンレストランがございます。喜んでご予約をお取りいたします。"
+    },
+    "vocabulary": [
+      {"word": "anniversary", "part_of_speech": "noun", "meaning": "記念日", "level": "B1"},
+      {"word": "authentic", "part_of_speech": "adjective", "meaning": "本物の、本格的な", "level": "B2"},
+      {"word": "reservation", "part_of_speech": "noun", "meaning": "予約", "level": "B1"}
+    ]
+  },
+  {
+    "id": "HOTEL_005",
+    "situation_ja": "騒音のクレーム",
+    "situation_en": "Noise Complaint",
+    "card_a": {
+      "text": "The guests in the next room are having a loud party. I can't sleep at all.",
+      "text_ja": "隣の部屋の宿泊客がうるさいパーティーをしています。全く眠れません。"
+    },
+    "card_b": {
+      "text": "I'm very sorry about that. I will call their room and ask them to keep the noise down immediately.",
+      "text_ja": "大変申し訳ございません。彼らの部屋に電話をして、すぐに静かにするようにお願いいたします。"
+    },
+    "vocabulary": [
+      {"word": "loud", "part_of_speech": "adjective", "meaning": "（声や音が）大きい、うるさい", "level": "B1"},
+      {"word": "immediately", "part_of_speech": "adverb", "meaning": "直ちに、すぐに", "level": "B1"}
+    ]
+  },
+  {
+    "id": "HOTEL_006",
+    "situation_ja": "レイトチェックアウト",
+    "situation_en": "Late Check-out",
+    "card_a": {
+      "text": "My flight departs late tonight. Is there any way I can extend my check-out time until 2 PM?",
+      "text_ja": "今夜遅くに出発するフライトです。なんとかチェックアウト時間を午後2時まで延長できないでしょうか？"
+    },
+    "card_b": {
+      "text": "We can offer you a complimentary late check-out until 1 PM, depending on our room availability.",
+      "text_ja": "お部屋の空き状況にもよりますが、午後1時まで無料でレイトチェックアウトをご提供できます。"
+    },
+    "vocabulary": [
+      {"word": "depart", "part_of_speech": "verb", "meaning": "出発する", "level": "B1"},
+      {"word": "extend", "part_of_speech": "verb", "meaning": "〜を延長する、延ばす", "level": "B2"},
+      {"word": "complimentary", "part_of_speech": "adjective", "meaning": "無料の、優待の", "level": "C1"},
+      {"word": "availability", "part_of_speech": "noun", "meaning": "利用可能性、空き状況", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_007",
+    "situation_ja": "インロック（鍵の閉じ込め）",
+    "situation_en": "Locked Out",
+    "card_a": {
+      "text": "I accidentally left my key card inside the room and the door locked behind me.",
+      "text_ja": "うっかりカードキーを部屋の中に置いたままにしてしまい、ドアが閉まって鍵がかかってしまいました。"
+    },
+    "card_b": {
+      "text": "Please don't worry. May I see your ID? I will issue a replacement key card for you right now.",
+      "text_ja": "ご心配なさらないでください。身分証明書を拝見できますか？ただいま代わりのカードキーを発行いたします。"
+    },
+    "vocabulary": [
+      {"word": "accidentally", "part_of_speech": "adverb", "meaning": "うっかり、誤って", "level": "B2"},
+      {"word": "issue", "part_of_speech": "verb", "meaning": "〜を発行する", "level": "B2"},
+      {"word": "replacement", "part_of_speech": "noun", "meaning": "代わりのもの、交換", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_008",
+    "situation_ja": "ルームサービス",
+    "situation_en": "Room Service",
+    "card_a": {
+      "text": "I'm feeling a bit exhausted from the trip. Can I order dinner to be brought to my room?",
+      "text_ja": "旅行で少し疲れ果ててしまいました。部屋まで夕食を届けてもらうよう注文できますか？"
+    },
+    "card_b": {
+      "text": "Certainly. You can find the in-room dining menu on the desk. Just dial zero when you're ready to order.",
+      "text_ja": "かしこまりました。デスクの上にルームサービスのメニューがございます。ご注文の準備ができましたらゼロ番にダイヤルしてください。"
+    },
+    "vocabulary": [
+      {"word": "exhausted", "part_of_speech": "adjective", "meaning": "疲れ果てた", "level": "B2"},
+      {"word": "dial", "part_of_speech": "verb", "meaning": "ダイヤルする、電話をかける", "level": "B1"}
+    ]
+  },
+  {
+    "id": "HOTEL_009",
+    "situation_ja": "シャワーのお湯が出ない",
+    "situation_en": "No Hot Water",
+    "card_a": {
+      "text": "There's only freezing cold water coming from the shower. The hot water isn't working at all.",
+      "text_ja": "シャワーから凍えるほど冷たい水しか出ません。お湯が全く出ないのです。"
+    },
+    "card_b": {
+      "text": "I sincerely apologize. Please allow us to upgrade you to a different suite where everything is functioning perfectly.",
+      "text_ja": "心よりお詫び申し上げます。すべてが完全に機能している別のスイートルームへアップグレードさせてください。"
+    },
+    "vocabulary": [
+      {"word": "freezing", "part_of_speech": "adjective", "meaning": "凍えるような、氷点下の", "level": "B1"},
+      {"word": "sincerely", "part_of_speech": "adverb", "meaning": "心から、誠実に", "level": "B2"},
+      {"word": "suite", "part_of_speech": "noun", "meaning": "スイートルーム", "level": "B1"},
+      {"word": "function", "part_of_speech": "verb", "meaning": "機能する、正常に動く", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_010",
+    "situation_ja": "交通機関の案内",
+    "situation_en": "Transportation Guide",
+    "card_a": {
+      "text": "What's the most efficient way to get to the international airport from here during rush hour?",
+      "text_ja": "ラッシュアワーの時間帯に、ここから国際空港まで行く最も効率的な方法は何ですか？"
+    },
+    "card_b": {
+      "text": "Taking the airport express train is the fastest option. It avoids all the severe traffic congestion.",
+      "text_ja": "空港の特急電車に乗るのが一番早いです。ひどい交通渋滞をすべて避けることができます。"
+    },
+    "vocabulary": [
+      {"word": "efficient", "part_of_speech": "adjective", "meaning": "効率的な、無駄のない", "level": "B2"},
+      {"word": "severe", "part_of_speech": "adjective", "meaning": "（天候や状態が）ひどい、深刻な", "level": "B2"},
+      {"word": "congestion", "part_of_speech": "noun", "meaning": "渋滞、混雑", "level": "C1"}
+    ]
+  },
+  {
+    "id": "HOTEL_011",
+    "situation_ja": "両替サービス",
+    "situation_en": "Currency Exchange",
+    "card_a": {
+      "text": "I only have US dollars. Is it possible to exchange currency at the hotel?",
+      "text_ja": "アメリカドルしか持っていません。ホテル内で外貨両替をすることは可能ですか？"
+    },
+    "card_b": {
+      "text": "Yes, we offer currency exchange services at the front desk with today's standard exchange rate.",
+      "text_ja": "はい、フロントデスクにて本日の標準レートでの両替サービスを提供しております。"
+    },
+    "vocabulary": [
+      {"word": "exchange", "part_of_speech": "verb", "meaning": "〜を交換する、両替する", "level": "B1"},
+      {"word": "currency", "part_of_speech": "noun", "meaning": "通貨、貨幣", "level": "B2"},
+      {"word": "rate", "part_of_speech": "noun", "meaning": "比率、レート", "level": "B1"}
+    ]
+  },
+  {
+    "id": "HOTEL_012",
+    "situation_ja": "アレルギー対応",
+    "situation_en": "Food Allergies",
+    "card_a": {
+      "text": "I'm highly allergic to shellfish. Could you make sure the chef knows this before preparing my meal?",
+      "text_ja": "重度の甲殻類アレルギーを持っています。食事を準備する前に、シェフがこのことを確実に把握するようにしてもらえますか？"
+    },
+    "card_b": {
+      "text": "Absolutely. I will notify the culinary team to ensure your dish is prepared in a completely separate area.",
+      "text_ja": "もちろんです。料理チームに通知し、お客様のお料理が完全に別のエリアで調理されるよう徹底いたします。"
+    },
+    "vocabulary": [
+      {"word": "highly", "part_of_speech": "adverb", "meaning": "非常に、高度に", "level": "B2"},
+      {"word": "shellfish", "part_of_speech": "noun", "meaning": "甲殻類、貝類", "level": "B2"},
+      {"word": "notify", "part_of_speech": "verb", "meaning": "〜に通知する、知らせる", "level": "C1"},
+      {"word": "culinary", "part_of_speech": "adjective", "meaning": "料理の、厨房の", "level": "C1"},
+      {"word": "separate", "part_of_speech": "adjective", "meaning": "分離された、別々の", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_013",
+    "situation_ja": "荷物預かり",
+    "situation_en": "Luggage Storage",
+    "card_a": {
+      "text": "We've checked out, but our train doesn't leave until this evening. Can we leave our bags here?",
+      "text_ja": "チェックアウトは済ませたのですが、電車が出るのは夕方です。ここに荷物を置いていくことはできますか？"
+    },
+    "card_b": {
+      "text": "Yes, the bellhop will give you a claim ticket. You can explore the city unburdened and pick them up later.",
+      "text_ja": "はい、ベルボーイが引換券をお渡しします。身軽になって街を散策し、後で受け取ることができますよ。"
+    },
+    "vocabulary": [
+      {"word": "bellhop", "part_of_speech": "noun", "meaning": "ベルボーイ（ホテルで荷物を運ぶ係）", "level": "B2"},
+      {"word": "explore", "part_of_speech": "verb", "meaning": "〜を探検する、散策する", "level": "B1"},
+      {"word": "unburdened", "part_of_speech": "adjective", "meaning": "重荷から解放された、身軽な", "level": "C2"}
+    ]
+  },
+  {
+    "id": "HOTEL_014",
+    "situation_ja": "モーニングコール",
+    "situation_en": "Wake-up Call",
+    "card_a": {
+      "text": "I have a crucial business meeting tomorrow morning. Can I request a wake-up call at 6:00 AM?",
+      "text_ja": "明日の朝、極めて重要な商談があります。午前6時にモーニングコールをお願いできますか？"
+    },
+    "card_b": {
+      "text": "Certainly. I've scheduled an automated wake-up call for 6:00 AM. Sleep well and good luck with your meeting.",
+      "text_ja": "かしこまりました。午前6時に自動モーニングコールを設定いたしました。ゆっくりお休みになり、会議頑張ってください。"
+    },
+    "vocabulary": [
+      {"word": "crucial", "part_of_speech": "adjective", "meaning": "極めて重要な、決定的な", "level": "C1"},
+      {"word": "request", "part_of_speech": "verb", "meaning": "〜を要請する、依頼する", "level": "B1"},
+      {"word": "automated", "part_of_speech": "adjective", "meaning": "自動化された", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_015",
+    "situation_ja": "Wi-Fi接続",
+    "situation_en": "Wi-Fi Connection",
+    "card_a": {
+      "text": "I'm trying to connect my laptop to the internet, but it keeps asking for a password.",
+      "text_ja": "パソコンをインターネットに繋ごうとしているのですが、何度もパスワードを求められます。"
+    },
+    "card_b": {
+      "text": "The complimentary Wi-Fi network is 'HotelGuest', and the password is your room number followed by your last name.",
+      "text_ja": "無料Wi-Fiのネットワーク名は「HotelGuest」で、パスワードはお部屋番号の後にご自身の苗字を続けたものです。"
+    },
+    "vocabulary": [
+      {"word": "connect", "part_of_speech": "verb", "meaning": "接続する、繋ぐ", "level": "B1"},
+      {"word": "complimentary", "part_of_speech": "adjective", "meaning": "無料の", "level": "C1"},
+      {"word": "followed by", "part_of_speech": "phrase", "meaning": "〜に続いて", "level": "B1"}
+    ]
+  },
+  {
+    "id": "HOTEL_016",
+    "situation_ja": "枕の変更",
+    "situation_en": "Pillow Change",
+    "card_a": {
+      "text": "The pillows on the bed are a bit too soft for me. Do you happen to have any firmer ones?",
+      "text_ja": "ベッドの枕が私には少し柔らかすぎます。もう少し硬めのものを持っていたりしませんか？"
+    },
+    "card_b": {
+      "text": "Yes, we have a pillow menu. I'll have housekeeping bring up a supportive memory foam pillow for you.",
+      "text_ja": "はい、ピローマニュー（枕のメニュー）がございます。ハウスキーピングに、しっかり支えてくれる低反発枕をお持ちさせます。"
+    },
+    "vocabulary": [
+      {"word": "firm", "part_of_speech": "adjective", "meaning": "硬い、しっかりした", "level": "B2"},
+      {"word": "supportive", "part_of_speech": "adjective", "meaning": "支えになる、サポート力のある", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_017",
+    "situation_ja": "タクシーの手配",
+    "situation_en": "Taxi Arrangement",
+    "card_a": {
+      "text": "I need to go to the convention center in 20 minutes. Can you call a taxi for me?",
+      "text_ja": "20分後にコンベンションセンターに行かなければなりません。タクシーを呼んでもらえますか？"
+    },
+    "card_b": {
+      "text": "I've just hailed a taxi for you. It should arrive at the main entrance in approximately five minutes.",
+      "text_ja": "ちょうどタクシーを呼び止めておきました。約5分後に正面玄関に到着するはずです。"
+    },
+    "vocabulary": [
+      {"word": "convention", "part_of_speech": "noun", "meaning": "大会、集会", "level": "B2"},
+      {"word": "hail", "part_of_speech": "verb", "meaning": "（タクシーなどを）呼び止める", "level": "C1"},
+      {"word": "approximately", "part_of_speech": "adverb", "meaning": "およそ、約", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_018",
+    "situation_ja": "景色への不満",
+    "situation_en": "Complaint about the View",
+    "card_a": {
+      "text": "I explicitly booked an ocean-view room, but my window faces a brick wall.",
+      "text_ja": "私は明確にオーシャンビューの部屋を予約したのに、窓はレンガの壁に面しています。"
+    },
+    "card_b": {
+      "text": "I sincerely apologize for the oversight. Let me immediately relocate you to a premium room on a higher floor.",
+      "text_ja": "こちらの見落としで大変申し訳ございません。直ちにより上階のプレミアムルームへご移動させていただきます。"
+    },
+    "vocabulary": [
+      {"word": "explicitly", "part_of_speech": "adverb", "meaning": "明確に、はっきりと", "level": "C1"},
+      {"word": "oversight", "part_of_speech": "noun", "meaning": "見落とし、手落ち", "level": "C1"},
+      {"word": "relocate", "part_of_speech": "verb", "meaning": "〜を移動させる、移転させる", "level": "C1"},
+      {"word": "premium", "part_of_speech": "adjective", "meaning": "高級な、プレミアムな", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_019",
+    "situation_ja": "喫煙臭へのクレーム",
+    "situation_en": "Cigarette Smoke Odor",
+    "card_a": {
+      "text": "I requested a non-smoking room, but it smells heavily of cigarette smoke.",
+      "text_ja": "禁煙室を希望したのに、ひどくタバコの臭いがします。"
+    },
+    "card_b": {
+      "text": "I'm so sorry. We'll move you to a different room right away and arrange an ozone treatment for that one.",
+      "text_ja": "大変申し訳ございません。すぐにお客様を別の部屋へご案内し、その部屋にはオゾン脱臭処理を手配いたします。"
+    },
+    "vocabulary": [
+      {"word": "heavily", "part_of_speech": "adverb", "meaning": "ひどく、重く", "level": "B1"},
+      {"word": "arrange", "part_of_speech": "verb", "meaning": "〜を手配する、準備する", "level": "B2"},
+      {"word": "treatment", "part_of_speech": "noun", "meaning": "処理、治療、待遇", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_020",
+    "situation_ja": "ジムの利用",
+    "situation_en": "Fitness Center Access",
+    "card_a": {
+      "text": "I'd like to work out before breakfast. What are the operating hours for the fitness center?",
+      "text_ja": "朝食の前に運動したいです。フィットネスセンターの営業時間は何時ですか？"
+    },
+    "card_b": {
+      "text": "Our fitness center is open 24/7. Your room key will grant you access at any time.",
+      "text_ja": "フィットネスセンターは24時間年中無休で開いております。お部屋の鍵でいつでも入室できますよ。"
+    },
+    "vocabulary": [
+      {"word": "work out", "part_of_speech": "phrasal verb", "meaning": "運動する、トレーニングする", "level": "B1"},
+      {"word": "operating", "part_of_speech": "adjective", "meaning": "営業している、稼働中の", "level": "B2"},
+      {"word": "grant", "part_of_speech": "verb", "meaning": "〜を与える、許可する", "level": "C1"},
+      {"word": "access", "part_of_speech": "noun", "meaning": "立ち入り（権）、アクセス", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_021",
+    "situation_ja": "領収書の宛名変更",
+    "situation_en": "Receipt Name Change",
+    "card_a": {
+      "text": "I need the receipt to be issued under my company's name for accounting purposes.",
+      "text_ja": "経理の都合上、会社の名前で領収書を発行していただく必要があります。"
+    },
+    "card_b": {
+      "text": "No problem. Please write down the exact corporate name, and I will print a revised invoice for you.",
+      "text_ja": "問題ございません。正確な法人名をお書きいただければ、修正した請求書（領収書）を印刷いたします。"
+    },
+    "vocabulary": [
+      {"word": "receipt", "part_of_speech": "noun", "meaning": "領収書、レシート", "level": "B1"},
+      {"word": "accounting", "part_of_speech": "noun", "meaning": "経理、会計", "level": "B2"},
+      {"word": "corporate", "part_of_speech": "adjective", "meaning": "法人の、企業の", "level": "B2"},
+      {"word": "revised", "part_of_speech": "adjective", "meaning": "改訂された、修正された", "level": "C1"},
+      {"word": "invoice", "part_of_speech": "noun", "meaning": "請求書、インボイス", "level": "C1"}
+    ]
+  },
+  {
+    "id": "HOTEL_022",
+    "situation_ja": "クリーニング",
+    "situation_en": "Laundry Service",
+    "card_a": {
+      "text": "I have an important dinner tonight and need this suit dry-cleaned. Is same-day service available?",
+      "text_ja": "今夜重要なディナーがあり、このスーツをドライクリーニングに出したいです。当日仕上げのサービスは利用できますか？"
+    },
+    "card_b": {
+      "text": "Yes, if you drop it off before 10 AM, we can return it perfectly pressed by 6 PM.",
+      "text_ja": "はい、午前10時までにお持ちいただければ、午後6時までに完璧にアイロンがけしてお返しできます。"
+    },
+    "vocabulary": [
+      {"word": "dry-clean", "part_of_speech": "verb", "meaning": "ドライクリーニングに出す", "level": "B2"},
+      {"word": "available", "part_of_speech": "adjective", "meaning": "利用可能な", "level": "B1"},
+      {"word": "press", "part_of_speech": "verb", "meaning": "アイロンをかける", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_023",
+    "situation_ja": "忘れ物の問い合わせ",
+    "situation_en": "Lost and Found",
+    "card_a": {
+      "text": "I think I left my diamond ring on the bathroom sink after I checked out this morning.",
+      "text_ja": "今朝チェックアウトした後に、バスルームの洗面台にダイヤモンドの指輪を置き忘れたと思います。"
+    },
+    "card_b": {
+      "text": "Let me contact our Lost and Found department immediately to see if housekeeping has retrieved it.",
+      "text_ja": "ハウスキーピングが回収しているか確認するため、直ちに遺失物係に連絡いたします。"
+    },
+    "vocabulary": [
+      {"word": "sink", "part_of_speech": "noun", "meaning": "洗面台、流し", "level": "B1"},
+      {"word": "contact", "part_of_speech": "verb", "meaning": "〜に連絡する", "level": "B1"},
+      {"word": "retrieve", "part_of_speech": "verb", "meaning": "〜を回収する、取り戻す", "level": "C1"}
+    ]
+  },
+  {
+    "id": "HOTEL_024",
+    "situation_ja": "サプライズの手配",
+    "situation_en": "Surprise Arrangement",
+    "card_a": {
+      "text": "Tomorrow is my wife's birthday. Could you arrange to have a small cake and champagne delivered to our room?",
+      "text_ja": "明日は妻の誕生日です。小さなケーキとシャンパンを部屋に届けるように手配していただけますか？"
+    },
+    "card_b": {
+      "text": "We would be delighted to organize that surprise for you. What time would you prefer the delivery?",
+      "text_ja": "喜んでそのサプライズの準備をさせていただきます。配達は何時がよろしいでしょうか？"
+    },
+    "vocabulary": [
+      {"word": "arrange", "part_of_speech": "verb", "meaning": "〜を手配する", "level": "B2"},
+      {"word": "delighted", "part_of_speech": "adjective", "meaning": "喜んで、とても嬉しく思って", "level": "B2"},
+      {"word": "organize", "part_of_speech": "verb", "meaning": "〜を準備する、企画する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "HOTEL_025",
+    "situation_ja": "車椅子の貸し出し",
+    "situation_en": "Wheelchair Request",
+    "card_a": {
+      "text": "My grandmother has trouble walking long distances. Do you have a wheelchair we could borrow during our stay?",
+      "text_ja": "祖母は長距離を歩くのが困難です。滞在中に借りられる車椅子はありますか？"
+    },
+    "card_b": {
+      "text": "Yes, we have complimentary wheelchairs available at the concierge desk. I'll bring one to the lobby for you.",
+      "text_ja": "はい、コンシェルジュデスクにて無料の車椅子をご用意しております。ロビーまでお持ちいたしますね。"
+    },
+    "vocabulary": [
+      {"word": "distance", "part_of_speech": "noun", "meaning": "距離", "level": "B1"},
+      {"word": "complimentary", "part_of_speech": "adjective", "meaning": "無料の", "level": "C1"},
+      {"word": "available", "part_of_speech": "adjective", "meaning": "利用できる", "level": "B1"},
+      {"word": "concierge", "part_of_speech": "noun", "meaning": "コンシェルジュ", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_026",
+    "situation_ja": "コネクティングルーム",
+    "situation_en": "Connecting Rooms",
+    "card_a": {
+      "text": "We are traveling with our three children. Is it possible to get two rooms that are connected?",
+      "text_ja": "3人の子供と一緒に旅行しています。つながっている（コネクティング）部屋を2つ取ることは可能ですか？"
+    },
+    "card_b": {
+      "text": "I can assign you a pair of connecting rooms on the 5th floor, so your family can easily move between them.",
+      "text_ja": "ご家族が簡単に行き来できるよう、5階のコネクティングルームをご用意（割り当て）させていただきます。"
+    },
+    "vocabulary": [
+      {"word": "connect", "part_of_speech": "verb", "meaning": "繋がる、連結する", "level": "B1"},
+      {"word": "assign", "part_of_speech": "verb", "meaning": "〜を割り当てる", "level": "C1"}
+    ]
+  },
+  {
+    "id": "HOTEL_027",
+    "situation_ja": "清掃未完了",
+    "situation_en": "Room Not Cleaned",
+    "card_a": {
+      "text": "We just came back from sightseeing, and our room hasn't been cleaned yet.",
+      "text_ja": "観光から帰ってきたばかりなのですが、部屋がまだ掃除されていません。"
+    },
+    "card_b": {
+      "text": "I apologize. Housekeeping was delayed, but I will send a team up immediately to refresh your room.",
+      "text_ja": "申し訳ございません。ハウスキーピングが遅れておりましたが、お部屋をきれいにするため、直ちに清掃チームを向かわせます。"
+    },
+    "vocabulary": [
+      {"word": "sightseeing", "part_of_speech": "noun", "meaning": "観光", "level": "B1"},
+      {"word": "delay", "part_of_speech": "verb", "meaning": "遅れをとる、遅延する", "level": "B1"},
+      {"word": "refresh", "part_of_speech": "verb", "meaning": "〜をきれいにする、新しくする", "level": "B2"}
+    ]
+  },
+  {
+    "id": "HOTEL_028",
+    "situation_ja": "ベビーベッドの追加",
+    "situation_en": "Baby Crib Request",
+    "card_a": {
+      "text": "We have a six-month-old infant with us. Could we get a baby crib set up in our room?",
+      "text_ja": "生後6ヶ月の乳児が一緒にいます。部屋にベビーベッドをセットしてもらえますか？"
+    },
+    "card_b": {
+      "text": "Certainly. I'll notify housekeeping to deliver and assemble a safe, sterilized crib right away.",
+      "text_ja": "かしこまりました。安全で殺菌されたベビーベッドをすぐにお届けし、組み立てるようハウスキーピングに伝えます。"
+    },
+    "vocabulary": [
+      {"word": "infant", "part_of_speech": "noun", "meaning": "乳児、幼児", "level": "C1"},
+      {"word": "crib", "part_of_speech": "noun", "meaning": "ベビーベッド", "level": "B2"},
+      {"word": "assemble", "part_of_speech": "verb", "meaning": "〜を組み立てる", "level": "B2"},
+      {"word": "sterilize", "part_of_speech": "verb", "meaning": "〜を殺菌する、消毒する", "level": "C1"}
+    ]
+  },
+  {
+    "id": "HOTEL_029",
+    "situation_ja": "地元の交通機関の案内",
+    "situation_en": "Directions",
+    "card_a": {
+      "text": "Could you point me in the right direction to the nearest subway station?",
+      "text_ja": "一番近い地下鉄の駅への正しい方向を教えてもらえませんか？"
+    },
+    "card_b": {
+      "text": "Exit through the main doors, turn right, and walk straight for two blocks. You can't miss it.",
+      "text_ja": "正面玄関を出て右に曲がり、2ブロックまっすぐ歩いてください。すぐに見つかりますよ（見逃すはずがありません）。"
+    },
+    "vocabulary": [
+      {"word": "nearest", "part_of_speech": "adjective", "meaning": "一番近い", "level": "A2/B1"},
+      {"word": "straight", "part_of_speech": "adverb", "meaning": "まっすぐに", "level": "B1"}
+    ]
+  },
+  {
+    "id": "HOTEL_030",
+    "situation_ja": "ベジタリアンメニュー",
+    "situation_en": "Vegetarian Options",
+    "card_a": {
+      "text": "Do you offer any strictly vegetarian options for the breakfast buffet?",
+      "text_ja": "朝食のビュッフェに、完全なベジタリアン（菜食主義者）向けのメニューはありますか？"
+    },
+    "card_b": {
+      "text": "Yes, we have a dedicated section with fresh salads, fruits, and plant-based protein alternatives.",
+      "text_ja": "はい、新鮮なサラダ、フルーツ、そして植物由来の代替タンパク質をご用意した専用のコーナーがございます。"
+    },
+    "vocabulary": [
+      {"word": "strictly", "part_of_speech": "adverb", "meaning": "厳密に、完全に", "level": "B2"},
+      {"word": "dedicated", "part_of_speech": "adjective", "meaning": "専用の、特化した", "level": "C1"},
+      {"word": "plant-based", "part_of_speech": "adjective", "meaning": "植物由来の", "level": "B2"},
+      {"word": "alternative", "part_of_speech": "noun", "meaning": "代わりになるもの、代替品", "level": "B2"}
+    ]
+  }
+]
