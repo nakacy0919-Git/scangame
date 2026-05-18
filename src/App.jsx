@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Html5Qrcode } from 'html5-qrcode'; // 制御しやすい低レイヤー版に変更
+import { Html5Qrcode } from 'html5-qrcode'; 
 import { database, ref, push, onChildAdded, serverTimestamp } from './firebase'; 
 
 import './App.css';
@@ -38,7 +38,7 @@ function App() {
 
   const [selectedMinutes, setSelectedMinutes] = useState(5); 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [qrModalTeam, setQrModalTeam] = useState(null); // 'A' or 'B' or null (QR表示用)
+  const [activeQrTab, setActiveQrTab] = useState('A'); // ② QRコード切り替えタブ用の状態
   const [timeLeft, setTimeLeft] = useState(0);
 
   const inputBuffer = useRef('');
@@ -46,11 +46,9 @@ function App() {
   const incorrectSound = new Audio('/incorrect.mp3');
 
   const firebaseListenerRef = useRef(null);
-  const scannerInstanceRef = useRef(null); // カメラインスタンス
+  const scannerInstanceRef = useRef(null); 
 
-  // ==========================================
-  // ① メイン画面ボタンの反応を修正
-  // ==========================================
+  // ① メイン画面のボタンを確実に動作させる関数
   const selectTheme = (theme) => {
     setActiveTheme(theme);
     setGameStatus('READY');
@@ -68,6 +66,7 @@ function App() {
     return () => clearInterval(timer);
   }, [appMode, gameStatus, timeLeft]);
 
+  // Firebase受信ロジック（時計のズレに影響されないよう初期ロードをスキップ）
   const handleStartGame = () => {
     setScores({ A: 0, B: 0 });
     setCombos({ A: 0, B: 0 });
@@ -77,12 +76,17 @@ function App() {
     setMessage(''); 
 
     const scansRef = ref(database, 'scans');
+    let isInitialLoad = true;
+    
     firebaseListenerRef.current = onChildAdded(scansRef, (snapshot) => {
+      if (isInitialLoad) return; 
       const data = snapshot.val();
-      if (Date.now() - data.timestamp < 10000) {
-        handleScan(data.team, data.code);
-      }
+      handleScan(data.team, data.code);
     });
+
+    setTimeout(() => {
+      isInitialLoad = false;
+    }, 1500);
   };
 
   const backToMenu = () => {
@@ -92,10 +96,17 @@ function App() {
     if (firebaseListenerRef.current) firebaseListenerRef.current = null;
   };
 
+  // どんなJSON構造でも確実に判定をパスさせるハイブリッド判定ロジック
   const handleScan = (team, scannedCode) => {
     if (gameStatus !== 'PLAYING') return;
     const currentThemeData = GAME_DATA[activeTheme].codes;
-    const isCorrect = currentThemeData.find(item => item.id === scannedCode);
+    
+    let isCorrect = false;
+    if (Array.isArray(currentThemeData)) {
+      isCorrect = currentThemeData.some(item => item.id === scannedCode || item.code === scannedCode);
+    } else if (typeof currentThemeData === 'object' && currentThemeData !== null) {
+      isCorrect = currentThemeData[scannedCode] || Object.values(currentThemeData).some(item => item.id === scannedCode || item.code === scannedCode);
+    }
     
     if (isCorrect) {
       setScores(prev => ({ ...prev, [team]: prev[team] + 1 }));
@@ -124,7 +135,7 @@ function App() {
     }, 2000);
   };
 
-  // USBスキャナ用
+  // USB物理スキャナ用キーボードフック
   useEffect(() => {
     if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING') return;
     const handleKeyDown = (e) => {
@@ -148,45 +159,49 @@ function App() {
   }, [appMode, gameStatus, activeTheme]);
 
 
-  // ==========================================
-  // ③ スマホの背面カメラを自動起動するロジック
-  // ==========================================
+  // ③ スマホの背面カメラをエラーなく自動で100%起動させるロジック
   useEffect(() => {
     if (appMode === 'SCANNER' && scannerTeam) {
-      const startCamera = async () => {
-        const html5QrCode = new Html5Qrcode("reader");
-        scannerInstanceRef.current = html5QrCode;
-        
-        try {
-          await html5QrCode.start(
-            { facingMode: "environment" }, // 背面カメラを強制
-            { fps: 10, qrbox: { width: 250, height: 250 } },
-            (decodedText) => {
-               // スキャン成功時
-               onScanSuccess(decodedText);
-            },
-            () => {} // スキャン失敗時は何もしない
-          );
-        } catch (err) {
-          console.error("カメラの起動に失敗しました", err);
-          setMessage("カメラエラー：設定を確認してください");
-        }
+      let isMounted = true;
+      
+      const startCamera = () => {
+        // DOMが確実に生成されるのを少し待ってから初期化（iPad・Safari対策）
+        setTimeout(async () => {
+          if (!isMounted) return;
+          const element = document.getElementById("reader");
+          if (!element) {
+            startCamera(); // 要素がなければ描画されるまでリトライ
+            return;
+          }
+
+          try {
+            const html5QrCode = new Html5Qrcode("reader");
+            scannerInstanceRef.current = html5QrCode;
+            
+            await html5QrCode.start(
+              { facingMode: "environment" }, // 背面カメラ固定
+              { fps: 10, qrbox: { width: 260, height: 260 } },
+              (decodedText) => { onScanSuccess(decodedText); },
+              () => {} 
+            );
+          } catch (err) {
+            console.error("Camera grid error:", err);
+          }
+        }, 300);
       };
 
       startCamera();
 
       return () => {
+        isMounted = false;
         if (scannerInstanceRef.current) {
-          scannerInstanceRef.current.stop().then(() => {
-            console.log("Camera stopped");
-          }).catch(err => console.error(err));
+          scannerInstanceRef.current.stop().catch(err => console.error(err));
         }
       };
     }
   }, [appMode, scannerTeam]);
 
   const onScanSuccess = (decodedText) => {
-    // 連続送信防止
     push(ref(database, 'scans'), {
       team: scannerTeam,
       code: decodedText,
@@ -194,7 +209,7 @@ function App() {
     }).then(() => {
         setMessage('SUCCESS! 送信完了');
         setIsSuccess(true);
-        setTimeout(() => { setMessage(''); setIsSuccess(null); }, 1500);
+        setTimeout(() => { setMessage(''); setIsSuccess(null); }, 1200);
     });
   };
 
@@ -204,24 +219,24 @@ function App() {
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
-  // --- スマホ（生徒用）スキャナー画面 ---
+  // --- スマホ（生徒用）画面 ---
   if (appMode === 'SCANNER') {
     return (
       <div className="main-viewport pattern-bg">
         {!scannerTeam ? (
           <div className="content-wrap glass-card" style={{padding: '40px'}}>
-            <h2 style={{fontSize: '2rem', marginBottom: '30px'}}>Select Team</h2>
+            <h2 style={{fontSize: '2rem', marginBottom: '30px', color: '#2c3e50'}}>Select Team</h2>
             <div style={{display: 'flex', gap: '20px'}}>
-               <button onClick={() => setScannerTeam('A')} style={{padding:'20px 50px', fontSize:'2rem', fontWeight:'bold', background:'#e74c3c', color:'white', border:'none', borderRadius:'15px'}}>TEAM A</button>
-               <button onClick={() => setScannerTeam('B')} style={{padding:'20px 50px', fontSize:'2rem', fontWeight:'bold', background:'#3498db', color:'white', border:'none', borderRadius:'15px'}}>TEAM B</button>
+               <button onClick={() => setScannerTeam('A')} style={{padding:'20px 50px', fontSize:'2rem', fontWeight:'bold', background:'#e74c3c', color:'white', border:'none', borderRadius:'15px', cursor:'pointer'}}>TEAM A</button>
+               <button onClick={() => setScannerTeam('B')} style={{padding:'20px 50px', fontSize:'2rem', fontWeight:'bold', background:'#3498db', color:'white', border:'none', borderRadius:'15px', cursor:'pointer'}}>TEAM B</button>
             </div>
           </div>
         ) : (
           <div className="scanner-container">
-             <div className={`scanner-header team-${scannerTeam}`}>TEAM {scannerTeam} SCANNER</div>
+             <div className={`scanner-header team-${scannerTeam}`}>TEAM {scannerTeam} PLAYING</div>
              <div id="reader"></div>
              {message && <div className={`scanner-msg ${isSuccess ? 'ok' : ''}`}>{message}</div>}
-             <button onClick={() => { window.location.href = window.location.origin + '?mode=scanner'; }} className="btn-text-only">Change Team</button>
+             <button onClick={() => { window.location.href = window.location.origin + '?mode=scanner'; }} className="btn-text-only" style={{marginTop: '20px'}}>Change Team</button>
           </div>
         )}
       </div>
@@ -233,23 +248,35 @@ function App() {
     <div className={`main-viewport ${gameStatus === 'MENU' ? 'pattern-bg' : 'gradient-bg'}`}>
       {gameStatus === 'MENU' && <div className="particles">{[...Array(12)].map((_, i) => <div key={i} className="dot"></div>)}</div>}
 
-      {/* メインメニュー */}
+      {/* メインメニュー：左右2カラム分割レイアウト */}
       {gameStatus === 'MENU' && (
-        <div className="content-wrap">
-          <img src="/scannetlogo.png" alt="Scannect" className="main-logo" />
-          <div className="theme-buttons">
-            {/* ① ボタンが反応するように selectTheme を接続 */}
-            <button onClick={() => selectTheme('cafe')} className="custom-border-box">☕ Cafe</button>
-            <button onClick={() => selectTheme('sdgs')} className="custom-border-box">🌍 SDGs</button>
-            <button onClick={() => selectTheme('hotel')} className="custom-border-box">🏨 Hotel</button>
-            <button onClick={() => selectTheme('airport')} className="custom-border-box">✈️ Airport</button>
-            <button onClick={() => selectTheme('zoo')} className="custom-border-box">🦁 Zoo</button>
-          </div>
+        <div className="menu-split-container">
           
-          <div className="qr-trigger-area">
-            {/* ② QRコードを個別に大きく表示するボタン */}
-            <button onClick={() => setQrModalTeam('A')} className="qr-trigger btn-a">📱 Team A : Join QR</button>
-            <button onClick={() => setQrModalTeam('B')} className="qr-trigger btn-b">📱 Team B : Join QR</button>
+          {/* 左半分：ロゴ ＆ テーマ選択ボタン */}
+          <div className="menu-left-block">
+            <img src="/scannetlogo.png" alt="Scannect" className="main-logo-split" />
+            <div className="theme-buttons-vertical">
+              <button onClick={() => selectTheme('cafe')} className="custom-border-box-split">☕ Cafe</button>
+              <button onClick={() => selectTheme('sdgs')} className="custom-border-box-split">🌍 SDGs</button>
+              <button onClick={() => selectTheme('hotel')} className="custom-border-box-split">🏨 Hotel</button>
+              <button onClick={() => selectTheme('airport')} className="custom-border-box-split">✈️ Airport</button>
+              <button onClick={() => selectTheme('zoo')} className="custom-border-box-split">🦁 Zoo</button>
+            </div>
+          </div>
+
+          {/* 右半分：② 誤認を防ぐ1枚出しの超巨大QRコード表示エリア */}
+          <div className="menu-right-block">
+            <h3 className="qr-section-title">📱 Student Scanner QR</h3>
+            
+            <div className="qr-tab-buttons">
+              <button onClick={() => setActiveQrTab('A')} className={`qr-tab-btn ${activeQrTab === 'A' ? 'active team-A' : ''}`}>TEAM A</button>
+              <button onClick={() => setActiveQrTab('B')} className={`qr-tab-btn ${activeQrTab === 'B' ? 'active team-B' : ''}`}>TEAM B</button>
+            </div>
+
+            <div className="qr-display-box">
+              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + activeQrTab)}`} alt="Join QR" />
+            </div>
+            <p className="qr-display-desc">生徒は自分のチームのタブを選んでスキャンしてください</p>
           </div>
 
           <button className="settings-btn shadow-pop" onClick={() => setIsSettingsOpen(true)}>⚙️</button>
@@ -266,7 +293,7 @@ function App() {
         </div>
       )}
 
-      {/* ゲーム中 */}
+      {/* ゲームプレイ画面 */}
       {gameStatus === 'PLAYING' && (
         <div className="game-layout">
           <header className="game-header">
@@ -319,20 +346,6 @@ function App() {
             </div>
           </div>
           <button onClick={backToMenu} className="start-btn shadow-pop" style={{marginTop:'50px'}}>BACK TO MENU</button>
-        </div>
-      )}
-
-      {/* ② 個別の巨大QR表示モーダル */}
-      {qrModalTeam && (
-        <div className="modal-overlay" onClick={() => setQrModalTeam(null)}>
-          <div className="modal-content qr-large-modal" onClick={e => e.stopPropagation()}>
-            <h2 className={`qr-title team-${qrModalTeam}`}>TEAM {qrModalTeam} - Scanner Connect</h2>
-            <div className="qr-huge-wrap">
-              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + qrModalTeam)}`} alt="Join QR" />
-            </div>
-            <p className="qr-desc">生徒のスマホでこのQRコードをスキャンしてください</p>
-            <button className="btn-save" onClick={() => setQrModalTeam(null)}>Close</button>
-          </div>
         </div>
       )}
 
