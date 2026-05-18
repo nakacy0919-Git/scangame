@@ -82,13 +82,13 @@ function App() {
         }
         return { ...prev, [team]: newCombo };
       });
-      setMessage(`[TEAM ${team}] MATCH!`);
+      setMessage(`✅ MATCH: Team ${team}`);
       setIsSuccess(true);
       correctSound.currentTime = 0;
       correctSound.play().catch(e => console.log(e));
     } else {
       setCombos(prev => ({ ...prev, [team]: 0 }));
-      setMessage(`[TEAM ${team}] MISS!`);
+      setMessage(`⚠️ MISS: Team ${team}`);
       setIsSuccess(false);
       incorrectSound.currentTime = 0;
       incorrectSound.play().catch(e => console.log(e));
@@ -120,7 +120,7 @@ function App() {
           } else if (prefix === 'B-') {
             handleScan('B', actualCode);
           } else {
-            setMessage('⚠️ ERROR: Check Scanner Prefix');
+            setMessage('⚠️ ERROR: Check Prefix');
             setIsSuccess(false);
           }
         }
@@ -222,7 +222,7 @@ function App() {
 
             </div>
 
-            {/* ガイド文言を削除し、メッセージがある時だけバーを表示 */}
+            {/* メッセージバー（普段は隠れる。文字数を減らしてスッキリ配置） */}
             {message && (
               <div className={`glass-card message-bar ${isSuccess === true ? 'success' : isSuccess === false ? 'error' : ''}`}>
                 {message}

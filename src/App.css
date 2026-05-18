@@ -53,7 +53,7 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 }
 
 .header-logo {
-  height: 50px; /* 左上のロゴサイズ */
+  height: 50px;
   object-fit: contain;
   margin-bottom: 5px;
   filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
@@ -94,44 +94,69 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 
 .glass-card { background: rgba(255, 255, 255, 0.18); border: 2px solid rgba(255, 255, 255, 0.35); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-radius: 32px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-/* ボックスの巨大化 */
+/* ボックスの巨大化と配置 */
 .team-card {
   width: 500px;
-  height: 450px;
+  height: 480px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* 上中下に綺麗に振り分ける */
-  padding: 30px;
+  justify-content: space-between; /* 上・中・下にラベルを散らす */
+  padding: 40px 30px; /* 内部の余白を拡大 */
 }
 
-/* チーム名（絶対配置をやめて上部に固定） */
+/* チーム名 */
 .team-badge-a, .team-badge-b { 
   font-size: 2.2rem; 
   font-weight: 900; 
-  padding: 8px 30px; 
+  padding: 10px 40px; 
   border-radius: 50px; 
   color: white; 
   letter-spacing: 2px; 
   box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .team-badge-a { background: #e74c3c; }
 .team-badge-b { background: #3498db; }
 
 /* 限界まで大きくしたスコア */
 .vs-score {
-  font-size: 18rem; /* 超巨大 */
+  font-size: 18rem; 
   font-weight: 900;
   color: white;
-  line-height: 0.9; /* 行間を詰めて重なり防止 */
-  margin: auto 0; /* フレックスの中で縦中央へ */
-  text-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  line-height: 0.85; /* 数字の上下余白を圧縮 */
+  margin: 30px 0;    /* 上下のテキストとの距離を強制的に空ける */
+  text-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-.vs-combo { font-size: 2rem; font-weight: 800; color: #fbbf24; background: rgba(0, 0, 0, 0.3); padding: 8px 30px; border-radius: 50px; margin-bottom: 10px; letter-spacing: 1px; }
+.vs-combo { 
+  font-size: 2rem; 
+  font-weight: 800; 
+  color: #fbbf24; 
+  background: rgba(0, 0, 0, 0.3); 
+  padding: 8px 30px; 
+  border-radius: 50px; 
+  margin-top: 10px; 
+  letter-spacing: 1px; 
+}
 
-/* MATCH/MISS メッセージバー（普段は隠れる） */
-.message-bar { position: absolute; bottom: 40px; width: 800px; height: 100px; font-size: 3.5rem; font-weight: 900; color: white; text-align: center; padding: 0 30px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 100; }
+/* メッセージバー（コンパクトに） */
+.message-bar { 
+  position: absolute; 
+  bottom: 50px; 
+  width: auto; 
+  min-width: 600px;
+  max-width: 90%; 
+  height: 90px; 
+  font-size: 2.2rem; 
+  font-weight: 700; 
+  color: white; 
+  text-align: center; 
+  padding: 0 50px; 
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  z-index: 100; 
+}
 .message-bar.success { background: rgba(46, 204, 113, 0.8); border-color: rgba(255,255,255,0.8); transform: scale(1.05); }
 .message-bar.error { background: rgba(231, 76, 60, 0.8); border-color: rgba(255,255,255,0.8); animation: shake 0.4s; }
 
