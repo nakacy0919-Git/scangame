@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { Html5Qrcode } from 'html5-qrcode'; 
-// ★ onValue と set を追加インポート
 import { database, ref, push, onChildAdded, onValue, set, serverTimestamp } from './firebase'; 
 
 import './App.css';
@@ -42,25 +41,23 @@ function App() {
   const [activeQrTab, setActiveQrTab] = useState('A'); 
   const [timeLeft, setTimeLeft] = useState(0);
 
-  // ★ スマホがPCの進行状況を知るためのState
+  // スマホがPCの進行状況をリアルタイムで知るためのState
   const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null });
 
   const inputBuffer = useRef('');
   const correctSound = new Audio('/correct.mp3');
   const incorrectSound = new Audio('/incorrect.mp3');
   
-  // ★ クロージャー対策：常に最新のStateを保持する参照
+  // 常に最新のゲーム状態を保持する参照
   const latestStateRef = useRef({ status: gameStatus, theme: activeTheme });
-
   const scannerInstanceRef = useRef(null); 
 
-  // --- PCの状態変更を最新Refに同期 ---
   useEffect(() => {
     latestStateRef.current = { status: gameStatus, theme: activeTheme };
   }, [gameStatus, activeTheme]);
 
   // ==========================================
-  // ① PC側のロジック
+  // 1. PC（先生用メイン画面）ロジック
   // ==========================================
   const selectTheme = (theme) => {
     setActiveTheme(theme);
@@ -75,7 +72,10 @@ function App() {
     setGameStatus('PLAYING');
     setMessage(''); 
 
-    // ★ PCがゲームを開始したことをFirebaseに書き込む（スマホに伝える）
+    // ★ 安全策：ゲーム開始時に古いスキャン履歴をデータベース上から一斉清掃
+    set(ref(database, 'scans'), null);
+
+    // ★ PCがゲームを開始したことを書き込み（スマホへ通知）
     set(ref(database, 'gameState'), { status: 'PLAYING', theme: activeTheme });
   };
 
@@ -83,8 +83,6 @@ function App() {
     setActiveTheme(null);
     setGameStatus('MENU');
     setIsSettingsOpen(false);
-    
-    // ★ ゲーム終了をFirebaseに書き込む
     set(ref(database, 'gameState'), { status: 'MENU', theme: null });
   };
 
@@ -99,28 +97,23 @@ function App() {
     return () => clearInterval(timer);
   }, [appMode, gameStatus, timeLeft, activeTheme]);
 
-
-  // ★ 修正：Firebase監視のフリーズ問題を解決（1回だけ登録し、Refで最新判定する）
+  // ★ リアルタイム通信受信（時計がどれだけズレていても100%動く構造）
   useEffect(() => {
     if (appMode !== 'HOST_MENU') return;
     const scansRef = ref(database, 'scans');
-    let isInitialLoad = true;
     
     onChildAdded(scansRef, (snapshot) => {
-      if (isInitialLoad) return;
       const data = snapshot.val();
+      if (!data) return;
       
-      // クロージャーを回避して「今現在」の状況を確認
       const currentStatus = latestStateRef.current.status;
       const currentTheme = latestStateRef.current.theme;
 
-      // ゲーム中、かつ10秒以内の新しいスキャンデータなら処理
-      if (currentStatus === 'PLAYING' && (Date.now() - data.timestamp < 10000)) {
+      // 現在ゲームプレイ中であれば、届いたデータを無条件でスキャン処理
+      if (currentStatus === 'PLAYING') {
          executeScanCheck(data.team, data.code, currentTheme);
       }
     });
-
-    setTimeout(() => { isInitialLoad = false; }, 1500);
   }, [appMode]);
 
   // USB物理スキャナ用
@@ -145,7 +138,7 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [appMode, gameStatus, activeTheme]);
 
-  // スキャン判定のコア関数
+  // スキャン判定コア関数
   const executeScanCheck = (team, scannedCode, theme) => {
     if (!theme) return;
     const currentThemeData = GAME_DATA[theme].codes;
@@ -180,10 +173,8 @@ function App() {
 
 
   // ==========================================
-  // ② スマホ（生徒）側のロジック
+  // 2. スマホ（生徒用スキャナー）ロジック
   // ==========================================
-
-  // スマホがPCの状況をリアルタイム監視
   useEffect(() => {
     if (appMode === 'SCANNER') {
       const gameStateRef = ref(database, 'gameState');
@@ -212,7 +203,7 @@ function App() {
               (decodedText) => { onScanMobile(decodedText); },
               () => {} 
             );
-          } catch (err) { console.error("Camera error:", err); }
+          } catch (err) { console.error("Camera open error:", err); }
         }, 300);
       };
       startCamera();
@@ -223,10 +214,11 @@ function App() {
     }
   }, [appMode, scannerTeam]);
 
-  // ★ スマホ自身が「正解か不正解か」を判断して画面に表示する
+  // ★ スマホ側での即時正誤判定と画面へのフィードバック表示
   const onScanMobile = (decodedText) => {
     if (scannerInstanceRef.current) scannerInstanceRef.current.pause(true);
 
+    // PC側がまだゲーム中でない場合のガード
     if (serverGameState.status !== 'PLAYING' || !serverGameState.theme) {
       setMessage('⏳ 待機中：PCでゲームを開始してください');
       setIsSuccess(false);
@@ -245,7 +237,7 @@ function App() {
       isCorrect = currentThemeData[decodedText] || Object.values(currentThemeData).some(item => item.id === decodedText || item.code === decodedText);
     }
 
-    // スマホの画面に即時フィードバック！
+    // 生徒のスマホ画面に結果を即座にドカンと表示！
     if (isCorrect) {
       setMessage('✅ 正解！ (MATCH)');
       setIsSuccess(true);
@@ -254,7 +246,7 @@ function App() {
       setIsSuccess(false);
     }
 
-    // Firebaseに送信（PCが受信してスコアを更新する）
+    // PC側にデータを送信してスコアボードを動かす
     push(ref(database, 'scans'), {
       team: scannerTeam,
       code: decodedText,
@@ -268,14 +260,7 @@ function App() {
     });
   };
 
-  const formatTime = (seconds) => {
-    const m = Math.floor(seconds / 60);
-    const s = seconds % 60;
-    return `${m}:${s.toString().padStart(2, '0')}`;
-  };
-
-  // --- 画面描画部分は前回と同じなので省略なし ---
-  // --- スマホ（生徒用）画面 ---
+  // --- 画面レンダリング ---
   if (appMode === 'SCANNER') {
     return (
       <div className="main-viewport pattern-bg">
@@ -291,6 +276,7 @@ function App() {
           <div className="scanner-container">
              <div className={`scanner-header team-${scannerTeam}`}>TEAM {scannerTeam} PLAYING</div>
              <div id="reader"></div>
+             {/* ★ 生徒画面：正解なら緑、不正解なら赤の大きなインジケータ */}
              {message && <div className={`scanner-msg ${isSuccess ? 'ok' : ''}`}>{message}</div>}
              <button onClick={() => { window.location.href = window.location.origin + '?mode=scanner'; }} className="btn-text-only" style={{marginTop: '20px'}}>Change Team</button>
           </div>
@@ -299,7 +285,6 @@ function App() {
     );
   }
 
-  // --- PC（先生用）メイン画面 ---
   return (
     <div className={`main-viewport ${gameStatus === 'MENU' ? 'pattern-bg' : 'gradient-bg'}`}>
       {gameStatus === 'MENU' && <div className="particles">{[...Array(12)].map((_, i) => <div key={i} className="dot"></div>)}</div>}
