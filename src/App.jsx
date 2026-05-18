@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 
-// ★ 作成した外部JSONファイルをインポート
+// 外部JSONファイルをインポート
 import cafeData from './data/cafe.json';
 import sdgsData from './data/sdgs.json';
 import hotelData from './data/hotel.json';
@@ -9,26 +9,11 @@ import airportData from './data/airport.json';
 import zooData from './data/zoo.json';
 
 const GAME_DATA = {
-  cafe: {
-    title: 'Scannect : Cafe',
-    codes: cafeData
-  },
-  sdgs: {
-    title: 'Scannect : SDGs',
-    codes: sdgsData
-  },
-  hotel: { 
-    title: 'Scannect : Hotel',
-    codes: hotelData
-  },
-  airport: {
-    title: 'Scannect : Airport',
-    codes: airportData
-  },
-  zoo: {
-    title: 'Scannect : Zoo',
-    codes: zooData
-  }
+  cafe: { title: 'Scannect : Cafe', codes: cafeData },
+  sdgs: { title: 'Scannect : SDGs', codes: sdgsData },
+  hotel: { title: 'Scannect : Hotel', codes: hotelData },
+  airport: { title: 'Scannect : Airport', codes: airportData },
+  zoo: { title: 'Scannect : Zoo', codes: zooData }
 };
 
 function App() {
@@ -39,7 +24,7 @@ function App() {
   const [combos, setCombos] = useState({ A: 0, B: 0 });
   const [maxCombos, setMaxCombos] = useState({ A: 0, B: 0 });
 
-  const [message, setMessage] = useState('Ready... SCAN!');
+  const [message, setMessage] = useState(''); // 初期メッセージを空に
   const [isSuccess, setIsSuccess] = useState(null);
 
   const [selectedMinutes, setSelectedMinutes] = useState(5); 
@@ -74,7 +59,7 @@ function App() {
     setMaxCombos({ A: 0, B: 0 });
     setTimeLeft(selectedMinutes * 60); 
     setGameStatus('PLAYING');
-    setMessage('両チーム、スキャン開始！');
+    setMessage(''); // ゲーム開始時のテキストも削除
   };
 
   const backToMenu = () => {
@@ -83,7 +68,6 @@ function App() {
     setIsSettingsOpen(false);
   };
 
-  // チーム(A/B)とコードを受け取って独立して処理する関数
   const handleScan = (team, scannedCode) => {
     if (gameStatus !== 'PLAYING') return;
 
@@ -98,21 +82,22 @@ function App() {
         }
         return { ...prev, [team]: newCombo };
       });
-      setMessage(`[TEAM ${team}] MATCH! ${currentThemeData[scannedCode]}`);
+      setMessage(`[TEAM ${team}] MATCH!`);
       setIsSuccess(true);
       correctSound.currentTime = 0;
       correctSound.play().catch(e => console.log(e));
     } else {
       setCombos(prev => ({ ...prev, [team]: 0 }));
-      setMessage(`[TEAM ${team}] MISS! 不正解です`);
+      setMessage(`[TEAM ${team}] MISS!`);
       setIsSuccess(false);
       incorrectSound.currentTime = 0;
       incorrectSound.play().catch(e => console.log(e));
     }
 
+    // 2秒後にメッセージを消す
     setTimeout(() => {
       if (gameStatus === 'PLAYING') {
-        setMessage('次のペアをスキャンしてください...');
+        setMessage('');
         setIsSuccess(null);
       }
     }, 2000);
@@ -127,7 +112,6 @@ function App() {
         const rawInput = inputBuffer.current.trim();
         
         if (rawInput) {
-          // 入力された文字の先頭2文字が「A-」か「B-」かを判定してチームを振り分け
           const prefix = rawInput.substring(0, 2);
           const actualCode = rawInput.substring(2);
 
@@ -136,7 +120,7 @@ function App() {
           } else if (prefix === 'B-') {
             handleScan('B', actualCode);
           } else {
-            setMessage('⚠️ エラー: スキャナに「A-」または「B-」の設定が必要です');
+            setMessage('⚠️ ERROR: Check Scanner Prefix');
             setIsSuccess(false);
           }
         }
@@ -172,21 +156,11 @@ function App() {
             <img src="/scannetlogo.png" alt="Scannect Logo" className="main-logo" />
           </div>
           <div className="theme-buttons">
-            <button onClick={() => selectTheme('cafe')} className="custom-border-box">
-              ☕ Cafe
-            </button>
-            <button onClick={() => selectTheme('sdgs')} className="custom-border-box">
-              🌍 SDGs
-            </button>
-            <button onClick={() => selectTheme('hotel')} className="custom-border-box">
-              🏨 Hotel
-            </button>
-            <button onClick={() => selectTheme('airport')} className="custom-border-box">
-              ✈️ Airport
-            </button>
-            <button onClick={() => selectTheme('zoo')} className="custom-border-box">
-              🦁 Zoo
-            </button>
+            <button onClick={() => selectTheme('cafe')} className="custom-border-box">☕ Cafe</button>
+            <button onClick={() => selectTheme('sdgs')} className="custom-border-box">🌍 SDGs</button>
+            <button onClick={() => selectTheme('hotel')} className="custom-border-box">🏨 Hotel</button>
+            <button onClick={() => selectTheme('airport')} className="custom-border-box">✈️ Airport</button>
+            <button onClick={() => selectTheme('zoo')} className="custom-border-box">🦁 Zoo</button>
           </div>
           <button className="settings-btn shadow-pop" onClick={() => setIsSettingsOpen(true)}>⚙️</button>
         </div>
@@ -196,11 +170,11 @@ function App() {
       {gameStatus === 'READY' && (
         <div className="content-wrap glass-card ready-panel">
           <h2 className="ready-title">{GAME_DATA[activeTheme].title}</h2>
-          <div className="ready-info">制限時間: <strong>{selectedMinutes}</strong> 分</div>
+          <div className="ready-info">Time Limit: <strong>{selectedMinutes}</strong> min</div>
           <button onClick={handleStartGame} className="start-btn shadow-pop">
              START GAME
           </button>
-          <button onClick={backToMenu} className="btn-text-only">キャンセルして戻る</button>
+          <button onClick={backToMenu} className="btn-text-only">Cancel</button>
         </div>
       )}
 
@@ -208,11 +182,23 @@ function App() {
       {gameStatus === 'PLAYING' && (
         <div className="game-layout">
           <header className="game-header">
-            <div className="theme-name">{GAME_DATA[activeTheme].title}</div>
-            <div className={`timer-display ${timeLeft <= 10 ? 'danger' : ''}`}>
-              TIME {formatTime(timeLeft)}
+            {/* 左：ロゴとテーマ名 */}
+            <div className="header-left">
+              <img src="/scannetlogo.png" alt="Scannect" className="header-logo" />
+              <div className="theme-name">{GAME_DATA[activeTheme].title}</div>
             </div>
-            <button onClick={backToMenu} className="btn-abort">中断</button>
+            
+            {/* 中央：タイマー */}
+            <div className="header-center">
+              <div className={`timer-display ${timeLeft <= 10 ? 'danger' : ''}`}>
+                TIME {formatTime(timeLeft)}
+              </div>
+            </div>
+
+            {/* 右：中断ボタン（英語化） */}
+            <div className="header-right">
+              <button onClick={backToMenu} className="btn-abort">QUIT GAME</button>
+            </div>
           </header>
 
           <main className="game-main">
@@ -236,11 +222,12 @@ function App() {
 
             </div>
 
-            <div className="keyboard-guide">※ スキャナAは「A-」、スキャナBは「B-」を接頭辞として送信してください</div>
-
-            <div className={`glass-card message-bar ${isSuccess === true ? 'success' : isSuccess === false ? 'error' : ''}`}>
-              {message}
-            </div>
+            {/* ガイド文言を削除し、メッセージがある時だけバーを表示 */}
+            {message && (
+              <div className={`glass-card message-bar ${isSuccess === true ? 'success' : isSuccess === false ? 'error' : ''}`}>
+                {message}
+              </div>
+            )}
           </main>
         </div>
       )}
@@ -254,20 +241,20 @@ function App() {
             <div className={`glass-card res-team-box ${scores.A >= scores.B ? 'winner' : ''}`}>
               {scores.A >= scores.B && <div className="winner-crown">👑 WINNER</div>}
               <h3>TEAM A</h3>
-              <div className="res-num">{scores.A} pts</div>
+              <div className="res-num">{scores.A}</div>
               <p>MAX COMBO: {maxCombos.A}</p>
             </div>
 
             <div className={`glass-card res-team-box ${scores.B >= scores.A ? 'winner' : ''}`}>
               {scores.B >= scores.A && <div className="winner-crown">👑 WINNER</div>}
               <h3>TEAM B</h3>
-              <div className="res-num">{scores.B} pts</div>
+              <div className="res-num">{scores.B}</div>
               <p>MAX COMBO: {maxCombos.B}</p>
             </div>
           </div>
 
           <button onClick={backToMenu} className="start-btn shadow-pop" style={{marginTop:'50px'}}>
-            メニューに戻る
+            BACK TO MENU
           </button>
         </div>
       )}
