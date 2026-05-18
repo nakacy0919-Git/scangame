@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Html5Qrcode } from 'html5-qrcode'; 
-import { database, ref, push, onChildAdded, serverTimestamp } from './firebase'; 
+// ★ onValue と set を追加インポート
+import { database, ref, push, onChildAdded, onValue, set, serverTimestamp } from './firebase'; 
 
 import './App.css';
 
@@ -38,35 +39,34 @@ function App() {
 
   const [selectedMinutes, setSelectedMinutes] = useState(5); 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const [activeQrTab, setActiveQrTab] = useState('A'); // ② QRコード切り替えタブ用の状態
+  const [activeQrTab, setActiveQrTab] = useState('A'); 
   const [timeLeft, setTimeLeft] = useState(0);
+
+  // ★ スマホがPCの進行状況を知るためのState
+  const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null });
 
   const inputBuffer = useRef('');
   const correctSound = new Audio('/correct.mp3');
   const incorrectSound = new Audio('/incorrect.mp3');
+  
+  // ★ クロージャー対策：常に最新のStateを保持する参照
+  const latestStateRef = useRef({ status: gameStatus, theme: activeTheme });
 
-  const firebaseListenerRef = useRef(null);
   const scannerInstanceRef = useRef(null); 
 
-  // ① メイン画面のボタンを確実に動作させる関数
+  // --- PCの状態変更を最新Refに同期 ---
+  useEffect(() => {
+    latestStateRef.current = { status: gameStatus, theme: activeTheme };
+  }, [gameStatus, activeTheme]);
+
+  // ==========================================
+  // ① PC側のロジック
+  // ==========================================
   const selectTheme = (theme) => {
     setActiveTheme(theme);
     setGameStatus('READY');
   };
 
-  useEffect(() => {
-    let timer;
-    if (appMode === 'HOST_MENU' && gameStatus === 'PLAYING' && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft((prev) => prev - 1);
-      }, 1000);
-    } else if (timeLeft === 0 && gameStatus === 'PLAYING') {
-      setGameStatus('GAMEOVER');
-    }
-    return () => clearInterval(timer);
-  }, [appMode, gameStatus, timeLeft]);
-
-  // Firebase受信ロジック（時計のズレに影響されないよう初期ロードをスキップ）
   const handleStartGame = () => {
     setScores({ A: 0, B: 0 });
     setCombos({ A: 0, B: 0 });
@@ -75,33 +75,82 @@ function App() {
     setGameStatus('PLAYING');
     setMessage(''); 
 
-    const scansRef = ref(database, 'scans');
-    let isInitialLoad = true;
-    
-    firebaseListenerRef.current = onChildAdded(scansRef, (snapshot) => {
-      if (isInitialLoad) return; 
-      const data = snapshot.val();
-      handleScan(data.team, data.code);
-    });
-
-    setTimeout(() => {
-      isInitialLoad = false;
-    }, 1500);
+    // ★ PCがゲームを開始したことをFirebaseに書き込む（スマホに伝える）
+    set(ref(database, 'gameState'), { status: 'PLAYING', theme: activeTheme });
   };
 
   const backToMenu = () => {
     setActiveTheme(null);
     setGameStatus('MENU');
     setIsSettingsOpen(false);
-    if (firebaseListenerRef.current) firebaseListenerRef.current = null;
+    
+    // ★ ゲーム終了をFirebaseに書き込む
+    set(ref(database, 'gameState'), { status: 'MENU', theme: null });
   };
 
-  // どんなJSON構造でも確実に判定をパスさせるハイブリッド判定ロジック
-  const handleScan = (team, scannedCode) => {
-    if (gameStatus !== 'PLAYING') return;
-    const currentThemeData = GAME_DATA[activeTheme].codes;
+  useEffect(() => {
+    let timer;
+    if (appMode === 'HOST_MENU' && gameStatus === 'PLAYING' && timeLeft > 0) {
+      timer = setInterval(() => { setTimeLeft((prev) => prev - 1); }, 1000);
+    } else if (timeLeft === 0 && gameStatus === 'PLAYING') {
+      setGameStatus('GAMEOVER');
+      set(ref(database, 'gameState'), { status: 'GAMEOVER', theme: activeTheme });
+    }
+    return () => clearInterval(timer);
+  }, [appMode, gameStatus, timeLeft, activeTheme]);
+
+
+  // ★ 修正：Firebase監視のフリーズ問題を解決（1回だけ登録し、Refで最新判定する）
+  useEffect(() => {
+    if (appMode !== 'HOST_MENU') return;
+    const scansRef = ref(database, 'scans');
+    let isInitialLoad = true;
     
+    onChildAdded(scansRef, (snapshot) => {
+      if (isInitialLoad) return;
+      const data = snapshot.val();
+      
+      // クロージャーを回避して「今現在」の状況を確認
+      const currentStatus = latestStateRef.current.status;
+      const currentTheme = latestStateRef.current.theme;
+
+      // ゲーム中、かつ10秒以内の新しいスキャンデータなら処理
+      if (currentStatus === 'PLAYING' && (Date.now() - data.timestamp < 10000)) {
+         executeScanCheck(data.team, data.code, currentTheme);
+      }
+    });
+
+    setTimeout(() => { isInitialLoad = false; }, 1500);
+  }, [appMode]);
+
+  // USB物理スキャナ用
+  useEffect(() => {
+    if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING') return;
+    const handleKeyDown = (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      if (e.key === 'Enter') {
+        const rawInput = inputBuffer.current.trim();
+        if (rawInput) {
+          const prefix = rawInput.substring(0, 2);
+          const actualCode = rawInput.substring(2);
+          if (prefix === 'A-') executeScanCheck('A', actualCode, activeTheme);
+          else if (prefix === 'B-') executeScanCheck('B', actualCode, activeTheme);
+        }
+        inputBuffer.current = '';
+      } else if (e.key.length === 1) {
+        inputBuffer.current += e.key;
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [appMode, gameStatus, activeTheme]);
+
+  // スキャン判定のコア関数
+  const executeScanCheck = (team, scannedCode, theme) => {
+    if (!theme) return;
+    const currentThemeData = GAME_DATA[theme].codes;
     let isCorrect = false;
+
     if (Array.isArray(currentThemeData)) {
       isCorrect = currentThemeData.some(item => item.id === scannedCode || item.code === scannedCode);
     } else if (typeof currentThemeData === 'object' && currentThemeData !== null) {
@@ -126,90 +175,96 @@ function App() {
       incorrectSound.currentTime = 0;
       incorrectSound.play().catch(e => console.log(e));
     }
-
-    setTimeout(() => {
-      if (gameStatus === 'PLAYING') {
-        setMessage('');
-        setIsSuccess(null);
-      }
-    }, 2000);
+    setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
   };
 
-  // USB物理スキャナ用キーボードフック
+
+  // ==========================================
+  // ② スマホ（生徒）側のロジック
+  // ==========================================
+
+  // スマホがPCの状況をリアルタイム監視
   useEffect(() => {
-    if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING') return;
-    const handleKeyDown = (e) => {
-      if (e.target.tagName === 'INPUT') return;
-      if (e.key === 'Enter') {
-        const rawInput = inputBuffer.current.trim();
-        if (rawInput) {
-          const prefix = rawInput.substring(0, 2);
-          const actualCode = rawInput.substring(2);
-          if (prefix === 'A-') handleScan('A', actualCode);
-          else if (prefix === 'B-') handleScan('B', actualCode);
-          else setMessage('⚠️ ERROR: Check Prefix');
-        }
-        inputBuffer.current = '';
-      } else if (e.key.length === 1) {
-        inputBuffer.current += e.key;
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [appMode, gameStatus, activeTheme]);
+    if (appMode === 'SCANNER') {
+      const gameStateRef = ref(database, 'gameState');
+      onValue(gameStateRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) setServerGameState(data);
+      });
+    }
+  }, [appMode]);
 
-
-  // ③ スマホの背面カメラをエラーなく自動で100%起動させるロジック
   useEffect(() => {
     if (appMode === 'SCANNER' && scannerTeam) {
       let isMounted = true;
-      
       const startCamera = () => {
-        // DOMが確実に生成されるのを少し待ってから初期化（iPad・Safari対策）
         setTimeout(async () => {
           if (!isMounted) return;
           const element = document.getElementById("reader");
-          if (!element) {
-            startCamera(); // 要素がなければ描画されるまでリトライ
-            return;
-          }
+          if (!element) { startCamera(); return; }
 
           try {
             const html5QrCode = new Html5Qrcode("reader");
             scannerInstanceRef.current = html5QrCode;
-            
             await html5QrCode.start(
-              { facingMode: "environment" }, // 背面カメラ固定
+              { facingMode: "environment" },
               { fps: 10, qrbox: { width: 260, height: 260 } },
-              (decodedText) => { onScanSuccess(decodedText); },
+              (decodedText) => { onScanMobile(decodedText); },
               () => {} 
             );
-          } catch (err) {
-            console.error("Camera grid error:", err);
-          }
+          } catch (err) { console.error("Camera error:", err); }
         }, 300);
       };
-
       startCamera();
-
       return () => {
         isMounted = false;
-        if (scannerInstanceRef.current) {
-          scannerInstanceRef.current.stop().catch(err => console.error(err));
-        }
+        if (scannerInstanceRef.current) scannerInstanceRef.current.stop().catch(e=>e);
       };
     }
   }, [appMode, scannerTeam]);
 
-  const onScanSuccess = (decodedText) => {
+  // ★ スマホ自身が「正解か不正解か」を判断して画面に表示する
+  const onScanMobile = (decodedText) => {
+    if (scannerInstanceRef.current) scannerInstanceRef.current.pause(true);
+
+    if (serverGameState.status !== 'PLAYING' || !serverGameState.theme) {
+      setMessage('⏳ 待機中：PCでゲームを開始してください');
+      setIsSuccess(false);
+      setTimeout(() => {
+        setMessage(''); setIsSuccess(null);
+        if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
+      }, 2000);
+      return;
+    }
+
+    const currentThemeData = GAME_DATA[serverGameState.theme].codes;
+    let isCorrect = false;
+    if (Array.isArray(currentThemeData)) {
+      isCorrect = currentThemeData.some(item => item.id === decodedText || item.code === decodedText);
+    } else {
+      isCorrect = currentThemeData[decodedText] || Object.values(currentThemeData).some(item => item.id === decodedText || item.code === decodedText);
+    }
+
+    // スマホの画面に即時フィードバック！
+    if (isCorrect) {
+      setMessage('✅ 正解！ (MATCH)');
+      setIsSuccess(true);
+    } else {
+      setMessage('❌ 不正解... (MISS)');
+      setIsSuccess(false);
+    }
+
+    // Firebaseに送信（PCが受信してスコアを更新する）
     push(ref(database, 'scans'), {
       team: scannerTeam,
       code: decodedText,
       timestamp: serverTimestamp() 
     }).then(() => {
-        setMessage('SUCCESS! 送信完了');
-        setIsSuccess(true);
-        setTimeout(() => { setMessage(''); setIsSuccess(null); }, 1200);
+        setTimeout(() => { 
+          setMessage(''); 
+          setIsSuccess(null); 
+          if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
+        }, 1800);
     });
   };
 
@@ -219,6 +274,7 @@ function App() {
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
+  // --- 画面描画部分は前回と同じなので省略なし ---
   // --- スマホ（生徒用）画面 ---
   if (appMode === 'SCANNER') {
     return (
@@ -248,11 +304,8 @@ function App() {
     <div className={`main-viewport ${gameStatus === 'MENU' ? 'pattern-bg' : 'gradient-bg'}`}>
       {gameStatus === 'MENU' && <div className="particles">{[...Array(12)].map((_, i) => <div key={i} className="dot"></div>)}</div>}
 
-      {/* メインメニュー：左右2カラム分割レイアウト */}
       {gameStatus === 'MENU' && (
         <div className="menu-split-container">
-          
-          {/* 左半分：ロゴ ＆ テーマ選択ボタン */}
           <div className="menu-left-block">
             <img src="/scannetlogo.png" alt="Scannect" className="main-logo-split" />
             <div className="theme-buttons-vertical">
@@ -263,27 +316,21 @@ function App() {
               <button onClick={() => selectTheme('zoo')} className="custom-border-box-split">🦁 Zoo</button>
             </div>
           </div>
-
-          {/* 右半分：② 誤認を防ぐ1枚出しの超巨大QRコード表示エリア */}
           <div className="menu-right-block">
             <h3 className="qr-section-title">📱 Student Scanner QR</h3>
-            
             <div className="qr-tab-buttons">
               <button onClick={() => setActiveQrTab('A')} className={`qr-tab-btn ${activeQrTab === 'A' ? 'active team-A' : ''}`}>TEAM A</button>
               <button onClick={() => setActiveQrTab('B')} className={`qr-tab-btn ${activeQrTab === 'B' ? 'active team-B' : ''}`}>TEAM B</button>
             </div>
-
             <div className="qr-display-box">
               <img src={`https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + activeQrTab)}`} alt="Join QR" />
             </div>
             <p className="qr-display-desc">生徒は自分のチームのタブを選んでスキャンしてください</p>
           </div>
-
           <button className="settings-btn shadow-pop" onClick={() => setIsSettingsOpen(true)}>⚙️</button>
         </div>
       )}
 
-      {/* 待機画面 */}
       {gameStatus === 'READY' && (
         <div className="content-wrap glass-card ready-panel">
           <h2 className="ready-title">{GAME_DATA[activeTheme].title}</h2>
@@ -293,7 +340,6 @@ function App() {
         </div>
       )}
 
-      {/* ゲームプレイ画面 */}
       {gameStatus === 'PLAYING' && (
         <div className="game-layout">
           <header className="game-header">
@@ -327,7 +373,6 @@ function App() {
         </div>
       )}
 
-      {/* 結果画面 */}
       {gameStatus === 'GAMEOVER' && (
         <div className="content-wrap">
           <h2 className="time-up-text">TIME UP!</h2>
@@ -349,7 +394,6 @@ function App() {
         </div>
       )}
 
-      {/* 設定 */}
       {isSettingsOpen && (
         <div className="modal-overlay" onClick={() => setIsSettingsOpen(false)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
