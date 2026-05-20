@@ -33,6 +33,9 @@ function App() {
   const [combos, setCombos] = useState({ A: 0, B: 0 });
   const [maxCombos, setMaxCombos] = useState({ A: 0, B: 0 });
 
+  // ★ 新規追加：読込済みのカードを記憶するリスト
+  const [scannedCodesList, setScannedCodesList] = useState([]);
+
   const [message, setMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(null);
 
@@ -41,16 +44,17 @@ function App() {
   const [activeQrTab, setActiveQrTab] = useState('A'); 
   const [timeLeft, setTimeLeft] = useState(0);
 
-  const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null });
+  const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
 
   const inputBuffer = useRef('');
   const correctSound = new Audio('/correct.mp3');
   const incorrectSound = new Audio('/incorrect.mp3');
   
   const latestStateRef = useRef({ status: gameStatus, theme: activeTheme });
+  const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
   
-  // ★追加：スマホカメラの「記憶フリーズ」を防ぐためのRef
-  const serverGameStateRef = useRef({ status: 'MENU', theme: null });
+  // ★ 新規追加：クロージャー対策用の読込済みリストRef
+  const scannedCodesRef = useRef([]); 
   
   const scannerInstanceRef = useRef(null); 
 
@@ -73,16 +77,21 @@ function App() {
     setTimeLeft(selectedMinutes * 60); 
     setGameStatus('PLAYING');
     setMessage(''); 
+    
+    // ★ ゲーム開始時に読込済みリストをリセット
+    setScannedCodesList([]);
+    scannedCodesRef.current = [];
 
     set(ref(database, 'scans'), null);
-    set(ref(database, 'gameState'), { status: 'PLAYING', theme: activeTheme });
+    // ★ scannedCodes (読込済みリスト) も空でスタート
+    set(ref(database, 'gameState'), { status: 'PLAYING', theme: activeTheme, scannedCodes: {} });
   };
 
   const backToMenu = () => {
     setActiveTheme(null);
     setGameStatus('MENU');
     setIsSettingsOpen(false);
-    set(ref(database, 'gameState'), { status: 'MENU', theme: null });
+    set(ref(database, 'gameState'), { status: 'MENU', theme: null, scannedCodes: {} });
   };
 
   useEffect(() => {
@@ -146,6 +155,25 @@ function App() {
     }
     
     if (isCorrect) {
+      // ★ ここが重複防止の門番！ すでにリストにあるか確認
+      if (scannedCodesRef.current.includes(scannedCode)) {
+        setMessage(`⚠️ ALREADY SCANNED`);
+        setIsSuccess(false);
+        incorrectSound.currentTime = 0;
+        incorrectSound.play().catch(e => console.log(e));
+        setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
+        return; // ここで処理を強制終了し、得点を入れない
+      }
+
+      // ★ 新規の正解なら、読込済みリストに追加
+      const newList = [...scannedCodesRef.current, scannedCode];
+      scannedCodesRef.current = newList;
+      setScannedCodesList(newList);
+      
+      // ★ スマホにも「このコードはもう読まれたよ」と通知
+      set(ref(database, `gameState/scannedCodes/${scannedCode}`), true);
+
+      // スコア加算
       setScores(prev => ({ ...prev, [team]: prev[team] + 1 }));
       setCombos(prev => {
         const newCombo = prev[team] + 1;
@@ -177,7 +205,6 @@ function App() {
         const data = snapshot.val();
         if (data) {
           setServerGameState(data);
-          // ★ここでRef（常に最新の記憶）も同時に書き換える！
           serverGameStateRef.current = data;
         }
       });
@@ -216,7 +243,6 @@ function App() {
   const onScanMobile = (decodedText) => {
     if (scannerInstanceRef.current) scannerInstanceRef.current.pause(true);
 
-    // ★フリーズしたStateではなく、常に最新のRefを見る
     const currentGameState = serverGameStateRef.current;
 
     if (currentGameState.status !== 'PLAYING' || !currentGameState.theme) {
@@ -238,6 +264,18 @@ function App() {
     }
 
     if (isCorrect) {
+      // ★ スマホ側での重複チェック！
+      const scannedMap = currentGameState.scannedCodes || {};
+      if (scannedMap[decodedText]) {
+          setMessage('⚠️ 読込済みのカードです！');
+          setIsSuccess(false);
+          setTimeout(() => {
+              setMessage(''); setIsSuccess(null);
+              if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
+          }, 2000);
+          return; // 既に読込済みの場合はPCにデータを送信しない
+      }
+
       setMessage('✅ 正解！ (MATCH)');
       setIsSuccess(true);
     } else {
