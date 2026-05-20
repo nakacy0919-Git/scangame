@@ -41,15 +41,17 @@ function App() {
   const [activeQrTab, setActiveQrTab] = useState('A'); 
   const [timeLeft, setTimeLeft] = useState(0);
 
-  // スマホがPCの進行状況をリアルタイムで知るためのState
   const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null });
 
   const inputBuffer = useRef('');
   const correctSound = new Audio('/correct.mp3');
   const incorrectSound = new Audio('/incorrect.mp3');
   
-  // 常に最新のゲーム状態を保持する参照
   const latestStateRef = useRef({ status: gameStatus, theme: activeTheme });
+  
+  // ★追加：スマホカメラの「記憶フリーズ」を防ぐためのRef
+  const serverGameStateRef = useRef({ status: 'MENU', theme: null });
+  
   const scannerInstanceRef = useRef(null); 
 
   useEffect(() => {
@@ -72,10 +74,7 @@ function App() {
     setGameStatus('PLAYING');
     setMessage(''); 
 
-    // ★ 安全策：ゲーム開始時に古いスキャン履歴をデータベース上から一斉清掃
     set(ref(database, 'scans'), null);
-
-    // ★ PCがゲームを開始したことを書き込み（スマホへ通知）
     set(ref(database, 'gameState'), { status: 'PLAYING', theme: activeTheme });
   };
 
@@ -97,7 +96,6 @@ function App() {
     return () => clearInterval(timer);
   }, [appMode, gameStatus, timeLeft, activeTheme]);
 
-  // ★ リアルタイム通信受信（時計がどれだけズレていても100%動く構造）
   useEffect(() => {
     if (appMode !== 'HOST_MENU') return;
     const scansRef = ref(database, 'scans');
@@ -109,14 +107,12 @@ function App() {
       const currentStatus = latestStateRef.current.status;
       const currentTheme = latestStateRef.current.theme;
 
-      // 現在ゲームプレイ中であれば、届いたデータを無条件でスキャン処理
       if (currentStatus === 'PLAYING') {
          executeScanCheck(data.team, data.code, currentTheme);
       }
     });
   }, [appMode]);
 
-  // USB物理スキャナ用
   useEffect(() => {
     if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING') return;
     const handleKeyDown = (e) => {
@@ -138,7 +134,6 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [appMode, gameStatus, activeTheme]);
 
-  // スキャン判定コア関数
   const executeScanCheck = (team, scannedCode, theme) => {
     if (!theme) return;
     const currentThemeData = GAME_DATA[theme].codes;
@@ -180,7 +175,11 @@ function App() {
       const gameStateRef = ref(database, 'gameState');
       onValue(gameStateRef, (snapshot) => {
         const data = snapshot.val();
-        if (data) setServerGameState(data);
+        if (data) {
+          setServerGameState(data);
+          // ★ここでRef（常に最新の記憶）も同時に書き換える！
+          serverGameStateRef.current = data;
+        }
       });
     }
   }, [appMode]);
@@ -214,12 +213,13 @@ function App() {
     }
   }, [appMode, scannerTeam]);
 
-  // ★ スマホ側での即時正誤判定と画面へのフィードバック表示
   const onScanMobile = (decodedText) => {
     if (scannerInstanceRef.current) scannerInstanceRef.current.pause(true);
 
-    // PC側がまだゲーム中でない場合のガード
-    if (serverGameState.status !== 'PLAYING' || !serverGameState.theme) {
+    // ★フリーズしたStateではなく、常に最新のRefを見る
+    const currentGameState = serverGameStateRef.current;
+
+    if (currentGameState.status !== 'PLAYING' || !currentGameState.theme) {
       setMessage('⏳ 待機中：PCでゲームを開始してください');
       setIsSuccess(false);
       setTimeout(() => {
@@ -229,7 +229,7 @@ function App() {
       return;
     }
 
-    const currentThemeData = GAME_DATA[serverGameState.theme].codes;
+    const currentThemeData = GAME_DATA[currentGameState.theme].codes;
     let isCorrect = false;
     if (Array.isArray(currentThemeData)) {
       isCorrect = currentThemeData.some(item => item.id === decodedText || item.code === decodedText);
@@ -237,7 +237,6 @@ function App() {
       isCorrect = currentThemeData[decodedText] || Object.values(currentThemeData).some(item => item.id === decodedText || item.code === decodedText);
     }
 
-    // 生徒のスマホ画面に結果を即座にドカンと表示！
     if (isCorrect) {
       setMessage('✅ 正解！ (MATCH)');
       setIsSuccess(true);
@@ -246,7 +245,6 @@ function App() {
       setIsSuccess(false);
     }
 
-    // PC側にデータを送信してスコアボードを動かす
     push(ref(database, 'scans'), {
       team: scannerTeam,
       code: decodedText,
@@ -260,7 +258,12 @@ function App() {
     });
   };
 
-  // --- 画面レンダリング ---
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  };
+
   if (appMode === 'SCANNER') {
     return (
       <div className="main-viewport pattern-bg">
@@ -276,7 +279,6 @@ function App() {
           <div className="scanner-container">
              <div className={`scanner-header team-${scannerTeam}`}>TEAM {scannerTeam} PLAYING</div>
              <div id="reader"></div>
-             {/* ★ 生徒画面：正解なら緑、不正解なら赤の大きなインジケータ */}
              {message && <div className={`scanner-msg ${isSuccess ? 'ok' : ''}`}>{message}</div>}
              <button onClick={() => { window.location.href = window.location.origin + '?mode=scanner'; }} className="btn-text-only" style={{marginTop: '20px'}}>Change Team</button>
           </div>
