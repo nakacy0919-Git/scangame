@@ -1,0 +1,812 @@
+[
+  {
+    "id": "HELP_001",
+    "situation_ja": "駅への道順",
+    "situation_en": "Finding the Station",
+    "card_a": {
+      "text": "[A disoriented tourist] Excuse me, I've completely lost my bearings. Could you point me in the direction of the main station?",
+      "text_ja": "【方向感覚を失った観光客】すみません、完全に道に迷ってしまいました。主要駅の方向を教えていただけませんか？"
+    },
+    "card_b": {
+      "text": "Certainly. Head down this avenue and take the second right. You can't miss it.",
+      "text_ja": "かしこまりました。この大通りを進んで2つ目の角を右に曲がってください。必ず見つかりますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "disoriented",
+        "part_of_speech": "adjective",
+        "meaning": "方向感覚を失った、混乱した",
+        "level": "C1"
+      },
+      {
+        "word": "lose one's bearings",
+        "part_of_speech": "idiom",
+        "meaning": "自分の位置（方向）が分からなくなる",
+        "level": "C2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_002",
+    "situation_ja": "定期券の購入",
+    "situation_en": "Buying a Commuter Pass",
+    "card_a": {
+      "text": "[A confused traveler] I'm having trouble figuring out how to purchase a commuter pass from this machine.",
+      "text_ja": "【困惑する旅行者】この機械で定期券をどうやって買えばいいのかわからなくて困っています。"
+    },
+    "card_b": {
+      "text": "It can be quite confusing at first. Would you like me to walk you through the process?",
+      "text_ja": "最初はかなり分かりにくいですよね。手順を丁寧にご説明しましょうか？"
+    },
+    "vocabulary": [
+      {
+        "word": "commuter pass",
+        "part_of_speech": "noun",
+        "meaning": "定期券",
+        "level": "B2"
+      },
+      {
+        "word": "walk someone through",
+        "part_of_speech": "phrasal verb",
+        "meaning": "（手順などを）一から丁寧に説明する",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "HELP_003",
+    "situation_ja": "病院行きのバス",
+    "situation_en": "Bus to the Hospital",
+    "card_a": {
+      "text": "[An anxious commuter] Do you happen to know if this bus route goes anywhere near the municipal hospital?",
+      "text_ja": "【不安げな乗客】このバスの路線が市民病院の近くを通るか、ご存知だったりしますか？"
+    },
+    "card_b": {
+      "text": "I'm afraid it doesn't. You'd be better off taking the number 5 bus from the opposite side.",
+      "text_ja": "残念ながら通りません。反対側から5番のバスに乗ることをお勧めします。"
+    },
+    "vocabulary": [
+      {
+        "word": "municipal",
+        "part_of_speech": "adjective",
+        "meaning": "地方自治体の、市営の",
+        "level": "C1"
+      },
+      {
+        "word": "be better off",
+        "part_of_speech": "idiom",
+        "meaning": "〜したほうが良い、より良い状態である",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_004",
+    "situation_ja": "地図での現在地特定",
+    "situation_en": "Locating on the Map",
+    "card_a": {
+      "text": "[A frustrated couple] We've been walking in circles for ages. Could you help us pinpoint our current location on this map?",
+      "text_ja": "【イライラしたカップル】ずっと堂々巡りをしています。この地図上で現在地を特定するのを手伝ってもらえませんか？"
+    },
+    "card_b": {
+      "text": "Let's see... We are currently standing right here, just across from the botanical garden.",
+      "text_ja": "ええと…私たちは現在ここ、植物園のちょうど真向かいに立っていますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "pinpoint",
+        "part_of_speech": "verb",
+        "meaning": "（位置などを）正確に特定する",
+        "level": "C1"
+      },
+      {
+        "word": "botanical garden",
+        "part_of_speech": "noun",
+        "meaning": "植物園",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_005",
+    "situation_ja": "博物館の出口",
+    "situation_en": "Museum Exit",
+    "card_a": {
+      "text": "[A tourist with heavy bags] I'm trying to locate the national museum. Which subway exit would be the most convenient?",
+      "text_ja": "【大荷物の観光客】国立博物館を探しているのですが。どの地下鉄の出口が一番便利でしょうか？"
+    },
+    "card_b": {
+      "text": "I highly recommend using the East Exit, as it brings you out directly in front of the entrance.",
+      "text_ja": "入り口の目の前に出られるので、東口を利用することを強くお勧めします。"
+    },
+    "vocabulary": [
+      {
+        "word": "locate",
+        "part_of_speech": "verb",
+        "meaning": "〜の場所を見つける、特定する",
+        "level": "B2"
+      },
+      {
+        "word": "convenient",
+        "part_of_speech": "adjective",
+        "meaning": "便利な、都合の良い",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "HELP_006",
+    "situation_ja": "階段での荷物運び",
+    "situation_en": "Carrying Luggage",
+    "card_a": {
+      "text": "[An exhausted traveler] I don't suppose there's an elevator nearby? I'm struggling to carry this heavy luggage up the stairs.",
+      "text_ja": "【疲れ果てた旅行者】近くにエレベーターはないですよね？この重い荷物を階段で運ぶのに苦労していまして。"
+    },
+    "card_b": {
+      "text": "It looks quite heavy. Please, allow me to assist you with carrying it to the top.",
+      "text_ja": "かなり重そうですね。よろしければ、上まで運ぶのをお手伝いさせてください。"
+    },
+    "vocabulary": [
+      {
+        "word": "exhausted",
+        "part_of_speech": "adjective",
+        "meaning": "疲れ果てた",
+        "level": "B2"
+      },
+      {
+        "word": "struggle",
+        "part_of_speech": "verb",
+        "meaning": "苦闘する、苦労する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_007",
+    "situation_ja": "破れた袋と散らばった荷物",
+    "situation_en": "Scattered Belongings",
+    "card_a": {
+      "text": "[A distressed shopper] Oh no, the bottom of my paper bag tore, and my belongings are scattered everywhere!",
+      "text_ja": "【悲痛な買い物客】ああっ、紙袋の底が破れて、持ち物がそこら中に散らばってしまった！"
+    },
+    "card_b": {
+      "text": "Please don't worry. Let me help you gather your things before someone steps on them.",
+      "text_ja": "どうかご心配なく。誰かに踏まれる前に、荷物を集めるのを手伝いますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "distressed",
+        "part_of_speech": "adjective",
+        "meaning": "苦悩している、悲痛な",
+        "level": "C1"
+      },
+      {
+        "word": "scatter",
+        "part_of_speech": "verb",
+        "meaning": "撒き散らす、散らばる",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_008",
+    "situation_ja": "高い棚の商品",
+    "situation_en": "Reaching the Top Shelf",
+    "card_a": {
+      "text": "[A petite shopper] I'm having a hard time reaching that item on the top shelf. Would you mind handing it to me?",
+      "text_ja": "【小柄な買い物客】一番上の棚の商品に手が届かなくて苦労しています。取って渡していただけませんか？"
+    },
+    "card_b": {
+      "text": "Not at all. Here you are. Please let me know if you require any further assistance.",
+      "text_ja": "ええ、もちろん。はい、どうぞ。他にもお手伝いが必要ならお知らせくださいね。"
+    },
+    "vocabulary": [
+      {
+        "word": "petite",
+        "part_of_speech": "adjective",
+        "meaning": "小柄な（女性に用いる）",
+        "level": "C1"
+      },
+      {
+        "word": "require",
+        "part_of_speech": "verb",
+        "meaning": "必要とする",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_009",
+    "situation_ja": "壊れたエレベーター",
+    "situation_en": "Broken Elevator",
+    "card_a": {
+      "text": "[A mother with a stroller] The elevator seems to be out of order, and I really need a way up with this stroller.",
+      "text_ja": "【ベビーカーの母親】エレベーターが故障しているようで、このベビーカーで上に上がる方法がどうしても必要なんです。"
+    },
+    "card_b": {
+      "text": "That's unfortunate. However, there is a wheelchair-accessible ramp located just around the corner.",
+      "text_ja": "それは不便ですね。ですが、すぐ角を曲がったところに車椅子用のスロープがありますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "out of order",
+        "part_of_speech": "idiom",
+        "meaning": "故障して",
+        "level": "B1"
+      },
+      {
+        "word": "accessible",
+        "part_of_speech": "adjective",
+        "meaning": "利用可能な、アクセスできる",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_010",
+    "situation_ja": "両手ふさがった靴紐",
+    "situation_en": "Untied Shoelace",
+    "card_a": {
+      "text": "[A struggling passenger] My shoelace has come undone, but I can't tie it with my hands completely full.",
+      "text_ja": "【苦労している乗客】靴紐がほどけてしまったのですが、両手が完全にふさがっていて結べないんです。"
+    },
+    "card_b": {
+      "text": "It's dangerous to walk like that. Would you like me to hold your belongings for a moment?",
+      "text_ja": "そのまま歩くのは危険ですよ。少しの間、お荷物をお持ちしましょうか？"
+    },
+    "vocabulary": [
+      {
+        "word": "come undone",
+        "part_of_speech": "idiom",
+        "meaning": "（紐やボタンが）ほどける、外れる",
+        "level": "C1"
+      },
+      {
+        "word": "belongings",
+        "part_of_speech": "noun",
+        "meaning": "持ち物、所持品",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_011",
+    "situation_ja": "バッテリー切れと充電",
+    "situation_en": "Dead Battery",
+    "card_a": {
+      "text": "[A stranded teenager] My phone battery has completely died, and I urgently need to contact my family.",
+      "text_ja": "【途方に暮れる若者】スマホのバッテリーが完全に切れてしまって、至急家族に連絡を取らないといけないんです。"
+    },
+    "card_b": {
+      "text": "That sounds stressful. There's a café nearby that offers complimentary charging stations for customers.",
+      "text_ja": "それは焦りますね。近くのカフェに、お客様向けの無料充電ステーションがありますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "stranded",
+        "part_of_speech": "adjective",
+        "meaning": "途方に暮れた、足止めされた",
+        "level": "C1"
+      },
+      {
+        "word": "complimentary",
+        "part_of_speech": "adjective",
+        "meaning": "無料の、優待の",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "HELP_012",
+    "situation_ja": "公衆Wi-Fiの場所",
+    "situation_en": "Public Wi-Fi",
+    "card_a": {
+      "text": "[A foreign backpacker] I desperately need internet access. Do you know where I might find a reliable public Wi-Fi network?",
+      "text_ja": "【外国人バックパッカー】どうしてもネット環境が必要なんです。安定した公衆Wi-Fiがどこにあるかご存知ですか？"
+    },
+    "card_b": {
+      "text": "Fortunately, the convenience store across the street provides a stable free Wi-Fi connection.",
+      "text_ja": "幸いなことに、通りの向かいのコンビニが安定した無料Wi-Fiを提供していますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "desperately",
+        "part_of_speech": "adverb",
+        "meaning": "必死に、どうしても",
+        "level": "B2"
+      },
+      {
+        "word": "reliable",
+        "part_of_speech": "adjective",
+        "meaning": "信頼できる、安定した",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "HELP_013",
+    "situation_ja": "緊急電話",
+    "situation_en": "Urgent Phone Call",
+    "card_a": {
+      "text": "[Someone in an emergency] I need to make an urgent phone call, but unfortunately, I've left my device at the hotel.",
+      "text_ja": "【緊急事態の人】急ぎの電話をかけたいのですが、あいにく端末をホテルに置いてきてしまって。"
+    },
+    "card_b": {
+      "text": "You're more than welcome to use my smartphone, as long as it's a quick domestic call.",
+      "text_ja": "国内への短い通話であれば、私のスマホを使っていただいて全く構いませんよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "urgent",
+        "part_of_speech": "adjective",
+        "meaning": "緊急の、急を要する",
+        "level": "B2"
+      },
+      {
+        "word": "domestic",
+        "part_of_speech": "adjective",
+        "meaning": "国内の、家庭内の",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_014",
+    "situation_ja": "日本語の看板",
+    "situation_en": "Japanese Notice",
+    "card_a": {
+      "text": "[A perplexed tourist] I'm unable to comprehend this notice, as it's written entirely in Japanese characters.",
+      "text_ja": "【看板を凝視する観光客】完全に日本語の文字だけで書かれているので、このお知らせを理解することができません。"
+    },
+    "card_b": {
+      "text": "Let me translate that for you. It states that the facility is temporarily closed for renovations.",
+      "text_ja": "翻訳して差し上げましょう。「改修工事のため当施設は一時休館」と記載されています。"
+    },
+    "vocabulary": [
+      {
+        "word": "comprehend",
+        "part_of_speech": "verb",
+        "meaning": "理解する、把握する",
+        "level": "C1"
+      },
+      {
+        "word": "renovation",
+        "part_of_speech": "noun",
+        "meaning": "修復、改修工事",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_015",
+    "situation_ja": "ICカードの残高不足",
+    "situation_en": "Transit Card Issue",
+    "card_a": {
+      "text": "[A commuter stuck at the gate] The turnstile won't accept my transit card, and the alarm keeps going off.",
+      "text_ja": "【改札で止まった人】自動改札機が交通カードを認識してくれず、アラームが鳴り続けているんです。"
+    },
+    "card_b": {
+      "text": "Your balance might be insufficient. Why don't you try reloading it at the fare adjustment machine?",
+      "text_ja": "残高が不足しているのかもしれません。精算機でチャージしてみてはいかがですか？"
+    },
+    "vocabulary": [
+      {
+        "word": "turnstile",
+        "part_of_speech": "noun",
+        "meaning": "（回転式の）改札口、十字門",
+        "level": "C2"
+      },
+      {
+        "word": "insufficient",
+        "part_of_speech": "adjective",
+        "meaning": "不足している",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_016",
+    "situation_ja": "電車への置き忘れ",
+    "situation_en": "Left Umbrella",
+    "card_a": {
+      "text": "[A panicked passenger] I just realized I inadvertently left my umbrella on the train that just departed.",
+      "text_ja": "【ホームの乗客】たった今発車した電車に、うっかり傘を置き忘れたことに今気づきました。"
+    },
+    "card_b": {
+      "text": "You should immediately report it to the station attendant at the lost and found counter.",
+      "text_ja": "すぐに遺失物取扱所の駅員に報告したほうがいいですよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "inadvertently",
+        "part_of_speech": "adverb",
+        "meaning": "うっかり、不注意に",
+        "level": "C1"
+      },
+      {
+        "word": "attendant",
+        "part_of_speech": "noun",
+        "meaning": "係員、案内人",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_017",
+    "situation_ja": "財布の紛失",
+    "situation_en": "Lost Wallet",
+    "card_a": {
+      "text": "[A distressed individual] I seem to have misplaced my wallet somewhere along this street. I'm not sure what to do.",
+      "text_ja": "【地面を探している人】この通りのどこかに財布を置き忘れたようです。どうしたらいいのかわかりません。"
+    },
+    "card_b": {
+      "text": "Try to stay calm. I'll accompany you to the nearest police box so you can file a lost property report.",
+      "text_ja": "落ち着いてください。遺失物届を出せるよう、最寄りの交番まで同行しますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "misplace",
+        "part_of_speech": "verb",
+        "meaning": "置き忘れる、間違った場所に置く",
+        "level": "B2"
+      },
+      {
+        "word": "accompany",
+        "part_of_speech": "verb",
+        "meaning": "同行する、付き添う",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_018",
+    "situation_ja": "迷子探し",
+    "situation_en": "Lost Son",
+    "card_a": {
+      "text": "[A frantic parent] I've lost sight of my son! He's wearing a striped shirt and a blue cap.",
+      "text_ja": "【泣きそうな父親】息子を見失ってしまいました！ボーダーのシャツに青い帽子をかぶっています。"
+    },
+    "card_b": {
+      "text": "I believe I saw a boy fitting that description wandering near the central fountain. Let's go check.",
+      "text_ja": "その特徴に一致する男の子が、中央噴水の近くを歩き回っているのを見た気がします。確認しに行きましょう。"
+    },
+    "vocabulary": [
+      {
+        "word": "frantic",
+        "part_of_speech": "adjective",
+        "meaning": "半狂乱の、慌てふためいた",
+        "level": "B2"
+      },
+      {
+        "word": "wander",
+        "part_of_speech": "verb",
+        "meaning": "歩き回る、ぶらつく",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_019",
+    "situation_ja": "突然の吐き気と薬局",
+    "situation_en": "Feeling Nauseous",
+    "card_a": {
+      "text": "[Someone looking pale] I'm suddenly feeling quite nauseous. Could you direct me to the nearest pharmacy?",
+      "text_ja": "【お腹を押さえる人】突然、ひどい吐き気がしてきました。最寄りの薬局への道を教えていただけませんか？"
+    },
+    "card_b": {
+      "text": "There's a drugstore just past the intersection. Let me walk you there to make sure you're alright.",
+      "text_ja": "交差点を過ぎたところに薬局があります。大丈夫か確認したいので、そこまで付き添わせてください。"
+    },
+    "vocabulary": [
+      {
+        "word": "nauseous",
+        "part_of_speech": "adjective",
+        "meaning": "吐き気がする、むかつく",
+        "level": "C1"
+      },
+      {
+        "word": "intersection",
+        "part_of_speech": "noun",
+        "meaning": "交差点",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_020",
+    "situation_ja": "指のケガと絆創膏",
+    "situation_en": "Cut Finger",
+    "card_a": {
+      "text": "[A person bleeding slightly] I've accidentally cut my finger on a sharp edge. Would you happen to have a bandage?",
+      "text_ja": "【手を押さえる人】鋭利な角で誤って指を切ってしまいました。絆創膏をお持ちだったりしませんか？"
+    },
+    "card_b": {
+      "text": "Yes, I always keep a first-aid kit in my bag. Here, let me get a sterilized bandage for you.",
+      "text_ja": "はい、常にカバンに救急セットを入れています。ほら、滅菌済みの絆創膏を出しますね。"
+    },
+    "vocabulary": [
+      {
+        "word": "sterilized",
+        "part_of_speech": "adjective",
+        "meaning": "滅菌された、消毒された",
+        "level": "C1"
+      },
+      {
+        "word": "bandage",
+        "part_of_speech": "noun",
+        "meaning": "絆創膏、包帯",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "HELP_021",
+    "situation_ja": "写真撮影の依頼",
+    "situation_en": "Taking a Photograph",
+    "card_a": {
+      "text": "[A polite tourist] Excuse me, would you be so kind as to take a photograph of us with this camera?",
+      "text_ja": "【笑顔の家族】すみません、よろしければこのカメラで私たちの写真を撮っていただけないでしょうか？"
+    },
+    "card_b": {
+      "text": "It would be my pleasure. Make sure you all squeeze in so I can capture the background as well.",
+      "text_ja": "喜んで。背景も一緒に写せるように、皆さん少し身を寄せてくださいね。"
+    },
+    "vocabulary": [
+      {
+        "word": "squeeze in",
+        "part_of_speech": "phrasal verb",
+        "meaning": "（狭い場所に）押し入る、身を寄せる",
+        "level": "B2"
+      },
+      {
+        "word": "capture",
+        "part_of_speech": "verb",
+        "meaning": "（映像や写真を）捉える、記録する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_022",
+    "situation_ja": "食事制限の確認",
+    "situation_en": "Dietary Restrictions",
+    "card_a": {
+      "text": "[A strict vegetarian] I have strict dietary restrictions. Could you confirm whether this dish contains any animal products?",
+      "text_ja": "【屋台のベジタリアン】私には厳格な食事制限があります。この料理に動物性食品が含まれているか確認していただけますか？"
+    },
+    "card_b": {
+      "text": "It's made with chicken broth, so I strongly advise against ordering it if you're a vegetarian.",
+      "text_ja": "鶏のスープで作られているので、ベジタリアンの方であれば注文しないことを強くお勧めします。"
+    },
+    "vocabulary": [
+      {
+        "word": "dietary",
+        "part_of_speech": "adjective",
+        "meaning": "食事の、規定食の",
+        "level": "C1"
+      },
+      {
+        "word": "broth",
+        "part_of_speech": "noun",
+        "meaning": "（肉や魚、野菜の）出汁、スープ",
+        "level": "C2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_023",
+    "situation_ja": "最寄りのトイレ",
+    "situation_en": "Restroom Facilities",
+    "card_a": {
+      "text": "[A frantic shopper] It's quite urgent. Could you possibly point me in the direction of the nearest restroom facilities?",
+      "text_ja": "【モジモジする子供】かなり緊急なんです。一番近いトイレの方向を教えていただくことは可能でしょうか？"
+    },
+    "card_b": {
+      "text": "Certainly. Proceed to the end of this hallway, and you'll find them located on your right.",
+      "text_ja": "かしこまりました。この廊下の突き当たりまで進んでいただくと、右手にございます。"
+    },
+    "vocabulary": [
+      {
+        "word": "facilities",
+        "part_of_speech": "noun",
+        "meaning": "施設、設備",
+        "level": "B2"
+      },
+      {
+        "word": "proceed",
+        "part_of_speech": "verb",
+        "meaning": "進む、続行する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_024",
+    "situation_ja": "値札のないお土産",
+    "situation_en": "No Price Tag",
+    "card_a": {
+      "text": "[A puzzled customer] I'm interested in purchasing this souvenir, but I can't seem to locate a price tag anywhere.",
+      "text_ja": "【キーホルダーを持つ観光客】このお土産を購入したいのですが、どこにも値札が見当たらないようです。"
+    },
+    "card_b": {
+      "text": "That's strange. If you'd like, I can inquire about the price with the shop assistant on your behalf.",
+      "text_ja": "それはおかしいですね。よろしければ、代わりに店員さんに価格を問い合わせてみましょうか？"
+    },
+    "vocabulary": [
+      {
+        "word": "inquire",
+        "part_of_speech": "verb",
+        "meaning": "問い合わせる、尋ねる",
+        "level": "B2"
+      },
+      {
+        "word": "on one's behalf",
+        "part_of_speech": "idiom",
+        "meaning": "〜に代わって、〜を代表して",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "HELP_025",
+    "situation_ja": "お城の入場時間",
+    "situation_en": "Castle Closing Time",
+    "card_a": {
+      "text": "[A anxious sightseer] We really want to visit the castle. Do you have any idea what time they stop admitting visitors?",
+      "text_ja": "【走っている観光客】どうしてもお城を観光したいんです。入場受付が何時に終了するかご存知ですか？"
+    },
+    "card_b": {
+      "text": "Final admission is strictly at 4:30 PM, so I suggest you make your way there immediately.",
+      "text_ja": "最終入場は厳密に午後4時半なので、直ちに向かうことをお勧めします。"
+    },
+    "vocabulary": [
+      {
+        "word": "admission",
+        "part_of_speech": "noun",
+        "meaning": "入場、入場料",
+        "level": "B2"
+      },
+      {
+        "word": "strictly",
+        "part_of_speech": "adverb",
+        "meaning": "厳密に、厳しく",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_026",
+    "situation_ja": "高額紙幣の両替",
+    "situation_en": "Large Bill",
+    "card_a": {
+      "text": "[A thirsty person] I'd love to grab a beverage, but this machine doesn't seem to accept large denomination bills.",
+      "text_ja": "【喉が渇いた人】飲み物を買いたいのですが、この機械は高額紙幣を受け付けてくれないようです。"
+    },
+    "card_b": {
+      "text": "That can be inconvenient. I actually have plenty of small change, so I'd be happy to break that bill for you.",
+      "text_ja": "それは不便ですよね。実は小銭をたくさん持っているので、喜んでそのお札を崩しますよ。"
+    },
+    "vocabulary": [
+      {
+        "word": "denomination",
+        "part_of_speech": "noun",
+        "meaning": "（貨幣などの）面額、単位",
+        "level": "C2"
+      },
+      {
+        "word": "break",
+        "part_of_speech": "verb",
+        "meaning": "（大きなお札を）細かく崩す、両替する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_027",
+    "situation_ja": "急な土砂降りと傘",
+    "situation_en": "Sudden Downpour",
+    "card_a": {
+      "text": "[Someone caught in a downpour] I wasn't expecting this sudden downpour, and I'm completely unprepared without an umbrella.",
+      "text_ja": "【急な雨に濡れる人】この急な土砂降りは予想していなくて、傘もなく完全に無防備です。"
+    },
+    "card_b": {
+      "text": "You're welcome to share my umbrella. I'm heading towards the station anyway, so we can walk together.",
+      "text_ja": "私の傘に入っていただいて構いませんよ。どうせ駅に向かうところですから、一緒に歩きましょう。"
+    },
+    "vocabulary": [
+      {
+        "word": "downpour",
+        "part_of_speech": "noun",
+        "meaning": "土砂降り、豪雨",
+        "level": "C1"
+      },
+      {
+        "word": "unprepared",
+        "part_of_speech": "adjective",
+        "meaning": "準備のできていない、無防備な",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_028",
+    "situation_ja": "線路への落下物",
+    "situation_en": "Dropped Pass",
+    "card_a": {
+      "text": "[A passenger leaning over the platform] Oh dear, a gust of wind just blew my commuter pass straight onto the train tracks.",
+      "text_ja": "【線路を見つめる人】ああ、突風で定期券が真っ直ぐ線路の上に吹き飛ばされてしまった。"
+    },
+    "card_b": {
+      "text": "Whatever you do, please don't step down there! I will notify the station personnel to retrieve it safely.",
+      "text_ja": "何があっても、絶対にそこへは降りないでください！安全に拾ってもらうよう駅員に知らせますから。"
+    },
+    "vocabulary": [
+      {
+        "word": "gust",
+        "part_of_speech": "noun",
+        "meaning": "突風、一吹きの風",
+        "level": "C1"
+      },
+      {
+        "word": "personnel",
+        "part_of_speech": "noun",
+        "meaning": "職員、人員",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "HELP_029",
+    "situation_ja": "自販機の故障",
+    "situation_en": "Vending Machine Malfunction",
+    "card_a": {
+      "text": "[A frustrated customer] This vending machine swallowed my coins but completely failed to dispense the product.",
+      "text_ja": "【イライラする人】この自販機、コインを飲み込んだくせに、商品を全く出してくれませんでした。"
+    },
+    "card_b": {
+      "text": "It looks like it's malfunctioning. You ought to contact the maintenance company using the toll-free number displayed here.",
+      "text_ja": "故障しているようですね。ここに表示されているフリーダイヤルを使って、メンテナンス会社に連絡すべきです。"
+    },
+    "vocabulary": [
+      {
+        "word": "malfunction",
+        "part_of_speech": "verb",
+        "meaning": "正常に作動しない、故障する",
+        "level": "C1"
+      },
+      {
+        "word": "dispense",
+        "part_of_speech": "verb",
+        "meaning": "分配する、配給する、（商品を）出す",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "HELP_030",
+    "situation_ja": "マフラーの落とし物",
+    "situation_en": "Dropped Scarf",
+    "card_a": {
+      "text": "[You noticing a dropped item] Excuse me! I believe you inadvertently dropped your scarf a few paces back.",
+      "text_ja": "【マフラーを落とした人を見たあなた】すみません！数歩後ろで、マフラーをうっかり落とされたかと思います。"
+    },
+    "card_b": {
+      "text": "Oh my goodness, I hadn't even noticed it was missing. I genuinely appreciate your taking the time to tell me.",
+      "text_ja": "おやまあ、なくなっていることにすら気づきませんでした。わざわざ教えていただき、心から感謝します。"
+    },
+    "vocabulary": [
+      {
+        "word": "inadvertently",
+        "part_of_speech": "adverb",
+        "meaning": "うっかり、不注意に",
+        "level": "C1"
+      },
+      {
+        "word": "genuinely",
+        "part_of_speech": "adverb",
+        "meaning": "心から、純粋に",
+        "level": "B2"
+      }
+    ]
+  }
+]

@@ -9,13 +9,15 @@ import sdgsData from './data/sdgs.json';
 import hotelData from './data/hotel.json';
 import airportData from './data/airport.json';
 import zooData from './data/zoo.json';
+import helpData from './data/help.json'; // ★ 追加：HELPのデータを読み込む
 
 const GAME_DATA = {
   cafe: { title: 'Scannect : Cafe', codes: cafeData },
   sdgs: { title: 'Scannect : SDGs', codes: sdgsData },
   hotel: { title: 'Scannect : Hotel', codes: hotelData },
   airport: { title: 'Scannect : Airport', codes: airportData },
-  zoo: { title: 'Scannect : Zoo', codes: zooData }
+  zoo: { title: 'Scannect : Zoo', codes: zooData },
+  help: { title: 'Scannect : Help', codes: helpData } // ★ 追加：HELPをゲームデータに登録
 };
 
 function App() {
@@ -33,7 +35,6 @@ function App() {
   const [combos, setCombos] = useState({ A: 0, B: 0 });
   const [maxCombos, setMaxCombos] = useState({ A: 0, B: 0 });
 
-  // ★ 新規追加：読込済みのカードを記憶するリスト
   const [scannedCodesList, setScannedCodesList] = useState([]);
 
   const [message, setMessage] = useState('');
@@ -53,18 +54,13 @@ function App() {
   const latestStateRef = useRef({ status: gameStatus, theme: activeTheme });
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
   
-  // ★ 新規追加：クロージャー対策用の読込済みリストRef
   const scannedCodesRef = useRef([]); 
-  
   const scannerInstanceRef = useRef(null); 
 
   useEffect(() => {
     latestStateRef.current = { status: gameStatus, theme: activeTheme };
   }, [gameStatus, activeTheme]);
 
-  // ==========================================
-  // 1. PC（先生用メイン画面）ロジック
-  // ==========================================
   const selectTheme = (theme) => {
     setActiveTheme(theme);
     setGameStatus('READY');
@@ -78,12 +74,10 @@ function App() {
     setGameStatus('PLAYING');
     setMessage(''); 
     
-    // ★ ゲーム開始時に読込済みリストをリセット
     setScannedCodesList([]);
     scannedCodesRef.current = [];
 
     set(ref(database, 'scans'), null);
-    // ★ scannedCodes (読込済みリスト) も空でスタート
     set(ref(database, 'gameState'), { status: 'PLAYING', theme: activeTheme, scannedCodes: {} });
   };
 
@@ -155,25 +149,21 @@ function App() {
     }
     
     if (isCorrect) {
-      // ★ ここが重複防止の門番！ すでにリストにあるか確認
       if (scannedCodesRef.current.includes(scannedCode)) {
         setMessage(`⚠️ ALREADY SCANNED`);
         setIsSuccess(false);
         incorrectSound.currentTime = 0;
         incorrectSound.play().catch(e => console.log(e));
         setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
-        return; // ここで処理を強制終了し、得点を入れない
+        return; 
       }
 
-      // ★ 新規の正解なら、読込済みリストに追加
       const newList = [...scannedCodesRef.current, scannedCode];
       scannedCodesRef.current = newList;
       setScannedCodesList(newList);
       
-      // ★ スマホにも「このコードはもう読まれたよ」と通知
       set(ref(database, `gameState/scannedCodes/${scannedCode}`), true);
 
-      // スコア加算
       setScores(prev => ({ ...prev, [team]: prev[team] + 1 }));
       setCombos(prev => {
         const newCombo = prev[team] + 1;
@@ -194,10 +184,6 @@ function App() {
     setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
   };
 
-
-  // ==========================================
-  // 2. スマホ（生徒用スキャナー）ロジック
-  // ==========================================
   useEffect(() => {
     if (appMode === 'SCANNER') {
       const gameStateRef = ref(database, 'gameState');
@@ -264,7 +250,6 @@ function App() {
     }
 
     if (isCorrect) {
-      // ★ スマホ側での重複チェック！
       const scannedMap = currentGameState.scannedCodes || {};
       if (scannedMap[decodedText]) {
           setMessage('⚠️ 読込済みのカードです！');
@@ -273,7 +258,7 @@ function App() {
               setMessage(''); setIsSuccess(null);
               if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
           }, 2000);
-          return; // 既に読込済みの場合はPCにデータを送信しない
+          return; 
       }
 
       setMessage('✅ 正解！ (MATCH)');
@@ -339,6 +324,8 @@ function App() {
               <button onClick={() => selectTheme('hotel')} className="custom-border-box-split">🏨 Hotel</button>
               <button onClick={() => selectTheme('airport')} className="custom-border-box-split">✈️ Airport</button>
               <button onClick={() => selectTheme('zoo')} className="custom-border-box-split">🦁 Zoo</button>
+              {/* ★ 追加：HELPボタン */}
+              <button onClick={() => selectTheme('help')} className="custom-border-box-split">🤝 Help</button>
             </div>
           </div>
           <div className="menu-right-block">
