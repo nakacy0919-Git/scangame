@@ -4,6 +4,10 @@ import { database, ref, push, onChildAdded, onValue, set, serverTimestamp } from
 
 import './App.css';
 
+// ★ 切り出した部品を読み込む
+import { useBGM } from './hooks/useBGM';
+import SettingsModal from './components/SettingsModal';
+
 import cafeData from './data/cafe.json';
 import sdgsData from './data/sdgs.json';
 import hotelData from './data/hotel.json';
@@ -33,9 +37,8 @@ function App() {
   const [activeTheme, setActiveTheme] = useState(null);
   const [gameStatus, setGameStatus] = useState('MENU'); 
   
-  // ★ 追加：チーム数の状態管理（デフォルトは2チーム）
   const [teamCount, setTeamCount] = useState(2);
-  const activeTeams = ALL_TEAMS.slice(0, teamCount); // 現在有効なチームの配列（['A','B']など）
+  const activeTeams = ALL_TEAMS.slice(0, teamCount); 
 
   const [scores, setScores] = useState({ A: 0, B: 0, C: 0, D: 0 });
   const [combos, setCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
@@ -45,6 +48,8 @@ function App() {
   const [isSuccess, setIsSuccess] = useState(null);
 
   const [selectedMinutes, setSelectedMinutes] = useState(5); 
+  const [bgmVolume, setBgmVolume] = useState(0.3);
+
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [activeQrTab, setActiveQrTab] = useState('A'); 
   const [fullScreenQrTeam, setFullScreenQrTeam] = useState(null);
@@ -55,8 +60,7 @@ function App() {
   const inputBuffer = useRef('');
   const correctSound = new Audio('/correct.mp3');
   const incorrectSound = new Audio('/incorrect.mp3');
-  
-  // ★ 変更：RefにもteamCountを記憶させて、クロージャー問題を回避
+
   const latestStateRef = useRef({ status: gameStatus, theme: activeTheme, teamCount });
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
   const scannedCodesRef = useRef({ A: [], B: [], C: [], D: [] }); 
@@ -64,6 +68,9 @@ function App() {
   
   const scannerInstanceRef = useRef(null); 
   const isProcessingScanRef = useRef(false);
+
+  // ★ 切り出したBGMロジックをここで1行で呼び出す！
+  useBGM(appMode, gameStatus, bgmVolume);
 
   useEffect(() => {
     latestStateRef.current = { status: gameStatus, theme: activeTheme, teamCount };
@@ -140,7 +147,6 @@ function App() {
           const actualCode = rawInput.substring(2);
           const team = prefix[0];
           
-          // 現在設定されているチーム数（A,Bのみ等）に合致する場合のみスキャン受付
           const currentActiveTeams = ALL_TEAMS.slice(0, teamCount);
           if (['A','B','C','D'].includes(team) && currentActiveTeams.includes(team)) {
             executeScanCheck(team, actualCode, activeTheme);
@@ -157,7 +163,6 @@ function App() {
 
   const executeScanCheck = (team, scannedCode, theme) => {
     const currentActiveTeams = ALL_TEAMS.slice(0, latestStateRef.current.teamCount);
-    // 設定チーム以外からの通信はブロック
     if (!theme || !currentActiveTeams.includes(team)) return;
     
     const currentThemeData = GAME_DATA[theme].codes;
@@ -173,6 +178,7 @@ function App() {
       if (scannedCodesRef.current[team].includes(scannedCode)) {
         setMessage(`⚠️ ALREADY SCANNED: Team ${team}`);
         setIsSuccess(false);
+        incorrectSound.volume = bgmVolume; 
         incorrectSound.currentTime = 0;
         incorrectSound.play().catch(e => console.log(e));
         setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
@@ -193,6 +199,7 @@ function App() {
 
       setMessage(`✅ MATCH: Team ${team}${isComboBonus ? ' 🌟 COMBO BONUS +2!' : ''}`);
       setIsSuccess(true);
+      correctSound.volume = bgmVolume;
       correctSound.currentTime = 0;
       correctSound.play().catch(e => console.log(e));
     } else {
@@ -200,6 +207,7 @@ function App() {
       setCombos(prev => ({ ...prev, [team]: 0 }));
       setMessage(`⚠️ MISS: Team ${team}`);
       setIsSuccess(false);
+      incorrectSound.volume = bgmVolume;
       incorrectSound.currentTime = 0;
       incorrectSound.play().catch(e => console.log(e));
     }
@@ -314,7 +322,6 @@ function App() {
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
-  // 最高得点の計算（有効なチームのみで比較）
   const maxScoreValue = Math.max(...activeTeams.map(t => scores[t]));
 
   if (appMode === 'SCANNER') {
@@ -324,7 +331,6 @@ function App() {
           <div className="content-wrap glass-card" style={{padding: '40px'}}>
             <h2 style={{fontSize: '2rem', marginBottom: '30px', color: '#2c3e50'}}>Select Team</h2>
             <div style={{display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center'}}>
-               {/* スキャナー側は全員が選べるように一応A〜Dを出しておく */}
                {ALL_TEAMS.map(t => (
                  <button key={t} onClick={() => setScannerTeam(t)} className={`team-btn team-btn-${t.toLowerCase()}`}>TEAM {t}</button>
                ))}
@@ -362,7 +368,6 @@ function App() {
           <div className="menu-right-block">
             <h3 className="qr-section-title">📱 Student Scanner QR</h3>
             <div className="qr-tab-buttons">
-              {/* 有効なチーム数だけタブを表示する */}
               {activeTeams.map(t => (
                 <button key={t} onClick={() => setActiveQrTab(t)} className={`qr-tab-btn ${activeQrTab === t ? `active team-${t}` : ''}`}>{t}</button>
               ))}
@@ -401,7 +406,6 @@ function App() {
             </div>
           </header>
           <main className="game-main">
-            {/* ★ クラス名をチーム数に応じて動的に変更 (vs-scoreboard-2, -3, -4) */}
             <div className={`vs-scoreboard-${teamCount}`}>
               {activeTeams.map(team => (
                 <div key={team} className={`glass-card team-card team-card-${team.toLowerCase()}`}>
@@ -419,7 +423,6 @@ function App() {
       {gameStatus === 'GAMEOVER' && (
         <div className="content-wrap">
           <h2 className="time-up-text">TIME UP!</h2>
-          {/* ★ クラス名をチーム数に応じて動的に変更 */}
           <div className={`result-versus-${teamCount}`}>
             {activeTeams.map(team => (
               <div key={team} className={`glass-card res-team-box ${scores[team] === maxScoreValue && maxScoreValue > 0 ? 'winner' : ''}`}>
@@ -434,29 +437,18 @@ function App() {
         </div>
       )}
 
+      {/* ★ 切り出した設定画面（UI）をここで呼び出す！ */}
       {isSettingsOpen && (
-        <div className="modal-overlay" onClick={() => setIsSettingsOpen(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()} style={{width: '500px'}}>
-            <h3 style={{fontSize:'2rem', marginBottom:'20px'}}>Game Settings</h3>
-            
-            {/* ★ 追加：チーム数の設定UI */}
-            <div className="slider-group" style={{marginBottom: '30px'}}>
-              <label>Number of Teams: <strong>{teamCount}</strong></label>
-              <div className="team-count-selector">
-                <button className={teamCount === 2 ? 'active' : ''} onClick={() => {setTeamCount(2); setActiveQrTab('A');}}>2 Teams</button>
-                <button className={teamCount === 3 ? 'active' : ''} onClick={() => {setTeamCount(3); setActiveQrTab('A');}}>3 Teams</button>
-                <button className={teamCount === 4 ? 'active' : ''} onClick={() => {setTeamCount(4); setActiveQrTab('A');}}>4 Teams</button>
-              </div>
-            </div>
-
-            <div className="slider-group">
-              <label>Time Limit: <strong>{selectedMinutes}</strong> min</label>
-              <input type="range" min="3" max="15" value={selectedMinutes} onChange={e => setSelectedMinutes(Number(e.target.value))} />
-            </div>
-            
-            <button className="btn-save" onClick={() => setIsSettingsOpen(false)}>OK</button>
-          </div>
-        </div>
+        <SettingsModal
+          teamCount={teamCount}
+          setTeamCount={setTeamCount}
+          bgmVolume={bgmVolume}
+          setBgmVolume={setBgmVolume}
+          selectedMinutes={selectedMinutes}
+          setSelectedMinutes={setSelectedMinutes}
+          onClose={() => setIsSettingsOpen(false)}
+          setActiveQrTab={setActiveQrTab}
+        />
       )}
 
       {fullScreenQrTeam && (
