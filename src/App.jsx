@@ -43,11 +43,9 @@ function App() {
   const [selectedMinutes, setSelectedMinutes] = useState(5); 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [activeQrTab, setActiveQrTab] = useState('A'); 
-  
-  // ★ 追加：画面いっぱいのQRを表示するためのState（どのチームを拡大しているか）
   const [fullScreenQrTeam, setFullScreenQrTeam] = useState(null);
-
   const [timeLeft, setTimeLeft] = useState(0);
+
   const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
 
   const inputBuffer = useRef('');
@@ -58,7 +56,10 @@ function App() {
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
   const scannedCodesRef = useRef({ A: [], B: [], C: [], D: [] }); 
   const combosRef = useRef({ A: 0, B: 0, C: 0, D: 0 });
+  
   const scannerInstanceRef = useRef(null); 
+  // ★追加：スマホのカメラが二重送信するのを防ぐためのロック機能
+  const isProcessingScanRef = useRef(false);
 
   useEffect(() => {
     latestStateRef.current = { status: gameStatus, theme: activeTheme };
@@ -107,10 +108,12 @@ function App() {
     return () => clearInterval(timer);
   }, [appMode, gameStatus, timeLeft, activeTheme]);
 
+  // ★修正：PC側の二重受信を防ぐためのCleanup機能を追加
   useEffect(() => {
     if (appMode !== 'HOST_MENU') return;
     const scansRef = ref(database, 'scans');
-    onChildAdded(scansRef, (snapshot) => {
+    
+    const unsubscribe = onChildAdded(scansRef, (snapshot) => {
       const data = snapshot.val();
       if (!data) return;
       const currentStatus = latestStateRef.current.status;
@@ -119,6 +122,9 @@ function App() {
          executeScanCheck(data.team, data.code, currentTheme);
       }
     });
+
+    // 次の通信待ち受けが作られる前に、古いものを必ず停止する
+    return () => unsubscribe();
   }, [appMode]);
 
   useEffect(() => {
@@ -164,6 +170,7 @@ function App() {
         setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
         return; 
       }
+
       scannedCodesRef.current[team].push(scannedCode);
       set(ref(database, `gameState/scannedCodes/${team}/${scannedCode}`), true);
 
@@ -191,16 +198,18 @@ function App() {
     setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
   };
 
+  // ★修正：スマホ側も二重受信を防ぐCleanupを追加
   useEffect(() => {
     if (appMode === 'SCANNER') {
       const gameStateRef = ref(database, 'gameState');
-      onValue(gameStateRef, (snapshot) => {
+      const unsubscribe = onValue(gameStateRef, (snapshot) => {
         const data = snapshot.val();
         if (data) {
           setServerGameState(data);
           serverGameStateRef.current = data;
         }
       });
+      return () => unsubscribe();
     }
   }, [appMode]);
 
@@ -233,17 +242,25 @@ function App() {
   }, [appMode, scannerTeam]);
 
   const onScanMobile = (decodedText) => {
+    // ★追加：既に判定処理中の場合は、カメラが何度読み取っても無視する（ロック機能）
+    if (isProcessingScanRef.current) return;
+    isProcessingScanRef.current = true;
+
     if (scannerInstanceRef.current) scannerInstanceRef.current.pause(true);
+    
     const currentGameState = serverGameStateRef.current;
+    
     if (currentGameState.status !== 'PLAYING' || !currentGameState.theme) {
       setMessage('⏳ 待機中：PCでゲームを開始してください');
       setIsSuccess(false);
       setTimeout(() => {
         setMessage(''); setIsSuccess(null);
+        isProcessingScanRef.current = false; // ロック解除
         if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
       }, 2000);
       return;
     }
+
     const currentThemeData = GAME_DATA[currentGameState.theme].codes;
     let isCorrect = false;
     if (Array.isArray(currentThemeData)) {
@@ -251,6 +268,7 @@ function App() {
     } else {
       isCorrect = currentThemeData[decodedText] || Object.values(currentThemeData).some(item => item.id === decodedText || item.code === decodedText);
     }
+
     if (isCorrect) {
       const scannedMap = currentGameState.scannedCodes?.[scannerTeam] || {};
       if (scannedMap[decodedText]) {
@@ -258,6 +276,7 @@ function App() {
           setIsSuccess(false);
           setTimeout(() => {
               setMessage(''); setIsSuccess(null);
+              isProcessingScanRef.current = false; // ロック解除
               if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
           }, 2000);
           return; 
@@ -268,13 +287,16 @@ function App() {
       setMessage('❌ 不正解... (MISS)');
       setIsSuccess(false);
     }
+
     push(ref(database, 'scans'), {
       team: scannerTeam,
       code: decodedText,
       timestamp: serverTimestamp() 
     }).then(() => {
         setTimeout(() => { 
-          setMessage(''); setIsSuccess(null); 
+          setMessage(''); 
+          setIsSuccess(null); 
+          isProcessingScanRef.current = false; // ロック解除
           if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
         }, 1800);
     });
@@ -336,7 +358,6 @@ function App() {
                 <button key={t} onClick={() => setActiveQrTab(t)} className={`qr-tab-btn ${activeQrTab === t ? `active team-${t}` : ''}`}>{t}</button>
               ))}
             </div>
-            {/* ★ 変更：QRコード自体をクリック可能にして、拡大機能を呼び出す */}
             <div className="qr-display-box clickable-qr" onClick={() => setFullScreenQrTeam(activeQrTab)}>
               <img src={`https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + activeQrTab)}`} alt="Join QR" />
               <div className="qr-hint">🔍 クリックで拡大表示</div>
@@ -415,7 +436,6 @@ function App() {
         </div>
       )}
 
-      {/* ★ 追加：特大QRコード表示用のポップアップモーダル */}
       {fullScreenQrTeam && (
         <div className="modal-overlay" onClick={() => setFullScreenQrTeam(null)} style={{zIndex: 300}}>
           <div className="modal-content" onClick={e => e.stopPropagation()} style={{width: 'auto', padding: '40px', maxWidth: '90vw'}}>
