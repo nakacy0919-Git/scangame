@@ -20,12 +20,12 @@ const GAME_DATA = {
   help: { title: 'Scannect : Help', codes: helpData } 
 };
 
-const TEAMS = ['A', 'B', 'C', 'D'];
+const ALL_TEAMS = ['A', 'B', 'C', 'D'];
 
 function App() {
   const searchParams = new URLSearchParams(window.location.search);
   const initMode = searchParams.get('mode') === 'scanner' ? 'SCANNER' : 'HOST_MENU';
-  const initTeam = TEAMS.includes(searchParams.get('team')) ? searchParams.get('team') : null;
+  const initTeam = ALL_TEAMS.includes(searchParams.get('team')) ? searchParams.get('team') : null;
 
   const [appMode, setAppMode] = useState(initMode); 
   const [scannerTeam, setScannerTeam] = useState(initTeam); 
@@ -33,6 +33,10 @@ function App() {
   const [activeTheme, setActiveTheme] = useState(null);
   const [gameStatus, setGameStatus] = useState('MENU'); 
   
+  // ★ 追加：チーム数の状態管理（デフォルトは2チーム）
+  const [teamCount, setTeamCount] = useState(2);
+  const activeTeams = ALL_TEAMS.slice(0, teamCount); // 現在有効なチームの配列（['A','B']など）
+
   const [scores, setScores] = useState({ A: 0, B: 0, C: 0, D: 0 });
   const [combos, setCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
   const [maxCombos, setMaxCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
@@ -52,18 +56,18 @@ function App() {
   const correctSound = new Audio('/correct.mp3');
   const incorrectSound = new Audio('/incorrect.mp3');
   
-  const latestStateRef = useRef({ status: gameStatus, theme: activeTheme });
+  // ★ 変更：RefにもteamCountを記憶させて、クロージャー問題を回避
+  const latestStateRef = useRef({ status: gameStatus, theme: activeTheme, teamCount });
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
   const scannedCodesRef = useRef({ A: [], B: [], C: [], D: [] }); 
   const combosRef = useRef({ A: 0, B: 0, C: 0, D: 0 });
   
   const scannerInstanceRef = useRef(null); 
-  // ★追加：スマホのカメラが二重送信するのを防ぐためのロック機能
   const isProcessingScanRef = useRef(false);
 
   useEffect(() => {
-    latestStateRef.current = { status: gameStatus, theme: activeTheme };
-  }, [gameStatus, activeTheme]);
+    latestStateRef.current = { status: gameStatus, theme: activeTheme, teamCount };
+  }, [gameStatus, activeTheme, teamCount]);
 
   const selectTheme = (theme) => {
     setActiveTheme(theme);
@@ -108,7 +112,6 @@ function App() {
     return () => clearInterval(timer);
   }, [appMode, gameStatus, timeLeft, activeTheme]);
 
-  // ★修正：PC側の二重受信を防ぐためのCleanup機能を追加
   useEffect(() => {
     if (appMode !== 'HOST_MENU') return;
     const scansRef = ref(database, 'scans');
@@ -123,7 +126,6 @@ function App() {
       }
     });
 
-    // 次の通信待ち受けが作られる前に、古いものを必ず停止する
     return () => unsubscribe();
   }, [appMode]);
 
@@ -136,10 +138,13 @@ function App() {
         if (rawInput) {
           const prefix = rawInput.substring(0, 2);
           const actualCode = rawInput.substring(2);
-          if (prefix === 'A-') executeScanCheck('A', actualCode, activeTheme);
-          else if (prefix === 'B-') executeScanCheck('B', actualCode, activeTheme);
-          else if (prefix === 'C-') executeScanCheck('C', actualCode, activeTheme);
-          else if (prefix === 'D-') executeScanCheck('D', actualCode, activeTheme);
+          const team = prefix[0];
+          
+          // 現在設定されているチーム数（A,Bのみ等）に合致する場合のみスキャン受付
+          const currentActiveTeams = ALL_TEAMS.slice(0, teamCount);
+          if (['A','B','C','D'].includes(team) && currentActiveTeams.includes(team)) {
+            executeScanCheck(team, actualCode, activeTheme);
+          }
         }
         inputBuffer.current = '';
       } else if (e.key.length === 1) {
@@ -148,10 +153,13 @@ function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [appMode, gameStatus, activeTheme]);
+  }, [appMode, gameStatus, activeTheme, teamCount]);
 
   const executeScanCheck = (team, scannedCode, theme) => {
-    if (!theme || !TEAMS.includes(team)) return;
+    const currentActiveTeams = ALL_TEAMS.slice(0, latestStateRef.current.teamCount);
+    // 設定チーム以外からの通信はブロック
+    if (!theme || !currentActiveTeams.includes(team)) return;
+    
     const currentThemeData = GAME_DATA[theme].codes;
     let isCorrect = false;
 
@@ -198,7 +206,6 @@ function App() {
     setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
   };
 
-  // ★修正：スマホ側も二重受信を防ぐCleanupを追加
   useEffect(() => {
     if (appMode === 'SCANNER') {
       const gameStateRef = ref(database, 'gameState');
@@ -242,7 +249,6 @@ function App() {
   }, [appMode, scannerTeam]);
 
   const onScanMobile = (decodedText) => {
-    // ★追加：既に判定処理中の場合は、カメラが何度読み取っても無視する（ロック機能）
     if (isProcessingScanRef.current) return;
     isProcessingScanRef.current = true;
 
@@ -255,7 +261,7 @@ function App() {
       setIsSuccess(false);
       setTimeout(() => {
         setMessage(''); setIsSuccess(null);
-        isProcessingScanRef.current = false; // ロック解除
+        isProcessingScanRef.current = false; 
         if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
       }, 2000);
       return;
@@ -276,7 +282,7 @@ function App() {
           setIsSuccess(false);
           setTimeout(() => {
               setMessage(''); setIsSuccess(null);
-              isProcessingScanRef.current = false; // ロック解除
+              isProcessingScanRef.current = false; 
               if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
           }, 2000);
           return; 
@@ -296,7 +302,7 @@ function App() {
         setTimeout(() => { 
           setMessage(''); 
           setIsSuccess(null); 
-          isProcessingScanRef.current = false; // ロック解除
+          isProcessingScanRef.current = false; 
           if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
         }, 1800);
     });
@@ -308,7 +314,8 @@ function App() {
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
-  const maxScoreValue = Math.max(scores.A, scores.B, scores.C, scores.D);
+  // 最高得点の計算（有効なチームのみで比較）
+  const maxScoreValue = Math.max(...activeTeams.map(t => scores[t]));
 
   if (appMode === 'SCANNER') {
     return (
@@ -317,7 +324,8 @@ function App() {
           <div className="content-wrap glass-card" style={{padding: '40px'}}>
             <h2 style={{fontSize: '2rem', marginBottom: '30px', color: '#2c3e50'}}>Select Team</h2>
             <div style={{display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center'}}>
-               {TEAMS.map(t => (
+               {/* スキャナー側は全員が選べるように一応A〜Dを出しておく */}
+               {ALL_TEAMS.map(t => (
                  <button key={t} onClick={() => setScannerTeam(t)} className={`team-btn team-btn-${t.toLowerCase()}`}>TEAM {t}</button>
                ))}
             </div>
@@ -354,7 +362,8 @@ function App() {
           <div className="menu-right-block">
             <h3 className="qr-section-title">📱 Student Scanner QR</h3>
             <div className="qr-tab-buttons">
-              {TEAMS.map(t => (
+              {/* 有効なチーム数だけタブを表示する */}
+              {activeTeams.map(t => (
                 <button key={t} onClick={() => setActiveQrTab(t)} className={`qr-tab-btn ${activeQrTab === t ? `active team-${t}` : ''}`}>{t}</button>
               ))}
             </div>
@@ -392,8 +401,9 @@ function App() {
             </div>
           </header>
           <main className="game-main">
-            <div className="vs-scoreboard-four">
-              {TEAMS.map(team => (
+            {/* ★ クラス名をチーム数に応じて動的に変更 (vs-scoreboard-2, -3, -4) */}
+            <div className={`vs-scoreboard-${teamCount}`}>
+              {activeTeams.map(team => (
                 <div key={team} className={`glass-card team-card team-card-${team.toLowerCase()}`}>
                   <div className={`team-badge team-badge-${team.toLowerCase()}`}>TEAM {team}</div>
                   <div className="vs-score">{scores[team]}</div>
@@ -409,8 +419,9 @@ function App() {
       {gameStatus === 'GAMEOVER' && (
         <div className="content-wrap">
           <h2 className="time-up-text">TIME UP!</h2>
-          <div className="result-versus-four">
-            {TEAMS.map(team => (
+          {/* ★ クラス名をチーム数に応じて動的に変更 */}
+          <div className={`result-versus-${teamCount}`}>
+            {activeTeams.map(team => (
               <div key={team} className={`glass-card res-team-box ${scores[team] === maxScoreValue && maxScoreValue > 0 ? 'winner' : ''}`}>
                 {scores[team] === maxScoreValue && maxScoreValue > 0 && <div className="winner-crown">👑 WINNER</div>}
                 <h3>TEAM {team}</h3>
@@ -425,12 +436,24 @@ function App() {
 
       {isSettingsOpen && (
         <div className="modal-overlay" onClick={() => setIsSettingsOpen(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
+          <div className="modal-content" onClick={e => e.stopPropagation()} style={{width: '500px'}}>
             <h3 style={{fontSize:'2rem', marginBottom:'20px'}}>Game Settings</h3>
+            
+            {/* ★ 追加：チーム数の設定UI */}
+            <div className="slider-group" style={{marginBottom: '30px'}}>
+              <label>Number of Teams: <strong>{teamCount}</strong></label>
+              <div className="team-count-selector">
+                <button className={teamCount === 2 ? 'active' : ''} onClick={() => {setTeamCount(2); setActiveQrTab('A');}}>2 Teams</button>
+                <button className={teamCount === 3 ? 'active' : ''} onClick={() => {setTeamCount(3); setActiveQrTab('A');}}>3 Teams</button>
+                <button className={teamCount === 4 ? 'active' : ''} onClick={() => {setTeamCount(4); setActiveQrTab('A');}}>4 Teams</button>
+              </div>
+            </div>
+
             <div className="slider-group">
               <label>Time Limit: <strong>{selectedMinutes}</strong> min</label>
               <input type="range" min="3" max="15" value={selectedMinutes} onChange={e => setSelectedMinutes(Number(e.target.value))} />
             </div>
+            
             <button className="btn-save" onClick={() => setIsSettingsOpen(false)}>OK</button>
           </div>
         </div>

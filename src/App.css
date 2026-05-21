@@ -37,12 +37,10 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 .qr-tab-btn.active.team-C { background: #2ecc71; color: white; box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
 .qr-tab-btn.active.team-D { background: #e67e22; color: white; box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
 
-/* ★ 拡大ボタンとしてのQRコードのスタイル */
 .clickable-qr { cursor: pointer; transition: 0.2s ease; }
 .clickable-qr:hover { transform: scale(1.05); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
 .qr-hint { font-size: 1.2rem; font-weight: bold; color: #3498db; margin-top: 15px; text-align: center; }
 
-/* ★ 特大QRコードポップアップ用のスタイル */
 .huge-qr-img { width: 60vh; height: 60vh; max-width: 600px; max-height: 600px; display: block; border-radius: 20px; margin: 20px auto; }
 .team-title-huge { font-size: 3rem; font-weight: 900; margin-bottom: 10px; }
 .team-title-a { color: #e74c3c; }
@@ -71,7 +69,12 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 .btn-abort { background: rgba(0, 0, 0, 0.3); color: #fff; border: 1px solid rgba(255, 255, 255, 0.4); padding: 12px 30px; font-size: 1.2rem; font-weight: bold; border-radius: 10px; cursor: pointer; }
 
 .game-main { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
-.vs-scoreboard-four { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; width: 100%; max-width: 1000px; }
+
+/* ★チーム数に応じたスコアボードレイアウト */
+.vs-scoreboard-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; width: 100%; max-width: 900px; }
+.vs-scoreboard-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; width: 100%; max-width: 1300px; }
+.vs-scoreboard-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; width: 100%; max-width: 1000px; }
+
 .glass-card { background: rgba(255, 255, 255, 0.18); border: 2px solid rgba(255, 255, 255, 0.35); backdrop-filter: blur(25px); border-radius: 32px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .team-card { width: 100%; height: 300px; padding: 25px; }
 
@@ -95,6 +98,12 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 200; }
 .modal-content { background: #ffffff; padding: 50px; border-radius: 30px; width: 480px; text-align: center; }
+
+/* ★ チーム数選択ボタンのスタイル */
+.team-count-selector { display: flex; gap: 15px; margin-top: 10px; }
+.team-count-selector button { flex: 1; padding: 12px; font-size: 1.3rem; font-weight: bold; border-radius: 10px; border: 2px solid #dfe6e9; background: white; cursor: pointer; color: #7f8c8d; transition: 0.2s; }
+.team-count-selector button.active { background: #3498db; color: white; border-color: #3498db; }
+
 .slider-group label { display: block; font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; color: #7f8c8d; }
 .slider-group strong { font-size: 3rem; color: #3498db; }
 .slider-group input { width: 100%; height: 10px; border-radius: 5px; -webkit-appearance: none; background: #dfe6e9; margin-top: 15px; }
@@ -102,7 +111,12 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 .btn-save { background: #2c3e50; color: white; border: none; padding: 16px; font-size: 1.3rem; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 30px; }
 
 .time-up-text { font-size: 4rem; font-weight: 900; color: white; margin-bottom: 20px; }
-.result-versus-four { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; z-index: 10; width: 100%; max-width: 900px; }
+
+/* ★チーム数に応じたリザルト画面レイアウト */
+.result-versus-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; z-index: 10; width: 100%; max-width: 900px; }
+.result-versus-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; z-index: 10; width: 100%; max-width: 1300px; }
+.result-versus-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; z-index: 10; width: 100%; max-width: 900px; }
+
 .res-team-box { width: 100%; height: 260px; padding: 20px; display: flex; flex-direction: column; justify-content: center; position: relative; background: rgba(255,255,255,0.15); border-radius: 32px;}
 .res-team-box h3 { font-size: 2rem; color: white; margin-bottom: 10px; }
 .res-num { font-size: 8rem; font-weight: 900; color: white; line-height: 1; margin-bottom: 10px; }
