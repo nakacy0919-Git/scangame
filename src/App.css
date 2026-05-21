@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800;900&display=swap');
 
-* { 
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body, #root { 
   width: 100vw; 
@@ -57,24 +53,8 @@ html, body, #root {
   100% { background-position: 0% 50%; } 
 }
 
-/* 背景のフワフワパーティクル（※前回省略してしまった部分） */
-.particles { 
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  height: 100%; 
-  pointer-events: none; 
-  z-index: 1; 
-}
-
-.dot { 
-  position: absolute; 
-  background: rgba(52, 152, 219, 0.15); 
-  border-radius: 50%; 
-  animation: floatUp 20s infinite linear; 
-}
-
+.particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.dot { position: absolute; background: rgba(52, 152, 219, 0.15); border-radius: 50%; animation: floatUp 20s infinite linear; }
 .dot:nth-child(1)  { width: 40px; height: 40px; left: 10%; top: 80%; animation-delay: 0s; }
 .dot:nth-child(2)  { width: 20px; height: 20px; left: 80%; top: 90%; animation-delay: 3s; }
 .dot:nth-child(3)  { width: 60px; height: 60px; left: 40%; top: 85%; animation-delay: 5s; }
@@ -89,200 +69,77 @@ html, body, #root {
   100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } 
 }
 
-
 /* =========================================
    メインメニュー（左右2カラムレイアウト）
 ========================================= */
-.menu-split-container { 
-  display: flex; 
-  width: 1200px; 
-  gap: 60px; 
-  align-items: center; 
-  justify-content: center; 
-  z-index: 10; 
-}
-
-.menu-left-block { 
-  flex: 1; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  gap: 20px; 
-}
-
-.main-logo-split { 
-  width: 480px; 
-  height: auto; 
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); 
-}
-
-.theme-buttons-vertical { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 15px; 
-  width: 100%; 
-  max-width: 400px; 
-}
+.menu-split-container { display: flex; width: 1200px; gap: 60px; align-items: center; justify-content: center; z-index: 10; }
+.menu-left-block { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.main-logo-split { width: 480px; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+.theme-buttons-vertical { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 400px; }
 
 .custom-border-box-split { 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  width: 100%; 
-  height: 80px; 
-  cursor: pointer; 
-  color: #2c3e50; 
-  border: 4px solid transparent; 
-  border-radius: 20px; 
-  background-color: #ffffff; 
-  background-clip: padding-box, border-box; 
+  display: flex; align-items: center; justify-content: center; width: 100%; height: 70px; 
+  cursor: pointer; color: #2c3e50; border: 4px solid transparent; border-radius: 20px; 
+  background-color: #ffffff; background-clip: padding-box, border-box; 
   background-origin: padding-box, border-box; 
   background-image: linear-gradient(#ffffff, #ffffff), conic-gradient(from 0deg, #10b981, #3b82f6, #10b981); 
-  font-size: 1.6rem; 
-  font-weight: 900; 
-  font-family: inherit; 
-  transition: 0.2s ease; 
+  font-size: 1.6rem; font-weight: 900; font-family: inherit; transition: 0.2s ease; 
   box-shadow: 0 8px 20px rgba(0,0,0,0.04); 
 }
+.custom-border-box-split:hover { transform: translateX(5px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
 
-.custom-border-box-split:hover { 
-  transform: translateX(5px); 
-  box-shadow: 0 12px 25px rgba(0,0,0,0.1); 
-}
-
-
-/* =========================================
-   メインメニュー（右側：QRコード表示）
-========================================= */
+/* QR表示ブロック */
 .menu-right-block { 
-  width: 460px; 
-  padding: 35px; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  background: rgba(255, 255, 255, 0.75); 
-  border-radius: 32px; 
-  box-shadow: 0 20px 40px rgba(0,0,0,0.06); 
-  border: 1px solid rgba(255,255,255,0.5); 
-  backdrop-filter: blur(10px); 
+  width: 460px; padding: 35px; display: flex; flex-direction: column; align-items: center; 
+  background: rgba(255, 255, 255, 0.75); border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); 
+  border: 1px solid rgba(255,255,255,0.5); backdrop-filter: blur(10px); 
 }
+.qr-section-title { font-size: 1.8rem; font-weight: 900; color: #2c3e50; margin-bottom: 20px; }
+.qr-tab-buttons { display: flex; gap: 10px; margin-bottom: 25px; width: 100%; }
+.qr-tab-btn { flex: 1; padding: 12px; font-size: 1.2rem; font-weight: 900; border: none; border-radius: 12px; cursor: pointer; transition: 0.2s; color: #7f8c8d; background: #e2e8f0; }
 
-.qr-section-title { 
-  font-size: 1.8rem; 
-  font-weight: 900; 
-  color: #2c3e50; 
-  margin-bottom: 20px; 
-}
-
-.qr-tab-buttons { 
-  display: flex; 
-  gap: 15px; 
-  margin-bottom: 25px; 
-  width: 100%; 
-}
-
-.qr-tab-btn { 
-  flex: 1; 
-  padding: 14px; 
-  font-size: 1.3rem; 
-  font-weight: 900; 
-  border: none; 
-  border-radius: 16px; 
-  cursor: pointer; 
-  transition: 0.2s; 
-  color: #7f8c8d; 
-  background: #e2e8f0; 
-}
-
+/* 4チーム分のQRタブカラー設定 */
 .qr-tab-btn.active.team-A { background: #e74c3c; color: white; box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3); }
 .qr-tab-btn.active.team-B { background: #3498db; color: white; box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); }
+.qr-tab-btn.active.team-C { background: #2ecc71; color: white; box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
+.qr-tab-btn.active.team-D { background: #e67e22; color: white; box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3); }
 
-.qr-display-box { 
-  background: white; 
-  padding: 15px; 
-  border-radius: 24px; 
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
-}
-
-.qr-display-box img { 
-  width: 320px; 
-  height: 320px; 
-  display: block; 
-  border-radius: 10px; 
-}
-
-.qr-display-desc { 
-  font-size: 1rem; 
-  color: #7f8c8d; 
-  margin-top: 20px; 
-  text-align: center; 
-  font-weight: bold; 
-}
-
+.qr-display-box { background: white; padding: 15px; border-radius: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+.qr-display-box img { width: 320px; height: 320px; display: block; border-radius: 10px; }
+.qr-display-desc { font-size: 1rem; color: #7f8c8d; margin-top: 20px; text-align: center; font-weight: bold; }
 
 /* =========================================
    待機画面 (READY)
 ========================================= */
-.ready-panel { 
-  padding: 60px 80px; 
-  background: rgba(255,255,255,0.95) !important; 
-  color: #2c3e50 !important; 
-}
+.ready-panel { padding: 60px 80px; background: rgba(255,255,255,0.95) !important; color: #2c3e50 !important; }
 .ready-title { font-size: 3.5rem; font-weight: 900; margin-bottom: 15px; }
 .ready-info { font-size: 1.8rem; color: #7f8c8d; margin-bottom: 40px; }
 .ready-info strong { color: #3498db; font-size: 2.8rem; }
 
-
 /* =========================================
-   ゲーム画面レイアウト・スコアボード
+   ゲーム画面レイアウト・スコアボード (4チーム対応)
 ========================================= */
-.game-layout { 
-  width: 100%; 
-  height: 100%; 
-  display: flex; 
-  flex-direction: column; 
-  padding: 20px 40px; 
-}
-
-.game-header { 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: flex-start; 
-  height: 100px; 
-  width: 100%; 
-}
-
+.game-layout { width: 100%; height: 100%; display: flex; flex-direction: column; padding: 20px 40px; }
+.game-header { display: flex; justify-content: space-between; align-items: flex-start; height: 100px; width: 100%; }
 .header-left { display: flex; flex-direction: column; align-items: flex-start; width: 33%; }
 .header-logo { height: 50px; object-fit: contain; margin-bottom: 5px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3)); }
 .theme-name { font-size: 1.8rem; font-weight: 900; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-
 .header-center { width: 33%; display: flex; justify-content: center; }
-.timer-display { 
-  font-size: 4rem; 
-  font-weight: 900; 
-  background: rgba(0,0,0,0.4); 
-  padding: 5px 50px; 
-  border-radius: 100px; 
-  color: white; 
-  border: 2px solid rgba(255, 255, 255, 0.2); 
-}
+.timer-display { font-size: 4rem; font-weight: 900; background: rgba(0,0,0,0.4); padding: 5px 50px; border-radius: 100px; color: white; border: 2px solid rgba(255, 255, 255, 0.2); }
 .timer-display.danger { color: #ff4757; border-color: #ff4757; animation: shake 0.5s infinite; }
-
 .header-right { width: 33%; display: flex; justify-content: flex-end; }
-.btn-abort { 
-  background: rgba(0, 0, 0, 0.3); 
-  color: #fff; 
-  border: 1px solid rgba(255, 255, 255, 0.4); 
-  padding: 12px 30px; 
-  font-size: 1.2rem; 
-  font-weight: bold; 
-  border-radius: 10px; 
-  cursor: pointer; 
-}
+.btn-abort { background: rgba(0, 0, 0, 0.3); color: #fff; border: 1px solid rgba(255, 255, 255, 0.4); padding: 12px 30px; font-size: 1.2rem; font-weight: bold; border-radius: 10px; cursor: pointer; }
 
-.game-main { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
-.vs-scoreboard { display: flex; align-items: center; gap: 50px; }
-.vs-center-text { font-size: 4rem; font-weight: 900; color: white; text-shadow: 0 4px 10px rgba(0,0,0,0.3); font-style: italic; }
+.game-main { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+
+/* ★ここが重要！ 4チーム用2×2グリッドレイアウト */
+.vs-scoreboard-four { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 30px; 
+  width: 100%; 
+  max-width: 1000px; 
+}
 
 .glass-card { 
   background: rgba(255, 255, 255, 0.18); 
@@ -290,97 +147,46 @@ html, body, #root {
   backdrop-filter: blur(25px); 
   border-radius: 32px; 
   box-shadow: 0 15px 35px rgba(0,0,0,0.15); 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
+  display: flex; flex-direction: column; align-items: center; justify-content: center; 
 }
 
-.team-card { width: 500px; height: 480px; display: flex; flex-direction: column; justify-content: space-between; padding: 40px 30px; }
-.team-badge-a, .team-badge-b { font-size: 2.2rem; font-weight: 900; padding: 10px 40px; border-radius: 50px; color: white; letter-spacing: 2px; }
-.team-badge-a { background: #e74c3c; }
-.team-badge-b { background: #3498db; }
+.team-card { width: 100%; height: 300px; padding: 25px; }
 
-.vs-score { font-size: 18rem; font-weight: 900; color: white; line-height: 0.85; margin: 30px 0; text-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-.vs-combo { font-size: 2rem; font-weight: 800; color: #fbbf24; background: rgba(0, 0, 0, 0.3); padding: 8px 30px; border-radius: 50px; }
+/* 4チーム分のバッジ・ボタンカラー設定 */
+.team-badge { font-size: 1.8rem; font-weight: 900; padding: 8px 35px; border-radius: 50px; color: white; letter-spacing: 2px; }
+.team-badge-a, .team-btn-a { background: #e74c3c; color: white;}
+.team-badge-b, .team-btn-b { background: #3498db; color: white;}
+.team-badge-c, .team-btn-c { background: #2ecc71; color: white;}
+.team-badge-d, .team-btn-d { background: #e67e22; color: white;}
 
-/* メッセージバー */
+.vs-score { font-size: 12rem; font-weight: 900; color: white; line-height: 0.85; margin: 20px 0; text-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+.vs-combo { font-size: 1.6rem; font-weight: 800; color: #fbbf24; background: rgba(0, 0, 0, 0.3); padding: 8px 25px; border-radius: 50px; }
+
+/* メッセージバー (4チーム用に位置調整) */
 .message-bar { 
   position: absolute; 
-  bottom: 50px; 
+  bottom: -30px; 
   width: auto; 
   min-width: 600px; 
   max-width: 90%; 
-  height: 90px; 
-  font-size: 2.2rem; 
-  font-weight: 700; 
-  color: white; 
-  text-align: center; 
-  padding: 0 50px; 
-  white-space: nowrap; 
+  height: 80px; 
+  font-size: 2rem; font-weight: 700; color: white; text-align: center; padding: 0 50px; white-space: nowrap; z-index: 50; 
 }
 .message-bar.success { background: rgba(46, 204, 113, 0.8); }
 .message-bar.error { background: rgba(231, 76, 60, 0.8); animation: shake 0.4s; }
 
-@keyframes shake { 
-  0%, 100% { transform: translateX(0); } 
-  25% { transform: translateX(-5px); } 
-  75% { transform: translateX(5px); } 
-}
-
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
 /* =========================================
    UI部品（ボタン・モーダル）
 ========================================= */
-.start-btn { 
-  background: #3498db; 
-  color: white; 
-  border: none; 
-  padding: 20px 70px; 
-  font-size: 2.2rem; 
-  font-weight: 900; 
-  border-radius: 100px; 
-  cursor: pointer; 
-}
+.start-btn { background: #3498db; color: white; border: none; padding: 20px 70px; font-size: 2.2rem; font-weight: 900; border-radius: 100px; cursor: pointer; }
 .btn-text-only { background: none; border: none; font-size: 1.4rem; color: #7f8c8d; cursor: pointer; text-decoration: underline; }
 
-.settings-btn { 
-  position: fixed; 
-  bottom: 40px; 
-  right: 40px; 
-  width: 75px; 
-  height: 75px; 
-  border-radius: 50%; 
-  background: #ffffff; 
-  border: 2px solid #dfe6e9; 
-  font-size: 2.2rem; 
-  cursor: pointer; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-}
+.settings-btn { position: fixed; bottom: 40px; right: 40px; width: 75px; height: 75px; border-radius: 50%; background: #ffffff; border: 2px solid #dfe6e9; font-size: 2.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; }
 
-.modal-overlay { 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  width: 100vw; 
-  height: 100vh; 
-  background: rgba(0, 0, 0, 0.5); 
-  backdrop-filter: blur(8px); 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  z-index: 200; 
-}
-
-.modal-content { 
-  background: #ffffff; 
-  padding: 50px; 
-  border-radius: 30px; 
-  width: 480px; 
-  text-align: center; 
-}
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 200; }
+.modal-content { background: #ffffff; padding: 50px; border-radius: 30px; width: 480px; text-align: center; }
 
 .slider-group label { display: block; font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; color: #7f8c8d; }
 .slider-group strong { font-size: 3rem; color: #3498db; }
@@ -388,68 +194,32 @@ html, body, #root {
 .slider-group input::-webkit-slider-thumb { -webkit-appearance: none; width: 35px; height: 35px; border-radius: 50%; background: #3498db; }
 .btn-save { background: #2c3e50; color: white; border: none; padding: 16px; font-size: 1.3rem; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 30px; }
 
-
 /* =========================================
-   リザルト画面
+   リザルト画面 (4チーム用レイアウト)
 ========================================= */
 .time-up-text { font-size: 4rem; font-weight: 900; color: white; margin-bottom: 20px; }
-.result-versus { display: flex; gap: 50px; z-index: 10; }
-.res-team-box { width: 450px; height: 350px; padding: 30px; display: flex; flex-direction: column; justify-content: center; position: relative; background: rgba(255,255,255,0.15); border-radius: 32px;}
-.res-team-box h3 { font-size: 2.5rem; color: white; margin-bottom: 15px; }
-.res-num { font-size: 12rem; font-weight: 900; color: white; line-height: 1; margin-bottom: 15px; }
-.res-team-box p { font-size: 1.5rem; color: #fbbf24; font-weight: bold; }
+.result-versus-four { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; z-index: 10; width: 100%; max-width: 900px; }
+.res-team-box { width: 100%; height: 260px; padding: 20px; display: flex; flex-direction: column; justify-content: center; position: relative; background: rgba(255,255,255,0.15); border-radius: 32px;}
+.res-team-box h3 { font-size: 2rem; color: white; margin-bottom: 10px; }
+.res-num { font-size: 8rem; font-weight: 900; color: white; line-height: 1; margin-bottom: 10px; }
+.res-team-box p { font-size: 1.2rem; color: #fbbf24; font-weight: bold; }
 .winner { background: rgba(255, 255, 255, 0.35) !important; border-color: #fbbf24 !important; }
-.winner-crown { position: absolute; top: -30px; background: #fbbf24; color: #2c3e50; font-weight: 900; padding: 8px 30px; border-radius: 50px; font-size: 1.5rem; }
-
+.winner-crown { position: absolute; top: -20px; background: #fbbf24; color: #2c3e50; font-weight: 900; padding: 5px 20px; border-radius: 50px; font-size: 1.2rem; }
 
 /* =========================================
    スマホ用スキャナー画面 (生徒用)
 ========================================= */
-.scanner-container { 
-  width: 100%; 
-  max-width: 500px; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  padding: 20px; 
-  z-index: 10; 
-}
-
-.scanner-header { 
-  width: 100%; 
-  padding: 15px; 
-  border-radius: 15px; 
-  font-size: 1.5rem; 
-  font-weight: 900; 
-  color: white; 
-  text-align: center; 
-  margin-bottom: 20px; 
-}
+.scanner-container { width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; padding: 20px; z-index: 10; }
+.scanner-header { width: 100%; padding: 15px; border-radius: 15px; font-size: 1.5rem; font-weight: 900; color: white; text-align: center; margin-bottom: 20px; }
 .scanner-header.team-A { background: #e74c3c; }
 .scanner-header.team-B { background: #3498db; }
+.scanner-header.team-C { background: #2ecc71; }
+.scanner-header.team-D { background: #e67e22; }
 
-#reader { 
-  width: 100%; 
-  border-radius: 20px; 
-  overflow: hidden; 
-  border: 5px solid white; 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-  background: black; 
-}
-
-.scanner-msg { 
-  margin-top: 20px; 
-  padding: 15px 40px; 
-  background: #e74c3c; 
-  color: white; 
-  border-radius: 50px; 
-  font-size: 1.5rem; 
-  font-weight: bold; 
-  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
+#reader { width: 100%; border-radius: 20px; overflow: hidden; border: 5px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.2); background: black; }
+.scanner-msg { margin-top: 20px; padding: 15px 40px; background: #e74c3c; color: white; border-radius: 50px; font-size: 1.5rem; font-weight: bold; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .scanner-msg.ok { background: #2ecc71; }
 
-@keyframes popIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
+.team-btn { padding: 15px 40px; font-size: 1.6rem; font-weight: bold; border: none; border-radius: 15px; cursor: pointer; width: 45%; }
+
+@keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }

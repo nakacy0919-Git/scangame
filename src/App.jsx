@@ -9,7 +9,7 @@ import sdgsData from './data/sdgs.json';
 import hotelData from './data/hotel.json';
 import airportData from './data/airport.json';
 import zooData from './data/zoo.json';
-import helpData from './data/help.json'; // ★ 追加：HELPのデータを読み込む
+import helpData from './data/help.json'; 
 
 const GAME_DATA = {
   cafe: { title: 'Scannect : Cafe', codes: cafeData },
@@ -17,13 +17,16 @@ const GAME_DATA = {
   hotel: { title: 'Scannect : Hotel', codes: hotelData },
   airport: { title: 'Scannect : Airport', codes: airportData },
   zoo: { title: 'Scannect : Zoo', codes: zooData },
-  help: { title: 'Scannect : Help', codes: helpData } // ★ 追加：HELPをゲームデータに登録
+  help: { title: 'Scannect : Help', codes: helpData } 
 };
+
+// チーム一覧
+const TEAMS = ['A', 'B', 'C', 'D'];
 
 function App() {
   const searchParams = new URLSearchParams(window.location.search);
   const initMode = searchParams.get('mode') === 'scanner' ? 'SCANNER' : 'HOST_MENU';
-  const initTeam = (searchParams.get('team') === 'A' || searchParams.get('team') === 'B') ? searchParams.get('team') : null;
+  const initTeam = TEAMS.includes(searchParams.get('team')) ? searchParams.get('team') : null;
 
   const [appMode, setAppMode] = useState(initMode); 
   const [scannerTeam, setScannerTeam] = useState(initTeam); 
@@ -31,9 +34,10 @@ function App() {
   const [activeTheme, setActiveTheme] = useState(null);
   const [gameStatus, setGameStatus] = useState('MENU'); 
   
-  const [scores, setScores] = useState({ A: 0, B: 0 });
-  const [combos, setCombos] = useState({ A: 0, B: 0 });
-  const [maxCombos, setMaxCombos] = useState({ A: 0, B: 0 });
+  // スコア・コンボの箱を4チーム分に拡張
+  const [scores, setScores] = useState({ A: 0, B: 0, C: 0, D: 0 });
+  const [combos, setCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
+  const [maxCombos, setMaxCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
 
   const [scannedCodesList, setScannedCodesList] = useState([]);
 
@@ -67,9 +71,9 @@ function App() {
   };
 
   const handleStartGame = () => {
-    setScores({ A: 0, B: 0 });
-    setCombos({ A: 0, B: 0 });
-    setMaxCombos({ A: 0, B: 0 });
+    setScores({ A: 0, B: 0, C: 0, D: 0 });
+    setCombos({ A: 0, B: 0, C: 0, D: 0 });
+    setMaxCombos({ A: 0, B: 0, C: 0, D: 0 });
     setTimeLeft(selectedMinutes * 60); 
     setGameStatus('PLAYING');
     setMessage(''); 
@@ -127,6 +131,8 @@ function App() {
           const actualCode = rawInput.substring(2);
           if (prefix === 'A-') executeScanCheck('A', actualCode, activeTheme);
           else if (prefix === 'B-') executeScanCheck('B', actualCode, activeTheme);
+          else if (prefix === 'C-') executeScanCheck('C', actualCode, activeTheme);
+          else if (prefix === 'D-') executeScanCheck('D', actualCode, activeTheme);
         }
         inputBuffer.current = '';
       } else if (e.key.length === 1) {
@@ -138,7 +144,7 @@ function App() {
   }, [appMode, gameStatus, activeTheme]);
 
   const executeScanCheck = (team, scannedCode, theme) => {
-    if (!theme) return;
+    if (!theme || !TEAMS.includes(team)) return;
     const currentThemeData = GAME_DATA[theme].codes;
     let isCorrect = false;
 
@@ -287,15 +293,19 @@ function App() {
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
+  // 最高得点を見つける（王冠表示用）
+  const maxScoreValue = Math.max(scores.A, scores.B, scores.C, scores.D);
+
   if (appMode === 'SCANNER') {
     return (
       <div className="main-viewport pattern-bg">
         {!scannerTeam ? (
           <div className="content-wrap glass-card" style={{padding: '40px'}}>
             <h2 style={{fontSize: '2rem', marginBottom: '30px', color: '#2c3e50'}}>Select Team</h2>
-            <div style={{display: 'flex', gap: '20px'}}>
-               <button onClick={() => setScannerTeam('A')} style={{padding:'20px 50px', fontSize:'2rem', fontWeight:'bold', background:'#e74c3c', color:'white', border:'none', borderRadius:'15px', cursor:'pointer'}}>TEAM A</button>
-               <button onClick={() => setScannerTeam('B')} style={{padding:'20px 50px', fontSize:'2rem', fontWeight:'bold', background:'#3498db', color:'white', border:'none', borderRadius:'15px', cursor:'pointer'}}>TEAM B</button>
+            <div style={{display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center'}}>
+               {TEAMS.map(t => (
+                 <button key={t} onClick={() => setScannerTeam(t)} className={`team-btn team-btn-${t.toLowerCase()}`}>TEAM {t}</button>
+               ))}
             </div>
           </div>
         ) : (
@@ -324,15 +334,15 @@ function App() {
               <button onClick={() => selectTheme('hotel')} className="custom-border-box-split">🏨 Hotel</button>
               <button onClick={() => selectTheme('airport')} className="custom-border-box-split">✈️ Airport</button>
               <button onClick={() => selectTheme('zoo')} className="custom-border-box-split">🦁 Zoo</button>
-              {/* ★ 追加：HELPボタン */}
               <button onClick={() => selectTheme('help')} className="custom-border-box-split">🤝 Help</button>
             </div>
           </div>
           <div className="menu-right-block">
             <h3 className="qr-section-title">📱 Student Scanner QR</h3>
             <div className="qr-tab-buttons">
-              <button onClick={() => setActiveQrTab('A')} className={`qr-tab-btn ${activeQrTab === 'A' ? 'active team-A' : ''}`}>TEAM A</button>
-              <button onClick={() => setActiveQrTab('B')} className={`qr-tab-btn ${activeQrTab === 'B' ? 'active team-B' : ''}`}>TEAM B</button>
+              {TEAMS.map(t => (
+                <button key={t} onClick={() => setActiveQrTab(t)} className={`qr-tab-btn ${activeQrTab === t ? `active team-${t}` : ''}`}>{t}</button>
+              ))}
             </div>
             <div className="qr-display-box">
               <img src={`https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + activeQrTab)}`} alt="Join QR" />
@@ -367,18 +377,15 @@ function App() {
             </div>
           </header>
           <main className="game-main">
-            <div className="vs-scoreboard">
-              <div className="glass-card team-card team-a">
-                <div className="team-badge-a">TEAM A</div>
-                <div className="vs-score">{scores.A}</div>
-                <div className="vs-combo">COMBO: {combos.A}</div>
-              </div>
-              <div className="vs-center-text">VS</div>
-              <div className="glass-card team-card team-b">
-                <div className="team-badge-b">TEAM B</div>
-                <div className="vs-score">{scores.B}</div>
-                <div className="vs-combo">COMBO: {combos.B}</div>
-              </div>
+            {/* 4チーム対戦用のグリッドレイアウトに変更 */}
+            <div className="vs-scoreboard-four">
+              {TEAMS.map(team => (
+                <div key={team} className={`glass-card team-card team-card-${team.toLowerCase()}`}>
+                  <div className={`team-badge team-badge-${team.toLowerCase()}`}>TEAM {team}</div>
+                  <div className="vs-score">{scores[team]}</div>
+                  <div className="vs-combo">COMBO: {combos[team]}</div>
+                </div>
+              ))}
             </div>
             {message && <div className={`glass-card message-bar ${isSuccess === true ? 'success' : isSuccess === false ? 'error' : ''}`}>{message}</div>}
           </main>
@@ -388,19 +395,15 @@ function App() {
       {gameStatus === 'GAMEOVER' && (
         <div className="content-wrap">
           <h2 className="time-up-text">TIME UP!</h2>
-          <div className="result-versus">
-            <div className={`glass-card res-team-box ${scores.A >= scores.B ? 'winner' : ''}`}>
-              {scores.A >= scores.B && <div className="winner-crown">👑 WINNER</div>}
-              <h3>TEAM A</h3>
-              <div className="res-num">{scores.A}</div>
-              <p>MAX COMBO: {maxCombos.A}</p>
-            </div>
-            <div className={`glass-card res-team-box ${scores.B >= scores.A ? 'winner' : ''}`}>
-              {scores.B >= scores.A && <div className="winner-crown">👑 WINNER</div>}
-              <h3>TEAM B</h3>
-              <div className="res-num">{scores.B}</div>
-              <p>MAX COMBO: {maxCombos.B}</p>
-            </div>
+          <div className="result-versus-four">
+            {TEAMS.map(team => (
+              <div key={team} className={`glass-card res-team-box ${scores[team] === maxScoreValue && maxScoreValue > 0 ? 'winner' : ''}`}>
+                {scores[team] === maxScoreValue && maxScoreValue > 0 && <div className="winner-crown">👑 WINNER</div>}
+                <h3>TEAM {team}</h3>
+                <div className="res-num">{scores[team]}</div>
+                <p>MAX COMBO: {maxCombos[team]}</p>
+              </div>
+            ))}
           </div>
           <button onClick={backToMenu} className="start-btn shadow-pop" style={{marginTop:'50px'}}>BACK TO MENU</button>
         </div>
