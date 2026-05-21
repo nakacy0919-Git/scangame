@@ -20,7 +20,6 @@ const GAME_DATA = {
   help: { title: 'Scannect : Help', codes: helpData } 
 };
 
-// チーム一覧
 const TEAMS = ['A', 'B', 'C', 'D'];
 
 function App() {
@@ -34,12 +33,9 @@ function App() {
   const [activeTheme, setActiveTheme] = useState(null);
   const [gameStatus, setGameStatus] = useState('MENU'); 
   
-  // スコア・コンボの箱を4チーム分に拡張
   const [scores, setScores] = useState({ A: 0, B: 0, C: 0, D: 0 });
   const [combos, setCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
   const [maxCombos, setMaxCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
-
-  const [scannedCodesList, setScannedCodesList] = useState([]);
 
   const [message, setMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(null);
@@ -58,7 +54,10 @@ function App() {
   const latestStateRef = useRef({ status: gameStatus, theme: activeTheme });
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
   
-  const scannedCodesRef = useRef([]); 
+  // ★ 修正：チームごとに独立した「読込済みリスト」と「コンボ数」を記憶する箱
+  const scannedCodesRef = useRef({ A: [], B: [], C: [], D: [] }); 
+  const combosRef = useRef({ A: 0, B: 0, C: 0, D: 0 });
+
   const scannerInstanceRef = useRef(null); 
 
   useEffect(() => {
@@ -78,11 +77,17 @@ function App() {
     setGameStatus('PLAYING');
     setMessage(''); 
     
-    setScannedCodesList([]);
-    scannedCodesRef.current = [];
+    // ★ ゲーム開始時に各チームのリストとコンボをリセット
+    scannedCodesRef.current = { A: [], B: [], C: [], D: [] };
+    combosRef.current = { A: 0, B: 0, C: 0, D: 0 };
 
     set(ref(database, 'scans'), null);
-    set(ref(database, 'gameState'), { status: 'PLAYING', theme: activeTheme, scannedCodes: {} });
+    // ★ データベース側にも各チーム用の箱を準備
+    set(ref(database, 'gameState'), { 
+      status: 'PLAYING', 
+      theme: activeTheme, 
+      scannedCodes: { A: {}, B: {}, C: {}, D: {} } 
+    });
   };
 
   const backToMenu = () => {
@@ -120,6 +125,7 @@ function App() {
     });
   }, [appMode]);
 
+  // キーボード/物理スキャナ用
   useEffect(() => {
     if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING') return;
     const handleKeyDown = (e) => {
@@ -155,8 +161,9 @@ function App() {
     }
     
     if (isCorrect) {
-      if (scannedCodesRef.current.includes(scannedCode)) {
-        setMessage(`⚠️ ALREADY SCANNED`);
+      // ★ 修正：そのチームのリストにだけ存在するかをチェック
+      if (scannedCodesRef.current[team].includes(scannedCode)) {
+        setMessage(`⚠️ ALREADY SCANNED: Team ${team}`);
         setIsSuccess(false);
         incorrectSound.currentTime = 0;
         incorrectSound.play().catch(e => console.log(e));
@@ -164,23 +171,30 @@ function App() {
         return; 
       }
 
-      const newList = [...scannedCodesRef.current, scannedCode];
-      scannedCodesRef.current = newList;
-      setScannedCodesList(newList);
-      
-      set(ref(database, `gameState/scannedCodes/${scannedCode}`), true);
+      // チームのリストに追加し、データベースにもそのチームの箱へ書き込む
+      scannedCodesRef.current[team].push(scannedCode);
+      set(ref(database, `gameState/scannedCodes/${team}/${scannedCode}`), true);
 
-      setScores(prev => ({ ...prev, [team]: prev[team] + 1 }));
-      setCombos(prev => {
-        const newCombo = prev[team] + 1;
-        if (newCombo > maxCombos[team]) setMaxCombos(m => ({ ...m, [team]: newCombo }));
-        return { ...prev, [team]: newCombo };
-      });
-      setMessage(`✅ MATCH: Team ${team}`);
+      // ★ 修正：コンボ＆ボーナスポイントの計算ロジック
+      const newCombo = combosRef.current[team] + 1;
+      combosRef.current[team] = newCombo;
+
+      // 3問連続正解（3, 6, 9...）の時だけボーナスポイントを追加
+      const isComboBonus = (newCombo > 0 && newCombo % 3 === 0);
+      const earnedPoints = isComboBonus ? 2 : 1; // ボーナス時は2点、通常は1点
+
+      setCombos(prev => ({ ...prev, [team]: newCombo }));
+      setScores(prev => ({ ...prev, [team]: prev[team] + earnedPoints }));
+      setMaxCombos(prev => newCombo > prev[team] ? { ...prev, [team]: newCombo } : prev);
+
+      // ボーナス発動時は画面に特別メッセージを出す
+      setMessage(`✅ MATCH: Team ${team}${isComboBonus ? ' 🌟 COMBO BONUS +2!' : ''}`);
       setIsSuccess(true);
       correctSound.currentTime = 0;
       correctSound.play().catch(e => console.log(e));
     } else {
+      // 不正解の場合はコンボを0にリセット
+      combosRef.current[team] = 0;
       setCombos(prev => ({ ...prev, [team]: 0 }));
       setMessage(`⚠️ MISS: Team ${team}`);
       setIsSuccess(false);
@@ -190,6 +204,9 @@ function App() {
     setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
   };
 
+  // ==========================================
+  // スマホ（生徒用スキャナー）ロジック
+  // ==========================================
   useEffect(() => {
     if (appMode === 'SCANNER') {
       const gameStateRef = ref(database, 'gameState');
@@ -256,7 +273,8 @@ function App() {
     }
 
     if (isCorrect) {
-      const scannedMap = currentGameState.scannedCodes || {};
+      // ★ 修正：自分のチームの読込済みリストだけを参照して判定する
+      const scannedMap = currentGameState.scannedCodes?.[scannerTeam] || {};
       if (scannedMap[decodedText]) {
           setMessage('⚠️ 読込済みのカードです！');
           setIsSuccess(false);
@@ -293,7 +311,6 @@ function App() {
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
-  // 最高得点を見つける（王冠表示用）
   const maxScoreValue = Math.max(scores.A, scores.B, scores.C, scores.D);
 
   if (appMode === 'SCANNER') {
@@ -377,7 +394,6 @@ function App() {
             </div>
           </header>
           <main className="game-main">
-            {/* 4チーム対戦用のグリッドレイアウトに変更 */}
             <div className="vs-scoreboard-four">
               {TEAMS.map(team => (
                 <div key={team} className={`glass-card team-card team-card-${team.toLowerCase()}`}>
