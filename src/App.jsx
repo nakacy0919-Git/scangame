@@ -43,8 +43,11 @@ function App() {
   const [selectedMinutes, setSelectedMinutes] = useState(5); 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [activeQrTab, setActiveQrTab] = useState('A'); 
-  const [timeLeft, setTimeLeft] = useState(0);
+  
+  // ★ 追加：画面いっぱいのQRを表示するためのState（どのチームを拡大しているか）
+  const [fullScreenQrTeam, setFullScreenQrTeam] = useState(null);
 
+  const [timeLeft, setTimeLeft] = useState(0);
   const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
 
   const inputBuffer = useRef('');
@@ -53,11 +56,8 @@ function App() {
   
   const latestStateRef = useRef({ status: gameStatus, theme: activeTheme });
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
-  
-  // ★ 修正：チームごとに独立した「読込済みリスト」と「コンボ数」を記憶する箱
   const scannedCodesRef = useRef({ A: [], B: [], C: [], D: [] }); 
   const combosRef = useRef({ A: 0, B: 0, C: 0, D: 0 });
-
   const scannerInstanceRef = useRef(null); 
 
   useEffect(() => {
@@ -77,12 +77,10 @@ function App() {
     setGameStatus('PLAYING');
     setMessage(''); 
     
-    // ★ ゲーム開始時に各チームのリストとコンボをリセット
     scannedCodesRef.current = { A: [], B: [], C: [], D: [] };
     combosRef.current = { A: 0, B: 0, C: 0, D: 0 };
 
     set(ref(database, 'scans'), null);
-    // ★ データベース側にも各チーム用の箱を準備
     set(ref(database, 'gameState'), { 
       status: 'PLAYING', 
       theme: activeTheme, 
@@ -94,6 +92,7 @@ function App() {
     setActiveTheme(null);
     setGameStatus('MENU');
     setIsSettingsOpen(false);
+    setFullScreenQrTeam(null);
     set(ref(database, 'gameState'), { status: 'MENU', theme: null, scannedCodes: {} });
   };
 
@@ -111,21 +110,17 @@ function App() {
   useEffect(() => {
     if (appMode !== 'HOST_MENU') return;
     const scansRef = ref(database, 'scans');
-    
     onChildAdded(scansRef, (snapshot) => {
       const data = snapshot.val();
       if (!data) return;
-      
       const currentStatus = latestStateRef.current.status;
       const currentTheme = latestStateRef.current.theme;
-
       if (currentStatus === 'PLAYING') {
          executeScanCheck(data.team, data.code, currentTheme);
       }
     });
   }, [appMode]);
 
-  // キーボード/物理スキャナ用
   useEffect(() => {
     if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING') return;
     const handleKeyDown = (e) => {
@@ -161,7 +156,6 @@ function App() {
     }
     
     if (isCorrect) {
-      // ★ 修正：そのチームのリストにだけ存在するかをチェック
       if (scannedCodesRef.current[team].includes(scannedCode)) {
         setMessage(`⚠️ ALREADY SCANNED: Team ${team}`);
         setIsSuccess(false);
@@ -170,30 +164,23 @@ function App() {
         setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
         return; 
       }
-
-      // チームのリストに追加し、データベースにもそのチームの箱へ書き込む
       scannedCodesRef.current[team].push(scannedCode);
       set(ref(database, `gameState/scannedCodes/${team}/${scannedCode}`), true);
 
-      // ★ 修正：コンボ＆ボーナスポイントの計算ロジック
       const newCombo = combosRef.current[team] + 1;
       combosRef.current[team] = newCombo;
-
-      // 3問連続正解（3, 6, 9...）の時だけボーナスポイントを追加
       const isComboBonus = (newCombo > 0 && newCombo % 3 === 0);
-      const earnedPoints = isComboBonus ? 2 : 1; // ボーナス時は2点、通常は1点
+      const earnedPoints = isComboBonus ? 2 : 1; 
 
       setCombos(prev => ({ ...prev, [team]: newCombo }));
       setScores(prev => ({ ...prev, [team]: prev[team] + earnedPoints }));
       setMaxCombos(prev => newCombo > prev[team] ? { ...prev, [team]: newCombo } : prev);
 
-      // ボーナス発動時は画面に特別メッセージを出す
       setMessage(`✅ MATCH: Team ${team}${isComboBonus ? ' 🌟 COMBO BONUS +2!' : ''}`);
       setIsSuccess(true);
       correctSound.currentTime = 0;
       correctSound.play().catch(e => console.log(e));
     } else {
-      // 不正解の場合はコンボを0にリセット
       combosRef.current[team] = 0;
       setCombos(prev => ({ ...prev, [team]: 0 }));
       setMessage(`⚠️ MISS: Team ${team}`);
@@ -204,9 +191,6 @@ function App() {
     setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
   };
 
-  // ==========================================
-  // スマホ（生徒用スキャナー）ロジック
-  // ==========================================
   useEffect(() => {
     if (appMode === 'SCANNER') {
       const gameStateRef = ref(database, 'gameState');
@@ -228,7 +212,6 @@ function App() {
           if (!isMounted) return;
           const element = document.getElementById("reader");
           if (!element) { startCamera(); return; }
-
           try {
             const html5QrCode = new Html5Qrcode("reader");
             scannerInstanceRef.current = html5QrCode;
@@ -251,9 +234,7 @@ function App() {
 
   const onScanMobile = (decodedText) => {
     if (scannerInstanceRef.current) scannerInstanceRef.current.pause(true);
-
     const currentGameState = serverGameStateRef.current;
-
     if (currentGameState.status !== 'PLAYING' || !currentGameState.theme) {
       setMessage('⏳ 待機中：PCでゲームを開始してください');
       setIsSuccess(false);
@@ -263,7 +244,6 @@ function App() {
       }, 2000);
       return;
     }
-
     const currentThemeData = GAME_DATA[currentGameState.theme].codes;
     let isCorrect = false;
     if (Array.isArray(currentThemeData)) {
@@ -271,9 +251,7 @@ function App() {
     } else {
       isCorrect = currentThemeData[decodedText] || Object.values(currentThemeData).some(item => item.id === decodedText || item.code === decodedText);
     }
-
     if (isCorrect) {
-      // ★ 修正：自分のチームの読込済みリストだけを参照して判定する
       const scannedMap = currentGameState.scannedCodes?.[scannerTeam] || {};
       if (scannedMap[decodedText]) {
           setMessage('⚠️ 読込済みのカードです！');
@@ -284,22 +262,19 @@ function App() {
           }, 2000);
           return; 
       }
-
       setMessage('✅ 正解！ (MATCH)');
       setIsSuccess(true);
     } else {
       setMessage('❌ 不正解... (MISS)');
       setIsSuccess(false);
     }
-
     push(ref(database, 'scans'), {
       team: scannerTeam,
       code: decodedText,
       timestamp: serverTimestamp() 
     }).then(() => {
         setTimeout(() => { 
-          setMessage(''); 
-          setIsSuccess(null); 
+          setMessage(''); setIsSuccess(null); 
           if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
         }, 1800);
     });
@@ -361,8 +336,10 @@ function App() {
                 <button key={t} onClick={() => setActiveQrTab(t)} className={`qr-tab-btn ${activeQrTab === t ? `active team-${t}` : ''}`}>{t}</button>
               ))}
             </div>
-            <div className="qr-display-box">
+            {/* ★ 変更：QRコード自体をクリック可能にして、拡大機能を呼び出す */}
+            <div className="qr-display-box clickable-qr" onClick={() => setFullScreenQrTeam(activeQrTab)}>
               <img src={`https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + activeQrTab)}`} alt="Join QR" />
+              <div className="qr-hint">🔍 クリックで拡大表示</div>
             </div>
             <p className="qr-display-desc">生徒は自分のチームのタブを選んでスキャンしてください</p>
           </div>
@@ -434,6 +411,21 @@ function App() {
               <input type="range" min="3" max="15" value={selectedMinutes} onChange={e => setSelectedMinutes(Number(e.target.value))} />
             </div>
             <button className="btn-save" onClick={() => setIsSettingsOpen(false)}>OK</button>
+          </div>
+        </div>
+      )}
+
+      {/* ★ 追加：特大QRコード表示用のポップアップモーダル */}
+      {fullScreenQrTeam && (
+        <div className="modal-overlay" onClick={() => setFullScreenQrTeam(null)} style={{zIndex: 300}}>
+          <div className="modal-content" onClick={e => e.stopPropagation()} style={{width: 'auto', padding: '40px', maxWidth: '90vw'}}>
+            <h2 className={`team-title-huge team-title-${fullScreenQrTeam.toLowerCase()}`}>TEAM {fullScreenQrTeam}</h2>
+            <img 
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + fullScreenQrTeam)}`} 
+              alt="Fullscreen QR" 
+              className="huge-qr-img"
+            />
+            <button className="btn-save" onClick={() => setFullScreenQrTeam(null)}>閉じる</button>
           </div>
         </div>
       )}
