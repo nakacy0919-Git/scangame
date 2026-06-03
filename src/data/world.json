@@ -1,0 +1,836 @@
+[
+  {
+    "id": "WORLD_001",
+    "situation_ja": "モナコ公国",
+    "situation_en": "Principality of Monaco",
+    "card_a": {
+      "text": "Monaco",
+      "text_ja": "モナコ"
+    },
+    "card_b": {
+      "text": "This tiny, luxurious sovereign city-state is nestled on the French Riviera in Western Europe. It is world-renowned for its upscale casinos, yacht-lined harbor, and the prestigious Formula One Grand Prix.",
+      "text_ja": "西ヨーロッパのフレンチ・リヴィエラ（コート・ダジュール）に位置する、この小さく贅沢な主権都市国家は、高級カジノやヨットが並ぶ港、そして名声あるF1グランプリで世界的に有名です。"
+    },
+    "vocabulary": [
+      {
+        "word": "sovereign",
+        "part_of_speech": "adjective",
+        "meaning": "主権を有する、独立した",
+        "level": "C1"
+      },
+      {
+        "word": "renowned",
+        "part_of_speech": "adjective",
+        "meaning": "有名で、名高い",
+        "level": "B2"
+      },
+      {
+        "word": "prestigious",
+        "part_of_speech": "adjective",
+        "meaning": "名声のある、一流の",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_002",
+    "situation_ja": "クロアチア",
+    "situation_en": "Croatia",
+    "card_a": {
+      "text": "Croatia",
+      "text_ja": "クロアチア"
+    },
+    "card_b": {
+      "text": "Situated in Southeast Europe along the Adriatic Sea, this country boasts a rich cultural blend of Mediterranean and Balkan traditions. A prime tourist hotspot is Dubrovnik, a stunning old town enclosed by massive medieval stone walls.",
+      "text_ja": "アドリア海に面した東南ヨーロッパに位置するこの国は、地中海とバルカンの伝統が融合した豊かな文化を誇ります。主要な観光スポットは、巨大な中世の石壁に囲まれた美しい旧市街、ドゥブロヴニクです。"
+    },
+    "vocabulary": [
+      {
+        "word": "boast",
+        "part_of_speech": "verb",
+        "meaning": "（誇るべきものを）持っている、誇る",
+        "level": "B2"
+      },
+      {
+        "word": "prime",
+        "part_of_speech": "adjective",
+        "meaning": "主要な、最も重要な",
+        "level": "B2"
+      },
+      {
+        "word": "enclose",
+        "part_of_speech": "verb",
+        "meaning": "囲む、同封する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_003",
+    "situation_ja": "セーシェル",
+    "situation_en": "Seychelles",
+    "card_a": {
+      "text": "Seychelles",
+      "text_ja": "セーシェル"
+    },
+    "card_b": {
+      "text": "This archipelago country consists of 115 islands located in the Indian Ocean, off East Africa. It is celebrated for its Creole culture, vibrant coral reefs, and breathtaking tropical beaches like Anse Source d'Argent.",
+      "text_ja": "東アフリカ沖のインド洋に位置する115の島々からなる群島国家です。クレオール文化、活気あるサンゴ礁、そしてアンセ・ソース・ダルジャン のような息を呑むほど美しい熱帯のビーチで有名です。"
+    },
+    "vocabulary": [
+      {
+        "word": "archipelago",
+        "part_of_speech": "noun",
+        "meaning": "群島、諸島",
+        "level": "C2"
+      },
+      {
+        "word": "celebrated",
+        "part_of_speech": "adjective",
+        "meaning": "（広く）有名な、称賛されている",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_004",
+    "situation_ja": "ギリシャ",
+    "situation_en": "Greece",
+    "card_a": {
+      "text": "Greece",
+      "text_ja": "ギリシャ"
+    },
+    "card_b": {
+      "text": "Located in Southern Europe at the crossroads of Europe, Asia, and Africa, this nation is widely considered the cradle of Western civilization. It features thousands of islands in the Aegean Sea and the iconic ancient citadel, the Acropolis in Athens.",
+      "text_ja": "ヨーロッパ、アジア、アフリカの交差点である南ヨーロッパに位置するこの国は、西欧文明の揺籃（発祥の地）と広くみなされています。エーゲ海に浮かぶ何千もの島々や、アテネにある象徴的な古代の城塞アクロポリスが特徴です。"
+    },
+    "vocabulary": [
+      {
+        "word": "cradle",
+        "part_of_speech": "noun",
+        "meaning": "揺籃、発祥の地",
+        "level": "C2"
+      },
+      {
+        "word": "civilization",
+        "part_of_speech": "noun",
+        "meaning": "文明",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_005",
+    "situation_ja": "フィンランド",
+    "situation_en": "Finland",
+    "card_a": {
+      "text": "Finland",
+      "text_ja": "フィンランド"
+    },
+    "card_b": {
+      "text": "This Nordic nation in Northern Europe places a high cultural value on saunas and design. Known as the 'Land of a Thousand Lakes,' a massive tourist draw is Lapland, a magical region offering views of the Northern Lights and the official home of Santa Claus.",
+      "text_ja": "北欧に位置するこの国は、サウナやデザインに高い文化的価値を置いています。「千の湖の国」として知られ、オーロラの景色を楽しめる魔法のような地域であり、サンタクロースの公式な故郷でもあるラップランドが大きな観光の目玉です。"
+    },
+    "vocabulary": [
+      {
+        "word": "nordic",
+        "part_of_speech": "adjective",
+        "meaning": "北欧の",
+        "level": "B2"
+      },
+      {
+        "word": "draw",
+        "part_of_speech": "noun",
+        "meaning": "人気を集めるもの、引きつける要素",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_006",
+    "situation_ja": "スイス",
+    "situation_en": "Switzerland",
+    "card_a": {
+      "text": "Switzerland",
+      "text_ja": "スイス"
+    },
+    "card_b": {
+      "text": "This landlocked country is geographically defined by the Alps in Central Europe. Its diverse culture incorporates German, French, Italian, and Romansh languages, and it attracts countless visitors to the iconic, pyramid-shaped Matterhorn peak.",
+      "text_ja": "中央ヨーロッパに位置し、地理的にアルプス山脈によって定義されているこの内陸国は、ドイツ、フランス、イタリア、ロマンシュの言語を取り入れた多様な文化を持っています。象徴的なピラミッド型をしたマッターホルンの山頂には、無数の観光客が引き寄せられます。"
+    },
+    "vocabulary": [
+      {
+        "word": "landlocked",
+        "part_of_speech": "adjective",
+        "meaning": "陸に囲まれた、内陸の",
+        "level": "C2"
+      },
+      {
+        "word": "incorporate",
+        "part_of_speech": "verb",
+        "meaning": "組み入れる、取り入れる",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_007",
+    "situation_ja": "エジプト",
+    "situation_en": "Egypt",
+    "card_a": {
+      "text": "Egypt",
+      "text_ja": "エジプト"
+    },
+    "card_b": {
+      "text": "Linking northeast Africa with the Middle East, this transcontinental country dates back to the time of the pharaohs. Millennia-old monuments sit along the fertile Nile River Valley, highlighting the world-famous Giza Plateau with its monumental pyramids and Great Sphinx.",
+      "text_ja": "北アフリカと中東を結ぶこの大陸横断国家は、ファラオの時代まで歴史をさかのぼります。肥沃なナイル川流域沿いには数千年前の記念碑が並び、記念碑的なピラミッドや大スフィンクスがある世界的に有名なギザ台地が際立っています。"
+    },
+    "vocabulary": [
+      {
+        "word": "transcontinental",
+        "part_of_speech": "adjective",
+        "meaning": "大陸横断の、複数の大陸にまたがる",
+        "level": "C2"
+      },
+      {
+        "word": "fertile",
+        "part_of_speech": "adjective",
+        "meaning": "（土地が）肥沃な、豊かな",
+        "level": "B2"
+      },
+      {
+        "word": "monumental",
+        "part_of_speech": "adjective",
+        "meaning": "記念碑的な、途方もなく巨大な",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_008",
+    "situation_ja": "ミャンマー",
+    "situation_en": "Myanmar",
+    "card_a": {
+      "text": "Myanmar",
+      "text_ja": "ミャンマー"
+    },
+    "card_b": {
+      "text": "This Southeast Asian nation is deeply rooted in Theravada Buddhist traditions, where people wear traditional 'longyi' skirts. It is home to thousands of ancient Buddhist temples, most notably in the archaeological zone of Bagan.",
+      "text_ja": "伝統的なスカート「ロンジー」を人々が着用する、上座部仏教の伝統に深く根ざした東南アジアの国です。何千もの古代仏教寺院があり、特にバガンの考古学地域が非常に有名です。"
+    },
+    "vocabulary": [
+      {
+        "word": "be rooted in",
+        "part_of_speech": "idiom",
+        "meaning": "〜に根ざしている、由来している",
+        "level": "B2"
+      },
+      {
+        "word": "notably",
+        "part_of_speech": "adverb",
+        "meaning": "特に、著しく",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_009",
+    "situation_ja": "ポルトガル",
+    "situation_en": "Portugal",
+    "card_a": {
+      "text": "Portugal",
+      "text_ja": "ポルトガル"
+    },
+    "card_b": {
+      "text": "Occupying the western edge of the Iberian Peninsula in Southwestern Europe, this Atlantic nation possesses a culture famous for 'fado' music and decorated ceramic tiles. A mesmerizing site is Pena Palace in Sintra, renowned for its whimsical, colorful architecture.",
+      "text_ja": "南ヨーロッパのイベリア半島の西端を占めるこの大西洋の国は、「ファド」音楽や装飾されたセラミックタイルで有名な文化を持っています。シントラにあるペーナ宮殿は、その奇抜でカラフルな建築で知られる魅惑的なスポットです。"
+    },
+    "vocabulary": [
+      {
+        "word": "possess",
+        "part_of_speech": "verb",
+        "meaning": "（能力や性質、物を）所有する",
+        "level": "B2"
+      },
+      {
+        "word": "whimsical",
+        "part_of_speech": "adjective",
+        "meaning": "奇抜な、遊び心のある、風変わりな",
+        "level": "C2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_010",
+    "situation_ja": "モルディブ",
+    "situation_en": "Maldives",
+    "card_a": {
+      "text": "Maldives",
+      "text_ja": "モルディブ"
+    },
+    "card_b": {
+      "text": "This tropical nation spans across 26 ring-shaped atolls in the Indian Ocean, South Asia. Maritime culture dominates here, and the country is internationally celebrated for its lavish overwater bungalows situated on private luxury resort islands.",
+      "text_ja": "南アジアのインド洋に浮かぶ26の環状のサンゴ礁（環礁）に広がる熱帯の国です。ここでは海洋文化が主流を占めており、プライベートな高級リゾート島に位置する贅沢な水上コテージ（バンガロー）で国際的に有名です。"
+    },
+    "vocabulary": [
+      {
+        "word": "span",
+        "part_of_speech": "verb",
+        "meaning": "（ある一定の範囲に）わたる、広がる",
+        "level": "B2"
+      },
+      {
+        "word": "dominate",
+        "part_of_speech": "verb",
+        "meaning": "支配する、優勢を占める",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_011",
+    "situation_ja": "オーストラリア",
+    "situation_en": "Australia",
+    "card_a": {
+      "text": "Australia",
+      "text_ja": "オーストラリア"
+    },
+    "card_b": {
+      "text": "Surrounded by the Indian and Pacific oceans in Oceania, this vast country blends Indigenous heritage with multicultural urban life. A massive natural draw is the Great Barrier Reef, the world's largest coral reef system, visible from space.",
+      "text_ja": "オセアニアのインド洋と太平洋に囲まれたこの広大な国は、先住民の遺産と多文化的な都市生活を融合させています。宇宙からも見える世界最大のサンゴ礁群、グレート・バリア・リーフが大きな自然の目玉です。"
+    },
+    "vocabulary": [
+      {
+        "word": "vast",
+        "part_of_speech": "adjective",
+        "meaning": "広大な、莫大な",
+        "level": "B2"
+      },
+      {
+        "word": "indigenous",
+        "part_of_speech": "adjective",
+        "meaning": "（ある土地の）先住民の、土着の",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_012",
+    "situation_ja": "エチオピア",
+    "situation_en": "Ethiopia",
+    "card_a": {
+      "text": "Ethiopia",
+      "text_ja": "エチオピア"
+    },
+    "card_b": {
+      "text": "Located in the Horn of Africa, this landlocked country has an ancient culture famously considered the birthplace of the coffee bean. It hosts the legendary town of Lalibela, renowned for its extraordinary 12th-century churches carved directly out of solid rock.",
+      "text_ja": "「アフリカの角」に位置するこの内陸国は、コーヒー豆の発祥の地として広く知られる古代の文化を持っています。岩盤を直接くり抜いて造られた、12世紀の並外れた教会群で有名な伝説的な町ラリベラがあります。"
+    },
+    "vocabulary": [
+      {
+        "word": "landlocked",
+        "part_of_speech": "adjective",
+        "meaning": "内陸の",
+        "level": "C2"
+      },
+      {
+        "word": "extraordinary",
+        "part_of_speech": "adjective",
+        "meaning": "並外れた、異常な",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_013",
+    "situation_ja": "トルコ",
+    "situation_en": "Turkey",
+    "card_a": {
+      "text": "Turkey",
+      "text_ja": "トルコ"
+    },
+    "card_b": {
+      "text": "This fascinating transcontinental country bridges Eastern Europe and Western Asia, resulting in a unique cultural fusion. Its historical highlights include the breathtaking Hagia Sophia mosque in Istanbul and the surreal volcanic landscapes of Cappadocia.",
+      "text_ja": "東ヨーロッパと西アジアを繋ぐこの魅力的な大陸横断国家は、独特の文化融合を生み出しています。歴史的な見どころには、イスタンブールの息を呑むようなハギア・ソフィア（アヤソフィア）モスクや、カッパドキアの超現実的な火山風景があります。"
+    },
+    "vocabulary": [
+      {
+        "word": "fusion",
+        "part_of_speech": "noun",
+        "meaning": "融合、溶解",
+        "level": "C1"
+      },
+      {
+        "word": "surreal",
+        "part_of_speech": "adjective",
+        "meaning": "超現実的な、不思議な",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_014",
+    "situation_ja": "ジョージア",
+    "situation_en": "Georgia",
+    "card_a": {
+      "text": "Georgia",
+      "text_ja": "ジョージア"
+    },
+    "card_b": {
+      "text": "Positioned at the intersection of Eastern Europe and Western Asia, this Caucasus nation boasts an ancient wine-making tradition utilizing clay jars. It features the striking Gergeti Trinity Church, perched dramatically against the backdrop of Mount Kazbek.",
+      "text_ja": "東ヨーロッパと西アジアの交差点、コーカサス地方に位置するこの国は、クヴェヴリと呼ばれる粘土の壺を利用した古代のワイン造りの伝統を誇ります。カズベク山を背景に劇的に佇む、印象的なゲルゲティ・トリニティ教会が特徴です。"
+    },
+    "vocabulary": [
+      {
+        "word": "intersection",
+        "part_of_speech": "noun",
+        "meaning": "交差点、交わる場所",
+        "level": "B2"
+      },
+      {
+        "word": "perch",
+        "part_of_speech": "verb",
+        "meaning": "（高い場所に）腰掛ける、佇む",
+        "level": "C2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_015",
+    "situation_ja": "イタリア",
+    "situation_en": "Italy",
+    "card_a": {
+      "text": "Italy",
+      "text_ja": "イタリア"
+    },
+    "card_b": {
+      "text": "With a long Mediterranean coastline in Southern Europe, this country has left an immense mark on Western culture, especially through cuisine and art. It contains historic Rome and the romantic city of Venice, famous for its intricate canal systems.",
+      "text_ja": "南ヨーロッパに長い地中海の海岸線を持つこの国は、特に料理や芸術を通じて、西欧文化に計り知れない足跡を残してきました。歴史的なローマや、複雑な運河網で有名なロマンチックな都市ヴェネツィアがあります。"
+    },
+    "vocabulary": [
+      {
+        "word": "immense",
+        "part_of_speech": "adjective",
+        "meaning": "計り知れない、巨大な",
+        "level": "B2"
+      },
+      {
+        "word": "cuisine",
+        "part_of_speech": "noun",
+        "meaning": "（特有の）料理、料理法",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_016",
+    "situation_ja": "アイルランド",
+    "situation_en": "Ireland",
+    "card_a": {
+      "text": "Ireland",
+      "text_ja": "アイルランド"
+    },
+    "card_b": {
+      "text": "This island nation in Northwestern Europe is nicknamed the 'Emerald Isle' due to its lush green landscape. Rich in Celtic folklore and traditional music, a prime natural attraction is the Cliffs of Moher, rising ruggedly above the Atlantic Ocean.",
+      "text_ja": "北西ヨーロッパに位置するこの島国は、青々とした緑の風景から「エメラルドの島」というニックネームが付けられています。ケルトの伝承や伝統音楽が豊かで、大西洋からゴツゴツとそびえ立つモハーの断崖が主要な自然の景勝地です。"
+    },
+    "vocabulary": [
+      {
+        "word": "folklore",
+        "part_of_speech": "noun",
+        "meaning": "民間伝承、フォークロア",
+        "level": "C1"
+      },
+      {
+        "word": "rugged",
+        "part_of_speech": "adjective",
+        "meaning": "岩だらけの、ゴツゴツした",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_017",
+    "situation_ja": "ノルウェー",
+    "situation_en": "Norway",
+    "card_a": {
+      "text": "Norway",
+      "text_ja": "ノルウェー"
+    },
+    "card_b": {
+      "text": "Encompassing mountains, glaciers, and deeply creased coastal fjords, this Northern European Scandinavian nation holds deep historical ties to Viking heritage. A spectacular destination is the Geirangerfjord, famous for its dramatic waterfalls.",
+      "text_ja": "山脈、氷河、そして深く刻まれた海岸線のフィヨルドを取り囲む、北ヨーロッパのスカンジナビア国家です。ヴァイキングの遺産と深い歴史的結びつきを持っています。劇的な滝で有名なガイランゲルフィヨルドが壮大で見事な目的地です。"
+    },
+    "vocabulary": [
+      {
+        "word": "encompass",
+        "part_of_speech": "verb",
+        "meaning": "（範囲として）含む、取り囲む",
+        "level": "C1"
+      },
+      {
+        "word": "gladier",
+        "part_of_speech": "noun",
+        "meaning": "氷河",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_018",
+    "situation_ja": "サウジアラビア",
+    "situation_en": "Saudi Arabia",
+    "card_a": {
+      "text": "Saudi Arabia",
+      "text_ja": "サウジアラビア"
+    },
+    "card_b": {
+      "text": "Spanning most of the Arabian Peninsula in Western Asia, this desert kingdom is the historic birthplace of Islam. Alongside sacred religious hubs, it hosts Al-Ula, an ancient archaeological site featuring monumental tombs carved into sandstone cliffs.",
+      "text_ja": "西アジアのアラビア半島の大部分を占めるこの砂漠の王国は、イスラム教の歴史的な発祥の地です。神聖な宗教の中心地と並んで、砂岩の断崖に刻まれた記念碑的な墓群が特徴の古代考古学遺跡アル・ウラがあります。"
+    },
+    "vocabulary": [
+      {
+        "word": "hub",
+        "part_of_speech": "noun",
+        "meaning": "中心地、中枢",
+        "level": "B2"
+      },
+      {
+        "word": "archaeological",
+        "part_of_speech": "adjective",
+        "meaning": "考古学の",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_019",
+    "situation_ja": "アンドラ",
+    "situation_en": "Andorra",
+    "card_a": {
+      "text": "Andorra",
+      "text_ja": "アンドラ"
+    },
+    "card_b": {
+      "text": "This tiny independent principality is situated in the Pyrenees mountains between France and Spain. Known for its duty-free shopping and unique Catalan-influenced mountain culture, it serves as a major winter destination for ski holidaymakers.",
+      "text_ja": "フランスとスペインの間のピレネー山脈に位置する、この小さな独立した公国です。免税ショッピングやカタルーニャの影響を受けた独自の山岳文化で知られ、スキーを楽しむ休暇客のための主要な冬の目的地として機能しています。"
+    },
+    "vocabulary": [
+      {
+        "word": "principality",
+        "part_of_speech": "noun",
+        "meaning": "公国（公が治める国）",
+        "level": "C2"
+      },
+      {
+        "word": "duty-free",
+        "part_of_speech": "adjective",
+        "meaning": "免税の",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_020",
+    "situation_ja": "カタール",
+    "situation_en": "Qatar",
+    "card_a": {
+      "text": "Qatar",
+      "text_ja": "カタール"
+    },
+    "card_b": {
+      "text": "Occupying a small peninsula on the northeastern coast of the Arabian Peninsula in Western Asia, this nation balances traditional Bedouin heritage with hyper-modern architecture. Its capital, Doha, is celebrated for its futuristic skyline and the iconic Museum of Islamic Art.",
+      "text_ja": "西アジアのアラビア半島北東海岸にある小さな半島を占めるこの国は、伝統的なベドウィンの遺産と超近代的な建築のバランスをとっています。首都ドーハは、未来的なスカイライン（摩天楼）と象徴的なイスラム美術館で有名です。"
+    },
+    "vocabulary": [
+      {
+        "word": "peninsula",
+        "part_of_speech": "noun",
+        "meaning": "半島",
+        "level": "C1"
+      },
+      {
+        "word": "skyline",
+        "part_of_speech": "noun",
+        "meaning": "空との境界線、都市のスカイライン、摩天楼",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_021",
+    "situation_ja": "カナダ",
+    "situation_en": "Canada",
+    "card_a": {
+      "text": "Canada",
+      "text_ja": "カナダ"
+    },
+    "card_b": {
+      "text": "Extending from the Atlantic to the Pacific and northward into the Arctic Ocean, this vast North American country has a bilingual culture with English and French. A world-famous scenic marvel here is Niagara Falls, located on the border with the United States.",
+      "text_ja": "大西洋から太平洋、そして北は北極海にまで広がる、北アメリカのこの広大な国は、英語とフランス語のバイリンガル文化を持っています。ここにある世界的に有名な景観の驚異は、アメリカ合衆国との国境に位置するナイアガラの滝です。"
+    },
+    "vocabulary": [
+      {
+        "word": "bilingual",
+        "part_of_speech": "adjective",
+        "meaning": "2言語を話す、2言語併用の",
+        "level": "B2"
+      },
+      {
+        "word": "scenic",
+        "part_of_speech": "adjective",
+        "meaning": "景色の良い、風光明媚な",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_022",
+    "situation_ja": "スウェーデン",
+    "situation_en": "Sweden",
+    "card_a": {
+      "text": "Sweden",
+      "text_ja": "スウェーデン"
+    },
+    "card_b": {
+      "text": "This Scandinavian nation in Northern Europe is culturally characterized by the concept of 'lagom' (just the right amount) and the 'fika' coffee break. Its capital, Stockholm, built on 14 islands, features the beautifully preserved medieval old town called Gamla Stan.",
+      "text_ja": "北ヨーロッパに位置するこのスカンジナビアの国は、文化的にお調度良い量を意味する「ラーゴム」の概念や、「フィーカ」と呼ばれるコーヒーブレイクによって特徴づけられます。14の島の上に築かれた首都ストックホルムには、ガムラスタンと呼ばれる美しく保存された中世の旧市街があります。"
+    },
+    "vocabulary": [
+      {
+        "word": "preserve",
+        "part_of_speech": "verb",
+        "meaning": "保存する、維持する",
+        "level": "B2"
+      },
+      {
+        "word": "medieval",
+        "part_of_speech": "adjective",
+        "meaning": "中世の",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_023",
+    "situation_ja": "タイ",
+    "situation_en": "Thailand",
+    "card_a": {
+      "text": "Thailand",
+      "text_ja": "タイ"
+    },
+    "card_b": {
+      "text": "Known as the 'Land of Smiles' in Southeast Asia, this tropical country features a deeply hospitable culture intertwined with Buddhism and famous street food. Its bustling capital, Bangkok, is renowned for the spectacular Grand Palace and sacred temples.",
+      "text_ja": "東南アジアで「微笑みの国」として知られるこの熱帯の国は、仏教と融合した非常に親切な（ホスピタリティに満ちた）文化や有名な屋台料理が特徴です。活気あふれる首都バンコクは、壮観なグランド・パレス（王宮）や神聖な寺院で名高いです。"
+    },
+    "vocabulary": [
+      {
+        "word": "hospitable",
+        "part_of_speech": "adjective",
+        "meaning": "親切な、もてなしのよい",
+        "level": "C1"
+      },
+      {
+        "word": "intertwine",
+        "part_of_speech": "verb",
+        "meaning": "絡み合わせる、密接に結びつく",
+        "level": "C2"
+      },
+      {
+        "word": "bustling",
+        "part_of_speech": "adjective",
+        "meaning": "活気に満ちた、賑やかな",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_024",
+    "situation_ja": "ベルギー",
+    "situation_en": "Belgium",
+    "card_a": {
+      "text": "Belgium",
+      "text_ja": "ベルギー"
+    },
+    "card_b": {
+      "text": "This Western European nation is distinctively multilingual, split into Dutch-speaking Flanders and French-speaking Wallonia. Celebrated for its chocolate and comic strip heritage, a prime architectural attraction is the breathtaking Grand Place square in Brussels.",
+      "text_ja": "西ヨーロッパに位置するこの国は、オランダ語を話すフランデレン地域とフランス語を話すワロン地域に分かれており、特徴的な多言語国家です。チョコレートや漫画（コミック・ストリップ）の遺産で有名で、ブリュッセルにある息を呑むほど美しい広場「グラン＝プラス」が主要な建築の見どころです。"
+    },
+    "vocabulary": [
+      {
+        "word": "multilingual",
+        "part_of_speech": "adjective",
+        "meaning": "多言語の、数カ国語を話す",
+        "level": "C1"
+      },
+      {
+        "word": "heritage",
+        "part_of_speech": "noun",
+        "meaning": "遺産、伝統",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_025",
+    "situation_ja": "ペルー",
+    "situation_en": "Peru",
+    "card_a": {
+      "text": "Peru",
+      "text_ja": "ペルー"
+    },
+    "card_b": {
+      "text": "Located along the western coast of South America, this diverse nation features a rich cultural fusion of Spanish colonial elements and ancient Incan traditions. It is famous worldwide for the Nazca Lines, enormous geoglyphs etched into the desert floor.",
+      "text_ja": "南アメリカの西海岸に位置するこの多様な国は、スペイン植民地時代の要素と古代インカの伝統が豊かに融合した文化が特徴です。砂漠の床面に刻まれた巨大な地上絵、ナスカの地上絵で世界的に有名です。"
+    },
+    "vocabulary": [
+      {
+        "word": "colonial",
+        "part_of_speech": "adjective",
+        "meaning": "植民地の、植民地時代の",
+        "level": "B2"
+      },
+      {
+        "word": "geoglyph",
+        "part_of_speech": "noun",
+        "meaning": "地上絵",
+        "level": "C2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_026",
+    "situation_ja": "オランダ",
+    "situation_en": "Netherlands",
+    "card_a": {
+      "text": "Netherlands",
+      "text_ja": "オランダ"
+    },
+    "card_b": {
+      "text": "This low-lying country in Northwestern Europe is globally recognized for its flat landscape of canals, tulip fields, and historic windmills. A major tourist destination is the Keukenhof, one of the world's largest flower gardens, showcasing millions of blooming spring flowers.",
+      "text_ja": "北西ヨーロッパに位置するこの低地国は、運河、チューリップ畑、そして歴史的な風車が広がる平坦な風景で世界的に認識されています。何百万本もの春の花々が咲き誇る、世界最大級の花の庭園キューケンホフ公園が主要な観光地です。"
+    },
+    "vocabulary": [
+      {
+        "word": "low-lying",
+        "part_of_speech": "adjective",
+        "meaning": "低地の、海抜の低い",
+        "level": "C2"
+      },
+      {
+        "word": "showcase",
+        "part_of_speech": "verb",
+        "meaning": "（良い所を）披露する、展示する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_027",
+    "situation_ja": "ブラジル",
+    "situation_en": "Brazil",
+    "card_a": {
+      "text": "Brazil",
+      "text_ja": "ブラジル"
+    },
+    "card_b": {
+      "text": "Spanning a vast area of South America, this Portuguese-speaking nation is globally renowned for its passionate football culture and the lively Rio Carnival. Its most iconic landmark is the colossal Christ the Redeemer statue overlooking Rio de Janeiro.",
+      "text_ja": "南アメリカの広大な面積を占めるこのポルトガル語圏の国は、情熱的なサッカー文化やにぎやかなリオのカーニバルで世界的に有名です。最も象徴的なランドマークは、リオデジャネイロを見下ろす巨大なキリスト像（コルコバードのキリスト像）です。"
+    },
+    "vocabulary": [
+      {
+        "word": "passionate",
+        "part_of_speech": "adjective",
+        "meaning": "情熱的な、熱烈な",
+        "level": "B2"
+      },
+      {
+        "word": "colossal",
+        "part_of_speech": "adjective",
+        "meaning": "巨大な、莫大な",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_028",
+    "situation_ja": "メキシコ",
+    "situation_en": "Mexico",
+    "card_a": {
+      "text": "Mexico",
+      "text_ja": "メキシコ"
+    },
+    "card_b": {
+      "text": "This North American nation features a vibrant culture shaped by a unique blend of Spanish influences and ancient Mesoamerican civilizations. It contains Chichen Itza, a world-famous archaeological site featuring a massive step-pyramid built by the Maya people.",
+      "text_ja": "スペインの影響と古代メソアメリカ文明のユニークな融合によって形成された活気ある文化を持つ、北アメリカの国です。マヤの人々によって建てられた巨大な階段状ピラミッドが特徴の世界的に有名な考古学遺跡、チチェン・イッツァがあります。"
+    },
+    "vocabulary": [
+      {
+        "word": "vibrant",
+        "part_of_speech": "adjective",
+        "meaning": "活気に満ちた、鮮やかな",
+        "level": "C1"
+      },
+      {
+        "word": "archaeological",
+        "part_of_speech": "adjective",
+        "meaning": "考古学の",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_029",
+    "situation_ja": "ベトナム",
+    "situation_en": "Vietnam",
+    "card_a": {
+      "text": "Vietnam",
+      "text_ja": "ベトナム"
+    },
+    "card_b": {
+      "text": "This Southeast Asian country is culturally distinguished by its ancestral traditions, exquisite 'pho' noodle soup, and traditional 'ao dai' attire. A breathtaking natural hotspot is Ha Long Bay, famous for its emerald waters and thousands of towering limestone islands.",
+      "text_ja": "先祖代々の伝統、絶品のアジアン麺「フォー」、そして伝統衣装「アオザイ」によって文化的に特徴づけられている東南アジアの国です。エメラルドグリーンの海と、そびえ立つ何千もの石灰岩の島々で有名なハロン湾が、息を呑むほど美しい自然の名所です。"
+    },
+    "vocabulary": [
+      {
+        "word": "distinguish",
+        "part_of_speech": "verb",
+        "meaning": "区別する、特徴づける",
+        "level": "B2"
+      },
+      {
+        "word": "exquisite",
+        "part_of_speech": "adjective",
+        "meaning": "この上なく素晴らしい、絶品の、非常に美しい",
+        "level": "C1"
+      }
+    ]
+  },
+  {
+    "id": "WORLD_030",
+    "situation_ja": "南アフリカ",
+    "situation_en": "South Africa",
+    "card_a": {
+      "text": "South Africa",
+      "text_ja": "南アフリカ"
+    },
+    "card_b": {
+      "text": "Perched at the southern tip of the African continent, this country is culturally nicknamed the 'Rainbow Nation' due to its diverse multicultural society. A major tourist landmark is Table Mountain, a flat-topped mountain overlooking the vibrant city of Cape Town.",
+      "text_ja": "アフリカ大陸の南端に位置するこの国は、多様な多文化社会から「レインボー・ネーション（虹の国）」と文化的なニックネームが付けられています。活気ある都市ケープタウンを見下ろす、山頂が平らなテーブルマウンテンが主要な観光ランドマークです。"
+    },
+    "vocabulary": [
+      {
+        "word": "perch",
+        "part_of_speech": "verb",
+        "meaning": "（高い場所に）位置する、佇む",
+        "level": "C2"
+      },
+      {
+        "word": "diverse",
+        "part_of_speech": "adjective",
+        "meaning": "多様な、様々な",
+        "level": "B2"
+      }
+    ]
+  }
+]

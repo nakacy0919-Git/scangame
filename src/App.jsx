@@ -4,7 +4,6 @@ import { database, ref, push, onChildAdded, onValue, set, serverTimestamp } from
 
 import './App.css';
 
-// ★ 切り出した部品を読み込む
 import { useBGM } from './hooks/useBGM';
 import SettingsModal from './components/SettingsModal';
 
@@ -14,6 +13,7 @@ import hotelData from './data/hotel.json';
 import airportData from './data/airport.json';
 import zooData from './data/zoo.json';
 import helpData from './data/help.json'; 
+import worldData from './data/world.json'; // ★変更点1：Worldデータを読み込み
 
 const GAME_DATA = {
   cafe: { title: 'Scannect : Cafe', codes: cafeData },
@@ -21,7 +21,8 @@ const GAME_DATA = {
   hotel: { title: 'Scannect : Hotel', codes: hotelData },
   airport: { title: 'Scannect : Airport', codes: airportData },
   zoo: { title: 'Scannect : Zoo', codes: zooData },
-  help: { title: 'Scannect : Help', codes: helpData } 
+  help: { title: 'Scannect : Help', codes: helpData },
+  world: { title: 'Scannect : World', codes: worldData } // ★変更点2：システムに登録
 };
 
 const ALL_TEAMS = ['A', 'B', 'C', 'D'];
@@ -69,7 +70,6 @@ function App() {
   const scannerInstanceRef = useRef(null); 
   const isProcessingScanRef = useRef(false);
 
-  // ★ 切り出したBGMロジックをここで1行で呼び出す！
   useBGM(appMode, gameStatus, bgmVolume);
 
   useEffect(() => {
@@ -356,13 +356,15 @@ function App() {
         <div className="menu-split-container">
           <div className="menu-left-block">
             <img src="/scannetlogo.png" alt="Scannect" className="main-logo-split" />
-            <div className="theme-buttons-vertical">
+            <div className="theme-buttons-vertical" style={{maxHeight: '400px', flexWrap: 'wrap', display: 'grid', gridTemplateColumns: '1fr 1fr'}}>
+              {/* ボタンが7個に増えたので、2列のグリッドレイアウトに変更してスッキリさせました */}
               <button onClick={() => selectTheme('cafe')} className="custom-border-box-split">☕ Cafe</button>
               <button onClick={() => selectTheme('sdgs')} className="custom-border-box-split">🌍 SDGs</button>
               <button onClick={() => selectTheme('hotel')} className="custom-border-box-split">🏨 Hotel</button>
               <button onClick={() => selectTheme('airport')} className="custom-border-box-split">✈️ Airport</button>
               <button onClick={() => selectTheme('zoo')} className="custom-border-box-split">🦁 Zoo</button>
               <button onClick={() => selectTheme('help')} className="custom-border-box-split">🤝 Help</button>
+              <button onClick={() => selectTheme('world')} className="custom-border-box-split" style={{gridColumn: '1 / -1'}}>🗺️ World</button> {/* ★変更点3：ボタン追加 */}
             </div>
           </div>
           <div className="menu-right-block">
@@ -437,7 +439,6 @@ function App() {
         </div>
       )}
 
-      {/* ★ 切り出した設定画面（UI）をここで呼び出す！ */}
       {isSettingsOpen && (
         <SettingsModal
           teamCount={teamCount}
