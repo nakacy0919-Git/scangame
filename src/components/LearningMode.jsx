@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
   const [learningPhase, setLearningPhase] = useState('SELECT_THEME'); 
   const [activeTheme, setActiveTheme] = useState(null);
-  
-  // ★ 追加：問題数の選択状態（デフォルトは10）
   const [questionCount, setQuestionCount] = useState(10); 
   
   const [questions, setQuestions] = useState([]);
@@ -29,7 +27,6 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
 
   const startGame = () => {
     const allCards = [...gameData[activeTheme].codes];
-    // ★ 変更：選択した問題数に合わせてシャッフル抽出
     const limit = questionCount === 'ALL' ? allCards.length : questionCount;
     const shuffled = allCards.sort(() => 0.5 - Math.random()).slice(0, limit);
     
@@ -53,7 +50,7 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
   };
 
   const playSound = (sound) => {
-    if (!isMuted) { // ★ ミュート判定
+    if (!isMuted) { 
       sound.volume = bgmVolume;
       sound.currentTime = 0;
       sound.play().catch(e=>e);
@@ -98,6 +95,22 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
     }, 1000);
   };
 
+  // ★ 追加：本文中の単語を自動で探して、蛍光マーカーのようにハイライトする魔法の機能
+  const highlightVocab = (text, vocabList) => {
+    if (!vocabList || vocabList.length === 0) return text;
+    
+    // 長い単語から順番にチェックするように並び替え（短い単語の誤爆を防ぐため）
+    const words = vocabList.map(v => v.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).sort((a, b) => b.length - a.length);
+    const regex = new RegExp(`(${words.join('|')})`, 'gi');
+    
+    const parts = text.split(regex);
+    return parts.map((part, index) => {
+      // 見つけた単語には専用のデザインクラス（.highlight-vocab）を付与する
+      const isMatch = vocabList.some(v => v.word.toLowerCase() === part.toLowerCase());
+      return isMatch ? <span key={index} className="highlight-vocab">{part}</span> : part;
+    });
+  };
+
   if (learningPhase === 'SELECT_THEME') {
     return (
       <div className="learning-container">
@@ -110,7 +123,7 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
             </button>
           ))}
         </div>
-        <button onClick={onBack} className="btn-text-only" style={{marginTop: '30px'}}>← メインメニューに戻る</button>
+        <button onClick={onBack} className="btn-text-only" style={{marginTop: '30px', fontSize: '1.4rem'}}>← メインメニューに戻る</button>
       </div>
     );
   }
@@ -120,7 +133,6 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
       <div className="learning-container glass-card" style={{padding: '50px'}}>
         <h2 className="learning-title" style={{marginBottom: '30px'}}>{gameData[activeTheme].title}</h2>
         
-        {/* ★ 追加：問題数の選択UI */}
         <h3 style={{color: '#7f8c8d', marginBottom: '15px'}}>挑戦する問題数</h3>
         <div className="count-selector">
           <button className={`count-btn ${questionCount === 10 ? 'active' : ''}`} onClick={() => setQuestionCount(10)}>10問</button>
@@ -130,9 +142,10 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
 
         <div style={{display: 'flex', gap: '30px', marginTop: '20px'}}>
           <button onClick={startVocab} className="action-btn vocab-btn shadow-pop">📖 語彙を学習する</button>
-          <button onClick={startGame} className="action-btn game-btn shadow-pop">🎮 ゲームスタート</button>
+          {/* ★ 変更：ゲームスタート から マッチング練習 に変更 */}
+          <button onClick={startGame} className="action-btn game-btn shadow-pop">🎮 マッチング練習</button>
         </div>
-        <button onClick={() => setLearningPhase('SELECT_THEME')} className="btn-text-only" style={{marginTop: '40px'}}>← テーマ選択に戻る</button>
+        <button onClick={() => setLearningPhase('SELECT_THEME')} className="btn-text-only" style={{marginTop: '40px', fontSize: '1.4rem'}}>← モード選択に戻る</button>
       </div>
     );
   }
@@ -140,21 +153,24 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
   if (learningPhase === 'VOCAB') {
     const cards = gameData[activeTheme].codes;
     return (
-      <div className="learning-container">
+      <div className="learning-container" style={{maxWidth: '1000px'}}>
         <div className="vocab-header">
           <h2>📖 Vocabulary Study : {gameData[activeTheme].title}</h2>
-          <button onClick={() => setLearningPhase('MENU')} className="btn-save">完了</button>
+          {/* ★ 変更：完了 から 学習メニューに戻る に変更 */}
+          <button onClick={() => setLearningPhase('MENU')} className="btn-text-only" style={{fontSize: '1.2rem', fontWeight: 'bold', textDecoration: 'none', background: '#e2e8f0', padding: '10px 20px', borderRadius: '10px', color: '#2c3e50'}}>← 学習メニューに戻る</button>
         </div>
         <div className="vocab-list">
           {cards.map(card => (
-            <div key={card.id} className="vocab-card glass-card">
+            <div key={card.id} className="vocab-card glass-card" style={{background: 'rgba(255,255,255,0.95)'}}>
               <div className="vocab-text-group">
-                <div className="vocab-en"><strong>A:</strong> {card.card_a.text}</div>
+                {/* ★ 追加：本文中の単語をハイライト表示 */}
+                <div className="vocab-en"><strong>A:</strong> {highlightVocab(card.card_a.text, card.vocabulary)}</div>
                 <div className="vocab-ja">{card.card_a.text_ja}</div>
               </div>
               <hr />
               <div className="vocab-text-group">
-                <div className="vocab-en"><strong>B:</strong> {card.card_b.text}</div>
+                {/* ★ 追加：本文中の単語をハイライト表示 */}
+                <div className="vocab-en"><strong>B:</strong> {highlightVocab(card.card_b.text, card.vocabulary)}</div>
                 <div className="vocab-ja">{card.card_b.text_ja}</div>
               </div>
               <div className="vocab-words">
@@ -173,13 +189,13 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
     const currentCard = questions[currentIndex];
     return (
       <div className="learning-game-container">
-        {/* ★ 追加：QUIT GAME ボタンをステータスバーに追加 */}
         <div className="game-status-bar glass-card" style={{display: 'flex', gap: '20px', alignItems: 'center'}}>
           <div className="progress">Q {currentIndex + 1} / {questions.length}</div>
           <div className="current-score">SCORE: {score}</div>
           <div className={`current-combo ${combo > 1 ? 'hot' : ''}`}>COMBO: {combo}</div>
           <div style={{flexGrow: 1}}></div>
-          <button onClick={() => setLearningPhase('MENU')} className="btn-abort">QUIT GAME</button>
+          {/* ★ 変更：QUIT GAME から 学習メニューに戻る に変更し、UIを親切に */}
+          <button onClick={() => setLearningPhase('MENU')} className="btn-abort">← 中断して戻る</button>
         </div>
 
         <div className="learning-game-area">
@@ -223,7 +239,8 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
         </div>
         <div style={{display: 'flex', gap: '20px', marginTop: '40px'}}>
           <button onClick={startGame} className="start-btn shadow-pop">もう一度プレイ</button>
-          <button onClick={() => setLearningPhase('MENU')} className="btn-save">メニューに戻る</button>
+          {/* ★ 変更：メニューに戻る から 学習メニューに戻る に変更 */}
+          <button onClick={() => setLearningPhase('MENU')} className="btn-save">学習メニューに戻る</button>
         </div>
       </div>
     );

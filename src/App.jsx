@@ -51,8 +51,6 @@ function App() {
 
   const [selectedMinutes, setSelectedMinutes] = useState(5); 
   const [bgmVolume, setBgmVolume] = useState(0.3);
-  
-  // ★ 追加：全体のミュート状態
   const [isMuted, setIsMuted] = useState(false);
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -74,7 +72,6 @@ function App() {
   const scannerInstanceRef = useRef(null); 
   const isProcessingScanRef = useRef(false);
 
-  // ★ 変更：isMutedを渡す
   useBGM(appMode, gameStatus, bgmVolume, isMuted);
 
   useEffect(() => {
@@ -183,7 +180,7 @@ function App() {
       if (scannedCodesRef.current[team].includes(scannedCode)) {
         setMessage(`⚠️ ALREADY SCANNED: Team ${team}`);
         setIsSuccess(false);
-        if (!isMuted) { // ★ミュート判定
+        if (!isMuted) {
           incorrectSound.volume = bgmVolume; 
           incorrectSound.currentTime = 0;
           incorrectSound.play().catch(e => console.log(e));
@@ -206,7 +203,7 @@ function App() {
 
       setMessage(`✅ MATCH: Team ${team}${isComboBonus ? ' 🌟 COMBO BONUS +2!' : ''}`);
       setIsSuccess(true);
-      if (!isMuted) { // ★ミュート判定
+      if (!isMuted) {
         correctSound.volume = bgmVolume;
         correctSound.currentTime = 0;
         correctSound.play().catch(e => console.log(e));
@@ -216,7 +213,7 @@ function App() {
       setCombos(prev => ({ ...prev, [team]: 0 }));
       setMessage(`⚠️ MISS: Team ${team}`);
       setIsSuccess(false);
-      if (!isMuted) { // ★ミュート判定
+      if (!isMuted) {
         incorrectSound.volume = bgmVolume;
         incorrectSound.currentTime = 0;
         incorrectSound.play().catch(e => console.log(e));
@@ -359,10 +356,10 @@ function App() {
     );
   }
 
+  // ★修正：エラーの原因だったJSX文法エラー（不正なコメント位置）を修正しました
   return (
-    <div className={`main-viewport ${gameStatus === 'MENU' ? 'pattern-bg' : 'gradient-bg'}`}>
+    <div className={`main-viewport ${gameStatus === 'MENU' || gameStatus === 'SOLO_LEARNING' ? 'pattern-bg' : 'gradient-bg'}`}>
       
-      {/* ★ 追加：どの画面でも使える固定のミュートボタン */}
       <button 
         className="mute-btn shadow-pop" 
         onClick={() => setIsMuted(!isMuted)}
@@ -470,7 +467,7 @@ function App() {
           gameData={GAME_DATA} 
           onBack={() => setGameStatus('MENU')} 
           bgmVolume={bgmVolume}
-          isMuted={isMuted} // ★ ミュート設定を渡す
+          isMuted={isMuted} 
         />
       )}
 
