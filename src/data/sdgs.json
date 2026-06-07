@@ -1,181 +1,94 @@
 [
   {
     "id": "SDG_001",
-    "situation_ja": "貧困をなくそう",
-    "situation_en": "Goal 1: No Poverty",
+    "situation_ja": "女性の起業支援",
+    "situation_en": "Supporting Women Entrepreneurs",
     "card_a": {
-      "text": "Extreme poverty limits access to capital for women in rural areas, making it impossible to start businesses.",
-      "text_ja": "極度の貧困により、農村地域の女性は資本（資金）を得る手段が制限され、起業することが不可能です。"
+      "text": "Many women in rural areas can't start businesses because they don't have enough money.",
+      "text_ja": "多くの農村地域の女性は、十分なお金がないためビジネスを始めることができません。"
     },
     "card_b": {
-      "text": "Grameen Bank provides microfinance loans without collateral to empower female entrepreneurs.",
-      "text_ja": "グラミン銀行は、女性起業家の能力を伸ばす（エンパワーする）ために、担保なしで少額融資（マイクロファイナンス）を提供しています。"
+      "text": "The Grameen Bank provides small loans without requiring property, helping women become independent.",
+      "text_ja": "グラミン銀行は財産を要求せずに少額のローンを提供し、女性が自立するのを助けています。"
     },
     "vocabulary": [
       {
-        "word": "extreme",
-        "part_of_speech": "adjective",
-        "meaning": "極度の、過激な",
-        "level": "B2"
-      },
-      {
-        "word": "capital",
-        "part_of_speech": "noun",
-        "meaning": "資本、資金、首都",
-        "level": "B2"
-      },
-      {
         "word": "rural",
         "part_of_speech": "adjective",
-        "meaning": "農村の、地方の、田舎の",
+        "meaning": "田舎の、農村の",
+        "level": "B1"
+      },
+      {
+        "word": "loan",
+        "part_of_speech": "noun",
+        "meaning": "ローン、貸付金",
+        "level": "B1"
+      },
+      {
+        "word": "independent",
+        "part_of_speech": "adjective",
+        "meaning": "自立した、独立した",
         "level": "B2"
-      },
-      {
-        "word": "microfinance",
-        "part_of_speech": "noun",
-        "meaning": "マイクロファイナンス、小口融資",
-        "level": "C1"
-      },
-      {
-        "word": "collateral",
-        "part_of_speech": "noun",
-        "meaning": "担保（物件）",
-        "level": "C2"
-      },
-      {
-        "word": "empower",
-        "part_of_speech": "verb",
-        "meaning": "〜に権限（能力）を与える、エンパワーする",
-        "level": "C1"
       }
     ]
   },
   {
     "id": "SDG_002",
-    "situation_ja": "飢餓をゼロに (緊急支援)",
-    "situation_en": "Goal 2: Zero Hunger (Emergency Support)",
+    "situation_ja": "東アフリカの食糧危機",
+    "situation_en": "Food Crisis in East Africa",
     "card_a": {
-      "text": "Climate shocks are causing severe crop failures and malnutrition in East Africa.",
-      "text_ja": "気候ショック（異常気象）により、東アフリカでは深刻な作物の凶作と栄養失調が発生しています。"
+      "text": "Unpredictable weather is ruining crops and causing food shortages in East Africa.",
+      "text_ja": "予測できない天候が作物をダメにし、東アフリカで食料不足を引き起こしています。"
     },
     "card_b": {
-      "text": "The World Food Programme (WFP) delivers emergency food assistance and drought-resistant seeds.",
-      "text_ja": "国連世界食糧計画（WFP）は、緊急の食料支援と乾燥に強い（耐乾性）種子を届けています。"
+      "text": "The World Food Programme delivers emergency food and seeds that can survive dry weather.",
+      "text_ja": "国連世界食糧計画は、緊急の食料と、乾燥した天候でも育つ種子を届けています。"
     },
     "vocabulary": [
       {
-        "word": "severe",
+        "word": "unpredictable",
         "part_of_speech": "adjective",
-        "meaning": "深刻な、過酷な、重度の",
+        "meaning": "予測できない",
         "level": "B2"
       },
       {
-        "word": "crop failure",
+        "word": "shortage",
         "part_of_speech": "noun",
-        "meaning": "作物の凶作、不作",
+        "meaning": "不足",
         "level": "B2"
       },
       {
-        "word": "malnutrition",
+        "word": "emergency",
         "part_of_speech": "noun",
-        "meaning": "栄養失調",
-        "level": "C1"
-      },
-      {
-        "word": "drought-resistant",
-        "part_of_speech": "adjective",
-        "meaning": "干ばつに強い、耐乾性の",
-        "level": "C1"
+        "meaning": "緊急事態、緊急の",
+        "level": "B1"
       }
     ]
   },
   {
     "id": "SDG_003",
-    "situation_ja": "飢餓をゼロに (食品ロス)",
-    "situation_en": "Goal 2: Zero Hunger (Food Waste)",
+    "situation_ja": "マラリア対策",
+    "situation_en": "Malaria Prevention",
     "card_a": {
-      "text": "Nearly one-third of all food produced globally is wasted before it ever reaches consumers.",
-      "text_ja": "世界中で生産されるすべての食料のほぼ3分の1が、消費者に届く前に廃棄されています。"
+      "text": "Malaria continues to kill hundreds of thousands of lives every year in Sub-Saharan Africa.",
+      "text_ja": "マラリアはサハラ以南のアフリカで毎年何十万もの命を奪い続けています。"
     },
     "card_b": {
-      "text": "The FAO advocates for better supply chains and encourages the consumption of 'ugly' but edible vegetables.",
-      "text_ja": "国連食糧農業機関（FAO）は、より良いサプライチェーンを提唱し、見た目は悪い（不揃い）が食べられる野菜の消費を促しています。"
+      "text": "The WHO recommends giving out special mosquito nets and a new vaccine to protect people.",
+      "text_ja": "WHOは人々を守るために、特別な蚊帳と新しいワクチンの配布を推奨しています。"
     },
     "vocabulary": [
       {
-        "word": "globally",
-        "part_of_speech": "adverb",
-        "meaning": "世界的に、地球規模で",
-        "level": "B2"
-      },
-      {
-        "word": "consumer",
-        "part_of_speech": "noun",
-        "meaning": "消費者",
-        "level": "B2"
-      },
-      {
-        "word": "advocate",
+        "word": "recommend",
         "part_of_speech": "verb",
-        "meaning": "〜を主張する、提唱する",
-        "level": "C1"
+        "meaning": "推奨する、勧める",
+        "level": "B1"
       },
       {
-        "word": "supply chain",
+        "word": "mosquito net",
         "part_of_speech": "noun",
-        "meaning": "サプライチェーン、供給網",
-        "level": "B2"
-      },
-      {
-        "word": "consumption",
-        "part_of_speech": "noun",
-        "meaning": "消費（量）",
-        "level": "B2"
-      },
-      {
-        "word": "edible",
-        "part_of_speech": "adjective",
-        "meaning": "食べられる、食用の",
-        "level": "C1"
-      }
-    ]
-  },
-  {
-    "id": "SDG_004",
-    "situation_ja": "すべての人に健康と福祉を (感染症対策)",
-    "situation_en": "Goal 3: Good Health and Well-being (Malaria)",
-    "card_a": {
-      "text": "Malaria continues to claim hundreds of thousands of lives annually in sub-Saharan Africa.",
-      "text_ja": "サブサハラアフリカでは、マラリアによって毎年何十万もの命が奪われ続けています。"
-    },
-    "card_b": {
-      "text": "The WHO recommends the widespread distribution of insecticide-treated mosquito nets and the new RTS,S vaccine.",
-      "text_ja": "世界保健機関（WHO）は、殺虫剤処理された蚊帳の広範囲な配布と、新しい「RTS,S」ワクチンの接種を推奨しています。"
-    },
-    "vocabulary": [
-      {
-        "word": "annually",
-        "part_of_speech": "adverb",
-        "meaning": "毎年、年に一度",
-        "level": "B2"
-      },
-      {
-        "word": "widespread",
-        "part_of_speech": "adjective",
-        "meaning": "広範囲にわたる、普及した",
-        "level": "C1"
-      },
-      {
-        "word": "distribution",
-        "part_of_speech": "noun",
-        "meaning": "配布、流通、分配",
-        "level": "B2"
-      },
-      {
-        "word": "insecticide",
-        "part_of_speech": "noun",
-        "meaning": "殺虫剤",
-        "level": "C1"
+        "meaning": "蚊帳",
+        "level": "B1"
       },
       {
         "word": "vaccine",
@@ -186,454 +99,214 @@
     ]
   },
   {
-    "id": "SDG_005",
-    "situation_ja": "すべての人に健康と福祉を (薬剤耐性菌)",
-    "situation_en": "Goal 3: Good Health and Well-being (Antibiotics)",
+    "id": "SDG_004",
+    "situation_ja": "紛争地域の教育",
+    "situation_en": "Education in Conflict Zones",
     "card_a": {
-      "text": "The overuse of antibiotics in livestock farming is creating deadly antimicrobial-resistant bacteria.",
-      "text_ja": "畜産業における抗生物質の過剰使用が、致命的な薬剤耐性（抗菌薬耐性）菌を生み出しています。"
+      "text": "Millions of children living in conflict zones have no chance to go to school or read textbooks.",
+      "text_ja": "紛争地域に住む何百万人の子どもたちは、学校に行ったり教科書を読んだりする機会がありません。"
     },
     "card_b": {
-      "text": "Scientists strictly advise restricting the use of medically important antibiotics in healthy farm animals.",
-      "text_ja": "科学者たちは、健康な家畜に対する医療上重要な抗生物質の使用を厳しく制限するようアドバイスしています。"
+      "text": "UNICEF provides basic school kits with essential educational tools to temporary learning centers.",
+      "text_ja": "ユニセフは、仮設の学習センターに不可欠な教育ツールが入った基本的な学校キットを提供しています。"
     },
     "vocabulary": [
       {
-        "word": "overuse",
+        "word": "conflict",
         "part_of_speech": "noun",
-        "meaning": "過剰使用、酷使",
-        "level": "C1"
-      },
-      {
-        "word": "antibiotics",
-        "part_of_speech": "noun",
-        "meaning": "抗生物質",
+        "meaning": "紛争、対立",
         "level": "B2"
       },
       {
-        "word": "livestock",
-        "part_of_speech": "noun",
-        "meaning": "（牛・豚などの）家畜",
-        "level": "C1"
-      },
-      {
-        "word": "antimicrobial",
+        "word": "essential",
         "part_of_speech": "adjective",
-        "meaning": "抗菌性の、薬剤耐性の",
-        "level": "C2"
+        "meaning": "不可欠な、必須の",
+        "level": "B1"
       },
       {
-        "word": "strictly",
-        "part_of_speech": "adverb",
-        "meaning": "厳格に、厳しく",
+        "word": "temporary",
+        "part_of_speech": "adjective",
+        "meaning": "仮設の、一時的な",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "SDG_005",
+    "situation_ja": "女子生徒の衛生支援",
+    "situation_en": "Hygiene Support for Girls",
+    "card_a": {
+      "text": "In many developing nations, girls often miss school simply because they cannot afford hygiene products.",
+      "text_ja": "多くの開発途上国では、女の子が衛生用品を買えないという理由だけで学校を休むことがよくあります。"
+    },
+    "card_b": {
+      "text": "NGOs build safe school toilets and give out sanitary kits to keep girls in class.",
+      "text_ja": "NGOは安全な学校のトイレを建設し、女の子が授業に出続けられるよう衛生キットを配っています。"
+    },
+    "vocabulary": [
+      {
+        "word": "developing",
+        "part_of_speech": "adjective",
+        "meaning": "開発途上の",
+        "level": "B1"
+      },
+      {
+        "word": "hygiene",
+        "part_of_speech": "noun",
+        "meaning": "衛生、衛生状態",
         "level": "B2"
       },
       {
-        "word": "restrict",
-        "part_of_speech": "verb",
-        "meaning": "〜を制限する、限定する",
+        "word": "sanitary",
+        "part_of_speech": "adjective",
+        "meaning": "衛生的な、衛生用の",
         "level": "B2"
       }
     ]
   },
   {
     "id": "SDG_006",
-    "situation_ja": "質の高い教育をみんなに (紛争地支援)",
-    "situation_en": "Goal 4: Quality Education (Conflict Zones)",
+    "situation_ja": "被災地の安全な水",
+    "situation_en": "Safe Water in Disaster Areas",
     "card_a": {
-      "text": "Millions of children in conflict zones have absolutely no access to formal schooling or textbooks.",
-      "text_ja": "紛争地域の何百万人もの子供たちが、正規の学校教育や教科書に全くアクセスできない状態にあります。"
+      "text": "Dirty drinking water causes outbreaks of dangerous diseases like cholera in disaster areas.",
+      "text_ja": "汚れた飲み水は、被災地でコレラのような危険な病気の発生を引き起こします。"
     },
     "card_b": {
-      "text": "UNICEF provides 'School-in-a-Box' kits containing essential educational supplies to temporary learning centers.",
-      "text_ja": "ユニセフ（UNICEF）は、仮設学習センターへ、不可欠な教育用具が入った「スクール・イン・ア・ボックス」キットを提供しています。"
+      "text": "WaterAid installs simple filters and deep wells to provide clean, safe water sources.",
+      "text_ja": "ウォーターエイドは、清潔で安全な水源を提供するために簡単なフィルターと深い井戸を設置しています。"
     },
     "vocabulary": [
       {
-        "word": "conflict zone",
+        "word": "dirty",
+        "part_of_speech": "adjective",
+        "meaning": "汚れた",
+        "level": "B1"
+      },
+      {
+        "word": "outbreak",
         "part_of_speech": "noun",
-        "meaning": "紛争地域",
+        "meaning": "（病気などの）発生、蔓延",
         "level": "B2"
       },
       {
-        "word": "formal",
-        "part_of_speech": "adjective",
-        "meaning": "正規の、公式の、形式的な",
+        "word": "source",
+        "part_of_speech": "noun",
+        "meaning": "水源、源",
         "level": "B1"
-      },
-      {
-        "word": "essential",
-        "part_of_speech": "adjective",
-        "meaning": "不可欠な、非常に重要な",
-        "level": "B1"
-      },
-      {
-        "word": "temporary",
-        "part_of_speech": "adjective",
-        "meaning": "一時的な、仮設の",
-        "level": "B2"
       }
     ]
   },
   {
     "id": "SDG_007",
-    "situation_ja": "質の高い教育をみんなに (遠隔教育)",
-    "situation_en": "Goal 4: Quality Education (Remote Learning)",
+    "situation_ja": "島国の再生可能エネルギー",
+    "situation_en": "Renewable Energy in Island Nations",
     "card_a": {
-      "text": "Students in remote mountainous areas cannot easily commute to high schools or universities.",
-      "text_ja": "遠く離れた山岳地帯の学生は、高校や大学に簡単に通学することができません。"
+      "text": "Remote island nations rely heavily on expensive and dirty imported oil for electricity.",
+      "text_ja": "遠く離れた島国は、電気を得るために高価で汚れた輸入石油に大きく依存しています。"
     },
     "card_b": {
-      "text": "EdTech NGOs distribute solar-powered digital tablets pre-loaded with comprehensive offline video lectures.",
-      "text_ja": "エドテック（教育技術）系NGOは、包括的なオフライン動画授業があらかじめロードされた、太陽光発電式のデジタルタブレットを配布しています。"
+      "text": "The IRENA supports switching to local solar energy systems combined with batteries.",
+      "text_ja": "国際再生可能エネルギー機関（IRENA）は、バッテリーと組み合わせた地域の太陽光エネルギーシステムへの切り替えを支援しています。"
     },
     "vocabulary": [
       {
         "word": "remote",
         "part_of_speech": "adjective",
-        "meaning": "人里離れた、遠い",
-        "level": "B2"
-      },
-      {
-        "word": "mountainous",
-        "part_of_speech": "adjective",
-        "meaning": "山がちな、山岳地帯の",
-        "level": "C1"
-      },
-      {
-        "word": "commute",
-        "part_of_speech": "verb",
-        "meaning": "通学する、通勤する",
+        "meaning": "遠く離れた",
         "level": "B1"
       },
       {
-        "word": "comprehensive",
-        "part_of_speech": "adjective",
-        "meaning": "包括的な、網羅的な、総合的な",
+        "word": "rely on",
+        "part_of_speech": "phrasal verb",
+        "meaning": "依存する",
         "level": "B2"
+      },
+      {
+        "word": "solar",
+        "part_of_speech": "adjective",
+        "meaning": "太陽の、太陽光の",
+        "level": "B1"
       }
     ]
   },
   {
     "id": "SDG_008",
-    "situation_ja": "ジェンダー平等を実現しよう",
-    "situation_en": "Goal 5: Gender Equality",
+    "situation_ja": "フェアトレードと労働環境",
+    "situation_en": "Fairtrade and Working Conditions",
     "card_a": {
-      "text": "In many developing nations, girls miss school simply because they lack access to menstrual hygiene products.",
-      "text_ja": "多くの開発途上国では、女の子が生理用衛生用品を手に入れられないという理由だけで学校を休んでいます。"
+      "text": "Fast fashion companies often use factory workers by giving them very low pay and unsafe conditions.",
+      "text_ja": "ファストファッション企業は、非常に低い給料と安全でない環境で工場労働者を利用することがよくあります。"
     },
     "card_b": {
-      "text": "NGOs like Plan International build safe school toilets and distribute sanitary kits to keep girls in class.",
-      "text_ja": "プラン・インターナショナルなどのNGOは、女の子が通学を続けられるよう、安全な学校のトイレを建設し、サニタリー（衛生）キットを配布しています。"
+      "text": "The Fairtrade Foundation gives labels to brands that promise fair wages and safe working environments.",
+      "text_ja": "フェアトレード財団は、公正な賃金と安全な労働環境を約束するブランドにラベルを与えています。"
     },
     "vocabulary": [
       {
-        "word": "developing nation",
-        "part_of_speech": "noun",
-        "meaning": "開発途上国、発展途上国",
+        "word": "unsafe",
+        "part_of_speech": "adjective",
+        "meaning": "安全でない",
         "level": "B1"
       },
       {
-        "word": "lack",
+        "word": "fair",
+        "part_of_speech": "adjective",
+        "meaning": "公正な、公平な",
+        "level": "B1"
+      },
+      {
+        "word": "promise",
         "part_of_speech": "verb",
-        "meaning": "〜を欠いている、〜が不足している",
+        "meaning": "約束する",
         "level": "B1"
-      },
-      {
-        "word": "menstrual",
-        "part_of_speech": "adjective",
-        "meaning": "月経の、生理の",
-        "level": "C1"
-      },
-      {
-        "word": "hygiene",
-        "part_of_speech": "noun",
-        "meaning": "衛生、清潔さ",
-        "level": "B2"
-      },
-      {
-        "word": "sanitary",
-        "part_of_speech": "adjective",
-        "meaning": "衛生的な、生理用の",
-        "level": "B2"
       }
     ]
   },
   {
     "id": "SDG_009",
-    "situation_ja": "安全な水とトイレを世界中に (災害支援)",
-    "situation_en": "Goal 6: Clean Water and Sanitation (Disaster Relief)",
+    "situation_ja": "山間部の教育格差",
+    "situation_en": "Education Gap in Mountain Areas",
     "card_a": {
-      "text": "Contaminated drinking water causes outbreaks of deadly diseases like cholera in disaster-hit regions.",
-      "text_ja": "被災地では、汚染された飲料水がコレラのような致命的な病気の集団発生（アウトブレイク）を引き起こします。"
+      "text": "It is difficult to commute to high schools or universities for students living in mountain areas.",
+      "text_ja": "山岳地域に住む学生にとって、高校や大学に通学することは困難です。"
     },
     "card_b": {
-      "text": "WaterAid installs bio-sand filters and deep-water wells to provide sustainable, clean water sources.",
-      "text_ja": "ウォーターエイド（WaterAid）は、持続可能で清潔な水源を提供するために、生物砂ろ過フィルターや深井戸を設置しています。"
+      "text": "Tech companies give out solar-powered tablets filled with offline video lectures to help them study.",
+      "text_ja": "テクノロジー企業は、彼らの学習を助けるために、オフラインのビデオ講義が入った太陽光発電のタブレットを配っています。"
     },
     "vocabulary": [
       {
-        "word": "contaminated",
-        "part_of_speech": "adjective",
-        "meaning": "汚染された",
-        "level": "C1"
-      },
-      {
-        "word": "outbreak",
-        "part_of_speech": "noun",
-        "meaning": "（病気などの）突発的発生、大流行",
+        "word": "commute",
+        "part_of_speech": "verb",
+        "meaning": "通学する、通勤する",
         "level": "B2"
       },
       {
-        "word": "cholera",
+        "word": "tablet",
         "part_of_speech": "noun",
-        "meaning": "コレラ",
-        "level": "C1"
+        "meaning": "タブレット端末",
+        "level": "B1"
       },
       {
-        "word": "sustainable",
+        "word": "offline",
         "part_of_speech": "adjective",
-        "meaning": "持続可能な",
-        "level": "B2"
+        "meaning": "オフラインの",
+        "level": "B1"
       }
     ]
   },
   {
     "id": "SDG_010",
-    "situation_ja": "安全な水とトイレを世界中に (節水灌漑)",
-    "situation_en": "Goal 6: Clean Water and Sanitation (Water Saving)",
+    "situation_ja": "出稼ぎ労働者の送金",
+    "situation_en": "Remittances of Migrant Workers",
     "card_a": {
-      "text": "Traditional agricultural irrigation wastes enormous amounts of freshwater through evaporation and runoff.",
-      "text_ja": "従来の農業用灌漑法は、蒸発や流出によって膨大な量の淡水を無駄にしています。"
+      "text": "Migrant workers pay very high fees when they send money back home to their families.",
+      "text_ja": "出稼ぎ労働者は、家族に仕送りをする際に非常に高い手数料を支払っています。"
     },
     "card_b": {
-      "text": "Agronomists recommend implementing 'drip irrigation' systems that deliver water directly to plant roots.",
-      "text_ja": "農学者は、植物の根元に直接水を届ける「点滴灌漑（ドリップ灌漑）」システムの導入を推奨しています。"
-    },
-    "vocabulary": [
-      {
-        "word": "agricultural",
-        "part_of_speech": "adjective",
-        "meaning": "農業の、農学の",
-        "level": "B2"
-      },
-      {
-        "word": "irrigation",
-        "part_of_speech": "noun",
-        "meaning": "灌漑（土地への給水）",
-        "level": "C1"
-      },
-      {
-        "word": "enormous",
-        "part_of_speech": "adjective",
-        "meaning": "莫大な、巨大な",
-        "level": "B2"
-      },
-      {
-        "word": "evaporation",
-        "part_of_speech": "noun",
-        "meaning": "蒸発",
-        "level": "C1"
-      },
-      {
-        "word": "runoff",
-        "part_of_speech": "noun",
-        "meaning": "（地表を流れる）雨水、流出水",
-        "level": "C1"
-      },
-      {
-        "word": "agronomist",
-        "part_of_speech": "noun",
-        "meaning": "農学者",
-        "level": "C2"
-      },
-      {
-        "word": "implement",
-        "part_of_speech": "verb",
-        "meaning": "〜を実行する、導入する",
-        "level": "B2"
-      }
-    ]
-  },
-  {
-    "id": "SDG_011",
-    "situation_ja": "エネルギーをみんなに そしてクリーンに (離島)",
-    "situation_en": "Goal 7: Affordable and Clean Energy (Islands)",
-    "card_a": {
-      "text": "Remote island nations rely heavily on expensive and highly polluting imported diesel for electricity.",
-      "text_ja": "遠く離れた島国は、電気を賄うために、高価で環境汚染の激しい輸入ディーゼル燃料に大きく依存しています。"
-    },
-    "card_b": {
-      "text": "The IRENA advises transitioning to localized solar microgrids combined with battery storage systems.",
-      "text_ja": "国際再生可能エネルギー機関（IRENA）は、蓄電池システムを組み合わせた地域限定の太陽光マイクログリッドへの移行を助言しています。"
-    },
-    "vocabulary": [
-      {
-        "word": "polluting",
-        "part_of_speech": "adjective",
-        "meaning": "環境を汚染する",
-        "level": "B2"
-      },
-      {
-        "word": "transition",
-        "part_of_speech": "verb",
-        "meaning": "移行する、移り変わる",
-        "level": "C1"
-      },
-      {
-        "word": "localized",
-        "part_of_speech": "adjective",
-        "meaning": "局所的な、特定の地域に限定された",
-        "level": "C1"
-      },
-      {
-        "word": "microgrid",
-        "part_of_speech": "noun",
-        "meaning": "マイクログリッド、小規模発電網",
-        "level": "C1"
-      }
-    ]
-  },
-  {
-    "id": "SDG_012",
-    "situation_ja": "エネルギーをみんなに そしてクリーンに (洋上風力)",
-    "situation_en": "Goal 7: Affordable and Clean Energy (Offshore Wind)",
-    "card_a": {
-      "text": "Offshore wind farms face challenges in deep ocean waters where standard turbines cannot be built.",
-      "text_ja": "洋上風力発電所は、標準的な風力タービンが建設できない深海エリアでの課題に直面しています。"
-    },
-    "card_b": {
-      "text": "Engineers are deploying innovative floating wind turbines tethered to the seabed to harness stronger ocean winds.",
-      "text_ja": "技術者たちは、より強い洋上の風を利用するために、海底に係留された革新的な「浮体式風力タービン」を展開しています。"
-    },
-    "vocabulary": [
-      {
-        "word": "offshore",
-        "part_of_speech": "adjective",
-        "meaning": "沖合の、海上の",
-        "level": "C1"
-      },
-      {
-        "word": "turbine",
-        "part_of_speech": "noun",
-        "meaning": "タービン、原動機",
-        "level": "C1"
-      },
-      {
-        "word": "deploy",
-        "part_of_speech": "verb",
-        "meaning": "（技術や軍隊を）配置する、展開する",
-        "level": "C1"
-      },
-      {
-        "word": "innovative",
-        "part_of_speech": "adjective",
-        "meaning": "革新的な",
-        "level": "B2"
-      },
-      {
-        "word": "tether",
-        "part_of_speech": "verb",
-        "meaning": "〜を（ロープなどで）繋ぎ留める、係留する",
-        "level": "C2"
-      },
-      {
-        "word": "seabed",
-        "part_of_speech": "noun",
-        "meaning": "海底",
-        "level": "C1"
-      },
-      {
-        "word": "harness",
-        "part_of_speech": "verb",
-        "meaning": "（自然の力を）利用する、動力化する",
-        "level": "C1"
-      }
-    ]
-  },
-  {
-    "id": "SDG_013",
-    "situation_ja": "働きがいも 経済成長も",
-    "situation_en": "Goal 8: Decent Work and Economic Growth",
-    "card_a": {
-      "text": "Fast fashion supply chains often exploit factory workers with extremely low wages and unsafe conditions.",
-      "text_ja": "ファストファッションのサプライチェーンは、極端な低賃金と危険な環境で工場の労働者を搾取することがよくあります。"
-    },
-    "card_b": {
-      "text": "The Fairtrade Foundation certifies brands that guarantee living wages and safe working environments.",
-      "text_ja": "フェアトレード財団は、生活を維持できる賃金と安全な労働環境を保証するブランドを認証しています。"
-    },
-    "vocabulary": [
-      {
-        "word": "exploit",
-        "part_of_speech": "verb",
-        "meaning": "〜を搾取する、不当に利用する",
-        "level": "B2"
-      },
-      {
-        "word": "certify",
-        "part_of_speech": "verb",
-        "meaning": "〜を認証する、証明する",
-        "level": "B2"
-      },
-      {
-        "word": "guarantee",
-        "part_of_speech": "verb",
-        "meaning": "〜を保証する、確約する",
-        "level": "B2"
-      }
-    ]
-  },
-  {
-    "id": "SDG_014",
-    "situation_ja": "産業と技術革新の基盤をつくろう",
-    "situation_en": "Goal 9: Industry, Innovation and Infrastructure",
-    "card_a": {
-      "text": "Traditional cement production is responsible for about 8% of global carbon dioxide emissions.",
-      "text_ja": "従来のセメント製造は、世界全体の二酸化炭素排出量の約8％の原因となっています。"
-    },
-    "card_b": {
-      "text": "Materials scientists are developing 'green concrete' that actually absorbs CO2 during the curing process.",
-      "text_ja": "材料科学者たちは、硬化（養生）プロセスの間に実際に二酸化炭素を吸収する「グリーンコンクリート」を開発しています。"
-    },
-    "vocabulary": [
-      {
-        "word": "cement",
-        "part_of_speech": "noun",
-        "meaning": "セメント",
-        "level": "B2"
-      },
-      {
-        "word": "emission",
-        "part_of_speech": "noun",
-        "meaning": "（ガスなどの）排出、放出",
-        "level": "B2"
-      },
-      {
-        "word": "absorb",
-        "part_of_speech": "verb",
-        "meaning": "〜を吸収する",
-        "level": "B2"
-      },
-      {
-        "word": "curing",
-        "part_of_speech": "noun",
-        "meaning": "（コンクリートなどの）硬化、養生",
-        "level": "C1"
-      }
-    ]
-  },
-  {
-    "id": "SDG_015",
-    "situation_ja": "人や国の不平等をなくそう",
-    "situation_en": "Goal 10: Reduced Inequalities",
-    "card_a": {
-      "text": "Migrant workers face exorbitant fees when sending money back home to their families.",
-      "text_ja": "移住労働者（出稼ぎ労働者）は、故郷の家族に送金する際、法外な手数料（料金）に直面しています。"
-    },
-    "card_b": {
-      "text": "The UN pushes to reduce remittance transaction costs to less than 3% to keep wealth in developing economies.",
-      "text_ja": "国連は、開発途上国の経済に富を留めるため、送金手数料（取引コスト）を3％未満に引き下げるよう働きかけています。"
+      "text": "The UN is trying to reduce transfer costs to less than 3% to keep more wealth in developing economies.",
+      "text_ja": "国連は、開発途上国に多くの富を残すため、送金手数料を3％未満に減らそうとしています。"
     },
     "vocabulary": [
       {
@@ -643,334 +316,538 @@
         "level": "B2"
       },
       {
-        "word": "exorbitant",
+        "word": "fee",
+        "part_of_speech": "noun",
+        "meaning": "手数料、料金",
+        "level": "B1"
+      },
+      {
+        "word": "transfer",
+        "part_of_speech": "noun",
+        "meaning": "送金、移転",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "SDG_011",
+    "situation_ja": "大都市の交通渋滞",
+    "situation_en": "Traffic Congestion in Megacities",
+    "card_a": {
+      "text": "Rapid population growth in big cities is leading to bad traffic jams and dirty air.",
+      "text_ja": "大都市での急速な人口増加は、ひどい交通渋滞と汚れた空気につながっています。"
+    },
+    "card_b": {
+      "text": "City planners emphasize building '15-minute cities' with good public transport and bike-sharing networks.",
+      "text_ja": "都市計画者は、良い公共交通機関や自転車シェアリングネットワークを備えた「15分都市」を作ることを強調しています。"
+    },
+    "vocabulary": [
+      {
+        "word": "rapid",
         "part_of_speech": "adjective",
-        "meaning": "（値段などが）法外な、高すぎる",
-        "level": "C1"
+        "meaning": "急速な",
+        "level": "B2"
       },
       {
-        "word": "remittance",
+        "word": "traffic jam",
         "part_of_speech": "noun",
-        "meaning": "送金、送金額",
-        "level": "C2"
+        "meaning": "交通渋滞",
+        "level": "B1"
       },
       {
-        "word": "transaction",
+        "word": "emphasize",
+        "part_of_speech": "verb",
+        "meaning": "強調する",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "SDG_012",
+    "situation_ja": "食品ロスの削減",
+    "situation_en": "Reducing Food Waste",
+    "card_a": {
+      "text": "Nearly one-third of all food produced globally is thrown away before it reaches consumers.",
+      "text_ja": "世界中で生産されるすべての食料のほぼ3分の1が、消費者に届く前に捨てられています。"
+    },
+    "card_b": {
+      "text": "The FAO asks for better food supply chains and encourages people to eat 'ugly' but perfectly fine vegetables.",
+      "text_ja": "FAO（国連食糧農業機関）は、より良い食料供給網を求め、「不格好」でも全く問題のない野菜を食べるよう人々に勧めています。"
+    },
+    "vocabulary": [
+      {
+        "word": "globally",
+        "part_of_speech": "adverb",
+        "meaning": "世界中で、全体的に",
+        "level": "B2"
+      },
+      {
+        "word": "consumer",
         "part_of_speech": "noun",
-        "meaning": "取引、処理",
+        "meaning": "消費者",
+        "level": "B2"
+      },
+      {
+        "word": "encourage",
+        "part_of_speech": "verb",
+        "meaning": "奨励する、促す",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "SDG_013",
+    "situation_ja": "気候変動への警告",
+    "situation_en": "Warnings on Climate Change",
+    "card_a": {
+      "text": "Global average temperatures are rising, leading to more frequent and intense heatwaves and floods.",
+      "text_ja": "世界の平均気温が上昇しており、より頻繁で激しい熱波や洪水を引き起こしています。"
+    },
+    "card_b": {
+      "text": "The IPCC strongly warns nations to reach zero greenhouse gas emissions by 2050 to limit warming.",
+      "text_ja": "IPCCは、温暖化を制限するために2050年までに温室効果ガスの排出をゼロにするよう各国に強く警告しています。"
+    },
+    "vocabulary": [
+      {
+        "word": "average",
+        "part_of_speech": "adjective",
+        "meaning": "平均の",
+        "level": "B1"
+      },
+      {
+        "word": "frequent",
+        "part_of_speech": "adjective",
+        "meaning": "頻繁な",
+        "level": "B1"
+      },
+      {
+        "word": "emission",
+        "part_of_speech": "noun",
+        "meaning": "排出",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "SDG_014",
+    "situation_ja": "乱獲とエコラベル",
+    "situation_en": "Overfishing and Eco-labels",
+    "card_a": {
+      "text": "Overfishing is rapidly reducing global fish populations, threatening the lives of coastal communities.",
+      "text_ja": "乱獲により世界の魚の個体数が急速に減少しており、沿岸地域の生活を脅かしています。"
+    },
+    "card_b": {
+      "text": "The MSC provides blue eco-labels to seafood caught using eco-friendly fishing practices.",
+      "text_ja": "MSC（海洋管理協議会）は、環境に優しい漁法で捕獲された海産物に青いエコラベルを提供しています。"
+    },
+    "vocabulary": [
+      {
+        "word": "reduce",
+        "part_of_speech": "verb",
+        "meaning": "減少させる",
+        "level": "B1"
+      },
+      {
+        "word": "threaten",
+        "part_of_speech": "verb",
+        "meaning": "脅かす",
+        "level": "B2"
+      },
+      {
+        "word": "coastal",
+        "part_of_speech": "adjective",
+        "meaning": "沿岸の",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "SDG_015",
+    "situation_ja": "アマゾンの森林伐採",
+    "situation_en": "Deforestation in the Amazon",
+    "card_a": {
+      "text": "Deforestation in the Amazon rainforest accelerates climate change by destroying important trees.",
+      "text_ja": "アマゾンの熱帯雨林における森林伐採は、重要な木々を破壊することで気候変動を加速させています。"
+    },
+    "card_b": {
+      "text": "The Rainforest Alliance promotes sustainable farming rules to stop illegal logging and protect nature.",
+      "text_ja": "レインフォレスト・アライアンスは、違法伐採を阻止し、自然を保護するために持続可能な農業のルールを推進しています。"
+    },
+    "vocabulary": [
+      {
+        "word": "accelerate",
+        "part_of_speech": "verb",
+        "meaning": "加速させる",
+        "level": "B2"
+      },
+      {
+        "word": "destroy",
+        "part_of_speech": "verb",
+        "meaning": "破壊する",
+        "level": "B1"
+      },
+      {
+        "word": "illegal",
+        "part_of_speech": "adjective",
+        "meaning": "違法な",
         "level": "B2"
       }
     ]
   },
   {
     "id": "SDG_016",
-    "situation_ja": "住み続けられるまちづくりを (都市計画)",
-    "situation_en": "Goal 11: Sustainable Cities and Communities (Planning)",
+    "situation_ja": "公的機関の汚職防止",
+    "situation_en": "Anti-Corruption in Public Offices",
     "card_a": {
-      "text": "Rapid urbanization in megacities is leading to severe traffic congestion and toxic air pollution.",
-      "text_ja": "巨大都市（メガシティ）における急速な都市化は、深刻な交通渋滞と有害な大気汚染を引き起こしています。"
+      "text": "Corruption and bribery in public offices steal billions of dollars from national development budgets.",
+      "text_ja": "公的機関における汚職や賄賂は、国家の開発予算から何十億ドルも盗み出しています。"
     },
     "card_b": {
-      "text": "Urban planners emphasize developing '15-minute cities' with expansive public transit and bike-sharing networks.",
-      "text_ja": "都市計画家は、広大な公共交通機関や自転車シェアリングのネットワークを備えた、生活が15分圏内で完結する「15分都市」の開発を強調しています。"
+      "text": "Transparency International publishes a report to hold governments responsible for their actions.",
+      "text_ja": "トランスペアレンシー・インターナショナルは、政府の行動に責任を持たせるための報告書を発表しています。"
     },
     "vocabulary": [
       {
-        "word": "urbanization",
+        "word": "corruption",
         "part_of_speech": "noun",
-        "meaning": "都市化",
-        "level": "C1"
-      },
-      {
-        "word": "megacity",
-        "part_of_speech": "noun",
-        "meaning": "巨大都市（人口1000万人以上の都市）",
-        "level": "C1"
-      },
-      {
-        "word": "congestion",
-        "part_of_speech": "noun",
-        "meaning": "（交通などの）渋滞、混雑",
-        "level": "C1"
-      },
-      {
-        "word": "toxic",
-        "part_of_speech": "adjective",
-        "meaning": "有害な、有毒な",
+        "meaning": "汚職、腐敗",
         "level": "B2"
       },
       {
-        "word": "emphasize",
-        "part_of_speech": "verb",
-        "meaning": "〜を強調する、重視する",
+        "word": "budget",
+        "part_of_speech": "noun",
+        "meaning": "予算",
         "level": "B2"
       },
       {
-        "word": "expansive",
+        "word": "responsible",
         "part_of_speech": "adjective",
-        "meaning": "広大な、拡張的な",
-        "level": "C1"
+        "meaning": "責任がある",
+        "level": "B2"
       }
     ]
   },
   {
     "id": "SDG_017",
-    "situation_ja": "住み続けられるまちづくりを (ヒートアイランド)",
-    "situation_en": "Goal 11: Sustainable Cities and Communities (Heat Island)",
+    "situation_ja": "気候データと技術支援",
+    "situation_en": "Climate Data and Tech Support",
     "card_a": {
-      "text": "Urban heat islands cause city temperatures to be significantly higher than surrounding rural areas.",
-      "text_ja": "ヒートアイランド現象により、都市の気温は周囲の農村地域よりも著しく高くなっています。"
+      "text": "Developing nations often lack the technical ability to accurately check climate data and disasters.",
+      "text_ja": "開発途上国は、気候データや災害を正確に確認する技術的能力が不足していることがよくあります。"
     },
     "card_b": {
-      "text": "City councils are implementing 'green roof' policies, covering buildings with vegetation to cool the air naturally.",
-      "text_ja": "市議会は、空気を自然に冷やすために建物を植物（植生）で覆う「屋上緑化」政策を導入しています。"
+      "text": "The UN partners with tech giants to provide satellite data and AI analysis to these countries.",
+      "text_ja": "国連は大手ハイテク企業と提携し、これらの国々に衛星データとAI分析を提供しています。"
     },
     "vocabulary": [
       {
-        "word": "council",
-        "part_of_speech": "noun",
-        "meaning": "議会、評議会",
+        "word": "lack",
+        "part_of_speech": "verb",
+        "meaning": "不足している",
+        "level": "B1"
+      },
+      {
+        "word": "accurately",
+        "part_of_speech": "adverb",
+        "meaning": "正確に",
         "level": "B2"
       },
       {
-        "word": "vegetation",
-        "part_of_speech": "noun",
-        "meaning": "植物、植生",
-        "level": "C1"
+        "word": "partner",
+        "part_of_speech": "verb",
+        "meaning": "提携する",
+        "level": "B2"
       }
     ]
   },
   {
     "id": "SDG_018",
-    "situation_ja": "つくる責任 つかう責任 (電子ゴミ)",
-    "situation_en": "Goal 12: Responsible Consumption and Production (E-waste)",
+    "situation_ja": "スマート農業の導入",
+    "situation_en": "Introducing Smart Farming",
     "card_a": {
-      "text": "Electronic waste (e-waste) is piling up rapidly, leaking toxic heavy metals into soil and groundwater.",
-      "text_ja": "電子機器のゴミ（Eウェスト）が急速に積み上がり、土壌や地下水に有害な重金属を漏出させています。"
+      "text": "Traditional farming methods are struggling to produce enough crops because of unpredictable rainfall.",
+      "text_ja": "予測できない降雨のせいで、従来の農法では十分な作物を生産するのに苦労しています。"
     },
     "card_b": {
-      "text": "The EU's 'Right to Repair' legislation forces tech companies to make devices easier to fix and recycle.",
-      "text_ja": "欧州連合（EU）の「修理する権利」の法律（立法）は、テック企業に対してデバイスを修理しやすく、リサイクルしやすくすることを義務付けています。"
+      "text": "Agricultural experts are introducing smart farming, using drones and soil sensors to optimize water use.",
+      "text_ja": "農業の専門家は、ドローンや土壌センサーを使って水の使用を最適化するスマート農業を導入しています。"
     },
     "vocabulary": [
       {
-        "word": "heavy metal",
-        "part_of_speech": "noun",
-        "meaning": "重金属",
+        "word": "struggle",
+        "part_of_speech": "verb",
+        "meaning": "苦労する、奮闘する",
         "level": "B2"
       },
       {
-        "word": "groundwater",
+        "word": "crop",
         "part_of_speech": "noun",
-        "meaning": "地下水",
-        "level": "C1"
+        "meaning": "作物",
+        "level": "B1"
       },
       {
-        "word": "legislation",
-        "part_of_speech": "noun",
-        "meaning": "法律、立法",
-        "level": "C1"
+        "word": "optimize",
+        "part_of_speech": "verb",
+        "meaning": "最適化する",
+        "level": "B2"
       }
     ]
   },
   {
     "id": "SDG_019",
-    "situation_ja": "つくる責任 つかう責任 (生分解プラ)",
-    "situation_en": "Goal 12: Responsible Consumption and Production (Biodegradable)",
+    "situation_ja": "農業用水の節約",
+    "situation_en": "Saving Agricultural Water",
     "card_a": {
-      "text": "Single-use plastic packaging for everyday groceries takes hundreds of years to decompose in landfills.",
-      "text_ja": "日々の食料品に使われる使い捨てのプラスチック包装は、埋立地で分解されるまでに何百年もかかります。"
+      "text": "Traditional farming wastes huge amounts of fresh water through evaporation and runoff.",
+      "text_ja": "従来の農業は、蒸発や流出によって膨大な量の淡水を無駄にしています。"
     },
     "card_b": {
-      "text": "Startups are inventing biodegradable packaging made from seaweed and mushroom mycelium (菌糸体).",
-      "text_ja": "スタートアップ企業は、海藻やキノコの菌糸体（マイセリウム）で作られた、自然に分解される（生分解性の）包装を開発しています。"
+      "text": "Experts recommend using drip irrigation systems that deliver water directly to plant roots.",
+      "text_ja": "専門家は、植物の根に直接水を届ける点滴灌漑システムの使用を推奨しています。"
     },
     "vocabulary": [
       {
-        "word": "decompose",
+        "word": "waste",
         "part_of_speech": "verb",
-        "meaning": "分解する、腐敗する",
-        "level": "C1"
+        "meaning": "無駄にする",
+        "level": "B1"
       },
       {
-        "word": "landfill",
-        "part_of_speech": "noun",
-        "meaning": "ゴミ埋立地",
-        "level": "B2"
-      },
-      {
-        "word": "biodegradable",
+        "word": "huge",
         "part_of_speech": "adjective",
-        "meaning": "生分解性の、自然に分解される",
-        "level": "C1"
+        "meaning": "莫大な、巨大な",
+        "level": "B1"
       },
       {
-        "word": "mycelium",
-        "part_of_speech": "noun",
-        "meaning": "菌糸体（キノコなどの根にあたる組織）",
-        "level": "C2"
+        "word": "deliver",
+        "part_of_speech": "verb",
+        "meaning": "届ける、配達する",
+        "level": "B1"
       }
     ]
   },
   {
     "id": "SDG_020",
-    "situation_ja": "気候変動に具体的な対策を (国際目標)",
-    "situation_en": "Goal 13: Climate Action (Global Targets)",
+    "situation_ja": "浮体式洋上風力発電",
+    "situation_en": "Floating Offshore Wind Farms",
     "card_a": {
-      "text": "Global average temperatures are rising, leading to more frequent and intense heatwaves and floods.",
-      "text_ja": "世界平均気温が上昇しており、より頻繁で激しい熱波や洪水を引き起こしています。"
+      "text": "Offshore wind farms face problems in deep ocean waters where standard turbines cannot be built.",
+      "text_ja": "洋上風力発電所は、標準的なタービンが建設できない深海域で問題に直面しています。"
     },
     "card_b": {
-      "text": "The IPCC strongly urges nations to reach net-zero greenhouse gas emissions by 2050 to limit warming to 1.5°C.",
-      "text_ja": "気候変動に関する政府間パネル（IPCC）は、温暖化を1.5℃に抑えるため、2050年までに温室効果ガスの排出量を実質ゼロ（ネットゼロ）にするよう国々に強く促しています。"
+      "text": "Engineers are designing floating wind turbines tied to the seabed to catch stronger ocean winds.",
+      "text_ja": "エンジニアたちは、より強い海風を捉えるために海底に結び付けられた浮体式風力タービンを設計しています。"
     },
     "vocabulary": [
       {
-        "word": "intense",
+        "word": "standard",
         "part_of_speech": "adjective",
-        "meaning": "激しい、強烈な",
+        "meaning": "標準の、一般的な",
         "level": "B2"
       },
       {
-        "word": "heatwave",
+        "word": "engineer",
         "part_of_speech": "noun",
-        "meaning": "熱波",
-        "level": "B2"
+        "meaning": "エンジニア、技術者",
+        "level": "B1"
       },
       {
-        "word": "urge",
-        "part_of_speech": "verb",
-        "meaning": "〜に強く促す、要請する",
-        "level": "B2"
-      },
-      {
-        "word": "greenhouse gas",
-        "part_of_speech": "noun",
-        "meaning": "温室効果ガス",
+        "word": "floating",
+        "part_of_speech": "adjective",
+        "meaning": "浮いている、浮体式の",
         "level": "B2"
       }
     ]
   },
   {
     "id": "SDG_021",
-    "situation_ja": "気候変動に具体的な対策を (森林保護)",
-    "situation_en": "Goal 13: Climate Action (Forest Protection)",
+    "situation_ja": "グリーンコンクリートの開発",
+    "situation_en": "Developing Green Concrete",
     "card_a": {
-      "text": "Deforestation in the Amazon rainforest accelerates climate change by destroying vital carbon sinks.",
-      "text_ja": "アマゾンの熱帯雨林における森林伐採は、重要な炭素吸収源（森林など）を破壊することで気候変動を加速させています。"
+      "text": "Traditional cement production is responsible for about 8% of global carbon dioxide emissions.",
+      "text_ja": "従来のセメント製造は、世界全体の二酸化炭素排出量の約8％の原因となっています。"
     },
     "card_b": {
-      "text": "The Rainforest Alliance promotes sustainable agriculture certifications to stop illegal logging and protect biodiversity.",
-      "text_ja": "レインフォレスト・アライアンスは、違法伐採を阻止し、生物多様性を守るために、持続可能な農業認証を推進しています。"
+      "text": "Scientists are developing green concrete that actually takes in CO2 during the drying process.",
+      "text_ja": "科学者たちは、乾燥過程で実際に二酸化炭素を取り込むグリーンコンクリートを開発しています。"
     },
     "vocabulary": [
       {
-        "word": "deforestation",
-        "part_of_speech": "noun",
-        "meaning": "森林伐採",
-        "level": "C1"
-      },
-      {
-        "word": "accelerate",
-        "part_of_speech": "verb",
-        "meaning": "〜を加速させる、早める",
-        "level": "C1"
-      },
-      {
-        "word": "vital",
+        "word": "responsible",
         "part_of_speech": "adjective",
-        "meaning": "極めて重要な、不可欠な、生命の",
-        "level": "B2"
+        "meaning": "原因となっている、責任がある",
+        "level": "B1"
       },
       {
-        "word": "illegal logging",
+        "word": "process",
         "part_of_speech": "noun",
-        "meaning": "違法伐採",
-        "level": "C1"
+        "meaning": "過程、プロセス",
+        "level": "B1"
       },
       {
-        "word": "biodiversity",
-        "part_of_speech": "noun",
-        "meaning": "生物多様性",
-        "level": "C1"
+        "word": "develop",
+        "part_of_speech": "verb",
+        "meaning": "開発する",
+        "level": "B1"
       }
     ]
   },
   {
     "id": "SDG_022",
-    "situation_ja": "海の豊かさを守ろう (海洋プラ)",
-    "situation_en": "Goal 14: Life Below Water (Ocean Plastic)",
+    "situation_ja": "都市のヒートアイランド対策",
+    "situation_en": "Urban Heat Island Countermeasures",
     "card_a": {
-      "text": "Millions of tons of plastic waste are currently swirling in the Great Pacific Garbage Patch.",
-      "text_ja": "現在、何百万トンものプラスチックゴミが「太平洋ゴミベルト」で渦を巻いています。"
+      "text": "The heat island effect causes city temperatures to be significantly higher than surrounding rural areas.",
+      "text_ja": "ヒートアイランド現象により、都市の気温は周囲の農村地域よりも著しく高くなります。"
     },
     "card_b": {
-      "text": "The Ocean Cleanup project deploys massive floating barriers to gather and extract marine plastics.",
-      "text_ja": "「オーシャン・クリーンアップ」プロジェクトは、海洋プラスチックを集めて抽出（回収）するために、巨大な浮体式バリケードを展開しています。"
+      "text": "City councils are making green roof rules, covering buildings with plants to cool the air naturally.",
+      "text_ja": "市議会は屋上緑化のルールを作り、植物で建物を覆って自然に空気を冷やしています。"
     },
     "vocabulary": [
       {
-        "word": "swirl",
-        "part_of_speech": "verb",
-        "meaning": "渦を巻く、ぐるぐる回る",
-        "level": "C1"
-      },
-      {
-        "word": "barrier",
-        "part_of_speech": "noun",
-        "meaning": "防壁、障壁、バリケード",
+        "word": "significantly",
+        "part_of_speech": "adverb",
+        "meaning": "著しく、かなり",
         "level": "B2"
       },
       {
-        "word": "extract",
-        "part_of_speech": "verb",
-        "meaning": "〜を抽出する、取り出す、回収する",
-        "level": "B2"
-      },
-      {
-        "word": "marine",
+        "word": "surrounding",
         "part_of_speech": "adjective",
-        "meaning": "海の、海洋の",
+        "meaning": "周囲の",
+        "level": "B2"
+      },
+      {
+        "word": "council",
+        "part_of_speech": "noun",
+        "meaning": "議会、評議会",
         "level": "B2"
       }
     ]
   },
   {
     "id": "SDG_023",
-    "situation_ja": "海の豊かさを守ろう (サンゴ礁)",
-    "situation_en": "Goal 14: Life Below Water (Coral Reefs)",
+    "situation_ja": "電子ゴミ（e-waste）対策",
+    "situation_en": "Electronic Waste Countermeasures",
     "card_a": {
-      "text": "Ocean acidification and warming waters are causing widespread coral bleaching in the Great Barrier Reef.",
-      "text_ja": "海洋酸性化と海水温の上昇により、グレートバリアリーフでは広範囲にわたるサンゴの白化現象が発生しています。"
+      "text": "Electronic waste is piling up rapidly, leaking toxic metals into soil and groundwater.",
+      "text_ja": "電子機器のゴミが急速に積み上がり、有毒な金属を土壌や地下水に漏らしています。"
     },
     "card_b": {
-      "text": "Marine biologists are breeding heat-resistant 'super corals' in laboratories to restore dying reef ecosystems.",
-      "text_ja": "海洋生物学者たちは、死にゆくリーフ（サンゴ礁）の生態系を修復（再生）するために、研究所で熱に強い「スーパーサンゴ」を繁殖させています。"
+      "text": "The EU's new laws force tech companies to make devices easier to fix and recycle.",
+      "text_ja": "EUの新しい法律は、テクノロジー企業にデバイスを修理やリサイクルしやすくすることを義務付けています。"
     },
     "vocabulary": [
       {
-        "word": "acidification",
-        "part_of_speech": "noun",
-        "meaning": "酸性化",
-        "level": "C1"
-      },
-      {
-        "word": "bleaching",
-        "part_of_speech": "noun",
-        "meaning": "白化（現象）、漂白",
-        "level": "C1"
-      },
-      {
-        "word": "breed",
-        "part_of_speech": "verb",
-        "meaning": "〜を繁殖させる、育てる",
+        "word": "rapidly",
+        "part_of_speech": "adverb",
+        "meaning": "急速に",
         "level": "B2"
       },
       {
-        "word": "restore",
-        "part_of_speech": "verb",
-        "meaning": "〜を修復する、復元する、回復させる",
+        "word": "toxic",
+        "part_of_speech": "adjective",
+        "meaning": "有毒な",
         "level": "B2"
+      },
+      {
+        "word": "recycle",
+        "part_of_speech": "verb",
+        "meaning": "リサイクルする",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "SDG_024",
+    "situation_ja": "脱プラスチック包装",
+    "situation_en": "Plastic-Free Packaging",
+    "card_a": {
+      "text": "Single-use plastic packaging for everyday groceries takes hundreds of years to break down in landfills.",
+      "text_ja": "日常の食料品に使われる使い捨てのプラスチック包装は、埋め立て地で分解されるまでに何百年もかかります。"
+    },
+    "card_b": {
+      "text": "Startups are inventing biodegradable packaging made from seaweed and mushroom roots.",
+      "text_ja": "スタートアップ企業は、海藻やキノコの根から作られた生分解性の包装を発明しています。"
+    },
+    "vocabulary": [
+      {
+        "word": "single-use",
+        "part_of_speech": "adjective",
+        "meaning": "使い捨ての",
+        "level": "B2"
+      },
+      {
+        "word": "invent",
+        "part_of_speech": "verb",
+        "meaning": "発明する",
+        "level": "B1"
+      },
+      {
+        "word": "packaging",
+        "part_of_speech": "noun",
+        "meaning": "包装",
+        "level": "B2"
+      }
+    ]
+  },
+  {
+    "id": "SDG_025",
+    "situation_ja": "海洋プラスチックの回収",
+    "situation_en": "Removing Marine Plastic",
+    "card_a": {
+      "text": "Millions of tons of plastic waste are currently floating in the Great Pacific Garbage Patch.",
+      "text_ja": "現在、何百万トンものプラスチックごみが太平洋ゴミベルトに浮遊しています。"
+    },
+    "card_b": {
+      "text": "The Ocean Cleanup project uses massive floating barriers to gather and remove marine plastics.",
+      "text_ja": "オーシャン・クリーンアップ・プロジェクトは、海洋プラスチックを集めて取り除くために巨大な浮遊バリアを使用しています。"
+    },
+    "vocabulary": [
+      {
+        "word": "currently",
+        "part_of_speech": "adverb",
+        "meaning": "現在は",
+        "level": "B1"
+      },
+      {
+        "word": "massive",
+        "part_of_speech": "adjective",
+        "meaning": "巨大な、大規模な",
+        "level": "B2"
+      },
+      {
+        "word": "remove",
+        "part_of_speech": "verb",
+        "meaning": "取り除く",
+        "level": "B1"
+      }
+    ]
+  },
+  {
+    "id": "SDG_026",
+    "situation_ja": "サンゴ礁の保護と再生",
+    "situation_en": "Protecting and Restoring Coral Reefs",
+    "card_a": {
+      "text": "Ocean acidification and warming waters are causing widespread coral bleaching in the Great Barrier Reef.",
+      "text_ja": "海洋酸性化と海水温の上昇により、グレート・バリア・リーフでは広範囲にわたるサンゴの白化現象が発生しています。"
+    },
+    "card_b": {
+      "text": "Marine biologists are breeding heat-resistant super corals in labs to restore dying reef ecosystems.",
+      "text_ja": "海洋生物学者は、死にかけているサンゴ礁の生態系を回復させるため、研究所で熱に強いスーパーサンゴを繁殖させています。"
+    },
+    "vocabulary": [
+      {
+        "word": "widespread",
+        "part_of_speech": "adjective",
+        "meaning": "広範囲にわたる",
+        "level": "B2"
+      },
+      {
+        "word": "laboratory",
+        "part_of_speech": "noun",
+        "meaning": "研究所、実験室",
+        "level": "B1"
       },
       {
         "word": "ecosystem",
@@ -981,98 +858,29 @@
     ]
   },
   {
-    "id": "SDG_024",
-    "situation_ja": "海の豊かさを守ろう (持続可能漁業)",
-    "situation_en": "Goal 14: Life Below Water (Sustainable Fishing)",
+    "id": "SDG_027",
+    "situation_ja": "絶滅危惧種の保護",
+    "situation_en": "Protecting Endangered Species",
     "card_a": {
-      "text": "Overfishing is rapidly depleting global fish stocks, threatening the livelihoods of coastal communities.",
-      "text_ja": "過剰な漁獲（獲りすぎ）により、世界の水産資源が急速に枯渇し、沿岸地域の生活（生計）が脅かされています。"
+      "text": "Illegal hunting and habitat loss have pushed the Black Rhino to the edge of extinction in Africa.",
+      "text_ja": "違法な狩猟と生息地の喪失により、アフリカのクロサイは絶滅の危機に瀕しています。"
     },
     "card_b": {
-      "text": "The MSC (Marine Stewardship Council) provides blue eco-labels to seafood caught using sustainable fishing practices.",
-      "text_ja": "海洋管理協議会（MSC）は、持続可能な漁業の方法で獲られた海産物に青い「エコラベル」を提供しています。"
+      "text": "Wildlife organizations use anti-poaching teams equipped with drones to protect endangered animals at night.",
+      "text_ja": "野生動物保護団体は、夜間に絶滅危惧動物を保護するため、ドローンを装備した密猟防止チームを利用しています。"
     },
     "vocabulary": [
       {
-        "word": "overfishing",
-        "part_of_speech": "noun",
-        "meaning": "乱獲、過剰漁獲",
-        "level": "C1"
-      },
-      {
-        "word": "deplete",
-        "part_of_speech": "verb",
-        "meaning": "〜を枯渇させる、激減させる",
-        "level": "C1"
-      },
-      {
-        "word": "stock",
-        "part_of_speech": "noun",
-        "meaning": "蓄え、資源、株",
-        "level": "B2"
-      },
-      {
-        "word": "livelihood",
-        "part_of_speech": "noun",
-        "meaning": "生計、暮らし、生活手段",
-        "level": "C1"
-      },
-      {
-        "word": "coastal",
+        "word": "illegal",
         "part_of_speech": "adjective",
-        "meaning": "沿岸の、海岸に近い",
+        "meaning": "違法な",
         "level": "B2"
-      }
-    ]
-  },
-  {
-    "id": "SDG_025",
-    "situation_ja": "陸の豊かさも守ろう (密猟対策)",
-    "situation_en": "Goal 15: Life on Land (Anti-Poaching)",
-    "card_a": {
-      "text": "Poaching and habitat loss have pushed the Black Rhino to the brink of extinction in Africa.",
-      "text_ja": "密猟と生息地の喪失により、アフリカのクロサイは絶滅の危機（寸前）に追い込まれています。"
-    },
-    "card_b": {
-      "text": "The WWF uses anti-poaching patrols equipped with thermal drones to protect endangered wildlife at night.",
-      "text_ja": "世界自然保護基金（WWF）は、夜間に絶滅危惧種の野生動物を守るため、熱感知ドローンを備えた密猟防止パトロール隊を運用しています。"
-    },
-    "vocabulary": [
-      {
-        "word": "poaching",
-        "part_of_speech": "noun",
-        "meaning": "密猟",
-        "level": "C1"
       },
       {
         "word": "habitat",
         "part_of_speech": "noun",
-        "meaning": "（動植物の）生息地、生息環境",
+        "meaning": "生息地",
         "level": "B2"
-      },
-      {
-        "word": "brink",
-        "part_of_speech": "noun",
-        "meaning": "（破滅などの）寸前、間際",
-        "level": "C1"
-      },
-      {
-        "word": "extinction",
-        "part_of_speech": "noun",
-        "meaning": "絶滅",
-        "level": "B2"
-      },
-      {
-        "word": "equip",
-        "part_of_speech": "verb",
-        "meaning": "〜を備え付ける、装備させる",
-        "level": "B2"
-      },
-      {
-        "word": "thermal",
-        "part_of_speech": "adjective",
-        "meaning": "熱の、熱感知の、温熱の",
-        "level": "C1"
       },
       {
         "word": "endangered",
@@ -1083,227 +891,101 @@
     ]
   },
   {
-    "id": "SDG_026",
-    "situation_ja": "陸の豊かさも守ろう (砂漠化防止)",
-    "situation_en": "Goal 15: Life on Land (Desertification)",
-    "card_a": {
-      "text": "Desertification is destroying fertile agricultural land across the Sahel region in Africa.",
-      "text_ja": "砂漠化により、アフリカのサヘル地域全域で肥沃な農業用地が破壊されています。"
-    },
-    "card_b": {
-      "text": "The 'Great Green Wall' initiative aims to plant an 8,000-kilometer barrier of trees to stop the Sahara from expanding.",
-      "text_ja": "「緑の長城」計画は、サハラ砂漠の拡大を阻止するために、8,000キロメートルに及ぶ樹木の壁（障壁）を植えることを目指しています。"
-    },
-    "vocabulary": [
-      {
-        "word": "desertification",
-        "part_of_speech": "noun",
-        "meaning": "砂漠化",
-        "level": "C1"
-      },
-      {
-        "word": "fertile",
-        "part_of_speech": "adjective",
-        "meaning": "（土地が）肥沃な、豊かな",
-        "level": "B2"
-      },
-      {
-        "word": "initiative",
-        "part_of_speech": "noun",
-        "meaning": "構想、計画、主導権",
-        "level": "B2"
-      }
-    ]
-  },
-  {
-    "id": "SDG_027",
-    "situation_ja": "陸の豊かさも守ろう (外来種対策)",
-    "situation_en": "Goal 15: Life on Land (Invasive Species)",
-    "card_a": {
-      "text": "Invasive alien species are destroying native ecosystems and causing local plants and animals to die off.",
-      "text_ja": "侵略的な外来種が、在来（固有）の生態系を破壊し、地元の動植物を死滅させています。"
-    },
-    "card_b": {
-      "text": "Conservationists conduct controlled removal programs and restore native flora to rebalance the delicate habitat.",
-      "text_ja": "自然保護活動家たちは、繊細な生息環境のバランスを取り戻すために、計画的な駆除プログラムを実施し、在来植物（植物相）を再生させています。"
-    },
-    "vocabulary": [
-      {
-        "word": "invasive",
-        "part_of_speech": "adjective",
-        "meaning": "侵略的な、侵入性の",
-        "level": "C1"
-      },
-      {
-        "word": "alien species",
-        "part_of_speech": "noun",
-        "meaning": "外来種",
-        "level": "B2"
-      },
-      {
-        "word": "native",
-        "part_of_speech": "adjective",
-        "meaning": "在来の、固有の、生まれ故郷の",
-        "level": "B2"
-      },
-      {
-        "word": "conduct",
-        "part_of_speech": "verb",
-        "meaning": "〜を実施する、行う",
-        "level": "B2"
-      },
-      {
-        "word": "flora",
-        "part_of_speech": "noun",
-        "meaning": "（特定の地域の）植物相、植物群",
-        "level": "C1"
-      },
-      {
-        "word": "delicate",
-        "part_of_speech": "adjective",
-        "meaning": "繊細な、壊れやすい",
-        "level": "B2"
-      }
-    ]
-  },
-  {
     "id": "SDG_028",
-    "situation_ja": "平和と公正をすべての人に",
-    "situation_en": "Goal 16: Peace, Justice and Strong Institutions",
+    "situation_ja": "砂漠化の進行阻止",
+    "situation_en": "Stopping Desertification",
     "card_a": {
-      "text": "Corruption and bribery in public sectors drain billions of dollars from national development budgets.",
-      "text_ja": "公共部門における汚職や贈収賄は、国家の開発予算から何十億ドルもの資金を流出させて（消耗させて）います。"
+      "text": "Desertification is destroying fertile farm land across the Sahel region in Africa.",
+      "text_ja": "砂漠化により、アフリカのサヘル地域全体で肥沃な農地が破壊されています。"
     },
     "card_b": {
-      "text": "Transparency International publishes the Corruption Perceptions Index to hold governments accountable.",
-      "text_ja": "トランスペアレンシー・インターナショナルは、政府の責任（説明責任）を追及するために「汚職認識指数」を公表しています。"
+      "text": "The Great Green Wall initiative aims to plant an 8,000-kilometer barrier of trees to stop the Sahara from expanding.",
+      "text_ja": "「緑の長城」構想は、サハラ砂漠の拡大を阻止するために、8,000キロメートルの木の壁を植えることを目指しています。"
     },
     "vocabulary": [
       {
-        "word": "corruption",
-        "part_of_speech": "noun",
-        "meaning": "汚職、腐敗",
-        "level": "B2"
-      },
-      {
-        "word": "bribery",
-        "part_of_speech": "noun",
-        "meaning": "贈収賄、わいろを贈ること",
-        "level": "C1"
-      },
-      {
-        "word": "drain",
+        "word": "destroy",
         "part_of_speech": "verb",
-        "meaning": "〜を流出させる、消耗させる、排出する",
-        "level": "B2"
+        "meaning": "破壊する",
+        "level": "B1"
       },
       {
-        "word": "budget",
-        "part_of_speech": "noun",
-        "meaning": "予算",
-        "level": "B2"
+        "word": "aim",
+        "part_of_speech": "verb",
+        "meaning": "目指す、目的とする",
+        "level": "B1"
       },
       {
-        "word": "perception",
-        "part_of_speech": "noun",
-        "meaning": "認識、知覚、見方",
-        "level": "B2"
-      },
-      {
-        "word": "accountable",
-        "part_of_speech": "adjective",
-        "meaning": "説明責任がある、責任を負うべき",
-        "level": "C1"
+        "word": "expand",
+        "part_of_speech": "verb",
+        "meaning": "拡大する",
+        "level": "B1"
       }
     ]
   },
   {
     "id": "SDG_029",
-    "situation_ja": "パートナーシップで目標を達成しよう",
-    "situation_en": "Goal 17: Partnerships for the Goals",
+    "situation_ja": "外来種問題と生態系保全",
+    "situation_en": "Invasive Species and Ecosystem Conservation",
     "card_a": {
-      "text": "Developing nations often lack the technological capacity to accurately monitor climate data and disasters.",
-      "text_ja": "開発途上国は、気候データや災害を正確に監視（モニター）するための技術的能力が不足していることがよくあります。"
+      "text": "Invasive alien species are destroying native ecosystems and causing local plants and animals to die out.",
+      "text_ja": "侵略的な外来種が、在来の生態系を破壊し、地元の動植物を絶滅させています。"
     },
     "card_b": {
-      "text": "The UN Environment Programme partners with tech giants to provide satellite data and AI-driven analysis to these countries.",
-      "text_ja": "国連環境計画（UNEP）は、これらの国々に人工衛星データやAI駆動の分析技術を提供するために、大手テック企業と提携しています。"
+      "text": "Conservationists conduct careful removal programs and restore native plants to fix the delicate balance.",
+      "text_ja": "保護活動家は慎重な駆除プログラムを実施し、微妙なバランスを修正するために在来植物を回復させています。"
     },
     "vocabulary": [
       {
-        "word": "capacity",
-        "part_of_speech": "noun",
-        "meaning": "能力、容量、収容人数",
-        "level": "B2"
-      },
-      {
-        "word": "accurately",
-        "part_of_speech": "adverb",
-        "meaning": "正確に",
-        "level": "B2"
-      },
-      {
-        "word": "monitor",
-        "part_of_speech": "verb",
-        "meaning": "〜を監視する、継続的に観察する",
-        "level": "B2"
-      },
-      {
-        "word": "satellite",
-        "part_of_speech": "noun",
-        "meaning": "人工衛星",
-        "level": "B2"
-      },
-      {
-        "word": "driven",
+        "word": "native",
         "part_of_speech": "adjective",
-        "meaning": "〜に駆動された、〜主導の",
+        "meaning": "在来の、本来その土地の",
+        "level": "B2"
+      },
+      {
+        "word": "conduct",
+        "part_of_speech": "verb",
+        "meaning": "実施する、行う",
+        "level": "B2"
+      },
+      {
+        "word": "delicate",
+        "part_of_speech": "adjective",
+        "meaning": "微妙な、繊細な",
         "level": "B2"
       }
     ]
   },
   {
     "id": "SDG_030",
-    "situation_ja": "飢餓をゼロに / テクノロジー (精密農業)",
-    "situation_en": "Goal 2 / 9: Precision Agriculture",
+    "situation_ja": "抗生物質の過剰使用問題",
+    "situation_en": "Overuse of Antibiotics",
     "card_a": {
-      "text": "Traditional farming methods are struggling to produce enough crop yields due to unpredictable rainfall.",
-      "text_ja": "従来の農業手法は、予測不可能な降雨のせいで、十分な作物の収穫高（収量）を上げるのに苦労しています。"
+      "text": "The overuse of antibiotics in livestock farming is creating deadly bacteria that resist medicine.",
+      "text_ja": "畜産業における抗生物質の過剰使用が、薬に抵抗する致命的な細菌を生み出しています。"
     },
     "card_b": {
-      "text": "Agronomists are introducing precision agriculture, using drones and soil sensors to optimize water and fertilizer use.",
-      "text_ja": "農学者たちは、水や肥料の使用を最適化するために、ドローンや土壌センサーを用いた「精密農業」を導入しています。"
+      "text": "Scientists strictly advise limiting the use of important human medicines in healthy farm animals.",
+      "text_ja": "科学者たちは、健康な家畜に対する重要な人間用医薬品の使用を制限するよう厳しく忠告しています。"
     },
     "vocabulary": [
       {
-        "word": "yield",
-        "part_of_speech": "noun",
-        "meaning": "収穫高、産出量、利回り",
-        "level": "B2"
-      },
-      {
-        "word": "unpredictable",
+        "word": "deadly",
         "part_of_speech": "adjective",
-        "meaning": "予測不可能な、気まぐれな",
+        "meaning": "致命的な",
         "level": "B2"
       },
       {
-        "word": "precision",
-        "part_of_speech": "noun",
-        "meaning": "精密さ、正確さ",
-        "level": "B2"
-      },
-      {
-        "word": "optimize",
+        "word": "resist",
         "part_of_speech": "verb",
-        "meaning": "〜を最適化する、最も効率的にする",
-        "level": "C1"
+        "meaning": "抵抗する、効かない",
+        "level": "B2"
       },
       {
-        "word": "fertilizer",
-        "part_of_speech": "noun",
-        "meaning": "肥料",
-        "level": "B2"
+        "word": "limit",
+        "part_of_speech": "verb",
+        "meaning": "制限する",
+        "level": "B1"
       }
     ]
   }

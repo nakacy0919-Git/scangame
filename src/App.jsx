@@ -6,6 +6,7 @@ import './App.css';
 
 import { useBGM } from './hooks/useBGM';
 import SettingsModal from './components/SettingsModal';
+import LearningMode from './components/LearningMode'; 
 
 import cafeData from './data/cafe.json';
 import sdgsData from './data/sdgs.json';
@@ -13,7 +14,7 @@ import hotelData from './data/hotel.json';
 import airportData from './data/airport.json';
 import zooData from './data/zoo.json';
 import helpData from './data/help.json'; 
-import worldData from './data/world.json'; // ★変更点1：Worldデータを読み込み
+import worldData from './data/world.json'; 
 
 const GAME_DATA = {
   cafe: { title: 'Scannect : Cafe', codes: cafeData },
@@ -22,7 +23,7 @@ const GAME_DATA = {
   airport: { title: 'Scannect : Airport', codes: airportData },
   zoo: { title: 'Scannect : Zoo', codes: zooData },
   help: { title: 'Scannect : Help', codes: helpData },
-  world: { title: 'Scannect : World', codes: worldData } // ★変更点2：システムに登録
+  world: { title: 'Scannect : World', codes: worldData }
 };
 
 const ALL_TEAMS = ['A', 'B', 'C', 'D'];
@@ -50,6 +51,9 @@ function App() {
 
   const [selectedMinutes, setSelectedMinutes] = useState(5); 
   const [bgmVolume, setBgmVolume] = useState(0.3);
+  
+  // ★ 追加：全体のミュート状態
+  const [isMuted, setIsMuted] = useState(false);
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [activeQrTab, setActiveQrTab] = useState('A'); 
@@ -70,7 +74,8 @@ function App() {
   const scannerInstanceRef = useRef(null); 
   const isProcessingScanRef = useRef(false);
 
-  useBGM(appMode, gameStatus, bgmVolume);
+  // ★ 変更：isMutedを渡す
+  useBGM(appMode, gameStatus, bgmVolume, isMuted);
 
   useEffect(() => {
     latestStateRef.current = { status: gameStatus, theme: activeTheme, teamCount };
@@ -178,9 +183,11 @@ function App() {
       if (scannedCodesRef.current[team].includes(scannedCode)) {
         setMessage(`⚠️ ALREADY SCANNED: Team ${team}`);
         setIsSuccess(false);
-        incorrectSound.volume = bgmVolume; 
-        incorrectSound.currentTime = 0;
-        incorrectSound.play().catch(e => console.log(e));
+        if (!isMuted) { // ★ミュート判定
+          incorrectSound.volume = bgmVolume; 
+          incorrectSound.currentTime = 0;
+          incorrectSound.play().catch(e => console.log(e));
+        }
         setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
         return; 
       }
@@ -199,17 +206,21 @@ function App() {
 
       setMessage(`✅ MATCH: Team ${team}${isComboBonus ? ' 🌟 COMBO BONUS +2!' : ''}`);
       setIsSuccess(true);
-      correctSound.volume = bgmVolume;
-      correctSound.currentTime = 0;
-      correctSound.play().catch(e => console.log(e));
+      if (!isMuted) { // ★ミュート判定
+        correctSound.volume = bgmVolume;
+        correctSound.currentTime = 0;
+        correctSound.play().catch(e => console.log(e));
+      }
     } else {
       combosRef.current[team] = 0;
       setCombos(prev => ({ ...prev, [team]: 0 }));
       setMessage(`⚠️ MISS: Team ${team}`);
       setIsSuccess(false);
-      incorrectSound.volume = bgmVolume;
-      incorrectSound.currentTime = 0;
-      incorrectSound.play().catch(e => console.log(e));
+      if (!isMuted) { // ★ミュート判定
+        incorrectSound.volume = bgmVolume;
+        incorrectSound.currentTime = 0;
+        incorrectSound.play().catch(e => console.log(e));
+      }
     }
     setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
   };
@@ -350,6 +361,15 @@ function App() {
 
   return (
     <div className={`main-viewport ${gameStatus === 'MENU' ? 'pattern-bg' : 'gradient-bg'}`}>
+      
+      {/* ★ 追加：どの画面でも使える固定のミュートボタン */}
+      <button 
+        className="mute-btn shadow-pop" 
+        onClick={() => setIsMuted(!isMuted)}
+      >
+        {isMuted ? '🔇' : '🎵'}
+      </button>
+
       {gameStatus === 'MENU' && <div className="particles">{[...Array(12)].map((_, i) => <div key={i} className="dot"></div>)}</div>}
 
       {gameStatus === 'MENU' && (
@@ -357,14 +377,13 @@ function App() {
           <div className="menu-left-block">
             <img src="/scannetlogo.png" alt="Scannect" className="main-logo-split" />
             <div className="theme-buttons-vertical" style={{maxHeight: '400px', flexWrap: 'wrap', display: 'grid', gridTemplateColumns: '1fr 1fr'}}>
-              {/* ボタンが7個に増えたので、2列のグリッドレイアウトに変更してスッキリさせました */}
               <button onClick={() => selectTheme('cafe')} className="custom-border-box-split">☕ Cafe</button>
               <button onClick={() => selectTheme('sdgs')} className="custom-border-box-split">🌍 SDGs</button>
               <button onClick={() => selectTheme('hotel')} className="custom-border-box-split">🏨 Hotel</button>
               <button onClick={() => selectTheme('airport')} className="custom-border-box-split">✈️ Airport</button>
               <button onClick={() => selectTheme('zoo')} className="custom-border-box-split">🦁 Zoo</button>
               <button onClick={() => selectTheme('help')} className="custom-border-box-split">🤝 Help</button>
-              <button onClick={() => selectTheme('world')} className="custom-border-box-split" style={{gridColumn: '1 / -1'}}>🗺️ World</button> {/* ★変更点3：ボタン追加 */}
+              <button onClick={() => selectTheme('world')} className="custom-border-box-split" style={{gridColumn: '1 / -1'}}>🗺️ World</button> 
             </div>
           </div>
           <div className="menu-right-block">
@@ -381,6 +400,13 @@ function App() {
             <p className="qr-display-desc">生徒は自分のチームのタブを選んでスキャンしてください</p>
           </div>
           <button className="settings-btn shadow-pop" onClick={() => setIsSettingsOpen(true)}>⚙️</button>
+          
+          <button 
+            className="solo-learning-btn shadow-pop" 
+            onClick={() => setGameStatus('SOLO_LEARNING')}
+          >
+            🎓 Solo Learning
+          </button>
         </div>
       )}
 
@@ -437,6 +463,15 @@ function App() {
           </div>
           <button onClick={backToMenu} className="start-btn shadow-pop" style={{marginTop:'50px'}}>BACK TO MENU</button>
         </div>
+      )}
+
+      {gameStatus === 'SOLO_LEARNING' && (
+        <LearningMode 
+          gameData={GAME_DATA} 
+          onBack={() => setGameStatus('MENU')} 
+          bgmVolume={bgmVolume}
+          isMuted={isMuted} // ★ ミュート設定を渡す
+        />
       )}
 
       {isSettingsOpen && (

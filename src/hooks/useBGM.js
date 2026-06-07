@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react';
 
-export function useBGM(appMode, gameStatus, bgmVolume) {
+export function useBGM(appMode, gameStatus, bgmVolume, isMuted) {
   const menuBgmRef = useRef(null);
   const playBgmRef = useRef(null);
 
-  // BGMファイルの初期化
   useEffect(() => {
     if (appMode === 'HOST_MENU') {
       menuBgmRef.current = new Audio('/menu-bgm.mp3');
@@ -18,13 +17,17 @@ export function useBGM(appMode, gameStatus, bgmVolume) {
     };
   }, [appMode]);
 
-  // 音量の同期
   useEffect(() => {
-    if (menuBgmRef.current) menuBgmRef.current.volume = bgmVolume;
-    if (playBgmRef.current) playBgmRef.current.volume = bgmVolume;
-  }, [bgmVolume]);
+    if (menuBgmRef.current) {
+      menuBgmRef.current.volume = bgmVolume;
+      menuBgmRef.current.muted = isMuted; // ★ミュート制御を追加
+    }
+    if (playBgmRef.current) {
+      playBgmRef.current.volume = bgmVolume;
+      playBgmRef.current.muted = isMuted; // ★ミュート制御を追加
+    }
+  }, [bgmVolume, isMuted]);
 
-  // ゲームステータスに応じた再生・停止
   useEffect(() => {
     if (appMode !== 'HOST_MENU') return;
 
@@ -37,7 +40,7 @@ export function useBGM(appMode, gameStatus, bgmVolume) {
       if (audioRef.current) audioRef.current.pause();
     };
 
-    if (gameStatus === 'MENU' || gameStatus === 'READY' || gameStatus === 'GAMEOVER') {
+    if (gameStatus === 'MENU' || gameStatus === 'READY' || gameStatus === 'GAMEOVER' || gameStatus === 'SOLO_LEARNING') {
       pauseAudioSafely(playBgmRef);
       if (playBgmRef.current) playBgmRef.current.currentTime = 0;
       playAudioSafely(menuBgmRef);
@@ -47,11 +50,10 @@ export function useBGM(appMode, gameStatus, bgmVolume) {
     }
   }, [gameStatus, appMode]);
 
-  // ブラウザの自動再生ブロック対策
   useEffect(() => {
     if (appMode !== 'HOST_MENU') return;
     const handleFirstClick = () => {
-      if ((gameStatus === 'MENU' || gameStatus === 'READY' || gameStatus === 'GAMEOVER') && menuBgmRef.current && menuBgmRef.current.paused) {
+      if (menuBgmRef.current && menuBgmRef.current.paused && (gameStatus === 'MENU' || gameStatus === 'READY' || gameStatus === 'GAMEOVER' || gameStatus === 'SOLO_LEARNING')) {
         menuBgmRef.current.play().catch(e => e);
       }
       window.removeEventListener('click', handleFirstClick);
