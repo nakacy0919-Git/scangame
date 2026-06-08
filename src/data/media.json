@@ -1,6 +1,6 @@
 [
   {
-    "id": "MEDIA_001",
+    "id": "ML_001",
     "situation_ja": "衝撃的なニュースのシェア",
     "situation_en": "Sharing Shocking News",
     "card_a": {
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "id": "MEDIA_002",
+    "id": "ML_002",
     "situation_ja": "不自然な動画",
     "situation_en": "Unnatural Video",
     "card_a": {
@@ -35,7 +35,7 @@
     ]
   },
   {
-    "id": "MEDIA_003",
+    "id": "ML_003",
     "situation_ja": "古い記事の拡散",
     "situation_en": "Spreading Old Articles",
     "card_a": {
@@ -53,7 +53,7 @@
     ]
   },
   {
-    "id": "MEDIA_004",
+    "id": "ML_004",
     "situation_ja": "勝手な写真投稿",
     "situation_en": "Posting Photos Without Permission",
     "card_a": {
@@ -71,7 +71,7 @@
     ]
   },
   {
-    "id": "MEDIA_005",
+    "id": "ML_005",
     "situation_ja": "怪しい当選メッセージ",
     "situation_en": "Suspicious Winning Message",
     "card_a": {
@@ -89,7 +89,7 @@
     ]
   },
   {
-    "id": "MEDIA_006",
+    "id": "ML_006",
     "situation_ja": "グループチャットでの悪口",
     "situation_en": "Mean Comments in Group Chat",
     "card_a": {
@@ -107,7 +107,7 @@
     ]
   },
   {
-    "id": "MEDIA_007",
+    "id": "ML_007",
     "situation_ja": "宿題の情報探し",
     "situation_en": "Searching for Information",
     "card_a": {
@@ -125,7 +125,7 @@
     ]
   },
   {
-    "id": "MEDIA_008",
+    "id": "ML_008",
     "situation_ja": "隠された広告",
     "situation_en": "Hidden Advertisement",
     "card_a": {
@@ -143,7 +143,7 @@
     ]
   },
   {
-    "id": "MEDIA_009",
+    "id": "ML_009",
     "situation_ja": "弟のスマホ依存",
     "situation_en": "Brother's Smartphone Addiction",
     "card_a": {
@@ -161,7 +161,7 @@
     ]
   },
   {
-    "id": "MEDIA_010",
+    "id": "ML_010",
     "situation_ja": "画像の無断使用",
     "situation_en": "Using Images Without Permission",
     "card_a": {
@@ -179,7 +179,7 @@
     ]
   },
   {
-    "id": "MEDIA_011",
+    "id": "ML_011",
     "situation_ja": "怒りのこもった情報",
     "situation_en": "Angry Information",
     "card_a": {
@@ -197,7 +197,7 @@
     ]
   },
   {
-    "id": "MEDIA_012",
+    "id": "ML_012",
     "situation_ja": "食事中のスマホ",
     "situation_en": "Smartphones During Dinner",
     "card_a": {
@@ -215,7 +215,7 @@
     ]
   },
   {
-    "id": "MEDIA_013",
+    "id": "ML_013",
     "situation_ja": "止まらないゲーム通知",
     "situation_en": "Non-stop Game Notifications",
     "card_a": {
@@ -233,7 +233,7 @@
     ]
   },
   {
-    "id": "MEDIA_014",
+    "id": "ML_014",
     "situation_ja": "写真に写り込む位置情報",
     "situation_en": "Location Info in Photos",
     "card_a": {
@@ -251,7 +251,7 @@
     ]
   },
   {
-    "id": "MEDIA_015",
+    "id": "ML_015",
     "situation_ja": "科学的根拠のない健康情報",
     "situation_en": "Health Info Without Evidence",
     "card_a": {
@@ -269,7 +269,7 @@
     ]
   },
   {
-    "id": "MEDIA_016",
+    "id": "ML_016",
     "situation_ja": "見知らぬ人からの友達リクエスト",
     "situation_en": "Friend Request from a Stranger",
     "card_a": {
@@ -287,7 +287,7 @@
     ]
   },
   {
-    "id": "MEDIA_017",
+    "id": "ML_017",
     "situation_ja": "SNSによる気分の落ち込み",
     "situation_en": "Feeling Depressed from SNS",
     "card_a": {
@@ -305,7 +305,7 @@
     ]
   },
   {
-    "id": "MEDIA_018",
+    "id": "ML_018",
     "situation_ja": "AIツールと宿題",
     "situation_en": "AI Tools and Homework",
     "card_a": {
@@ -323,7 +323,7 @@
     ]
   },
   {
-    "id": "MEDIA_019",
+    "id": "ML_019",
     "situation_ja": "不幸の手紙チェーン",
     "situation_en": "Chain Messages",
     "card_a": {
@@ -340,7 +340,7 @@
     ]
   },
   {
-    "id": "MEDIA_020",
+    "id": "ML_020",
     "situation_ja": "アプリの過剰なアクセス要求",
     "situation_en": "Excessive App Permissions",
     "card_a": {
@@ -358,7 +358,7 @@
     ]
   },
   {
-    "id": "MEDIA_021",
+    "id": "ML_021",
     "situation_ja": "怒りに任せた投稿",
     "situation_en": "Posting in Anger",
     "card_a": {
@@ -375,7 +375,7 @@
     ]
   },
   {
-    "id": "MEDIA_022",
+    "id": "ML_022",
     "situation_ja": "加工写真の見分け方",
     "situation_en": "Identifying Edited Photos",
     "card_a": {
@@ -393,7 +393,7 @@
     ]
   },
   {
-    "id": "MEDIA_023",
+    "id": "ML_023",
     "situation_ja": "ショート動画のやめ時",
     "situation_en": "Stopping Short Videos",
     "card_a": {
@@ -410,7 +410,7 @@
     ]
   },
   {
-    "id": "MEDIA_024",
+    "id": "ML_024",
     "situation_ja": "安すぎる通販サイト",
     "situation_en": "Too Cheap Shopping Site",
     "card_a": {
@@ -427,7 +427,7 @@
     ]
   },
   {
-    "id": "MEDIA_025",
+    "id": "ML_025",
     "situation_ja": "授業中のメッセージ",
     "situation_en": "Messages During Class",
     "card_a": {
@@ -444,7 +444,7 @@
     ]
   },
   {
-    "id": "MEDIA_026",
+    "id": "ML_026",
     "situation_ja": "飲み物の危険な噂",
     "situation_en": "Dangerous Rumors About Drinks",
     "card_a": {
@@ -462,7 +462,7 @@
     ]
   },
   {
-    "id": "MEDIA_027",
+    "id": "ML_027",
     "situation_ja": "消えないデジタルタトゥー",
     "situation_en": "Digital Footprint",
     "card_a": {
@@ -480,7 +480,7 @@
     ]
   },
   {
-    "id": "MEDIA_028",
+    "id": "ML_028",
     "situation_ja": "無料ゲームの罠",
     "situation_en": "Trap of Free Games",
     "card_a": {
@@ -498,7 +498,7 @@
     ]
   },
   {
-    "id": "MEDIA_029",
+    "id": "ML_029",
     "situation_ja": "偏ったニュース",
     "situation_en": "Biased News",
     "card_a": {
@@ -515,7 +515,7 @@
     ]
   },
   {
-    "id": "MEDIA_030",
+    "id": "ML_030",
     "situation_ja": "メディア・リテラシーの向上",
     "situation_en": "Improving Media Literacy",
     "card_a": {
