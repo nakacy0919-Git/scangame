@@ -15,6 +15,7 @@ import airportData from './data/airport.json';
 import zooData from './data/zoo.json';
 import helpData from './data/help.json'; 
 import worldData from './data/world.json'; 
+import mediaData from './data/media.json'; // ★ 変更点1：media.json を読み込み
 
 const GAME_DATA = {
   cafe: { title: 'Scannect : Cafe', codes: cafeData },
@@ -23,7 +24,8 @@ const GAME_DATA = {
   airport: { title: 'Scannect : Airport', codes: airportData },
   zoo: { title: 'Scannect : Zoo', codes: zooData },
   help: { title: 'Scannect : Help', codes: helpData },
-  world: { title: 'Scannect : World', codes: worldData }
+  world: { title: 'Scannect : World', codes: worldData },
+  media: { title: 'Scannect : Media Literacy', codes: mediaData } // ★ 変更点2：システムに登録
 };
 
 const ALL_TEAMS = ['A', 'B', 'C', 'D'];
@@ -356,7 +358,6 @@ function App() {
     );
   }
 
-  // ★修正：エラーの原因だったJSX文法エラー（不正なコメント位置）を修正しました
   return (
     <div className={`main-viewport ${gameStatus === 'MENU' || gameStatus === 'SOLO_LEARNING' ? 'pattern-bg' : 'gradient-bg'}`}>
       
@@ -380,7 +381,9 @@ function App() {
               <button onClick={() => selectTheme('airport')} className="custom-border-box-split">✈️ Airport</button>
               <button onClick={() => selectTheme('zoo')} className="custom-border-box-split">🦁 Zoo</button>
               <button onClick={() => selectTheme('help')} className="custom-border-box-split">🤝 Help</button>
-              <button onClick={() => selectTheme('world')} className="custom-border-box-split" style={{gridColumn: '1 / -1'}}>🗺️ World</button> 
+              <button onClick={() => selectTheme('world')} className="custom-border-box-split">🗺️ World</button> 
+              {/* ★ 変更点3：Mediaボタンを追加。これで8個になり、2列×4行で綺麗に収まります！ */}
+              <button onClick={() => selectTheme('media')} className="custom-border-box-split">📱 Media</button> 
             </div>
           </div>
           <div className="menu-right-block">

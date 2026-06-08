@@ -1,0 +1,535 @@
+[
+  {
+    "id": "MEDIA_001",
+    "situation_ja": "衝撃的なニュースのシェア",
+    "situation_en": "Sharing Shocking News",
+    "card_a": {
+      "text": "[A surprised student] I found a shocking news story on SNS. I want to share it with my friends immediately.",
+      "text_ja": "【驚いた生徒】SNSで衝撃的なニュースを見つけました。すぐに友達にシェアしたくなりました。"
+    },
+    "card_b": {
+      "text": "Wait and check the source of the news. Make sure it is from a reliable company.",
+      "text_ja": "立ち止まってニュースの出所を確認しましょう。信頼できる会社の情報か確かめてください。"
+    },
+    "vocabulary": [
+      {"word": "immediately", "part_of_speech": "adverb", "meaning": "すぐに、直ちに", "level": "B1"},
+      {"word": "source", "part_of_speech": "noun", "meaning": "情報源、出所", "level": "B1"},
+      {"word": "reliable", "part_of_speech": "adjective", "meaning": "信頼できる", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_002",
+    "situation_ja": "不自然な動画",
+    "situation_en": "Unnatural Video",
+    "card_a": {
+      "text": "[A curious teen] A famous person said something strange in a video. The video looks a bit unnatural.",
+      "text_ja": "【好奇心旺盛な10代】有名人が動画で変なことを言っています。その動画は少し不自然に見えます。"
+    },
+    "card_b": {
+      "text": "Be careful because it might be a \"deepfake\" video. Check official news to see if it is true.",
+      "text_ja": "「ディープフェイク」動画かもしれないので注意してください。本当かどうか、公式ニュースをチェックしましょう。"
+    },
+    "vocabulary": [
+      {"word": "unnatural", "part_of_speech": "adjective", "meaning": "不自然な", "level": "B1"},
+      {"word": "official", "part_of_speech": "adjective", "meaning": "公式の", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_003",
+    "situation_ja": "古い記事の拡散",
+    "situation_en": "Spreading Old Articles",
+    "card_a": {
+      "text": "[A fast reader] I saw an interesting article with a scary title. However, the story is from three years ago.",
+      "text_ja": "【早読みする人】怖いタイトルの興味深い記事を見つけました。しかし、それは3年前の記事でした。"
+    },
+    "card_b": {
+      "text": "Always check the date of the information. Old news can cause misunderstandings today.",
+      "text_ja": "情報の日付を必ず確認しましょう。古いニュースは今日では誤解を招くことがあります。"
+    },
+    "vocabulary": [
+      {"word": "article", "part_of_speech": "noun", "meaning": "記事", "level": "A2"},
+      {"word": "cause", "part_of_speech": "verb", "meaning": "引き起こす", "level": "B1"},
+      {"word": "misunderstanding", "part_of_speech": "noun", "meaning": "誤解", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_004",
+    "situation_ja": "勝手な写真投稿",
+    "situation_en": "Posting Photos Without Permission",
+    "card_a": {
+      "text": "[An upset friend] My friend posted a picture of me on Instagram. I look embarrassed in that photo.",
+      "text_ja": "【動揺している友達】友達が私の写真をインスタに載せました。私はその写真で恥ずかしい思いをしています。"
+    },
+    "card_b": {
+      "text": "Ask your friend to delete the photo. Tell them to ask for permission before posting.",
+      "text_ja": "友達に写真を消すよう頼みましょう。載せる前に許可を取るように伝えてください。"
+    },
+    "vocabulary": [
+      {"word": "embarrassed", "part_of_speech": "adjective", "meaning": "恥ずかしい", "level": "B1"},
+      {"word": "delete", "part_of_speech": "verb", "meaning": "削除する", "level": "B1"},
+      {"word": "permission", "part_of_speech": "noun", "meaning": "許可", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_005",
+    "situation_ja": "怪しい当選メッセージ",
+    "situation_en": "Suspicious Winning Message",
+    "card_a": {
+      "text": "[A lucky winner?] I received a message saying, \"You won a million yen!\" It asks for my bank account info.",
+      "text_ja": "【幸運な当選者？】「100万円当たりました！」というメッセージが届きました。銀行口座の情報を求めています。"
+    },
+    "card_b": {
+      "text": "Do not reply or give your personal information. It is likely a scam to steal your money.",
+      "text_ja": "返信したり個人情報を教えたりしないでください。お金を盗むための詐欺の可能性が高いです。"
+    },
+    "vocabulary": [
+      {"word": "reply", "part_of_speech": "verb", "meaning": "返信する", "level": "A2"},
+      {"word": "personal", "part_of_speech": "adjective", "meaning": "個人の、私的な", "level": "B1"},
+      {"word": "scam", "part_of_speech": "noun", "meaning": "詐欺", "level": "B2"}
+    ]
+  },
+  {
+    "id": "MEDIA_006",
+    "situation_ja": "グループチャットでの悪口",
+    "situation_en": "Mean Comments in Group Chat",
+    "card_a": {
+      "text": "[A worried classmate] Someone wrote a mean comment about our teacher on a group chat. Many people are laughing.",
+      "text_ja": "【心配するクラスメイト】誰かがグループチャットで先生の悪口を書きました。多くの人が笑っています。"
+    },
+    "card_b": {
+      "text": "Do not join the conversation. It is better to ignore it or report it to an adult.",
+      "text_ja": "その会話に加わってはいけません。無視するか、大人に報告するのがよいでしょう。"
+    },
+    "vocabulary": [
+      {"word": "mean", "part_of_speech": "adjective", "meaning": "意地悪な、ひどい", "level": "B1"},
+      {"word": "ignore", "part_of_speech": "verb", "meaning": "無視する", "level": "B1"},
+      {"word": "report", "part_of_speech": "verb", "meaning": "報告する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_007",
+    "situation_ja": "宿題の情報探し",
+    "situation_en": "Searching for Information",
+    "card_a": {
+      "text": "[A confused student] I am looking for information for my homework. I found two websites with different opinions.",
+      "text_ja": "【混乱する生徒】宿題のために情報を探しています。意見が異なる2つのウェブサイトを見つけました。"
+    },
+    "card_b": {
+      "text": "Compare several websites and look for facts. Do not trust only one opinion.",
+      "text_ja": "複数のサイトを比較して、事実を探しましょう。1つの意見だけを信じてはいけません。"
+    },
+    "vocabulary": [
+      {"word": "compare", "part_of_speech": "verb", "meaning": "比較する", "level": "B1"},
+      {"word": "fact", "part_of_speech": "noun", "meaning": "事実", "level": "A2"},
+      {"word": "trust", "part_of_speech": "verb", "meaning": "信用する、信じる", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_008",
+    "situation_ja": "隠された広告",
+    "situation_en": "Hidden Advertisement",
+    "card_a": {
+      "text": "[A follower] An influencer is recommending a new skin cream. They do not say it is an advertisement.",
+      "text_ja": "【フォロワー】インフルエンサーが新しいスキンクリームを勧めています。広告だとは言っていません。"
+    },
+    "card_b": {
+      "text": "Think if they are getting paid to say that. Be careful of \"hidden\" advertisements.",
+      "text_ja": "それを言うことでお金をもらっているか考えましょう。「隠された」広告（ステマ）に注意してください。"
+    },
+    "vocabulary": [
+      {"word": "recommend", "part_of_speech": "verb", "meaning": "勧める、推薦する", "level": "B1"},
+      {"word": "advertisement", "part_of_speech": "noun", "meaning": "広告", "level": "B1"},
+      {"word": "hidden", "part_of_speech": "adjective", "meaning": "隠された", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_009",
+    "situation_ja": "弟のスマホ依存",
+    "situation_en": "Brother's Smartphone Addiction",
+    "card_a": {
+      "text": "[An older sibling] My junior high school brother uses his phone until 2 a.m. He is always tired in the morning.",
+      "text_ja": "【年上のきょうだい】中学生の弟が夜中の2時までスマホを使っています。彼は朝いつも眠そうです。"
+    },
+    "card_b": {
+      "text": "Parents should talk to him and set a time limit. It is important to sleep without phones.",
+      "text_ja": "親は彼と話し合って制限時間を設けるべきです。スマホなしで寝ることは大切です。"
+    },
+    "vocabulary": [
+      {"word": "tired", "part_of_speech": "adjective", "meaning": "疲れた、眠い", "level": "A2"},
+      {"word": "set", "part_of_speech": "verb", "meaning": "設定する、設ける", "level": "B1"},
+      {"word": "limit", "part_of_speech": "noun", "meaning": "制限、限度", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_010",
+    "situation_ja": "画像の無断使用",
+    "situation_en": "Using Images Without Permission",
+    "card_a": {
+      "text": "[A young blogger] I found a beautiful photo on a website. I want to use it for my own blog.",
+      "text_ja": "【若きブロガー】サイトで美しい写真を見つけました。自分のブログに使いたいです。"
+    },
+    "card_b": {
+      "text": "Check the copyright of the image first. You cannot use other people's work without permission.",
+      "text_ja": "まずはその画像の著作権を確認しましょう。許可なく他人の作品を使ってはいけません。"
+    },
+    "vocabulary": [
+      {"word": "copyright", "part_of_speech": "noun", "meaning": "著作権", "level": "B2"},
+      {"word": "image", "part_of_speech": "noun", "meaning": "画像", "level": "A2"},
+      {"word": "without", "part_of_speech": "preposition", "meaning": "〜なしで", "level": "A2"}
+    ]
+  },
+  {
+    "id": "MEDIA_011",
+    "situation_ja": "怒りのこもった情報",
+    "situation_en": "Angry Information",
+    "card_a": {
+      "text": "[A cautious reader] I see a website with many angry comments. The writer is attacking a specific person.",
+      "text_ja": "【慎重な読者】怒りのコメントがたくさんあるサイトを見ました。筆者は特定の個人を攻撃しています。"
+    },
+    "card_b": {
+      "text": "Stay calm and do not get emotional. Angry information is often biased and not objective.",
+      "text_ja": "冷静になり、感情的にならないでください。怒りの情報は偏っていることが多く、客観的ではありません。"
+    },
+    "vocabulary": [
+      {"word": "attack", "part_of_speech": "verb", "meaning": "攻撃する", "level": "B1"},
+      {"word": "emotional", "part_of_speech": "adjective", "meaning": "感情的な", "level": "B1"},
+      {"word": "objective", "part_of_speech": "adjective", "meaning": "客観的な", "level": "B2"}
+    ]
+  },
+  {
+    "id": "MEDIA_012",
+    "situation_ja": "食事中のスマホ",
+    "situation_en": "Smartphones During Dinner",
+    "card_a": {
+      "text": "[A lonely child] I am at a restaurant with my family. Everyone is looking at their smartphones during dinner.",
+      "text_ja": "【寂しい子供】家族とレストランにいます。夕食中、みんながスマホを見ています。"
+    },
+    "card_b": {
+      "text": "Put your phone away and talk to your family. Enjoy the real conversation and the food.",
+      "text_ja": "スマホをしまって家族と話しましょう。現実の会話と食事を楽しんでください。"
+    },
+    "vocabulary": [
+      {"word": "during", "part_of_speech": "preposition", "meaning": "〜の間に", "level": "A2"},
+      {"word": "put away", "part_of_speech": "phrasal verb", "meaning": "片付ける、しまう", "level": "B1"},
+      {"word": "conversation", "part_of_speech": "noun", "meaning": "会話", "level": "A2"}
+    ]
+  },
+  {
+    "id": "MEDIA_013",
+    "situation_ja": "止まらないゲーム通知",
+    "situation_en": "Non-stop Game Notifications",
+    "card_a": {
+      "text": "[A distracted student] I get a lot of notifications from games every day. I cannot focus on my study.",
+      "text_ja": "【気が散っている生徒】毎日ゲームからたくさんの通知が来ます。勉強に集中できません。"
+    },
+    "card_b": {
+      "text": "Turn off unnecessary notifications in the settings. Decide when you check your phone.",
+      "text_ja": "設定で不要な通知をオフにしましょう。いつスマホをチェックするか決めてください。"
+    },
+    "vocabulary": [
+      {"word": "notification", "part_of_speech": "noun", "meaning": "通知、知らせ", "level": "B1"},
+      {"word": "focus", "part_of_speech": "verb", "meaning": "集中する", "level": "B1"},
+      {"word": "unnecessary", "part_of_speech": "adjective", "meaning": "不必要な", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_014",
+    "situation_ja": "写真に写り込む位置情報",
+    "situation_en": "Location Info in Photos",
+    "card_a": {
+      "text": "[A careless poster] I posted a photo of my dog. You can see my house and street name in the window.",
+      "text_ja": "【不注意な投稿者】犬の写真を投稿しました。窓に自分の家と通り名が写っています。"
+    },
+    "card_b": {
+      "text": "Be careful about your location information. Strangers might find out where you live.",
+      "text_ja": "位置情報には注意しましょう。知らない人に住んでいる場所を知られてしまうかもしれません。"
+    },
+    "vocabulary": [
+      {"word": "careful", "part_of_speech": "adjective", "meaning": "注意深い", "level": "A2"},
+      {"word": "location", "part_of_speech": "noun", "meaning": "位置、場所", "level": "B1"},
+      {"word": "stranger", "part_of_speech": "noun", "meaning": "見知らぬ人", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_015",
+    "situation_ja": "科学的根拠のない健康情報",
+    "situation_en": "Health Info Without Evidence",
+    "card_a": {
+      "text": "[A health-conscious person] I read a story saying a certain food is \"magical\" for health. There is no scientific evidence.",
+      "text_ja": "【健康志向の人】ある食べ物が健康に「魔法のような」効果があるという話を聞きました。科学的根拠はありません。"
+    },
+    "card_b": {
+      "text": "Ask yourself, \"Is this too good to be true?\" Look for evidence before you believe it.",
+      "text_ja": "「話がうますぎないか？」と自問しましょう。信じる前に根拠を探してください。"
+    },
+    "vocabulary": [
+      {"word": "certain", "part_of_speech": "adjective", "meaning": "ある特定の", "level": "A2"},
+      {"word": "scientific", "part_of_speech": "adjective", "meaning": "科学的な", "level": "B1"},
+      {"word": "evidence", "part_of_speech": "noun", "meaning": "証拠、根拠", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_016",
+    "situation_ja": "見知らぬ人からの友達リクエスト",
+    "situation_en": "Friend Request from a Stranger",
+    "card_a": {
+      "text": "[A targeted user] A stranger sent me a \"friend request.\" Their profile picture is a very handsome boy.",
+      "text_ja": "【狙われたユーザー】知らない人から「友達リクエスト」が来ました。プロフィール写真はとてもイケメンな男の子です。"
+    },
+    "card_b": {
+      "text": "Do not accept the request easily. Some people use fake photos to trick others.",
+      "text_ja": "簡単にリクエストを承認してはいけません。他人を騙すために偽の写真を使う人もいます。"
+    },
+    "vocabulary": [
+      {"word": "accept", "part_of_speech": "verb", "meaning": "受け入れる、承認する", "level": "B1"},
+      {"word": "fake", "part_of_speech": "adjective", "meaning": "偽の", "level": "B1"},
+      {"word": "trick", "part_of_speech": "verb", "meaning": "騙す", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_017",
+    "situation_ja": "SNSによる気分の落ち込み",
+    "situation_en": "Feeling Depressed from SNS",
+    "card_a": {
+      "text": "[A tired teen] I am feeling depressed because my friends look happy on SNS. My life seems boring.",
+      "text_ja": "【疲れた10代】友達がSNSで幸せそうなので、落ち込んでいます。自分の生活が退屈に思えます。"
+    },
+    "card_b": {
+      "text": "Remember that people only post their \"best moments.\" Reality is different from SNS photos.",
+      "text_ja": "人々は「最高の瞬間」だけを投稿していると思い出してください。現実はSNSの写真とは違います。"
+    },
+    "vocabulary": [
+      {"word": "depressed", "part_of_speech": "adjective", "meaning": "落ち込んだ、憂鬱な", "level": "B1"},
+      {"word": "boring", "part_of_speech": "adjective", "meaning": "退屈な", "level": "A2"},
+      {"word": "reality", "part_of_speech": "noun", "meaning": "現実", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_018",
+    "situation_ja": "AIツールと宿題",
+    "situation_en": "AI Tools and Homework",
+    "card_a": {
+      "text": "[A smart student] I found a useful AI tool for writing essays. I want to use it for my homework.",
+      "text_ja": "【賢い生徒】作文を書くのに便利なAIツールを見つけました。宿題に使いたいです。"
+    },
+    "card_b": {
+      "text": "Use it only as a helper to get ideas. You must write the final sentences by yourself.",
+      "text_ja": "アイデアを得るための助けとしてだけ使いましょう。最終的な文章は自分で書かなければなりません。"
+    },
+    "vocabulary": [
+      {"word": "useful", "part_of_speech": "adjective", "meaning": "役に立つ、便利な", "level": "A2"},
+      {"word": "essay", "part_of_speech": "noun", "meaning": "作文、エッセイ", "level": "B1"},
+      {"word": "final", "part_of_speech": "adjective", "meaning": "最終的な", "level": "A2"}
+    ]
+  },
+  {
+    "id": "MEDIA_019",
+    "situation_ja": "不幸の手紙チェーン",
+    "situation_en": "Chain Messages",
+    "card_a": {
+      "text": "[A scared recipient] A message says, \"Share this with 10 people or you will be unlucky.\" My friend sent it.",
+      "text_ja": "【怖がる受信者】「これを10人に回さないと不幸になります」というメッセージが来ました。友達が送ってきました。"
+    },
+    "card_b": {
+      "text": "Stop the chain and do not send it to anyone. Such messages are just a waste of time.",
+      "text_ja": "その連鎖を止めて、誰にも送らないでください。そのようなメッセージは時間の無駄です。"
+    },
+    "vocabulary": [
+      {"word": "chain", "part_of_speech": "noun", "meaning": "連鎖、チェーン", "level": "B1"},
+      {"word": "waste", "part_of_speech": "noun", "meaning": "無駄", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_020",
+    "situation_ja": "アプリの過剰なアクセス要求",
+    "situation_en": "Excessive App Permissions",
+    "card_a": {
+      "text": "[A cautious user] I am using a free app. It asks for permission to access all my contacts and photos.",
+      "text_ja": "【慎重なユーザー】無料アプリを使っています。連絡先や写真すべてへのアクセス許可を求めています。"
+    },
+    "card_b": {
+      "text": "Think why the app needs that information. If it is suspicious, do not give permission.",
+      "text_ja": "なぜアプリがその情報を必要とするのか考えましょう。怪しい場合は許可しないでください。"
+    },
+    "vocabulary": [
+      {"word": "access", "part_of_speech": "verb", "meaning": "アクセスする、接続する", "level": "B1"},
+      {"word": "contact", "part_of_speech": "noun", "meaning": "連絡先", "level": "A2"},
+      {"word": "suspicious", "part_of_speech": "adjective", "meaning": "疑わしい、怪しい", "level": "B2"}
+    ]
+  },
+  {
+    "id": "MEDIA_021",
+    "situation_ja": "怒りに任せた投稿",
+    "situation_en": "Posting in Anger",
+    "card_a": {
+      "text": "[An angry reader] I see a post that makes me very angry. I want to write a mean reply immediately.",
+      "text_ja": "【怒っている読者】とても腹が立つ投稿を見ました。すぐにきつい返信を書きたいです。"
+    },
+    "card_b": {
+      "text": "Put your phone down and take a deep breath. Never post anything when you are angry.",
+      "text_ja": "スマホを置いて、深呼吸しましょう。怒っているときには何も投稿してはいけません。"
+    },
+    "vocabulary": [
+      {"word": "mean", "part_of_speech": "adjective", "meaning": "意地悪な、ひどい", "level": "B1"},
+      {"word": "breath", "part_of_speech": "noun", "meaning": "呼吸、息", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_022",
+    "situation_ja": "加工写真の見分け方",
+    "situation_en": "Identifying Edited Photos",
+    "card_a": {
+      "text": "[A picture detective] I want to find out if a photo is real. I think the photo was changed with a computer.",
+      "text_ja": "【写真探偵】写真が本物かどうか知りたいです。写真はコンピュータで加工された気がします。"
+    },
+    "card_b": {
+      "text": "Try a \"reverse image search\" on the internet. You can see where the photo originally came from.",
+      "text_ja": "インターネットで「画像逆検索」を試してみましょう。写真が元々どこから来たのかわかります。"
+    },
+    "vocabulary": [
+      {"word": "reverse", "part_of_speech": "adjective", "meaning": "逆の、反対の", "level": "B1"},
+      {"word": "search", "part_of_speech": "noun", "meaning": "検索", "level": "A2"},
+      {"word": "originally", "part_of_speech": "adverb", "meaning": "元々は、最初は", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_023",
+    "situation_ja": "ショート動画のやめ時",
+    "situation_en": "Stopping Short Videos",
+    "card_a": {
+      "text": "[A video addict] I spend a lot of time watching short videos. I feel like I am wasting my life.",
+      "text_ja": "【動画依存】ショート動画を見るのに多くの時間を使っています。人生を無駄にしている気がします。"
+    },
+    "card_b": {
+      "text": "Set a timer for 30 minutes. It is important to control your time, not the app.",
+      "text_ja": "30分のタイマーをセットしましょう。アプリではなく、あなたが時間をコントロールすることが大切です。"
+    },
+    "vocabulary": [
+      {"word": "waste", "part_of_speech": "verb", "meaning": "無駄にする", "level": "B1"},
+      {"word": "control", "part_of_speech": "verb", "meaning": "コントロールする、管理する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_024",
+    "situation_ja": "安すぎる通販サイト",
+    "situation_en": "Too Cheap Shopping Site",
+    "card_a": {
+      "text": "[A smart shopper] I want to buy a new smartphone. I found a website with a very low price.",
+      "text_ja": "【賢い買い物客】新しいスマホを買いたいです。とても安い価格のサイトを見つけました。"
+    },
+    "card_b": {
+      "text": "Check the reviews of the shop carefully. If there are no reviews, it might be a fake shop.",
+      "text_ja": "その店のレビューを慎重に確認しましょう。レビューがない場合は、偽のショップかもしれません。"
+    },
+    "vocabulary": [
+      {"word": "review", "part_of_speech": "noun", "meaning": "レビュー、評価", "level": "B1"},
+      {"word": "carefully", "part_of_speech": "adverb", "meaning": "慎重に、注意深く", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_025",
+    "situation_ja": "授業中のメッセージ",
+    "situation_en": "Messages During Class",
+    "card_a": {
+      "text": "[A focused student] My friend always sends me messages during class. I want to reply to them.",
+      "text_ja": "【集中する生徒】友達が授業中にいつもメッセージを送ってきます。返信したくなります。"
+    },
+    "card_b": {
+      "text": "Keep your phone in your bag and focus on class. You can talk to your friend during the break.",
+      "text_ja": "スマホはカバンに入れて、授業に集中しましょう。休み時間に友達と話せばいいのです。"
+    },
+    "vocabulary": [
+      {"word": "focus", "part_of_speech": "verb", "meaning": "集中する", "level": "B1"},
+      {"word": "break", "part_of_speech": "noun", "meaning": "休憩", "level": "A2"}
+    ]
+  },
+  {
+    "id": "MEDIA_026",
+    "situation_ja": "飲み物の危険な噂",
+    "situation_en": "Dangerous Rumors About Drinks",
+    "card_a": {
+      "text": "[A worried consumer] I see a video that says a famous drink is dangerous. Many people are talking about it.",
+      "text_ja": "【心配な消費者】有名な飲み物が危険だという動画を見ました。多くの人がその話をしています。"
+    },
+    "card_b": {
+      "text": "Check official reports from the government or doctors. Do not believe rumors on the internet.",
+      "text_ja": "政府や医師による公式報告を確認しましょう。ネット上の噂を信じてはいけません。"
+    },
+    "vocabulary": [
+      {"word": "dangerous", "part_of_speech": "adjective", "meaning": "危険な", "level": "A2"},
+      {"word": "report", "part_of_speech": "noun", "meaning": "報告、レポート", "level": "B1"},
+      {"word": "rumor", "part_of_speech": "noun", "meaning": "噂", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_027",
+    "situation_ja": "消えないデジタルタトゥー",
+    "situation_en": "Digital Footprint",
+    "card_a": {
+      "text": "[A regretful poster] I am worried about my digital footprint. I posted something embarrassing a year ago.",
+      "text_ja": "【後悔する投稿者】デジタルタトゥー（ネットの履歴）が心配です。1年前に恥ずかしい投稿をしました。"
+    },
+    "card_b": {
+      "text": "Delete the post immediately. Remember that anything you post can stay online forever.",
+      "text_ja": "すぐに投稿を削除しましょう。投稿したものは永遠にネットに残る可能性があると忘れないでください。"
+    },
+    "vocabulary": [
+      {"word": "worried", "part_of_speech": "adjective", "meaning": "心配した", "level": "A2"},
+      {"word": "embarrassing", "part_of_speech": "adjective", "meaning": "恥ずかしい", "level": "B1"},
+      {"word": "forever", "part_of_speech": "adverb", "meaning": "永遠に", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_028",
+    "situation_ja": "無料ゲームの罠",
+    "situation_en": "Trap of Free Games",
+    "card_a": {
+      "text": "[A gamer] I found a great deal for a free game. It asks me to click a link to start.",
+      "text_ja": "【ゲーマー】無料ゲームの素晴らしい特典を見つけました。開始するためにリンクをクリックするよう求めています。"
+    },
+    "card_b": {
+      "text": "Be careful of suspicious links. They might contain viruses that can break your smartphone.",
+      "text_ja": "怪しいリンクには注意しましょう。スマホを壊すウイルスが含まれているかもしれません。"
+    },
+    "vocabulary": [
+      {"word": "deal", "part_of_speech": "noun", "meaning": "取引、特典", "level": "B1"},
+      {"word": "contain", "part_of_speech": "verb", "meaning": "含む", "level": "B1"},
+      {"word": "virus", "part_of_speech": "noun", "meaning": "ウイルス", "level": "B1"}
+    ]
+  },
+  {
+    "id": "MEDIA_029",
+    "situation_ja": "偏ったニュース",
+    "situation_en": "Biased News",
+    "card_a": {
+      "text": "[A critical reader] A news site only shows one side of a problem. It makes me hate a specific country.",
+      "text_ja": "【批判的な読者】あるニュースサイトは問題の片面しか見せません。そのせいで特定の国が嫌いになります。"
+    },
+    "card_b": {
+      "text": "Look for news from different countries or perspectives. Try to see the whole picture.",
+      "text_ja": "他の国や視点からのニュースも探しましょう。全体像を見るように努めてください。"
+    },
+    "vocabulary": [
+      {"word": "specific", "part_of_speech": "adjective", "meaning": "特定の", "level": "B1"},
+      {"word": "perspective", "part_of_speech": "noun", "meaning": "視点、考え方", "level": "B2"}
+    ]
+  },
+  {
+    "id": "MEDIA_030",
+    "situation_ja": "メディア・リテラシーの向上",
+    "situation_en": "Improving Media Literacy",
+    "card_a": {
+      "text": "[A motivated learner] I am not sure if I have high media literacy. I want to use the internet more safely.",
+      "text_ja": "【やる気のある学習者】自分のメディア・リテラシーが高いかわかりません。もっと安全にネットを使いたいです。"
+    },
+    "card_b": {
+      "text": "Keep learning about media and technology. Always think critically about the information you see.",
+      "text_ja": "メディアと技術について学び続けましょう。見る情報に対して、常に批判的に考えてください。"
+    },
+    "vocabulary": [
+      {"word": "safely", "part_of_speech": "adverb", "meaning": "安全に", "level": "A2"},
+      {"word": "critically", "part_of_speech": "adverb", "meaning": "批判的に", "level": "B2"},
+      {"word": "literacy", "part_of_speech": "noun", "meaning": "リテラシー、読み書きの能力", "level": "B2"}
+    ]
+  }
+]
