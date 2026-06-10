@@ -898,3 +898,51 @@ html, body, #root {
   box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
 }
 .btn-back-menu:hover { filter: brightness(1.1); }
+/* =========================================
+   Speaking Challenge 用UI (録音中)
+========================================= */
+.live-transcription-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.recording-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e74c3c;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.pulse-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #e74c3c;
+  border-radius: 50%;
+  animation: pulse-red 1s infinite;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+}
+
+.live-text-box {
+  width: 100%;
+  text-align: left;
+  line-height: 1.4;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stop-speak-btn {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.stop-speak-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
