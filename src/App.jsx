@@ -7,6 +7,7 @@ import './App.css';
 import { useBGM } from './hooks/useBGM';
 import SettingsModal from './components/SettingsModal';
 import LearningMode from './components/LearningMode'; 
+import ScannerMission from './components/ScannerMission'; // ★追加
 
 import cafeData from './data/cafe.json';
 import sdgsData from './data/sdgs.json';
@@ -15,7 +16,9 @@ import airportData from './data/airport.json';
 import zooData from './data/zoo.json';
 import helpData from './data/help.json'; 
 import worldData from './data/world.json'; 
-import mediaData from './data/media.json'; // ★ 変更点1：media.json を読み込み
+import mediaData from './data/media.json'; 
+import volunteerData from './data/volunteer.json'; // ★ mediaData を volunteerData に変更！
+import revitalizationData from './data/revitalization.json';
 
 const GAME_DATA = {
   cafe: { title: 'Scannect : Cafe', codes: cafeData },
@@ -25,7 +28,9 @@ const GAME_DATA = {
   zoo: { title: 'Scannect : Zoo', codes: zooData },
   help: { title: 'Scannect : Help', codes: helpData },
   world: { title: 'Scannect : World', codes: worldData },
-  media: { title: 'Scannect : Media Literacy', codes: mediaData } // ★ 変更点2：システムに登録
+  media: { title: 'Scannect : Media', codes: mediaData },
+  volunteer: { title: 'Scannect : Volunteer', codes: volunteerData }, // ★ ここに volunteer を追加
+  revitalization: { title: 'Scannect : Revitalization', codes: revitalizationData }
 };
 
 const ALL_TEAMS = ['A', 'B', 'C', 'D'];
@@ -59,6 +64,9 @@ function App() {
   const [activeQrTab, setActiveQrTab] = useState('A'); 
   const [fullScreenQrTeam, setFullScreenQrTeam] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
+
+  // ★追加：スマホ側のミッション管理用ステート
+  const [activeMissionCard, setActiveMissionCard] = useState(null); 
 
   const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
 
@@ -133,50 +141,21 @@ function App() {
       const currentStatus = latestStateRef.current.status;
       const currentTheme = latestStateRef.current.theme;
       if (currentStatus === 'PLAYING') {
-         executeScanCheck(data.team, data.code, currentTheme);
+         // ★変更：ミッションで獲得したポイント(data.points)も渡す
+         executeScanCheck(data.team, data.code, currentTheme, data.points);
       }
     });
 
     return () => unsubscribe();
   }, [appMode]);
 
-  useEffect(() => {
-    if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING') return;
-    const handleKeyDown = (e) => {
-      if (e.target.tagName === 'INPUT') return;
-      if (e.key === 'Enter') {
-        const rawInput = inputBuffer.current.trim();
-        if (rawInput) {
-          const prefix = rawInput.substring(0, 2);
-          const actualCode = rawInput.substring(2);
-          const team = prefix[0];
-          
-          const currentActiveTeams = ALL_TEAMS.slice(0, teamCount);
-          if (['A','B','C','D'].includes(team) && currentActiveTeams.includes(team)) {
-            executeScanCheck(team, actualCode, activeTheme);
-          }
-        }
-        inputBuffer.current = '';
-      } else if (e.key.length === 1) {
-        inputBuffer.current += e.key;
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [appMode, gameStatus, activeTheme, teamCount]);
-
-  const executeScanCheck = (team, scannedCode, theme) => {
+  // ★変更：points 引数を追加
+  const executeScanCheck = (team, scannedCode, theme, points = 1) => {
     const currentActiveTeams = ALL_TEAMS.slice(0, latestStateRef.current.teamCount);
     if (!theme || !currentActiveTeams.includes(team)) return;
     
     const currentThemeData = GAME_DATA[theme].codes;
-    let isCorrect = false;
-
-    if (Array.isArray(currentThemeData)) {
-      isCorrect = currentThemeData.some(item => item.id === scannedCode || item.code === scannedCode);
-    } else if (typeof currentThemeData === 'object' && currentThemeData !== null) {
-      isCorrect = currentThemeData[scannedCode] || Object.values(currentThemeData).some(item => item.id === scannedCode || item.code === scannedCode);
-    }
+    const isCorrect = currentThemeData.some(item => item.id === scannedCode || item.code === scannedCode);
     
     if (isCorrect) {
       if (scannedCodesRef.current[team].includes(scannedCode)) {
@@ -197,13 +176,15 @@ function App() {
       const newCombo = combosRef.current[team] + 1;
       combosRef.current[team] = newCombo;
       const isComboBonus = (newCombo > 0 && newCombo % 3 === 0);
-      const earnedPoints = isComboBonus ? 2 : 1; 
+      
+      // ★変更：獲得したポイント ＋ コンボボーナス
+      const earnedPoints = points + (isComboBonus ? 2 : 0); 
 
       setCombos(prev => ({ ...prev, [team]: newCombo }));
       setScores(prev => ({ ...prev, [team]: prev[team] + earnedPoints }));
       setMaxCombos(prev => newCombo > prev[team] ? { ...prev, [team]: newCombo } : prev);
 
-      setMessage(`✅ MATCH: Team ${team}${isComboBonus ? ' 🌟 COMBO BONUS +2!' : ''}`);
+      setMessage(`✅ MATCH: Team ${team} (+${points} pts)${isComboBonus ? ' 🌟 COMBO BONUS +2!' : ''}`);
       setIsSuccess(true);
       if (!isMuted) {
         correctSound.volume = bgmVolume;
@@ -239,7 +220,8 @@ function App() {
   }, [appMode]);
 
   useEffect(() => {
-    if (appMode === 'SCANNER' && scannerTeam) {
+    // ミッション中はカメラを起動しない
+    if (appMode === 'SCANNER' && scannerTeam && !activeMissionCard) {
       let isMounted = true;
       const startCamera = () => {
         setTimeout(async () => {
@@ -264,7 +246,7 @@ function App() {
         if (scannerInstanceRef.current) scannerInstanceRef.current.stop().catch(e=>e);
       };
     }
-  }, [appMode, scannerTeam]);
+  }, [appMode, scannerTeam, activeMissionCard]);
 
   const onScanMobile = (decodedText) => {
     if (isProcessingScanRef.current) return;
@@ -286,14 +268,9 @@ function App() {
     }
 
     const currentThemeData = GAME_DATA[currentGameState.theme].codes;
-    let isCorrect = false;
-    if (Array.isArray(currentThemeData)) {
-      isCorrect = currentThemeData.some(item => item.id === decodedText || item.code === decodedText);
-    } else {
-      isCorrect = currentThemeData[decodedText] || Object.values(currentThemeData).some(item => item.id === decodedText || item.code === decodedText);
-    }
+    const foundCard = currentThemeData.find(item => item.id === decodedText || item.code === decodedText);
 
-    if (isCorrect) {
+    if (foundCard) {
       const scannedMap = currentGameState.scannedCodes?.[scannerTeam] || {};
       if (scannedMap[decodedText]) {
           setMessage('⚠️ 読込済みのカードです！');
@@ -305,24 +282,41 @@ function App() {
           }, 2000);
           return; 
       }
-      setMessage('✅ 正解！ (MATCH)');
-      setIsSuccess(true);
+      
+      // ★追加：正解なら即座にポイントを送らず、ミッションを発動させる
+      if (scannerInstanceRef.current) scannerInstanceRef.current.stop().catch(e=>e);
+      setActiveMissionCard(foundCard);
+
     } else {
       setMessage('❌ 不正解... (MISS)');
       setIsSuccess(false);
+      
+      // 不正解の場合はポイント0で送信（コンボリセットのため）
+      push(ref(database, 'scans'), {
+        team: scannerTeam,
+        code: decodedText,
+        points: 0,
+        timestamp: serverTimestamp() 
+      }).then(() => {
+          setTimeout(() => { 
+            setMessage(''); setIsSuccess(null); 
+            isProcessingScanRef.current = false; 
+            if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
+          }, 1800);
+      });
     }
+  };
 
+  // ★追加：ミッション完了時に呼ばれる関数
+  const handleMissionComplete = (earnedPoints) => {
     push(ref(database, 'scans'), {
       team: scannerTeam,
-      code: decodedText,
+      code: activeMissionCard.id,
+      points: earnedPoints,
       timestamp: serverTimestamp() 
     }).then(() => {
-        setTimeout(() => { 
-          setMessage(''); 
-          setIsSuccess(null); 
-          isProcessingScanRef.current = false; 
-          if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
-        }, 1800);
+      setActiveMissionCard(null); // ミッション画面を閉じてカメラに戻る
+      isProcessingScanRef.current = false;
     });
   };
 
@@ -349,8 +343,21 @@ function App() {
         ) : (
           <div className="scanner-container">
              <div className={`scanner-header team-${scannerTeam}`}>TEAM {scannerTeam} PLAYING</div>
-             <div id="reader"></div>
-             {message && <div className={`scanner-msg ${isSuccess ? 'ok' : ''}`}>{message}</div>}
+             
+             {/* ★追加：ミッション画面の表示切替 */}
+             {activeMissionCard ? (
+                <ScannerMission 
+                  card={activeMissionCard} 
+                  themeData={GAME_DATA[serverGameState.theme].codes} 
+                  onComplete={handleMissionComplete} 
+                />
+             ) : (
+               <>
+                 <div id="reader"></div>
+                 {message && <div className={`scanner-msg ${isSuccess ? 'ok' : ''}`}>{message}</div>}
+               </>
+             )}
+             
              <button onClick={() => { window.location.href = window.location.origin + '?mode=scanner'; }} className="btn-text-only" style={{marginTop: '20px'}}>Change Team</button>
           </div>
         )}
@@ -374,16 +381,17 @@ function App() {
         <div className="menu-split-container">
           <div className="menu-left-block">
             <img src="/scannetlogo.png" alt="Scannect" className="main-logo-split" />
-            <div className="theme-buttons-vertical" style={{maxHeight: '400px', flexWrap: 'wrap', display: 'grid', gridTemplateColumns: '1fr 1fr'}}>
-              <button onClick={() => selectTheme('cafe')} className="custom-border-box-split">☕ Cafe</button>
-              <button onClick={() => selectTheme('sdgs')} className="custom-border-box-split">🌍 SDGs</button>
-              <button onClick={() => selectTheme('hotel')} className="custom-border-box-split">🏨 Hotel</button>
-              <button onClick={() => selectTheme('airport')} className="custom-border-box-split">✈️ Airport</button>
-              <button onClick={() => selectTheme('zoo')} className="custom-border-box-split">🦁 Zoo</button>
-              <button onClick={() => selectTheme('help')} className="custom-border-box-split">🤝 Help</button>
-              <button onClick={() => selectTheme('world')} className="custom-border-box-split">🗺️ World</button> 
-              {/* ★ 変更点3：Mediaボタンを追加。これで8個になり、2列×4行で綺麗に収まります！ */}
-              <button onClick={() => selectTheme('media')} className="custom-border-box-split">📱 Media</button> 
+            <div className="theme-buttons-grid">
+              <button onClick={() => selectTheme('cafe')} className="custom-btn"><span>☕ Cafe</span><span className="arrow"></span></button>
+              <button onClick={() => selectTheme('sdgs')} className="custom-btn"><span>🌍 SDGs</span><span className="arrow"></span></button>
+              <button onClick={() => selectTheme('hotel')} className="custom-btn"><span>🏨 Hotel</span><span className="arrow"></span></button>
+              <button onClick={() => selectTheme('airport')} className="custom-btn"><span>✈️ Airport</span><span className="arrow"></span></button>
+              <button onClick={() => selectTheme('zoo')} className="custom-btn"><span>🦁 Zoo</span><span className="arrow"></span></button>
+              <button onClick={() => selectTheme('help')} className="custom-btn"><span>🤝 Help</span><span className="arrow"></span></button>
+              <button onClick={() => selectTheme('world')} className="custom-btn"><span>🗺️ World</span><span className="arrow"></span></button> 
+              <button onClick={() => selectTheme('media')} className="custom-btn"><span>📱 Media</span><span className="arrow"></span></button> 
+              <button onClick={() => selectTheme('volunteer')} className="custom-btn"><span>🤝 Volunteer</span><span className="arrow"></span></button> 
+              <button onClick={() => selectTheme('revitalization')} className="custom-btn"><span>🏙️ Revitalize</span><span className="arrow"></span></button> 
             </div>
           </div>
           <div className="menu-right-block">

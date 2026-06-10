@@ -1,7 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700;800;900&display=swap');
+/* Web Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow: hidden; font-family: 'LINE Seed JP', sans-serif; background-color: #ffffff; }
+html, body, #root { 
+  width: 100vw; 
+  height: 100vh; 
+  margin: 0; 
+  padding: 0; 
+  overflow: hidden; 
+  font-family: 'Noto Sans JP', sans-serif; /* 新しいフォントに統一 */
+  background-color: #ffffff; 
+}
+
 .main-viewport { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; }
 .content-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; width: 100%; max-width: 1200px; z-index: 10; }
 
@@ -19,14 +29,85 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 .dot:nth-child(6)  { width: 15px; height: 15px; left: 60%; top: 75%; animation-delay: 1s; }
 @keyframes floatUp { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } }
 
+/* =========================================
+   メインメニューのレイアウト
+========================================= */
 .menu-split-container { display: flex; width: 1200px; gap: 60px; align-items: center; justify-content: center; z-index: 10; }
 .menu-left-block { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-.main-logo-split { width: 480px; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
-.theme-buttons-vertical { display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 400px; }
+.main-logo-split { width: 480px; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); margin-bottom: 10px; }
 
-.custom-border-box-split { display: flex; align-items: center; justify-content: center; width: 100%; height: 70px; cursor: pointer; color: #2c3e50; border: 4px solid transparent; border-radius: 20px; background-color: #ffffff; background-clip: padding-box, border-box; background-origin: padding-box, border-box; background-image: linear-gradient(#ffffff, #ffffff), conic-gradient(from 0deg, #10b981, #3b82f6, #10b981); font-size: 1.6rem; font-weight: 900; font-family: inherit; transition: 0.2s ease; box-shadow: 0 8px 20px rgba(0,0,0,0.04); }
-.custom-border-box-split:hover { transform: translateX(5px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+/* ボタングリッドのレイアウト */
+.theme-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  width: 100%;
+  max-width: 550px;
+}
 
+/* =========================================
+   いただいた新デザインボタン (.custom-btn)
+========================================= */
+.custom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between; /* テキストと矢印を左右に分ける */
+  gap: 8px;
+  padding: 16px 20px; /* はみ出し防止のため左右のパディングを最適化 */
+  background-color: #10b981;
+  color: #ffffff;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(14px, 1.2vw, 18px); /* 画面サイズに合わせてフォントを自動縮小 */
+  font-weight: 900;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12);
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.custom-btn span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis; /* 極端に画面が小さい時は...で省略し、レイアウト崩れを防ぐ */
+}
+
+.custom-btn:hover {
+  background-color: #01aa72;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2), 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12);
+}
+
+.arrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.7em;
+  height: 0.7em;
+  transform: translate(0.3em, -0.05em);
+  flex-shrink: 0;
+}
+.arrow::before, .arrow::after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-style: solid;
+  border-width: 0.28em 0 0.28em 0.35em;
+  border-color: transparent transparent transparent #ffffff;
+}
+.arrow::before { left: 0; }
+.arrow::after { left: 50%; }
+
+/* =========================================
+   右側のQRコードパネル
+========================================= */
 .menu-right-block { width: 460px; padding: 35px; display: flex; flex-direction: column; align-items: center; background: rgba(255, 255, 255, 0.75); border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); border: 1px solid rgba(255,255,255,0.5); backdrop-filter: blur(10px); }
 .qr-section-title { font-size: 1.8rem; font-weight: 900; color: #2c3e50; margin-bottom: 20px; }
 .qr-tab-buttons { display: flex; gap: 10px; margin-bottom: 25px; width: 100%; }
@@ -52,6 +133,9 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 .qr-display-box img { width: 320px; height: 320px; display: block; border-radius: 10px; }
 .qr-display-desc { font-size: 1rem; color: #7f8c8d; margin-top: 20px; text-align: center; font-weight: bold; }
 
+/* =========================================
+   ゲーム画面のレイアウト
+========================================= */
 .ready-panel { padding: 60px 80px; background: rgba(255,255,255,0.95) !important; color: #2c3e50 !important; }
 .ready-title { font-size: 3.5rem; font-weight: 900; margin-bottom: 15px; }
 .ready-info { font-size: 1.8rem; color: #7f8c8d; margin-bottom: 40px; }
@@ -90,9 +174,18 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 .message-bar.error { background: rgba(231, 76, 60, 0.8); animation: shake 0.4s; }
 @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
-.start-btn { background: #3498db; color: white; border: none; padding: 20px 70px; font-size: 2.2rem; font-weight: 900; border-radius: 100px; cursor: pointer; }
+/* =========================================
+   各種ボタン・UIパーツ
+========================================= */
+.start-btn { background: #3498db; color: white; border: none; padding: 20px 70px; font-size: 2.2rem; font-weight: 900; border-radius: 100px; cursor: pointer; box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3); transition: 0.2s; }
+.start-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(52, 152, 219, 0.4); }
+
 .btn-text-only { background: none; border: none; font-size: 1.4rem; color: #7f8c8d; cursor: pointer; text-decoration: underline; }
-.settings-btn { position: fixed; bottom: 40px; right: 40px; width: 75px; height: 75px; border-radius: 50%; background: #ffffff; border: 2px solid #dfe6e9; font-size: 2.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; }
+.settings-btn { position: fixed; bottom: 40px; right: 40px; width: 75px; height: 75px; border-radius: 50%; background: #ffffff; border: 2px solid #dfe6e9; font-size: 2.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.2s; }
+.settings-btn:hover { transform: scale(1.1); }
+
+.mute-btn { position: fixed; top: 30px; right: 30px; width: 60px; height: 60px; border-radius: 50%; background: #ffffff; border: 2px solid #dfe6e9; font-size: 1.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 1000; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.2s; }
+.mute-btn:hover { transform: scale(1.1); }
 
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 200; }
 .modal-content { background: #ffffff; padding: 50px; border-radius: 30px; width: 480px; text-align: center; }
@@ -100,9 +193,13 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 .slider-group label { display: block; font-size: 1.4rem; font-weight: bold; margin-bottom: 20px; color: #7f8c8d; }
 .slider-group strong { font-size: 3rem; color: #3498db; }
 .slider-group input { width: 100%; height: 10px; border-radius: 5px; -webkit-appearance: none; background: #dfe6e9; margin-top: 15px; }
-.slider-group input::-webkit-slider-thumb { -webkit-appearance: none; width: 35px; height: 35px; border-radius: 50%; background: #3498db; }
-.btn-save { background: #2c3e50; color: white; border: none; padding: 16px; font-size: 1.3rem; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 30px; }
+.slider-group input::-webkit-slider-thumb { -webkit-appearance: none; width: 35px; height: 35px; border-radius: 50%; background: #3498db; cursor: pointer; }
+.btn-save { background: #2c3e50; color: white; border: none; padding: 16px; font-size: 1.3rem; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 30px; transition: 0.2s; }
+.btn-save:hover { background: #1a252f; }
 
+/* =========================================
+   リザルト画面
+========================================= */
 .time-up-text { font-size: 4rem; font-weight: 900; color: white; margin-bottom: 20px; }
 .result-versus-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; z-index: 10; width: 100%; max-width: 900px; }
 .result-versus-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; z-index: 10; width: 100%; max-width: 1300px; }
@@ -115,6 +212,9 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 .winner { background: rgba(255, 255, 255, 0.35) !important; border-color: #fbbf24 !important; }
 .winner-crown { position: absolute; top: -20px; background: #fbbf24; color: #2c3e50; font-weight: 900; padding: 5px 20px; border-radius: 50px; font-size: 1.2rem; }
 
+/* =========================================
+   スキャナー画面 (スマホ側)
+========================================= */
 .scanner-container { width: 100%; max-width: 500px; display: flex; flex-direction: column; align-items: center; padding: 20px; z-index: 10; }
 .scanner-header { width: 100%; padding: 15px; border-radius: 15px; font-size: 1.5rem; font-weight: 900; color: white; text-align: center; margin-bottom: 20px; }
 .scanner-header.team-A { background: #e74c3c; }
@@ -125,12 +225,11 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 #reader { width: 100%; border-radius: 20px; overflow: hidden; border: 5px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.2); background: black; }
 .scanner-msg { margin-top: 20px; padding: 15px 40px; background: #e74c3c; color: white; border-radius: 50px; font-size: 1.5rem; font-weight: bold; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .scanner-msg.ok { background: #2ecc71; }
-
 .team-btn { padding: 15px 40px; font-size: 1.6rem; font-weight: bold; border: none; border-radius: 15px; cursor: pointer; width: 45%; }
 @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* =========================================
-   Solo Learning Mode
+   Solo Learning Mode & ミッション
 ========================================= */
 .solo-learning-btn {
   position: fixed;
@@ -194,51 +293,26 @@ html, body, #root { width: 100vw; height: 100vh; margin: 0; padding: 0; overflow
 
 .final-score-box { text-align: center; margin-top: 20px; }
 
-/* =========================================
-   UIの美化 ＆ ミュートボタン・問題数選択
-========================================= */
-.mute-btn {
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 2px solid #dfe6e9;
-  font-size: 1.8rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  transition: 0.2s;
-}
-.mute-btn:hover { transform: scale(1.1); }
-
-.action-btn, .learning-theme-btn, .start-btn, .custom-border-box-split, .btn-save, .btn-abort, .solo-learning-btn {
-  white-space: nowrap !important;
-  width: auto !important;
-  min-width: 200px;
-  padding-left: 30px !important;
-  padding-right: 30px !important;
-}
-
 .count-selector { display: flex; gap: 15px; justify-content: center; margin-bottom: 30px; }
 .count-btn { padding: 12px 30px; font-size: 1.3rem; font-weight: bold; border-radius: 12px; border: 2px solid #dfe6e9; background: white; cursor: pointer; color: #7f8c8d; transition: 0.2s; }
 .count-btn.active { background: #3498db; color: white; border-color: #3498db; box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); }
 
-/* =========================================
-   語彙のハイライトデザイン（蛍光マーカー風）
-========================================= */
-.highlight-vocab {
-  background-color: #ffeaa7;
-  color: #d35400;
-  font-weight: 900;
-  padding: 2px 6px;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  display: inline-block;
-  margin: 0 2px;
-}
+.highlight-vocab { background-color: #ffeaa7; color: #d35400; font-weight: 900; padding: 2px 6px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: inline-block; margin: 0 2px; }
+
+/* スマホミッション画面用 */
+.mission-container { width: 100%; padding: 30px; background: white; text-align: center; }
+.mission-title { font-size: 1.8rem; font-weight: 900; color: #2c3e50; margin-bottom: 20px; }
+.mission-title.hot { color: #e74c3c; animation: pulse 1s infinite; }
+.vocab-word { font-size: 1.3rem; font-weight: bold; color: #7f8c8d; margin-bottom: 30px; }
+.vocab-word span { font-size: 2rem; color: #3498db; display: block; margin-top: 10px; }
+.vocab-choices { display: flex; flex-direction: column; gap: 15px; }
+.mission-feedback { font-size: 2.5rem; font-weight: 900; padding: 50px 20px; }
+.mission-feedback.correct { color: #2ecc71; }
+.mission-feedback.incorrect { color: #e74c3c; }
+.speaking-mission .target-text { font-size: 1.5rem; font-weight: bold; color: #2c3e50; background: #f1f2f6; padding: 20px; border-radius: 15px; margin: 20px 0; border-left: 5px solid #e74c3c; }
+.speak-btn { background: #e74c3c; color: white; border: none; padding: 20px; font-size: 1.5rem; font-weight: bold; border-radius: 50px; width: 100%; margin-bottom: 20px; }
+.listening-indicator { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 20px 0; }
+.listening-indicator p { font-weight: bold; color: #e74c3c; }
+.wave { width: 10px; height: 30px; background: #e74c3c; border-radius: 5px; display: inline-block; margin: 0 3px; animation: wave 1s ease-in-out infinite; }
+.wave:nth-child(2) { animation-delay: 0.2s; }
+.wave:nth-child(3) { animation-delay: 0.4s; }

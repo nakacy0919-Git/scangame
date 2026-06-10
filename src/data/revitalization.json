@@ -1,0 +1,541 @@
+[
+  {
+    "id": "REV_001",
+    "situation_ja": "若者の流出",
+    "situation_en": "Young People Leaving",
+    "card_a": {
+      "text": "[A worried mayor] Many young people are leaving our mountain town for big cities. We are losing our energy and future workers.",
+      "text_ja": "【心配する町長】多くの若者が大きな都市へ向けて私たちの山間の町を去っています。私たちは活気と将来の働き手を失っています。"
+    },
+    "card_b": {
+      "text": "Set up a high-speed internet system in the town. This will attract IT companies and remote workers without building expensive facilities.",
+      "text_ja": "町に高速インターネットシステムを設置しましょう。高価な施設を建てなくても、IT企業やリモートワーカーを惹きつけることができます。"
+    },
+    "vocabulary": [
+      {"word": "mayor", "part_of_speech": "noun", "meaning": "市長、町長", "level": "B1"},
+      {"word": "attract", "part_of_speech": "verb", "meaning": "惹きつける、誘致する", "level": "B1"},
+      {"word": "facility", "part_of_speech": "noun", "meaning": "施設", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_002",
+    "situation_ja": "廃墟になったテーマパーク",
+    "situation_en": "Abandoned Theme Park",
+    "card_a": {
+      "text": "[A local historian] Our town spent a huge amount of money to build a theme park 20 years ago. Today, it is completely empty and costs too much to maintain.",
+      "text_ja": "【地元の歴史家】私たちの町は20年前にテーマパークを建てるために大金を使いました。今日、そこは完全に空っぽで、維持するのに費用がかかりすぎます。"
+    },
+    "card_b": {
+      "text": "Stop relying on temporary events and big buildings. We should renovate the empty space into a community farm or park for local residents.",
+      "text_ja": "一時的なイベントや大きな建物に頼るのはやめましょう。空いたスペースを地元住民のためのコミュニティ農園や公園に改装すべきです。"
+    },
+    "vocabulary": [
+      {"word": "huge", "part_of_speech": "adjective", "meaning": "巨大な、莫大な", "level": "B1"},
+      {"word": "maintain", "part_of_speech": "verb", "meaning": "維持する", "level": "B2"},
+      {"word": "temporary", "part_of_speech": "adjective", "meaning": "一時的な", "level": "B1"}
+    ]
+  },
+  {
+    "id": "REV_003",
+    "situation_ja": "オーバーツーリズムの悩み",
+    "situation_en": "Overtourism Problems",
+    "card_a": {
+      "text": "[A tired resident] Millions of tourists visit our historical streets every weekend. The crowds and noise have ruined our quiet daily lives.",
+      "text_ja": "【疲れた住民】毎週末、何百万人もの観光客が私たちの歴史的な通りを訪れます。人ごみと騒音が私たちの静かな日常生活を台無しにしました。"
+    },
+    "card_b": {
+      "text": "The city must set strict rules for visitors and protect the community. True revitalization means residents can live happily and sustainably.",
+      "text_ja": "市は訪問者に厳しいルールを設け、地域社会を守らなければなりません。真の活性化とは、住民が幸せに、そして持続可能な形で暮らせることです。"
+    },
+    "vocabulary": [
+      {"word": "ruin", "part_of_speech": "verb", "meaning": "台無しにする、破壊する", "level": "B2"},
+      {"word": "strict", "part_of_speech": "adjective", "meaning": "厳しい", "level": "B1"},
+      {"word": "sustainably", "part_of_speech": "adverb", "meaning": "持続可能な形で", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_004",
+    "situation_ja": "シャッター商店街",
+    "situation_en": "Empty Shopping Street",
+    "card_a": {
+      "text": "[A traditional shop owner] Since the giant shopping mall was built, our local shopping street has lost its customers. Many stores are closing down.",
+      "text_ja": "【伝統的な店のオーナー】巨大なショッピングモールが建てられてから、地元の商店街は客を失いました。多くの店が閉店しています。"
+    },
+    "card_b": {
+      "text": "Focus on unique local strengths that big malls do not have. Selling special handmade goods and hosting workshops will bring people back.",
+      "text_ja": "大きなモールにはない、地元のユニークな強みに焦点を当てましょう。特別な手作り品を売り、ワークショップを開くことで人々は戻ってきます。"
+    },
+    "vocabulary": [
+      {"word": "giant", "part_of_speech": "adjective", "meaning": "巨大な", "level": "B1"},
+      {"word": "strength", "part_of_speech": "noun", "meaning": "強み", "level": "B2"},
+      {"word": "handmade", "part_of_speech": "adjective", "meaning": "手作りの", "level": "A2"}
+    ]
+  },
+  {
+    "id": "REV_005",
+    "situation_ja": "車社会からの脱却",
+    "situation_en": "Moving Away from Car Dependency",
+    "card_a": {
+      "text": "[An urban planner] Our city relies too much on cars, causing traffic jams and air pollution. There are no safe places for people to walk.",
+      "text_ja": "【都市計画家】私たちの都市は車に頼りすぎており、交通渋滞と大気汚染を引き起こしています。人々が安全に歩ける場所がありません。"
+    },
+    "card_b": {
+      "text": "Follow Portland's success and make beautiful parks and bicycle paths. Designing a city for people, not cars, makes the community attractive.",
+      "text_ja": "ポートランドの成功に倣い、美しい公園や自転車道を作りましょう。車ではなく人のために都市を設計することが、地域を魅力的にします。"
+    },
+    "vocabulary": [
+      {"word": "pollution", "part_of_speech": "noun", "meaning": "汚染", "level": "B1"},
+      {"word": "path", "part_of_speech": "noun", "meaning": "道、小道", "level": "B1"},
+      {"word": "attractive", "part_of_speech": "adjective", "meaning": "魅力的な", "level": "B1"}
+    ]
+  },
+  {
+    "id": "REV_006",
+    "situation_ja": "空き家（Akiya）の増加",
+    "situation_en": "Increasing Empty Houses",
+    "card_a": {
+      "text": "[A neighborhood leader] There are many old, empty houses in our town. They are dangerous and make the area look dark and lonely.",
+      "text_ja": "【地域のリーダー】町には古くて空き家になっている家がたくさんあります。それらは危険で、地域を暗く寂しく見せてしまいます。"
+    },
+    "card_b": {
+      "text": "We should renovate these empty houses and rent them cheaply to young artists. This brings new life and creativity to the town.",
+      "text_ja": "これらの空き家を改装し、若いアーティストに安く貸し出すべきです。これにより、新しい活気と創造性が町にもたらされます。"
+    },
+    "vocabulary": [
+      {"word": "renovate", "part_of_speech": "verb", "meaning": "改装する、リノベーションする", "level": "B2"},
+      {"word": "cheaply", "part_of_speech": "adverb", "meaning": "安く", "level": "A2"},
+      {"word": "creativity", "part_of_speech": "noun", "meaning": "創造性", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_007",
+    "situation_ja": "カジノ誘致の失敗",
+    "situation_en": "Failed Casino Project",
+    "card_a": {
+      "text": "[A disappointed citizen] Our city tried to fix its failing economy by building large casinos. However, it did not solve the basic problems of our lives.",
+      "text_ja": "【がっかりした市民】私たちの市は大きなカジノを建てることで低迷する経済を立て直そうとしました。しかし、私たちの生活の根本的な問題は解決しませんでした。"
+    },
+    "card_b": {
+      "text": "That was a temporary solution. Long-term success requires protecting local businesses and investing in education for residents.",
+      "text_ja": "それは一時的な解決策でした。長期的な成功には、地元のビジネスを保護し、住民の教育に投資することが必要です。"
+    },
+    "vocabulary": [
+      {"word": "economy", "part_of_speech": "noun", "meaning": "経済", "level": "B1"},
+      {"word": "solution", "part_of_speech": "noun", "meaning": "解決策", "level": "B1"},
+      {"word": "invest", "part_of_speech": "verb", "meaning": "投資する", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_008",
+    "situation_ja": "地元食材の廃棄",
+    "situation_en": "Wasting Local Food",
+    "card_a": {
+      "text": "[A local farmer] We produce delicious vegetables, but we throw away many because their shapes are \"ugly.\" It is a huge waste of resources.",
+      "text_ja": "【地元の農家】私たちは美味しい野菜を生産していますが、形が「不格好」という理由で多くを捨てています。資源の大きな無駄遣いです。"
+    },
+    "card_b": {
+      "text": "Process those vegetables into local specialty products like soup or jam. Valuing local resources logically creates a sustainable business.",
+      "text_ja": "それらの野菜をスープやジャムのような地元の特産品に加工しましょう。地元の資源を論理的に評価することは、持続可能なビジネスを生み出します。"
+    },
+    "vocabulary": [
+      {"word": "resource", "part_of_speech": "noun", "meaning": "資源", "level": "B1"},
+      {"word": "process", "part_of_speech": "verb", "meaning": "加工する、処理する", "level": "B2"},
+      {"word": "logically", "part_of_speech": "adverb", "meaning": "論理的に", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_009",
+    "situation_ja": "地元の祭りの担い手不足",
+    "situation_en": "Lack of Festival Organizers",
+    "card_a": {
+      "text": "[An elderly festival leader] Our traditional festival has 300 years of history. Sadly, the residents are getting older, and we cannot organize it anymore.",
+      "text_ja": "【高齢の祭りリーダー】私たちの伝統的な祭りには300年の歴史があります。悲しいことに住民が高齢化し、もう開催することができません。"
+    },
+    "card_b": {
+      "text": "Invite university students from outside the town to join the planning. Combining tradition with young energy makes the town active again.",
+      "text_ja": "町外から大学生を招いて企画に参加させましょう。伝統と若者のエネルギーを組み合わせることで、町は再び活気づきます。"
+    },
+    "vocabulary": [
+      {"word": "organize", "part_of_speech": "verb", "meaning": "組織する、開催する", "level": "B1"},
+      {"word": "combine", "part_of_speech": "verb", "meaning": "組み合わせる", "level": "B1"},
+      {"word": "active", "part_of_speech": "adjective", "meaning": "活発な、活動的な", "level": "A2"}
+    ]
+  },
+  {
+    "id": "REV_010",
+    "situation_ja": "箱物（Hakomono）問題",
+    "situation_en": "The Hakomono Problem",
+    "card_a": {
+      "text": "[A city official] We built a luxury cultural center to attract tourists, but no one uses it. The maintenance costs are hurting our budget.",
+      "text_ja": "【市役所の職員】観光客を惹きつけるために豪華な文化センターを建てましたが、誰も使いません。維持費が私たちの予算を圧迫しています。"
+    },
+    "card_b": {
+      "text": "You must think logically and stop the \"Hakomono\" approach. True revitalization focuses on the happiness of local people, not big buildings.",
+      "text_ja": "論理的に考え、「ハコモノ」のアプローチをやめなければなりません。真の活性化は大きな建物ではなく、地元の人々の幸せに焦点を当てるものです。"
+    },
+    "vocabulary": [
+      {"word": "luxury", "part_of_speech": "adjective", "meaning": "豪華な", "level": "B1"},
+      {"word": "maintenance", "part_of_speech": "noun", "meaning": "維持、メンテナンス", "level": "B2"},
+      {"word": "approach", "part_of_speech": "noun", "meaning": "方法、アプローチ", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_011",
+    "situation_ja": "地元文化の喪失",
+    "situation_en": "Loss of Local Culture",
+    "card_a": {
+      "text": "[A school teacher] Children today do not know about our town's unique history or traditional crafts. They think big cities are much better.",
+      "text_ja": "【学校の先生】今日の子どもたちは、私たちの町のユニークな歴史や伝統工芸について知りません。彼らは大都市の方がずっと良いと思っています。"
+    },
+    "card_b": {
+      "text": "Introduce local culture into the school curriculum. Teaching children about their local strengths will make them proud of their hometown.",
+      "text_ja": "地元の文化を学校のカリキュラムに取り入れましょう。子どもたちに地元の強みを教えることで、彼らは自分の故郷を誇りに思うようになります。"
+    },
+    "vocabulary": [
+      {"word": "unique", "part_of_speech": "adjective", "meaning": "ユニークな、独特の", "level": "B1"},
+      {"word": "introduce", "part_of_speech": "verb", "meaning": "導入する、紹介する", "level": "B1"},
+      {"word": "proud", "part_of_speech": "adjective", "meaning": "誇りに思う", "level": "B1"}
+    ]
+  },
+  {
+    "id": "REV_012",
+    "situation_ja": "交通機関の衰退",
+    "situation_en": "Decline of Public Transport",
+    "card_a": {
+      "text": "[An elderly resident] The bus company stopped its service because there were not enough passengers. I cannot go to the hospital or supermarket anymore.",
+      "text_ja": "【高齢の住民】乗客が十分にいないため、バス会社がサービスを停止しました。私はもう病院やスーパーに行くことができません。"
+    },
+    "card_b": {
+      "text": "The community should start a shared taxi service. Supporting the daily lives of residents is the first step of town revitalization.",
+      "text_ja": "地域社会で乗り合いタクシーのサービスを始めるべきです。住民の日常生活を支えることが、地域活性化の第一歩です。"
+    },
+    "vocabulary": [
+      {"word": "passenger", "part_of_speech": "noun", "meaning": "乗客", "level": "A2"},
+      {"word": "shared", "part_of_speech": "adjective", "meaning": "共有の、シェアされた", "level": "B1"},
+      {"word": "revitalization", "part_of_speech": "noun", "meaning": "活性化", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_013",
+    "situation_ja": "過度な観光への依存",
+    "situation_en": "Too Much Focus on Tourism",
+    "card_a": {
+      "text": "[A concerned citizen] Our mayor wants to attract millions of tourists for just one weekend festival. We only care about short-term profits.",
+      "text_ja": "【懸念する市民】私たちの町長は、たった1週末の祭りのために何百万人もの観光客を誘致したがっています。私たちは短期的な利益しか気にしていません。"
+    },
+    "card_b": {
+      "text": "That is a risky strategy. Successful towns focus on continuous daily happiness, rather than relying too much on temporary events.",
+      "text_ja": "それは危険な戦略です。成功している町は、一時的なイベントに頼りすぎるのではなく、継続的な日々の幸せに焦点を当てています。"
+    },
+    "vocabulary": [
+      {"word": "profit", "part_of_speech": "noun", "meaning": "利益", "level": "B1"},
+      {"word": "strategy", "part_of_speech": "noun", "meaning": "戦略", "level": "B2"},
+      {"word": "continuous", "part_of_speech": "adjective", "meaning": "継続的な", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_014",
+    "situation_ja": "自然環境の破壊",
+    "situation_en": "Destroying the Environment",
+    "card_a": {
+      "text": "[A nature lover] Developers are cutting down our beautiful forests to build a luxury resort. We are losing our town's greatest charm.",
+      "text_ja": "【自然愛好家】開発業者が豪華なリゾートを建設するために、私たちの美しい森を切り開いています。私たちは町の最大の魅力を失っています。"
+    },
+    "card_b": {
+      "text": "We must protect nature to achieve long-term success. Eco-tourism that values the environment is much better than building expensive facilities.",
+      "text_ja": "長期的な成功を収めるためには、自然を守らなければなりません。環境を大切にするエコツーリズムは、高価な施設を建てるよりもはるかに優れています。"
+    },
+    "vocabulary": [
+      {"word": "developer", "part_of_speech": "noun", "meaning": "開発業者", "level": "B2"},
+      {"word": "charm", "part_of_speech": "noun", "meaning": "魅力", "level": "B1"},
+      {"word": "value", "part_of_speech": "verb", "meaning": "大切にする、評価する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "REV_015",
+    "situation_ja": "地元経済の低迷",
+    "situation_en": "Struggling Local Economy",
+    "card_a": {
+      "text": "[A local baker] People buy everything from large international online stores. The money goes out of our town, and local businesses are struggling.",
+      "text_ja": "【地元のパン屋】人々はすべてを国際的な大規模オンラインストアで購入します。お金は町の外に出ていき、地元のビジネスは苦しんでいます。"
+    },
+    "card_b": {
+      "text": "We should introduce a local digital currency system. Protecting local businesses keeps the money inside and makes the community active again.",
+      "text_ja": "地元のデジタル通貨システムを導入するべきです。地元のビジネスを守ることで、お金を内側に留め、地域を再び活発にすることができます。"
+    },
+    "vocabulary": [
+      {"word": "struggle", "part_of_speech": "verb", "meaning": "苦労する", "level": "B2"},
+      {"word": "currency", "part_of_speech": "noun", "meaning": "通貨", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_016",
+    "situation_ja": "ITスキルの不足",
+    "situation_en": "Lack of IT Skills",
+    "card_a": {
+      "text": "[A business owner] We want to sell our local products online to the whole country. However, no one in our town has the necessary IT skills.",
+      "text_ja": "【経営者】私たちの地元の製品をオンラインで全国に販売したいです。しかし、私たちの町には必要なITスキルを持つ人が誰もいません。"
+    },
+    "card_b": {
+      "text": "Set up digital workshops and invite IT experts. Connecting local strengths with modern technology is a smart way to revitalize the town.",
+      "text_ja": "デジタルワークショップを立ち上げ、ITの専門家を招きましょう。地元の強みと現代の技術を結びつけることは、町を活性化する賢い方法です。"
+    },
+    "vocabulary": [
+      {"word": "product", "part_of_speech": "noun", "meaning": "製品", "level": "A2"},
+      {"word": "expert", "part_of_speech": "noun", "meaning": "専門家", "level": "B1"},
+      {"word": "modern", "part_of_speech": "adjective", "meaning": "現代の", "level": "A2"}
+    ]
+  },
+  {
+    "id": "REV_017",
+    "situation_ja": "若者の意見が届かない",
+    "situation_en": "Youth Voices Ignored",
+    "card_a": {
+      "text": "[A high school student] Only older people decide the future of our town. Our generation feels ignored, so we want to leave after graduation.",
+      "text_ja": "【高校生】年配の人たちだけが私たちの町の未来を決めています。私たちの世代は無視されていると感じるため、卒業後は離れたいと思っています。"
+    },
+    "card_b": {
+      "text": "Create a youth council for city planning. Valuing young people's ideas is essential to keep the town lively and attractive in the future.",
+      "text_ja": "都市計画のための若者議会を作りましょう。若者のアイデアを大切にすることは、将来にわたって町を活気があり魅力的に保つために不可欠です。"
+    },
+    "vocabulary": [
+      {"word": "ignore", "part_of_speech": "verb", "meaning": "無視する", "level": "B1"},
+      {"word": "council", "part_of_speech": "noun", "meaning": "議会、会議", "level": "B2"},
+      {"word": "essential", "part_of_speech": "adjective", "meaning": "不可欠な", "level": "B1"}
+    ]
+  },
+  {
+    "id": "REV_018",
+    "situation_ja": "使われない公共施設",
+    "situation_en": "Unused Public Facilities",
+    "card_a": {
+      "text": "[A young mother] We have a huge city hall with an expensive lobby. But mothers have no place to safely let their babies play in the town.",
+      "text_ja": "【若い母親】高価なロビーがある巨大な市役所があります。しかし、町には母親たちが赤ちゃんを安全に遊ばせられる場所がありません。"
+    },
+    "card_b": {
+      "text": "The city should logically redesign the empty lobby into a free kids' space. Facilities must serve the daily happiness of the residents.",
+      "text_ja": "市は論理的に空いているロビーを無料のキッズスペースに再設計するべきです。施設は住民の日常の幸せのために役立たなければなりません。"
+    },
+    "vocabulary": [
+      {"word": "lobby", "part_of_speech": "noun", "meaning": "ロビー、広間", "level": "A2"},
+      {"word": "redesign", "part_of_speech": "verb", "meaning": "再設計する", "level": "B2"},
+      {"word": "serve", "part_of_speech": "verb", "meaning": "役立つ、奉仕する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "REV_019",
+    "situation_ja": "観光客によるゴミ問題",
+    "situation_en": "Garbage from Tourists",
+    "card_a": {
+      "text": "[A local volunteer] Our street food festival is popular, but tourists leave mountains of garbage everywhere. It ruins our beautiful environment.",
+      "text_ja": "【地元のボランティア】私たちの屋台フェスティバルは人気ですが、観光客が至る所にゴミの山を残していきます。美しい環境を台無しにしています。"
+    },
+    "card_b": {
+      "text": "Implement strict rules and encourage tourists to bring their trash home. A successful town must protect its environment first.",
+      "text_ja": "厳しいルールを実行し、観光客にゴミを持ち帰るよう促しましょう。成功する町は、まずその環境を保護しなければなりません。"
+    },
+    "vocabulary": [
+      {"word": "garbage", "part_of_speech": "noun", "meaning": "ゴミ", "level": "A2"},
+      {"word": "implement", "part_of_speech": "verb", "meaning": "実行する、導入する", "level": "B2"},
+      {"word": "encourage", "part_of_speech": "verb", "meaning": "促す、推奨する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "REV_020",
+    "situation_ja": "農業の担い手不足",
+    "situation_en": "Aging Farmers",
+    "card_a": {
+      "text": "[An aging farmer] I am 75 years old and my body hurts. I want to retire, but no one in my family wants to take over my farm.",
+      "text_ja": "【高齢の農家】私は75歳で体が痛みます。引退したいのですが、家族の誰も私の農場を引き継ぎたがりません。"
+    },
+    "card_b": {
+      "text": "The town should match aging farmers with young agriculture students. Passing down local farming knowledge sustains the community's food supply.",
+      "text_ja": "町は高齢の農家と若い農業学生をマッチングさせるべきです。地元の農業の知識を受け継ぐことは、地域の食料供給を持続させます。"
+    },
+    "vocabulary": [
+      {"word": "retire", "part_of_speech": "verb", "meaning": "引退する", "level": "A2"},
+      {"word": "agriculture", "part_of_speech": "noun", "meaning": "農業", "level": "B2"},
+      {"word": "sustain", "part_of_speech": "verb", "meaning": "持続させる、維持する", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_021",
+    "situation_ja": "アーティストの作業場不足",
+    "situation_en": "No Space for Artists",
+    "card_a": {
+      "text": "[A young painter] I want to create large artworks and hold exhibitions, but rent in the big city is too expensive for me to afford.",
+      "text_ja": "【若い画家】大きな芸術作品を制作して展覧会を開きたいのですが、大都市の家賃は私には高すぎて支払えません。"
+    },
+    "card_b": {
+      "text": "Move to a rural town that offers empty buildings as cheap studios. Artists can bring new life and attractiveness to the quiet community.",
+      "text_ja": "空き建物を安いスタジオとして提供している農村の町に移住しましょう。アーティストは静かな地域に新しい活気と魅力をもたらすことができます。"
+    },
+    "vocabulary": [
+      {"word": "exhibition", "part_of_speech": "noun", "meaning": "展覧会", "level": "B1"},
+      {"word": "afford", "part_of_speech": "verb", "meaning": "（金銭的に）余裕がある", "level": "B1"},
+      {"word": "attractiveness", "part_of_speech": "noun", "meaning": "魅力", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_022",
+    "situation_ja": "伝統工芸の衰退",
+    "situation_en": "Fading Traditional Crafts",
+    "card_a": {
+      "text": "[A traditional artisan] Our handmade wooden products are beautiful, but they do not fit modern lifestyles. We have almost no customers left.",
+      "text_ja": "【伝統職人】私たちの手作りの木製品は美しいですが、現代のライフスタイルに合いません。お客様はほとんど残っていません。"
+    },
+    "card_b": {
+      "text": "Collaborate with young designers to create stylish products using your traditional techniques. This approach mixes local strengths with modern needs.",
+      "text_ja": "若いデザイナーと協力して、あなたの伝統的な技術を使ったスタイリッシュな製品を作りましょう。このアプローチは、地元の強みと現代のニーズを組み合わせます。"
+    },
+    "vocabulary": [
+      {"word": "artisan", "part_of_speech": "noun", "meaning": "職人", "level": "B2"},
+      {"word": "collaborate", "part_of_speech": "verb", "meaning": "協力する、コラボする", "level": "B2"},
+      {"word": "technique", "part_of_speech": "noun", "meaning": "技術", "level": "B1"}
+    ]
+  },
+  {
+    "id": "REV_023",
+    "situation_ja": "魅力のない観光PR",
+    "situation_en": "Boring Tourism Promotion",
+    "card_a": {
+      "text": "[A tourism officer] We spend a lot of money making typical travel videos. However, they look exactly the same as videos from other towns.",
+      "text_ja": "【観光局の職員】典型的な旅行動画を作るのに多くのお金を使っています。しかし、それらは他の町の動画と全く同じに見えます。"
+    },
+    "card_b": {
+      "text": "Stop copying others and discover what makes your town truly unique. Highlighting the warm daily lives of local people is more attractive.",
+      "text_ja": "他を真似するのをやめ、あなたの町を本当にユニークにするものを発見してください。地元の人々の温かい日常を強調するほうがより魅力的です。"
+    },
+    "vocabulary": [
+      {"word": "typical", "part_of_speech": "adjective", "meaning": "典型的な、よくある", "level": "B1"},
+      {"word": "discover", "part_of_speech": "verb", "meaning": "発見する", "level": "A2"},
+      {"word": "highlight", "part_of_speech": "verb", "meaning": "強調する、目立たせる", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_024",
+    "situation_ja": "地域のつながりの希薄化",
+    "situation_en": "Weak Community Bonds",
+    "card_a": {
+      "text": "[A new resident] I moved here recently, but I do not know anyone. There are no places to naturally meet and chat with my neighbors.",
+      "text_ja": "【新住民】最近ここに引っ越してきましたが、誰も知りません。近所の人と自然に会って話せる場所がありません。"
+    },
+    "card_b": {
+      "text": "The town should create beautiful public parks and host local farmer's markets. Spaces for interaction are key to making a town active again.",
+      "text_ja": "町は美しい公共の公園を作り、地元のファーマーズマーケットを開催するべきです。交流のための空間は、町を再び活気づける鍵となります。"
+    },
+    "vocabulary": [
+      {"word": "resident", "part_of_speech": "noun", "meaning": "住民", "level": "B1"},
+      {"word": "interaction", "part_of_speech": "noun", "meaning": "交流、相互作用", "level": "B2"},
+      {"word": "active", "part_of_speech": "adjective", "meaning": "活発な", "level": "A2"}
+    ]
+  },
+  {
+    "id": "REV_025",
+    "situation_ja": "森林の放置問題",
+    "situation_en": "Abandoned Forests",
+    "card_a": {
+      "text": "[A forestry worker] The mountains surrounding our town are ignored. Without care, the forests become dark and the trees lose their value.",
+      "text_ja": "【林業作業員】私たちの町を囲む山々は無視されています。手入れをしないと、森は暗くなり木々は価値を失います。"
+    },
+    "card_b": {
+      "text": "Use local timber to build new schools and community centers. Utilizing natural resources logically protects both the environment and the economy.",
+      "text_ja": "地元の木材を使って新しい学校やコミュニティセンターを建てましょう。天然資源を論理的に活用することは、環境と経済の両方を守ります。"
+    },
+    "vocabulary": [
+      {"word": "surrounding", "part_of_speech": "adjective", "meaning": "周囲の", "level": "B2"},
+      {"word": "timber", "part_of_speech": "noun", "meaning": "木材", "level": "B2"},
+      {"word": "utilize", "part_of_speech": "verb", "meaning": "活用する、利用する", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_026",
+    "situation_ja": "地元の歴史の忘れ去り",
+    "situation_en": "Forgotten Local History",
+    "card_a": {
+      "text": "[A museum curator] Many interesting historical events happened in our town. Sadly, nobody talks about them, and the stories are fading away.",
+      "text_ja": "【博物館の学芸員】私たちの町では多くの興味深い歴史的事件が起きました。悲しいことに誰もそれについて話さず、物語は消えかけています。"
+    },
+    "card_b": {
+      "text": "Organize community storytelling events and walking tours. Sharing these local strengths builds pride and creates a lively town identity.",
+      "text_ja": "地域の語り部イベントやウォーキングツアーを企画しましょう。これらの地元の強みを共有することは、誇りを築き、活気ある町のアイデンティティを生み出します。"
+    },
+    "vocabulary": [
+      {"word": "curator", "part_of_speech": "noun", "meaning": "学芸員", "level": "B2"},
+      {"word": "fade away", "part_of_speech": "phrasal verb", "meaning": "次第に消えていく", "level": "B2"},
+      {"word": "identity", "part_of_speech": "noun", "meaning": "アイデンティティ、独自性", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_027",
+    "situation_ja": "一時的なイベントへの疲弊",
+    "situation_en": "Exhaustion from Temporary Events",
+    "card_a": {
+      "text": "[A town volunteer] We host massive music festivals every year. It brings money, but the local volunteers are completely exhausted.",
+      "text_ja": "【町のボランティア】私たちは毎年大規模な音楽フェスを開催しています。お金はもたらしますが、地元のボランティアは完全に疲れ果てています。"
+    },
+    "card_b": {
+      "text": "Town revitalization should not rely on the sacrifice of local people. Shift your focus to smaller, sustainable projects that make residents happy.",
+      "text_ja": "地域活性化は地元の人々の犠牲に頼るべきではありません。住民を幸せにする、より小規模で持続可能なプロジェクトに焦点を移しましょう。"
+    },
+    "vocabulary": [
+      {"word": "exhausted", "part_of_speech": "adjective", "meaning": "疲れ果てた", "level": "B2"},
+      {"word": "sacrifice", "part_of_speech": "noun", "meaning": "犠牲", "level": "B2"},
+      {"word": "shift", "part_of_speech": "verb", "meaning": "移す、変える", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_028",
+    "situation_ja": "大企業の工場撤退",
+    "situation_en": "Factory Closing Down",
+    "card_a": {
+      "text": "[A laid-off worker] The big factory in our town suddenly closed down. Many people lost their jobs, and the local economy is failing.",
+      "text_ja": "【解雇された労働者】私たちの町の大きな工場が突然閉鎖されました。多くの人が仕事を失い、地元経済は低迷しています。"
+    },
+    "card_b": {
+      "text": "This shows the danger of relying too much on one large company. Support small, unique local startups to build a stronger community.",
+      "text_ja": "これは一つの一大企業に頼りすぎることの危険性を示しています。より強い地域社会を築くために、小規模でユニークな地元のスタートアップを支援しましょう。"
+    },
+    "vocabulary": [
+      {"word": "suddenly", "part_of_speech": "adverb", "meaning": "突然", "level": "A2"},
+      {"word": "rely", "part_of_speech": "verb", "meaning": "頼る、依存する", "level": "B1"},
+      {"word": "startup", "part_of_speech": "noun", "meaning": "新興企業、スタートアップ", "level": "B2"}
+    ]
+  },
+  {
+    "id": "REV_029",
+    "situation_ja": "方言の消滅",
+    "situation_en": "Disappearing Local Dialects",
+    "card_a": {
+      "text": "[An old resident] Young people only speak standard Japanese now. Our beautiful local dialect and expressions are disappearing fast.",
+      "text_ja": "【古い住民】今や若者は標準的な日本語しか話しません。私たちの美しい地元の方言や表現が急速に消えつつあります。"
+    },
+    "card_b": {
+      "text": "Use the local dialect in the town's tourism campaigns or products. Valuing unique local culture makes the town attractive to everyone.",
+      "text_ja": "町の観光キャンペーンや製品に地元の方言を使用しましょう。ユニークな地元文化を大切にすることは、町を誰にとっても魅力的なものにします。"
+    },
+    "vocabulary": [
+      {"word": "standard", "part_of_speech": "adjective", "meaning": "標準の", "level": "B1"},
+      {"word": "dialect", "part_of_speech": "noun", "meaning": "方言", "level": "B2"},
+      {"word": "expression", "part_of_speech": "noun", "meaning": "表現", "level": "B1"}
+    ]
+  },
+  {
+    "id": "REV_030",
+    "situation_ja": "成功の定義を見失う",
+    "situation_en": "Losing the Definition of Success",
+    "card_a": {
+      "text": "[A confused city planner] Everyone talks about town revitalization, but what is the final goal? Is it building the biggest shopping mall?",
+      "text_ja": "【混乱する都市計画家】誰もが地域活性化について話しますが、最終的な目標は何ですか？一番大きなショッピングモールを建てることでしょうか？"
+    },
+    "card_b": {
+      "text": "True revitalization is not about expensive buildings. It is about creating a community where local residents can live happily and sustainably.",
+      "text_ja": "真の活性化は高価な建物についてではありません。地元住民が幸せに、そして持続可能な形で暮らせる地域社会を創ることです。"
+    },
+    "vocabulary": [
+      {"word": "revitalization", "part_of_speech": "noun", "meaning": "活性化", "level": "B2"},
+      {"word": "goal", "part_of_speech": "noun", "meaning": "目標", "level": "A2"},
+      {"word": "sustainably", "part_of_speech": "adverb", "meaning": "持続可能な形で", "level": "B2"}
+    ]
+  }
+]

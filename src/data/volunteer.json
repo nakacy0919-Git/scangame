@@ -1,0 +1,513 @@
+[
+  {
+    "id": "VOL_001",
+    "situation_ja": "避難所での炊き出し",
+    "situation_en": "Soup Kitchen at a Shelter",
+    "card_a": {
+      "text": "[A surprised shelter manager] A major earthquake just occurred. The shelter does not have enough hands to cook hot meals for hundreds of evacuees.",
+      "text_ja": "【驚いた避難所管理者】大地震が発生しました。避難所には、何百人もの避難者のために温かい食事を作る人手が足りていません。"
+    },
+    "card_b": {
+      "text": "Join a disaster relief team to run a soup kitchen. Serving warm food helps maintain the physical and emotional health of affected citizens.",
+      "text_ja": "災害救援チームに参加して炊き出しを行いましょう。温かい食事を提供することは、被災した市民の身体的・精神的健康を維持するのに役立ちます。"
+    },
+    "vocabulary": [
+      {"word": "evacuee", "part_of_speech": "noun", "meaning": "避難者", "level": "B2"},
+      {"word": "relief", "part_of_speech": "noun", "meaning": "救援、救済", "level": "B1"},
+      {"word": "affected", "part_of_speech": "adjective", "meaning": "被災した、影響を受けた", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_002",
+    "situation_ja": "大雨の後の泥出し",
+    "situation_en": "Flood Cleanup Operations",
+    "card_a": {
+      "text": "[A worried neighbor] Heavy rain caused severe floods in our rural town. An elderly couple living alone cannot remove the thick mud from their house by themselves.",
+      "text_ja": "【心配する近隣住民】豪雨により、私たちの農村の町で深刻な洪水が発生しました。一人暮らしの高齢夫婦だけでは、家の中の厚い泥を取り除くことができません。"
+    },
+    "card_b": {
+      "text": "Gather a group of young volunteers to clear out the debris and mud. Working together accelerates the recovery process of the community.",
+      "text_ja": "若いボランティアのグループを集めて、がれきや泥を片付けましょう。共に働くことで、地域の復興プロセスが加速します。"
+    },
+    "vocabulary": [
+      {"word": "debris", "part_of_speech": "noun", "meaning": "がれき、残骸", "level": "B2"},
+      {"word": "accelerate", "part_of_speech": "verb", "meaning": "加速させる", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_003",
+    "situation_ja": "高齢者の買い物支援",
+    "situation_en": "Shopping Assistance for Seniors",
+    "card_a": {
+      "text": "[An anxious grandmother] I live far away from grocery stores. My legs are weak, and I struggle to carry heavy bags of daily essentials back home.",
+      "text_ja": "【不安げなおばあちゃん】食料品店から遠く離れた場所に住んでいます。足腰が弱く、日々の必需品の重い袋を家に持ち帰るのに苦労しています。"
+    },
+    "card_b": {
+      "text": "Volunteer for a shopping assistance service. You can deliver groceries to her house and check on her well-being at the same time.",
+      "text_ja": "買い物支援サービスにボランティアとして参加しましょう。食料品を彼女の家に届けると同時に、健康状態を確認することができます。"
+    },
+    "vocabulary": [
+      {"word": "essentials", "part_of_speech": "noun", "meaning": "必需品", "level": "B1"},
+      {"word": "assistance", "part_of_speech": "noun", "meaning": "援助、支援", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_004",
+    "situation_ja": "シニア向けスマホ教室",
+    "situation_en": "Smartphone Class for Seniors",
+    "card_a": {
+      "text": "[A confused grandfather] The local government is shifting to digital services. I do not know how to use my smartphone to complete necessary procedures.",
+      "text_ja": "【困惑するおじいちゃん】地方自治体がデジタルサービスに移行しています。必要な手続きを完了するためにスマホをどう使えばいいのか分かりません。"
+    },
+    "card_b": {
+      "text": "Organize a technology class at the community center. Teaching basic smartphone skills helps prevent digital isolation among the elderly.",
+      "text_ja": "公民館でテクノロジー教室を企画しましょう。基本的なスマホの操作を教えることは、高齢者のデジタル孤立を防ぐのに役立ちます。"
+    },
+    "vocabulary": [
+      {"word": "procedure", "part_of_speech": "noun", "meaning": "手続き", "level": "B2"},
+      {"word": "isolation", "part_of_speech": "noun", "meaning": "孤立", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_005",
+    "situation_ja": "外国籍の子どもの学習支援",
+    "situation_en": "Educational Support for Foreign Children",
+    "card_a": {
+      "text": "[A lonely immigrant child] I recently moved to Japan from overseas. I cannot understand school lessons or talk to my classmates due to the language barrier.",
+      "text_ja": "【孤独な外国籍の子ども】最近海外から日本に引っ越してきました。言葉の壁のせいで学校の授業が理解できず、クラスメイトとも話せません。"
+    },
+    "card_b": {
+      "text": "Become a volunteer tutor at an after-school support club. Helping foreign children learn Japanese promotes multicultural coexistence.",
+      "text_ja": "放課後の支援クラブでボランティアの指導員になりましょう。外国籍の子どもたちが日本語を学ぶのを助けることは、多文化共生を促進します。"
+    },
+    "vocabulary": [
+      {"word": "barrier", "part_of_speech": "noun", "meaning": "障壁、壁", "level": "B1"},
+      {"word": "coexistence", "part_of_speech": "noun", "meaning": "共生、共存", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_006",
+    "situation_ja": "フードバンクの仕分け",
+    "situation_en": "Food Bank Volunteering",
+    "card_a": {
+      "text": "[A worried food bank manager] Local supermarkets throw away perfectly edible food every day. At the same time, some low-income families are struggling to eat.",
+      "text_ja": "【心配そうなフードバンク管理者】地元のスーパーは毎日、完全に食べられる食品を捨てています。同時に、一部の低所得家庭は食事をとるのに苦労しています。"
+    },
+    "card_b": {
+      "text": "Participate in a food bank program to sort and distribute donated food. This activity reduces food waste and supports people in need.",
+      "text_ja": "寄付された食品を仕分けして配布するフードバンクのプログラムに参加しましょう。この活動は食品ロスを減らし、困っている人々を支援します。"
+    },
+    "vocabulary": [
+      {"word": "edible", "part_of_speech": "adjective", "meaning": "食べられる、食用の", "level": "B2"},
+      {"word": "distribute", "part_of_speech": "verb", "meaning": "分配する、配布する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_007",
+    "situation_ja": "夜間の防犯パトロール",
+    "situation_en": "Nightly Safety Patrols",
+    "card_a": {
+      "text": "[A concerned neighborhood leader] Our community is facing a harsh reality with an aging population. We lack young citizens to conduct nightly safety patrols.",
+      "text_ja": "【懸念する地域リーダー】私たちの地域は高齢化という厳しい現実に直面しています。夜間の防犯パトロールを行う若い市民が不足しています。"
+    },
+    "card_b": {
+      "text": "Sign up for the neighborhood watch program. Walking around the area at night helps prevent crime and keeps children safe.",
+      "text_ja": "地域の見守りプログラムに登録しましょう。夜間に地域を歩いて回ることは、犯罪を防ぎ、子どもたちの安全を守るのに役立ちます。"
+    },
+    "vocabulary": [
+      {"word": "conduct", "part_of_speech": "verb", "meaning": "行う、実施する", "level": "B2"},
+      {"word": "prevent", "part_of_speech": "verb", "meaning": "防ぐ、妨げる", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_008",
+    "situation_ja": "地域の祭りの人手不足",
+    "situation_en": "Sustaining Local Festivals",
+    "card_a": {
+      "text": "[A sad festival organizer] Our traditional summer festival faces the danger of cancellation. We do not have enough young people to set up the heavy wooden stages.",
+      "text_ja": "【悲しむお祭り主催者】伝統的な夏祭りが中止の危機に直面しています。重い木製の舞台を組み立てる若い人が十分にいません。"
+    },
+    "card_b": {
+      "text": "Volunteer to support the local event. Helping with heavy labor preserves traditional culture and connects different generations.",
+      "text_ja": "地元の大切なイベントを支援するためにボランティアをしましょう。重労働を手伝うことは、伝統文化を維持し、異なる世代を繋ぎます。"
+    },
+    "vocabulary": [
+      {"word": "cancellation", "part_of_speech": "noun", "meaning": "中止、キャンセル", "level": "B1"},
+      {"word": "preserve", "part_of_speech": "verb", "meaning": "維持する、保存する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_009",
+    "situation_ja": "独居高齢者の訪問・傾聴",
+    "situation_en": "Home-Visiting Service",
+    "card_a": {
+      "text": "[A socially isolated senior] I live completely alone and rarely speak to anyone all week. I feel forgotten and disconnected from society.",
+      "text_ja": "【社会的に孤立した高齢者】完全に一人で暮らしており、丸一週間誰とも話さないこともめったにありません。社会から忘れられ、切り離されていると感じます。"
+    },
+    "card_b": {
+      "text": "Join a volunteer home-visiting service. Spending time chatting and listening to old stories offers great emotional support.",
+      "text_ja": "ボランティアの家庭訪問サービスに参加しましょう。おしゃべりをしたり昔話を聞いたりして過ごす時間は、大きな心の支えになります。"
+    },
+    "vocabulary": [
+      {"word": "rarely", "part_of_speech": "adverb", "meaning": "めったに〜ない", "level": "B1"},
+      {"word": "disconnected", "part_of_speech": "adjective", "meaning": "つながりの切れた、孤立した", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_010",
+    "situation_ja": "子ども食堂のサポート",
+    "situation_en": "Supporting Children's Cafeteria",
+    "card_a": {
+      "text": "[A busy single mother] I work late hours every day to sustain my family. I worry because my children stay alone at home without hot dinners.",
+      "text_ja": "【多忙なシングルマザー】家族を養うために毎日遅くまで働いています。子どもたちが温かい夕食をとらずに、家で一人で過ごしているのが心配です。"
+    },
+    "card_b": {
+      "text": "Support a local 'children's cafeteria' (Kodomo Shokudo). Volunteers cook nutritious meals and provide a warm, safe space for kids after school.",
+      "text_ja": "地元の「子ども食堂」を支援しましょう。ボランティアが栄養のある食事を作り、放課後の子どもたちに温かく安全な場所を提供しています。"
+    },
+    "vocabulary": [
+      {"word": "sustain", "part_of_speech": "verb", "meaning": "養う、維持する", "level": "B2"},
+      {"word": "nutritious", "part_of_speech": "adjective", "meaning": "栄養のある", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_011",
+    "situation_ja": "動物保護施設の日常ケア",
+    "situation_en": "Animal Shelter Volunteering",
+    "card_a": {
+      "text": "[An overwhelmed shelter worker] Our local animal shelter is full of abandoned dogs and cats. We do not have enough staff to feed them or clean their cages.",
+      "text_ja": "【手一杯の保護施設職員】地元の動物保護施設が捨てられた犬や猫でいっぱいです。エサやりやケージの掃除をするスタッフが足りていません。"
+    },
+    "card_b": {
+      "text": "Offer your time to take care of the animals. Helping with daily care and organizing adoption events increases their chance of finding a home.",
+      "text_ja": "動物たちの世話をするために時間を提供しましょう。日々のケアを手伝い、譲渡会を企画することは、新しい飼い主が見つかるチャンスを増やします。"
+    },
+    "vocabulary": [
+      {"word": "abandoned", "part_of_speech": "adjective", "meaning": "捨てられた、見捨てられた", "level": "B2"},
+      {"word": "adoption", "part_of_speech": "noun", "meaning": "（動物の）譲渡、養子縁組", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_012",
+    "situation_ja": "海岸のクリーンアップ",
+    "situation_en": "Beach Clean-up Event",
+    "card_a": {
+      "text": "[A frustrated environmentalist] The beautiful local beach is ruined by plastic waste from the ocean. This pollution harms marine life and smells terrible.",
+      "text_ja": "【挫折感を抱く環境活動家】美しい地元のビーチが海からのプラスチックゴミで台無しにされています。この汚染は海の生物を傷つけ、ひどい臭いがします。"
+    },
+    "card_b": {
+      "text": "Organize a weekend beach clean-up event. Gathering citizens to collect plastic trash protects nature and creates a sustainable environment.",
+      "text_ja": "週末のビーチクリーンアップイベントを企画しましょう。市民を集めてプラスチックゴミを回収することは、自然を保護し、持続可能な環境を作ります。"
+    },
+    "vocabulary": [
+      {"word": "pollution", "part_of_speech": "noun", "meaning": "汚染", "level": "B1"},
+      {"word": "sustainable", "part_of_speech": "adjective", "meaning": "持続可能な", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_013",
+    "situation_ja": "障がい者のイベント移動補助",
+    "situation_en": "Mobility Support at Festivals",
+    "card_a": {
+      "text": "[A disabled citizen] I want to participate in the upcoming cultural festival. However, I am worried because the venue has many stairs and no elevator.",
+      "text_ja": "【障がいを持つ市民】今度ある文化祭に参加したいです。しかし、会場には階段が多くエレベーターがないため、不安です。"
+    },
+    "card_b": {
+      "text": "Volunteer as a mobility assistant at the event. Helping wheelchair users navigate the building ensures equal participation for everyone.",
+      "text_ja": "イベントの移動アシスタントとしてボランティアをしましょう。車いすユーザーが館内を移動するのを手伝うことで、全員の平等な参加が保証されます。"
+    },
+    "vocabulary": [
+      {"word": "venue", "part_of_speech": "noun", "meaning": "会場、開催地", "level": "B2"},
+      {"word": "navigate", "part_of_speech": "verb", "meaning": "（進路を）進む、進路を決める", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_014",
+    "situation_ja": "病院での総合案内",
+    "situation_en": "Hospital Volunteer Guide",
+    "card_a": {
+      "text": "[A lost hospital visitor] I am an elderly man at a massive city hospital. I am totally confused by the new automated reception machines.",
+      "text_ja": "【道に迷った病院の来院者】大きな市営病院に来ている高齢男性です。新しい自動受付機に完全に混乱しています。"
+    },
+    "card_b": {
+      "text": "Stand near the entrance as a volunteer guide. Showing patients how to use the machines reduces their anxiety and speeds up the process.",
+      "text_ja": "ボランティアガイドとして入り口の近くに立ちましょう。患者に機械の使い方を教えることは、彼らの不安を減らし、手続きをスピードアップさせます。"
+    },
+    "vocabulary": [
+      {"word": "automated", "part_of_speech": "adjective", "meaning": "自動化された", "level": "B2"},
+      {"word": "anxiety", "part_of_speech": "noun", "meaning": "不安、心配", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_015",
+    "situation_ja": "里山の環境保全",
+    "situation_en": "Forest Conservation Work",
+    "card_a": {
+      "text": "[A local forest ranger] Hand-planted forests in our mountains are completely abandoned. Without proper care, the trees are dying and causing landslides.",
+      "text_ja": "【地元の森林警備員】私たちの山の人工林が完全に放置されています。適切なケアをしないと、木が枯れて土砂崩れを引き起こす原因になります。"
+    },
+    "card_b": {
+      "text": "Join a volunteer conservation group to thin out dense trees and plant new ones. Forest management protects the community from natural disasters.",
+      "text_ja": "ボランティアの保全グループに参加して、密集した木を間引き、新しい木を植えましょう。森林管理は自然災害から地域を守ります。"
+    },
+    "vocabulary": [
+      {"word": "abandoned", "part_of_speech": "adjective", "meaning": "放置された、見捨てられた", "level": "B2"},
+      {"word": "proper", "part_of_speech": "adjective", "meaning": "適切な、きちんとした", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_016",
+    "situation_ja": "図書館での読み聞かせ",
+    "situation_en": "Storytelling at the Library",
+    "card_a": {
+      "text": "[A school librarian] Our elementary school library has plenty of great books. However, we need someone to read stories to children to encourage reading habits.",
+      "text_ja": "【学校の司書】小学校の図書館には素晴らしい本がたくさんあります。しかし、読書習慣を促すために、子どもたちに物語を読んでくれる人が必要です。"
+    },
+    "card_b": {
+      "text": "Volunteer for a weekly storytelling circle. Reading picture books aloud sparks children's imagination and fosters a love for literature.",
+      "text_ja": "毎週の読み聞かせサークルにボランティアとして参加しましょう。絵本を音読することは、子どもたちの想像力を刺激し、文学への愛を育みます。"
+    },
+    "vocabulary": [
+      {"word": "encourage", "part_of_speech": "verb", "meaning": "促す、奨励する", "level": "B1"},
+      {"word": "foster", "part_of_speech": "verb", "meaning": "育む、促進する", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_017",
+    "situation_ja": "パラスポーツ大会の運営",
+    "situation_en": "Parasports Event Coordination",
+    "card_a": {
+      "text": "[A parasports event coordinator] We are hosting a sports competition for athletes with disabilities. We desperately need staff to guide visitors and hand out water.",
+      "text_ja": "【パラスポーツ大会コーディネーター】障がいを持つアスリートのためのスポーツ大会を開催します。来場者の案内や水を配るスタッフがどうしても必要です。"
+    },
+    "card_b": {
+      "text": "Register as a sports volunteer. Assisting behind the scenes ensures the tournament runs smoothly and spreads awareness of disabled sports.",
+      "text_ja": "スポーツボランティアとして登録しましょう。舞台裏で支援することは、大会がスムーズに進行することを確実にし、障がい者スポーツの認知を広げます。"
+    },
+    "vocabulary": [
+      {"word": "desperately", "part_of_speech": "adverb", "meaning": "どうしても、必死に", "level": "B2"},
+      {"word": "smoothly", "part_of_speech": "adverb", "meaning": "スムーズに、円滑に", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_018",
+    "situation_ja": "災害時の多言語情報発信",
+    "situation_en": "Multilingual Emergency Alerts",
+    "card_a": {
+      "text": "[A non-Japanese resident] A major flood warning was issued in my town. However, all emergency announcements are in fast Japanese, so I am terrified.",
+      "text_ja": "【外国人住民】私の町に重大な洪水警報が出されました。しかし、緊急アナウンスがすべて早い日本語なので、とても怖いです。"
+    },
+    "card_b": {
+      "text": "Join a volunteer translation team during disasters. Translating critical alerts into multiple languages saves the lives of foreign residents.",
+      "text_ja": "災害時にボランティアの翻訳チームに参加しましょう。重要な警戒情報を複数の言語に翻訳することは、外国人住民の命を救います。"
+    },
+    "vocabulary": [
+      {"word": "terrified", "part_of_speech": "adjective", "meaning": "おびえた、恐れた", "level": "B1"},
+      {"word": "critical", "part_of_speech": "adjective", "meaning": "重大な、危機的な", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_019",
+    "situation_ja": "障がい者への配食サービス",
+    "situation_en": "Meal Delivery Service",
+    "card_a": {
+      "text": "[A bedridden patient] I cannot leave my bed due to a serious illness. I struggle to cook healthy meals, and I often skip eating.",
+      "text_ja": "【寝たきりの患者】重い病気のためにベッドから離れることができません。健康的な食事を作ることが難しく、食事を抜いてしまうことがよくあります。"
+    },
+    "card_b": {
+      "text": "Volunteer for a meal delivery service for the disabled. Delivering warm, nutritious lunches provides both physical health and social connection.",
+      "text_ja": "障がい者向けの配食サービスにボランティアとして参加しましょう。温かく栄養のあるお弁当を届けることは、身体的な健康と社会的な繋がりの両方を提供します。"
+    },
+    "vocabulary": [
+      {"word": "illness", "part_of_speech": "noun", "meaning": "病気", "level": "A2"},
+      {"word": "skip", "part_of_speech": "verb", "meaning": "抜かす、スキップする", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_020",
+    "situation_ja": "地域の公園の美化活動",
+    "situation_en": "Park Beautification Day",
+    "card_a": {
+      "text": "[A parent of young children] The neighborhood park is covered in tall weeds and sharp glass. It is too dangerous for children to play there safely.",
+      "text_ja": "【小さな子を持つ親】近所の公園が背の高い雑草と鋭いガラスの破片で覆われています。子どもたちが安全に遊ぶには危険すぎます。"
+    },
+    "card_b": {
+      "text": "Gather neighbors for a park beautification day. Removing trash and cutting grass restores a safe, beautiful playground for families.",
+      "text_ja": "公園美化の日のために近所の人たちを集めましょう。ゴミを取り除き、草を刈ることで、家族のための安全で美しい遊び場が復活します。"
+    },
+    "vocabulary": [
+      {"word": "beautification", "part_of_speech": "noun", "meaning": "美化", "level": "B2"},
+      {"word": "restore", "part_of_speech": "verb", "meaning": "復活させる、回復する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_021",
+    "situation_ja": "経済的困窮世帯の学習塾",
+    "situation_en": "Free Community Study Night",
+    "card_a": {
+      "text": "[A low-income student] I want to study hard for high school entrance exams. However, my parents cannot afford expensive private cram schools.",
+      "text_ja": "【低所得世帯の生徒】高校入試のために一生懸命勉強したいです。しかし、親には高価な私立の学習塾の費用を支払う余裕がありません。"
+    },
+    "card_b": {
+      "text": "Volunteer as a teacher at a free community study night. Giving academic support to disadvantaged youth ensures fair educational opportunities.",
+      "text_ja": "無料の地域学習夜間教室で先生としてボランティアをしましょう。恵まれない環境にある若者に学習支援を行うことは、公平な教育機会を保証します。"
+    },
+    "vocabulary": [
+      {"word": "afford", "part_of_speech": "verb", "meaning": "（金銭的に）〜する余裕がある", "level": "B1"},
+      {"word": "disadvantaged", "part_of_speech": "adjective", "meaning": "（経済的・社会的に）恵まれない", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_022",
+    "situation_ja": "伝統工芸の魅力を発信",
+    "situation_en": "Promoting Traditional Crafts",
+    "card_a": {
+      "text": "[A traditional craftsman] The unique cultural technique of making local pottery is dying out. Young people do not know about our historical heritage.",
+      "text_ja": "【伝統工芸の職人】地元の焼き物を作る独自の文化的な技術が途絶えかけています。若い人たちは私たちの歴史的な遺産について知りません。"
+    },
+    "card_b": {
+      "text": "Help organize an interactive cultural workshop for students. Using social media to promote traditional crafts attracts the next generation.",
+      "text_ja": "学生向けの体験型文化ワークショップの開催を手伝いましょう。SNSを使って伝統工芸をプロモーションすることは、次の世代を惹きつけます。"
+    },
+    "vocabulary": [
+      {"word": "pottery", "part_of_speech": "noun", "meaning": "陶芸、焼き物", "level": "B2"},
+      {"word": "heritage", "part_of_speech": "noun", "meaning": "（文化的な）遺産、継承物", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_023",
+    "situation_ja": "避難所での子どもケア",
+    "situation_en": "Childcare Corner inside Shelters",
+    "card_a": {
+      "text": "[A stressed evacuation leader] Families with young kids have been living in this cramped gym for weeks. The children are crying because they are bored and anxious.",
+      "text_ja": "【ストレスを抱える避難所リーダー】小さな子ども連れの家族が、この窮屈な体育館で何週間も暮らしています。子どもたちは退屈と不安で泣いています。"
+    },
+    "card_b": {
+      "text": "Set a safe play corner inside the shelter. Volunteers can play games and read books with children to relieve their mental stress.",
+      "text_ja": "避難所内に安全な遊び場コーナーを設けましょう。ボランティアが子どもたちと一緒にゲームをしたり本を読んだりすることで、精神的なストレスを和らげることができます。"
+    },
+    "vocabulary": [
+      {"word": "cramped", "part_of_speech": "adjective", "meaning": "窮屈な、狭苦しい", "level": "B2"},
+      {"word": "relieve", "part_of_speech": "verb", "meaning": "和らげる、軽減する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_024",
+    "situation_ja": "放置自転車の整理",
+    "situation_en": "Organizing Illegally Parked Bicycles",
+    "card_a": {
+      "text": "[A wheelchair user] The paths near the train station are blocked by illegally parked bicycles. I am forced to roll onto the dangerous car road.",
+      "text_ja": "【車いすのユーザー】駅の近くの歩道が違法に駐車された自転車で塞がれています。危険な車道へとはみ出して進まざるを得ません。"
+    },
+    "card_b": {
+      "text": "Join a public awareness campaign to organize bicycles. Reminding citizens about parking manners creates a barrier-free environment.",
+      "text_ja": "自転車を整理する啓発キャンペーンに参加しましょう。市民に駐車マナーを思い出させることが、バリアフリーな環境を作ります。"
+    },
+    "vocabulary": [
+      {"word": "block", "part_of_speech": "verb", "meaning": "塞ぐ、妨害する", "level": "B1"},
+      {"word": "awareness", "part_of_speech": "noun", "meaning": "意識、自覚", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_025",
+    "situation_ja": "認知症高齢者の見守り",
+    "situation_en": "Dementia Friends Network",
+    "card_a": {
+      "text": "[A worried daughter] My mother has dementia and sometimes gets lost outside. I am afraid she might have an accident when I am working.",
+      "text_ja": "【心配する娘】母は認知症を患っており、時々外で迷子になります。私が働いている間に事故に遭うのではないかと怖いです。"
+    },
+    "card_b": {
+      "text": "Become a dementia friend in your neighborhood. Keeping a watchful eye on wandering seniors helps them live safely in the community.",
+      "text_ja": "地域の「認知症サポーター」になりましょう。歩き回る高齢者に注意の目を向けることは、彼らが地域で安全に暮らすのを助けます。"
+    },
+    "vocabulary": [
+      {"word": "dementia", "part_of_speech": "noun", "meaning": "認知症", "level": "B2"},
+      {"word": "wandering", "part_of_speech": "adjective", "meaning": "歩き回る、彷徨う", "level": "B2"}
+    ]
+  },
+  {
+    "id": "VOL_026",
+    "situation_ja": "外国人向けの観光ガイド",
+    "situation_en": "Volunteer English Guide Tours",
+    "card_a": {
+      "text": "[A historical site manager] Many foreign tourists visit our ancient local shrine. However, there are no English signs, so they miss its historical value.",
+      "text_ja": "【史跡の名誉管理者】多くの外国人観光客が地元の古い神社を訪れます。しかし、英語の案内板がないため、その歴史的価値を見逃してしまっています。"
+    },
+    "card_b": {
+      "text": "Offer volunteer English guide tours on weekends. Explaining local history and manners deepens international understanding.",
+      "text_ja": "週末にボランティアの英語ガイドツアーを提供しましょう。地元の歴史や参拝マナーを説明することは、国際理解を深めます。"
+    },
+    "vocabulary": [
+      {"word": "ancient", "part_of_speech": "adjective", "meaning": "古代の、非常に古い", "level": "A2"},
+      {"word": "deepen", "part_of_speech": "verb", "meaning": "深める", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_027",
+    "situation_ja": "ボランティア窓口の活用",
+    "situation_en": "Volunteer Coordination Center",
+    "card_a": {
+      "text": "[A high school student] I want to start volunteering to help society, but I do not know where to look. I am afraid of joining an untrustworthy group.",
+      "text_ja": "【高校生】社会を助けるためにボランティアを始めたいのですが、どこを探せばいいのか分かりません。信頼できない団体に参加するのが怖いです。"
+    },
+    "card_b": {
+      "text": "Visit the city's volunteer coordination center. Professional coordinators match your interests with verified, meaningful community projects.",
+      "text_ja": "市のボランティアコーディネーションセンターを訪れましょう。専門のコーディネーターが、あなたの興味と、確認済みの有意義な地域プロジェクトをマッチングしてくれます。"
+    },
+    "vocabulary": [
+      {"word": "untrustworthy", "part_of_speech": "adjective", "meaning": "信頼できない", "level": "B2"},
+      {"word": "coordinator", "part_of_speech": "noun", "meaning": "コーディネーター、調整担当者", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_028",
+    "situation_ja": "視覚障がい者向けの音訳",
+    "situation_en": "Audio-Recording Service for the Blind",
+    "card_a": {
+      "text": "[A visually impaired person] I want to read the city’s monthly news magazine. However, there is no audio version, so I cannot get important local updates.",
+      "text_ja": "【視覚障がいのある人】毎月の広報誌を読みたいです。しかし、音声版がないため、地域の重要な最新情報を得ることができません。"
+    },
+    "card_b": {
+      "text": "Volunteer to read text aloud for an audio-recording service. Turning printed articles into voice data provides vital information to the blind.",
+      "text_ja": "音声録音サービスのためにテキストを朗読するボランティアをしましょう。印刷された記事を音声データに変換することは、盲目の人々に不可欠な情報を提供します。"
+    },
+    "vocabulary": [
+      {"word": "visually impaired", "part_of_speech": "adjective", "meaning": "視覚障がいのある", "level": "B2"},
+      {"word": "vital", "part_of_speech": "adjective", "meaning": "極めて重要な、不可欠な", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_029",
+    "situation_ja": "役所での手話通訳",
+    "situation_en": "Sign Language Interpreter Service",
+    "card_a": {
+      "text": "[A deaf citizen] I need to visit the city hall to apply for welfare support. I am worried because the staff there do not understand sign language.",
+      "text_ja": "【聴覚障がいのある市民】福祉支援を申請するために市役所に行く必要があります。役所の職員が手話を理解できないため、不安です。"
+    },
+    "card_b": {
+      "text": "Accompany the resident as a volunteer sign language interpreter. Bridging the communication gap ensures they receive necessary public support.",
+      "text_ja": "ボランティアの手話通訳者として、その住民に同行しましょう。コミュニケーションのギャップを埋めることで、必要な公的支援を確実に受けられるようになります。"
+    },
+    "vocabulary": [
+      {"word": "accompany", "part_of_speech": "verb", "meaning": "同行する、付き添う", "level": "B1"},
+      {"word": "welfare", "part_of_speech": "noun", "meaning": "福祉、幸福", "level": "B1"}
+    ]
+  },
+  {
+    "id": "VOL_030",
+    "situation_ja": "国際交流フェスティバルの運営",
+    "situation_en": "Multicultural Interaction Festival",
+    "card_a": {
+      "text": "[An international exchange group] Our city has many foreign residents, but they rarely interact with Japanese neighbors. This creates invisible walls in the town.",
+      "text_ja": "【国際交流グループ】私たちの街には多くの外国人住民がいますが、日本人の近隣住民と交流することがめったにありません。これが街の中に目に見えない壁を作っています。"
+    },
+    "card_b": {
+      "text": "Help organize a multicultural food and music festival. Creating spaces for natural interaction breaks down stereotypes and builds mutual aid.",
+      "text_ja": "多文化のフード＆音楽フェスティバルの開催を手伝いましょう。自然に交流できる場所を作ることは、固定観念を打ち破り、相互扶助を構築します。"
+    },
+    "vocabulary": [
+      {"word": "interact", "part_of_speech": "verb", "meaning": "交流する、相互に作用する", "level": "B1"},
+      {"word": "stereotype", "part_of_speech": "noun", "meaning": "固定観念、ステレオタイプ", "level": "B1"}
+    ]
+  }
+]
