@@ -197,6 +197,63 @@ html, body, #root {
 .btn-save { background: #2c3e50; color: white; border: none; padding: 16px; font-size: 1.3rem; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 30px; transition: 0.2s; }
 .btn-save:hover { background: #1a252f; }
 
+/* 🌟 今回追加した設定モーダルのチーム選択UI 🌟 */
+.count-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.count-card-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 10px;
+  background: white;
+  border: 3px solid #dfe6e9;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.count-card-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.count-card-btn.active {
+  border-width: 4px;
+  transform: scale(1.05);
+}
+
+.count-card-btn.team-count-2.active { border-color: #a2c2e6; box-shadow: 0 10px 25px rgba(162, 194, 230, 0.3); }
+.count-card-btn.team-count-3.active { border-color: #a8e6cf; box-shadow: 0 10px 25px rgba(168, 230, 207, 0.3); }
+.count-card-btn.team-count-4.active { border-color: #ffeaa7; box-shadow: 0 10px 25px rgba(255, 234, 167, 0.3); }
+
+.team-count-text {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #2c3e50;
+}
+
+.selected-status {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #7f8c8d;
+  margin-top: 15px;
+  text-align: center;
+}
+.selected-status strong {
+  color: #3498db;
+  font-weight: 900;
+}
+
 /* =========================================
    リザルト画面
 ========================================= */
@@ -299,13 +356,56 @@ html, body, #root {
 
 .highlight-vocab { background-color: #ffeaa7; color: #d35400; font-weight: 900; padding: 2px 6px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: inline-block; margin: 0 2px; }
 
-/* スマホミッション画面用 */
+/* =========================================
+   スマホミッション画面用
+========================================= */
 .mission-container { width: 100%; padding: 30px; background: white; text-align: center; }
 .mission-title { font-size: 1.8rem; font-weight: 900; color: #2c3e50; margin-bottom: 20px; }
 .mission-title.hot { color: #e74c3c; animation: pulse 1s infinite; }
 .vocab-word { font-size: 1.3rem; font-weight: bold; color: #7f8c8d; margin-bottom: 30px; }
 .vocab-word span { font-size: 2rem; color: #3498db; display: block; margin-top: 10px; }
-.vocab-choices { display: flex; flex-direction: column; gap: 15px; }
+
+.vocab-choices { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px; 
+}
+
+.choice-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 24px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: #2c3e50; 
+  text-decoration: none;
+  border: none;
+  border-radius: 8px; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12);
+  
+  outline: 3px dashed #ffffff;
+  outline-offset: -8px;
+  
+  width: 100%;
+  white-space: normal !important;
+  line-height: 1.4;
+}
+
+.choice-btn:nth-child(1) { background-color: #ffb7b2; } 
+.choice-btn:nth-child(2) { background-color: #a8e6cf; } 
+.choice-btn:nth-child(3) { background-color: #a2c2e6; } 
+
+.choice-btn:hover, .choice-btn:active {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 5px -3px rgba(0,0,0,0.2), 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12);
+  filter: brightness(0.92);
+}
+
 .mission-feedback { font-size: 2.5rem; font-weight: 900; padding: 50px 20px; }
 .mission-feedback.correct { color: #2ecc71; }
 .mission-feedback.incorrect { color: #e74c3c; }
