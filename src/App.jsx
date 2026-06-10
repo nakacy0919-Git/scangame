@@ -7,7 +7,7 @@ import './App.css';
 import { useBGM } from './hooks/useBGM';
 import SettingsModal from './components/SettingsModal';
 import LearningMode from './components/LearningMode'; 
-import ScannerMission from './components/ScannerMission'; // ★追加
+import ScannerMission from './components/ScannerMission'; 
 
 import cafeData from './data/cafe.json';
 import sdgsData from './data/sdgs.json';
@@ -17,7 +17,7 @@ import zooData from './data/zoo.json';
 import helpData from './data/help.json'; 
 import worldData from './data/world.json'; 
 import mediaData from './data/media.json'; 
-import volunteerData from './data/volunteer.json'; // ★ mediaData を volunteerData に変更！
+import volunteerData from './data/volunteer.json'; 
 import revitalizationData from './data/revitalization.json';
 
 const GAME_DATA = {
@@ -29,7 +29,7 @@ const GAME_DATA = {
   help: { title: 'Scannect : Help', codes: helpData },
   world: { title: 'Scannect : World', codes: worldData },
   media: { title: 'Scannect : Media', codes: mediaData },
-  volunteer: { title: 'Scannect : Volunteer', codes: volunteerData }, // ★ ここに volunteer を追加
+  volunteer: { title: 'Scannect : Volunteer', codes: volunteerData },
   revitalization: { title: 'Scannect : Revitalization', codes: revitalizationData }
 };
 
@@ -65,7 +65,6 @@ function App() {
   const [fullScreenQrTeam, setFullScreenQrTeam] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
 
-  // ★追加：スマホ側のミッション管理用ステート
   const [activeMissionCard, setActiveMissionCard] = useState(null); 
 
   const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
@@ -141,7 +140,6 @@ function App() {
       const currentStatus = latestStateRef.current.status;
       const currentTheme = latestStateRef.current.theme;
       if (currentStatus === 'PLAYING') {
-         // ★変更：ミッションで獲得したポイント(data.points)も渡す
          executeScanCheck(data.team, data.code, currentTheme, data.points);
       }
     });
@@ -149,13 +147,18 @@ function App() {
     return () => unsubscribe();
   }, [appMode]);
 
-  // ★変更：points 引数を追加
   const executeScanCheck = (team, scannedCode, theme, points = 1) => {
     const currentActiveTeams = ALL_TEAMS.slice(0, latestStateRef.current.teamCount);
     if (!theme || !currentActiveTeams.includes(team)) return;
     
     const currentThemeData = GAME_DATA[theme].codes;
-    const isCorrect = currentThemeData.some(item => item.id === scannedCode || item.code === scannedCode);
+    let isCorrect = false;
+
+    if (Array.isArray(currentThemeData)) {
+      isCorrect = currentThemeData.some(item => item.id === scannedCode || item.code === scannedCode);
+    } else if (typeof currentThemeData === 'object' && currentThemeData !== null) {
+      isCorrect = currentThemeData[scannedCode] || Object.values(currentThemeData).some(item => item.id === scannedCode || item.code === scannedCode);
+    }
     
     if (isCorrect) {
       if (scannedCodesRef.current[team].includes(scannedCode)) {
@@ -177,7 +180,6 @@ function App() {
       combosRef.current[team] = newCombo;
       const isComboBonus = (newCombo > 0 && newCombo % 3 === 0);
       
-      // ★変更：獲得したポイント ＋ コンボボーナス
       const earnedPoints = points + (isComboBonus ? 2 : 0); 
 
       setCombos(prev => ({ ...prev, [team]: newCombo }));
@@ -219,9 +221,9 @@ function App() {
     }
   }, [appMode]);
 
+  // ★ 修正ポイント：ミッション発動時もカメラを止めないように依存配列から activeMissionCard を削除
   useEffect(() => {
-    // ミッション中はカメラを起動しない
-    if (appMode === 'SCANNER' && scannerTeam && !activeMissionCard) {
+    if (appMode === 'SCANNER' && scannerTeam) {
       let isMounted = true;
       const startCamera = () => {
         setTimeout(async () => {
@@ -246,12 +248,13 @@ function App() {
         if (scannerInstanceRef.current) scannerInstanceRef.current.stop().catch(e=>e);
       };
     }
-  }, [appMode, scannerTeam, activeMissionCard]);
+  }, [appMode, scannerTeam]); 
 
   const onScanMobile = (decodedText) => {
     if (isProcessingScanRef.current) return;
     isProcessingScanRef.current = true;
 
+    // スキャンを処理している間はカメラの読み取りを「一時停止」する（※stopはしない）
     if (scannerInstanceRef.current) scannerInstanceRef.current.pause(true);
     
     const currentGameState = serverGameStateRef.current;
@@ -283,15 +286,13 @@ function App() {
           return; 
       }
       
-      // ★追加：正解なら即座にポイントを送らず、ミッションを発動させる
-      if (scannerInstanceRef.current) scannerInstanceRef.current.stop().catch(e=>e);
+      // 正解なら即座にミッション画面を表示（※カメラは一時停止状態のまま維持）
       setActiveMissionCard(foundCard);
 
     } else {
       setMessage('❌ 不正解... (MISS)');
       setIsSuccess(false);
       
-      // 不正解の場合はポイント0で送信（コンボリセットのため）
       push(ref(database, 'scans'), {
         team: scannerTeam,
         code: decodedText,
@@ -301,13 +302,12 @@ function App() {
           setTimeout(() => { 
             setMessage(''); setIsSuccess(null); 
             isProcessingScanRef.current = false; 
-            if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
+            if (scannerInstanceRef.current) scannerInstanceRef.current.resume(); // 一時停止解除
           }, 1800);
       });
     }
   };
 
-  // ★追加：ミッション完了時に呼ばれる関数
   const handleMissionComplete = (earnedPoints) => {
     push(ref(database, 'scans'), {
       team: scannerTeam,
@@ -315,8 +315,10 @@ function App() {
       points: earnedPoints,
       timestamp: serverTimestamp() 
     }).then(() => {
-      setActiveMissionCard(null); // ミッション画面を閉じてカメラに戻る
+      setActiveMissionCard(null); 
       isProcessingScanRef.current = false;
+      // ミッション完了後にカメラの一時停止を解除する
+      if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
     });
   };
 
@@ -344,20 +346,18 @@ function App() {
           <div className="scanner-container">
              <div className={`scanner-header team-${scannerTeam}`}>TEAM {scannerTeam} PLAYING</div>
              
-             {/* ★追加：ミッション画面の表示切替 */}
-             {activeMissionCard ? (
+             {/* ★ 修正ポイント：ミッション中は表示し、カメラ部分は「display: none」で隠すだけにする */}
+             {activeMissionCard && (
                 <ScannerMission 
                   card={activeMissionCard} 
-                  themeData={GAME_DATA[serverGameState.theme].codes} 
+                  themeData={GAME_DATA[serverGameState.theme]?.codes || []} 
                   onComplete={handleMissionComplete} 
                 />
-             ) : (
-               <>
-                 <div id="reader"></div>
-                 {message && <div className={`scanner-msg ${isSuccess ? 'ok' : ''}`}>{message}</div>}
-               </>
              )}
              
+             <div id="reader" style={{ display: activeMissionCard ? 'none' : 'block' }}></div>
+             
+             {!activeMissionCard && message && <div className={`scanner-msg ${isSuccess ? 'ok' : ''}`}>{message}</div>}
              <button onClick={() => { window.location.href = window.location.origin + '?mode=scanner'; }} className="btn-text-only" style={{marginTop: '20px'}}>Change Team</button>
           </div>
         )}
@@ -367,11 +367,7 @@ function App() {
 
   return (
     <div className={`main-viewport ${gameStatus === 'MENU' || gameStatus === 'SOLO_LEARNING' ? 'pattern-bg' : 'gradient-bg'}`}>
-      
-      <button 
-        className="mute-btn shadow-pop" 
-        onClick={() => setIsMuted(!isMuted)}
-      >
+      <button className="mute-btn shadow-pop" onClick={() => setIsMuted(!isMuted)}>
         {isMuted ? '🔇' : '🎵'}
       </button>
 
@@ -408,13 +404,7 @@ function App() {
             <p className="qr-display-desc">生徒は自分のチームのタブを選んでスキャンしてください</p>
           </div>
           <button className="settings-btn shadow-pop" onClick={() => setIsSettingsOpen(true)}>⚙️</button>
-          
-          <button 
-            className="solo-learning-btn shadow-pop" 
-            onClick={() => setGameStatus('SOLO_LEARNING')}
-          >
-            🎓 Solo Learning
-          </button>
+          <button className="solo-learning-btn shadow-pop" onClick={() => setGameStatus('SOLO_LEARNING')}>🎓 Solo Learning</button>
         </div>
       )}
 
@@ -474,36 +464,18 @@ function App() {
       )}
 
       {gameStatus === 'SOLO_LEARNING' && (
-        <LearningMode 
-          gameData={GAME_DATA} 
-          onBack={() => setGameStatus('MENU')} 
-          bgmVolume={bgmVolume}
-          isMuted={isMuted} 
-        />
+        <LearningMode gameData={GAME_DATA} onBack={() => setGameStatus('MENU')} bgmVolume={bgmVolume} isMuted={isMuted} />
       )}
 
       {isSettingsOpen && (
-        <SettingsModal
-          teamCount={teamCount}
-          setTeamCount={setTeamCount}
-          bgmVolume={bgmVolume}
-          setBgmVolume={setBgmVolume}
-          selectedMinutes={selectedMinutes}
-          setSelectedMinutes={setSelectedMinutes}
-          onClose={() => setIsSettingsOpen(false)}
-          setActiveQrTab={setActiveQrTab}
-        />
+        <SettingsModal teamCount={teamCount} setTeamCount={setTeamCount} bgmVolume={bgmVolume} setBgmVolume={setBgmVolume} selectedMinutes={selectedMinutes} setSelectedMinutes={setSelectedMinutes} onClose={() => setIsSettingsOpen(false)} setActiveQrTab={setActiveQrTab} />
       )}
 
       {fullScreenQrTeam && (
         <div className="modal-overlay" onClick={() => setFullScreenQrTeam(null)} style={{zIndex: 300}}>
           <div className="modal-content" onClick={e => e.stopPropagation()} style={{width: 'auto', padding: '40px', maxWidth: '90vw'}}>
             <h2 className={`team-title-huge team-title-${fullScreenQrTeam.toLowerCase()}`}>TEAM {fullScreenQrTeam}</h2>
-            <img 
-              src={`https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + fullScreenQrTeam)}`} 
-              alt="Fullscreen QR" 
-              className="huge-qr-img"
-            />
+            <img src={`https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + fullScreenQrTeam)}`} alt="Fullscreen QR" className="huge-qr-img" />
             <button className="btn-save" onClick={() => setFullScreenQrTeam(null)}>閉じる</button>
           </div>
         </div>
