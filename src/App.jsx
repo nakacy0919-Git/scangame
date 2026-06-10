@@ -437,7 +437,7 @@ function App() {
                 <div key={team} className={`glass-card team-card team-card-${team.toLowerCase()}`}>
                   <div className={`team-badge team-badge-${team.toLowerCase()}`}>TEAM {team}</div>
                   <div className="vs-score">{scores[team]}</div>
-                  <div className="vs-combo">COMBO: {combos[team]}</div>
+                  {/* 💡ここに記入されていたコンボ表示（vs-combo）の1行を完全に消去します */}
                 </div>
               ))}
             </div>
