@@ -238,7 +238,12 @@ function App() {
             scannerInstanceRef.current = html5QrCode;
             await html5QrCode.start(
               { facingMode: "environment" },
-              { fps: 10, qrbox: { width: 260, height: 260 } },
+              { 
+                fps: 15, // 読み取り精度を少し上げる
+                // ★修正：読み取り枠を狭くし、背景の別のカードを誤読するのを防ぐ
+                qrbox: { width: 180, height: 180 },
+                aspectRatio: 1.0 
+              },
               (decodedText) => { onScanMobile(decodedText); },
               () => {} 
             );
@@ -251,7 +256,7 @@ function App() {
         if (scannerInstanceRef.current) scannerInstanceRef.current.stop().catch(e=>e);
       };
     }
-  }, [appMode, scannerTeam]); 
+  }, [appMode, scannerTeam]);
 
 const onScanMobile = (decodedText) => {
     // 処理中（エラー表示など）は新しいスキャンを無視する
