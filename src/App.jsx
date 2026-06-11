@@ -81,6 +81,9 @@ function App() {
   const scannerInstanceRef = useRef(null); 
   const isProcessingScanRef = useRef(false);
 
+  // 👇この1行を新しく追加してください👇
+  const pendingScanRef = useRef(null);
+
   useBGM(appMode, gameStatus, bgmVolume, isMuted);
 
   useEffect(() => {
@@ -251,12 +254,12 @@ function App() {
   }, [appMode, scannerTeam]); 
 
   const onScanMobile = (decodedText) => {
+    // 処理中（エラー表示など）は新しいスキャンを無視する
     if (isProcessingScanRef.current) return;
     isProcessingScanRef.current = true;
 
-    // スキャンを処理している間はカメラの読み取りを「一時停止」する（※stopはしない）
-    if (scannerInstanceRef.current) scannerInstanceRef.current.pause(true);
-    
+    // ★ フリーズの元凶だった pause() 処理を完全削除しました！
+
     const currentGameState = serverGameStateRef.current;
     
     if (currentGameState.status !== 'PLAYING' || !currentGameState.theme) {
@@ -265,7 +268,6 @@ function App() {
       setTimeout(() => {
         setMessage(''); setIsSuccess(null);
         isProcessingScanRef.current = false; 
-        if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
       }, 2000);
       return;
     }
@@ -273,42 +275,60 @@ function App() {
     const currentThemeData = GAME_DATA[currentGameState.theme].codes;
     const foundCard = currentThemeData.find(item => item.id === decodedText || item.code === decodedText);
 
-    if (foundCard) {
-      const scannedMap = currentGameState.scannedCodes?.[scannerTeam] || {};
-      if (scannedMap[decodedText]) {
-          setMessage('⚠️ 読込済みのカードです！');
-          setIsSuccess(false);
-          setTimeout(() => {
-              setMessage(''); setIsSuccess(null);
-              isProcessingScanRef.current = false; 
-              if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
-          }, 2000);
-          return; 
-      }
-      
-      // 正解なら即座にミッション画面を表示（※カメラは一時停止状態のまま維持）
-      setActiveMissionCard(foundCard);
-
-    } else {
-      // ★ 修正：不正解時の音とメッセージを強烈に
+    // ▼ エラー発動用の共通関数（前回追加した全画面の赤いエラーを出します）
+    const triggerError = (msg) => {
       const errorSound = new Audio('/incorrect.mp3');
       errorSound.play().catch(e=>e);
       
-      setMessage('INCORRECT\n(不正解)'); // 大きな表示用
+      setMessage(msg);
       setIsSuccess(false);
+      pendingScanRef.current = null; // ★間違えたら1枚目の記憶もリセット
       
-      push(ref(database, 'scans'), {
-        team: scannerTeam,
-        code: decodedText,
-        points: 0,
-        timestamp: serverTimestamp() 
-      }).then(() => {
-          setTimeout(() => { 
-            setMessage(''); setIsSuccess(null); 
-            isProcessingScanRef.current = false; 
-            if (scannerInstanceRef.current) scannerInstanceRef.current.resume(); 
-          }, 2000); // 2秒間しっかり見せる
-      });
+      setTimeout(() => { 
+        setMessage(''); setIsSuccess(null); 
+        isProcessingScanRef.current = false; // エラー表示後にスキャン再開
+      }, 2000);
+    };
+
+    if (!foundCard) {
+      triggerError('INCORRECT\n(無効なカードです)');
+      return;
+    }
+
+    const scannedMap = currentGameState.scannedCodes?.[scannerTeam] || {};
+    if (scannedMap[foundCard.id]) {
+      triggerError('⚠️ 読込済みのペアです！');
+      return; 
+    }
+
+    // 🌟 根本解決：2段階スキャンによる厳格なペア検証ロジック 🌟
+    if (!pendingScanRef.current) {
+      // 【1枚目のスキャン】
+      pendingScanRef.current = foundCard;
+      const popSound = new Audio('/correct.mp3'); // ピコンという確認音
+      popSound.volume = 0.5;
+      popSound.play().catch(e=>e);
+
+      setMessage('1枚目を確認！\n続けてペアのカードをスキャン！');
+      setIsSuccess(true);
+      
+      // 1.5秒間メッセージを見せた後、2枚目のスキャンを許可
+      setTimeout(() => {
+        setMessage(''); setIsSuccess(null);
+        isProcessingScanRef.current = false;
+      }, 1500);
+
+    } else {
+      // 【2枚目のスキャン】
+      if (pendingScanRef.current.id === foundCard.id) {
+        // ペア成立！ミッション発動
+        pendingScanRef.current = null; // リセット
+        setActiveMissionCard(foundCard);
+        // ※カメラはコンポーネントが切り替わって見えなくなるのでストップ不要
+      } else {
+        // ペア不成立（間違った組み合わせ）
+        triggerError('INCORRECT\nペアが間違っています！');
+      }
     }
   };
 
@@ -321,8 +341,7 @@ function App() {
     }).then(() => {
       setActiveMissionCard(null); 
       isProcessingScanRef.current = false;
-      // ミッション完了後にカメラの一時停止を解除する
-      if (scannerInstanceRef.current) scannerInstanceRef.current.resume();
+      // ★ フリーズの元凶だった resume() 処理も完全削除
     });
   };
 
