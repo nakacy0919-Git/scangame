@@ -1008,17 +1008,21 @@ html, body, #root {
 .mission-fullscreen-container {
   position: fixed;
   top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  width: 100vw; 
+  height: 100dvh; /* 🌟iOS Safariのツールバー分を考慮した高さ設定 */
   background: #fdfdfd;
   z-index: 9995;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* 🌟超重要：hidden(隠す)をやめて、auto(スクロール許可)に変更！ */
+  overflow-y: auto; 
+  -webkit-overflow-scrolling: touch; /* iPadで滑らかにスクロールさせる */
   font-family: 'Noto Sans JP', sans-serif;
 }
 
 .mission-content-wrapper {
-  width: 100%; height: 100%;
+  width: 100%; 
+  min-height: 100%; /* 🌟中身が画面より大きくなったら自動で伸びるように変更 */
   display: flex; flex-direction: column;
   padding: 4vh 5vw;
   box-sizing: border-box;
