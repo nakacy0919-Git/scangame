@@ -290,7 +290,11 @@ function App() {
       setActiveMissionCard(foundCard);
 
     } else {
-      setMessage('❌ 不正解... (MISS)');
+      // ★ 修正：不正解時の音とメッセージを強烈に
+      const errorSound = new Audio('/incorrect.mp3');
+      errorSound.play().catch(e=>e);
+      
+      setMessage('INCORRECT\n(不正解)'); // 大きな表示用
       setIsSuccess(false);
       
       push(ref(database, 'scans'), {
@@ -302,8 +306,8 @@ function App() {
           setTimeout(() => { 
             setMessage(''); setIsSuccess(null); 
             isProcessingScanRef.current = false; 
-            if (scannerInstanceRef.current) scannerInstanceRef.current.resume(); // 一時停止解除
-          }, 1800);
+            if (scannerInstanceRef.current) scannerInstanceRef.current.resume(); 
+          }, 2000); // 2秒間しっかり見せる
       });
     }
   };
@@ -357,7 +361,12 @@ function App() {
              
              <div id="reader" style={{ display: activeMissionCard ? 'none' : 'block' }}></div>
              
-             {!activeMissionCard && message && <div className={`scanner-msg ${isSuccess ? 'ok' : ''}`}>{message}</div>}
+             {/* ★ 修正：不正解時は全画面エラー、待機時は通常のメッセージ */}
+             {!activeMissionCard && message && (
+               <div className={`scanner-msg ${isSuccess === true ? 'ok' : isSuccess === false ? 'error-full' : ''}`}>
+                 {message.split('\n').map((line, i) => <div key={i}>{line}</div>)}
+               </div>
+             )}
              <button onClick={() => { window.location.href = window.location.origin + '?mode=scanner'; }} className="btn-text-only" style={{marginTop: '20px'}}>Change Team</button>
           </div>
         )}

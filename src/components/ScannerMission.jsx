@@ -1,21 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function ScannerMission({ card, themeData, onComplete }) {
-  const [missionType, setMissionType] = useState('LOADING'); // VOCAB or SPEAKING
+  // ★ ENTRY（正解演出） -> MISSION（語彙or音読）のフェーズ管理
+  const [phase, setPhase] = useState('ENTRY'); 
+  const [missionType, setMissionType] = useState('LOADING');
   const [vocabData, setVocabData] = useState(null);
   
-  // スピーキング用の状態管理
   const [isListening, setIsListening] = useState(false);
-  const [liveText, setLiveText] = useState(''); // リアルタイムの文字起こし用
+  const [liveText, setLiveText] = useState('');
   const [feedback, setFeedback] = useState(null);
   
-  const recognitionRef = useRef(null); // 音声認識のインスタンスを保持
+  const recognitionRef = useRef(null);
 
   useEffect(() => {
-    // Web Speech API が使えるかチェックし、20%の確率でスピーキングミッションへ
+    // ① 正解の心地よい音を鳴らす
+    const correctSound = new Audio('/correct.mp3');
+    correctSound.play().catch(e => console.log('Audio play error:', e));
+
+    // ② 語彙と音読を 50% : 50% の確率で振り分け
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const isSpeechSupported = !!SpeechRecognition;
-    const isSpeakingMission = isSpeechSupported && Math.random() < 0.2;
+    const isSpeakingMission = isSpeechSupported && Math.random() < 0.5; // ★ 50%の確率
 
     if (isSpeakingMission) {
       setMissionType('SPEAKING');
@@ -23,11 +28,14 @@ export default function ScannerMission({ card, themeData, onComplete }) {
       setupVocabQuiz();
     }
     
-    // コンポーネントが閉じられた時に録音を強制終了するクリーンアップ
+    // 2秒間「CORRECT!」のアニメーションを見せた後、ミッション画面へ切り替え
+    const timer = setTimeout(() => {
+      setPhase('MISSION');
+    }, 2000);
+
     return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.stop();
-      }
+      clearTimeout(timer);
+      if (recognitionRef.current) recognitionRef.current.stop();
     };
   }, [card, themeData]);
 
@@ -36,9 +44,7 @@ export default function ScannerMission({ card, themeData, onComplete }) {
       onComplete(1); 
       return;
     }
-
     const targetVocab = card.vocabulary[Math.floor(Math.random() * card.vocabulary.length)];
-    
     const otherMeanings = themeData
       .flatMap(c => c.vocabulary || [])
       .map(v => v.meaning)
@@ -48,11 +54,7 @@ export default function ScannerMission({ card, themeData, onComplete }) {
 
     const choices = [targetVocab.meaning, ...otherMeanings].sort(() => 0.5 - Math.random());
 
-    setVocabData({
-      word: targetVocab.word,
-      correct: targetVocab.meaning,
-      choices
-    });
+    setVocabData({ word: targetVocab.word, correct: targetVocab.meaning, choices });
     setMissionType('VOCAB');
   };
 
@@ -72,47 +74,32 @@ export default function ScannerMission({ card, themeData, onComplete }) {
 
     const recognition = new SpeechRecognition();
     recognitionRef.current = recognition;
-    
     recognition.lang = 'en-US';
-    recognition.interimResults = true; // ★ リアルタイムで結果を取得する
+    recognition.interimResults = true;
     recognition.maxAlternatives = 1;
 
-    recognition.onstart = () => {
-      setIsListening(true);
-      setLiveText('');
-    };
+    recognition.onstart = () => { setIsListening(true); setLiveText(''); };
 
     recognition.onresult = (event) => {
-      // 認識中の文字をすべて結合してリアルタイム表示
-      const currentTranscript = Array.from(event.results)
-        .map(res => res[0].transcript)
-        .join('');
+      const currentTranscript = Array.from(event.results).map(res => res[0].transcript).join('');
       setLiveText(currentTranscript);
     };
 
     recognition.onerror = (event) => {
-      // エラーハンドリング（無音で終了した場合など）
       if (event.error === 'no-speech') return; 
-      console.error('Speech recognition error', event.error);
       setIsListening(false);
       setFeedback({ status: 'incorrect', message: '⚠️ 認識エラー\nスコア: 1 / 10 点' });
       setTimeout(() => onComplete(1), 2000);
     };
 
-    recognition.onend = () => {
-      // iOSなど環境によっては自動で切れる場合があるため、終了状態を同期
-      setIsListening(false);
-    };
-
+    recognition.onend = () => { setIsListening(false); };
     recognition.start();
   };
 
   const stopSpeaking = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.stop(); // 録音をストップ
-    }
+    if (recognitionRef.current) recognitionRef.current.stop();
     setIsListening(false);
-    evaluateSpeech(liveText); // 溜まっていたテキストで判定処理へ
+    evaluateSpeech(liveText);
   };
 
   const evaluateSpeech = (spokenText) => {
@@ -122,49 +109,40 @@ export default function ScannerMission({ card, themeData, onComplete }) {
       return;
     }
 
-    const targetText = card.card_a.text;
-    
-    const cleanTarget = targetText.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/);
+    const cleanTarget = card.card_a.text.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/);
     const cleanSpoken = spokenText.toLowerCase().replace(/[^\w\s]/g, '').split(/\s+/);
     
     let matchCount = 0;
-    cleanTarget.forEach(word => {
-      if (cleanSpoken.includes(word)) matchCount++;
-    });
+    cleanTarget.forEach(word => { if (cleanSpoken.includes(word)) matchCount++; });
 
     const accuracy = matchCount / cleanTarget.length;
-    let points = 1;
-    let msg = '💦 TRY HARDER';
-    let status = 'incorrect';
+    let points = 1; let msg = '💦 TRY HARDER'; let status = 'incorrect';
 
-    if (accuracy >= 0.8) {
-      points = 10;
-      msg = '👑 EXCELLENT!!';
-      status = 'correct';
-    } else if (accuracy >= 0.5) {
-      points = 5;
-      msg = '👍 GOOD!';
-      status = 'correct';
-    }
+    if (accuracy >= 0.8) { points = 10; msg = '👑 EXCELLENT!!'; status = 'correct'; } 
+    else if (accuracy >= 0.5) { points = 5; msg = '👍 GOOD!'; status = 'correct'; }
 
-    // ★ 満点の何点かを明確に表示するフォーマット
-    setFeedback({ 
-      status, 
-      message: `${msg}\nスコア: ${points} / 10 点\n(認識精度: ${Math.floor(accuracy * 100)}%)` 
-    });
-    setTimeout(() => onComplete(points), 3000); // 結果をしっかり読めるように3秒キープ
+    setFeedback({ status, message: `${msg}\nスコア: ${points} / 10 点\n(認識精度: ${Math.floor(accuracy * 100)}%)` });
+    setTimeout(() => onComplete(points), 3000);
   };
 
-  if (missionType === 'LOADING') return <div className="mission-container">Loading Mission...</div>;
+  // ★ ① 正解した瞬間のド派手なエントリー画面
+  if (phase === 'ENTRY') {
+    return (
+      <div className="scan-entry-overlay">
+        <div className="entry-icon">✅</div>
+        <h2>CORRECT!</h2>
+        <p>Mission Start...</p>
+      </div>
+    );
+  }
 
+  // ミッション画面
   return (
     <div className="mission-container glass-card popIn">
       {feedback ? (
         <div className={`mission-feedback ${feedback.status}`}>
           {feedback.message.split('\n').map((line, i) => (
-            <div key={i} style={i === 1 ? { fontSize: '1.2em', margin: '10px 0', color: '#34495e' } : {}}>
-              {line}
-            </div>
+            <div key={i} style={i === 1 ? { fontSize: '1.2em', margin: '10px 0', color: '#34495e' } : {}}>{line}</div>
           ))}
         </div>
       ) : (
@@ -175,9 +153,7 @@ export default function ScannerMission({ card, themeData, onComplete }) {
               <div className="vocab-word">What does <span>"{vocabData.word}"</span> mean?</div>
               <div className="vocab-choices">
                 {vocabData.choices.map((choice, i) => (
-                  <button key={i} className="choice-btn shadow-pop" onClick={() => handleVocabAnswer(choice)}>
-                    {choice}
-                  </button>
+                  <button key={i} className="choice-btn shadow-pop" onClick={() => handleVocabAnswer(choice)}>{choice}</button>
                 ))}
               </div>
             </div>
@@ -187,16 +163,13 @@ export default function ScannerMission({ card, themeData, onComplete }) {
             <div className="speaking-mission">
               <h3 className="mission-title hot">🎤 SPEAKING CHALLENGE!</h3>
               <p className="mission-desc" style={{fontWeight: 'bold', color: '#2c3e50'}}>英文を声に出して読んでください</p>
-              
               <div className="target-text" style={{fontSize: '1.4rem', background: '#f8f9fa', padding: '15px', borderRadius: '10px', borderLeft: '5px solid #3498db', marginBottom: '20px'}}>
                 {card.card_a.text}
               </div>
               
               {isListening ? (
                 <div className="live-transcription-area">
-                  <div className="recording-status">
-                    <span className="pulse-dot"></span> 録音中...
-                  </div>
+                  <div className="recording-status"><span className="pulse-dot"></span> 録音中...</div>
                   <div className="live-text-box" style={{minHeight: '80px', background: '#fff', border: '2px dashed #e74c3c', borderRadius: '10px', padding: '15px', marginBottom: '20px', fontSize: '1.2rem', color: '#7f8c8d'}}>
                     {liveText || "..."}
                   </div>
