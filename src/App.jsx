@@ -253,12 +253,12 @@ function App() {
     }
   }, [appMode, scannerTeam]); 
 
-  const onScanMobile = (decodedText) => {
+const onScanMobile = (decodedText) => {
     // 処理中（エラー表示など）は新しいスキャンを無視する
     if (isProcessingScanRef.current) return;
     isProcessingScanRef.current = true;
 
-    // ★ フリーズの元凶だった pause() 処理を完全削除しました！
+    // ★ フリーズの原因だった pause() は使いません
 
     const currentGameState = serverGameStateRef.current;
     
@@ -273,16 +273,16 @@ function App() {
     }
 
     const currentThemeData = GAME_DATA[currentGameState.theme].codes;
+    // 読み取った文字列が、現在のテーマのカードIDに含まれているかチェック
     const foundCard = currentThemeData.find(item => item.id === decodedText || item.code === decodedText);
 
-    // ▼ エラー発動用の共通関数（前回追加した全画面の赤いエラーを出します）
+    // ▼ エラー発動用の共通関数（全画面の真っ赤なエラーを出します）
     const triggerError = (msg) => {
       const errorSound = new Audio('/incorrect.mp3');
       errorSound.play().catch(e=>e);
       
       setMessage(msg);
       setIsSuccess(false);
-      pendingScanRef.current = null; // ★間違えたら1枚目の記憶もリセット
       
       setTimeout(() => { 
         setMessage(''); setIsSuccess(null); 
@@ -290,46 +290,23 @@ function App() {
       }, 2000);
     };
 
+    // ① 読み取れたが、ゲーム内に存在しない文字列だった場合（誤作動など）
     if (!foundCard) {
-      triggerError('INCORRECT\n(無効なカードです)');
+      triggerError('INCORRECT\n(無効なQRコードです)');
       return;
     }
 
+    // ② すでにスキャン済みの正しいペアだった場合
     const scannedMap = currentGameState.scannedCodes?.[scannerTeam] || {};
     if (scannedMap[foundCard.id]) {
       triggerError('⚠️ 読込済みのペアです！');
       return; 
     }
 
-    // 🌟 根本解決：2段階スキャンによる厳格なペア検証ロジック 🌟
-    if (!pendingScanRef.current) {
-      // 【1枚目のスキャン】
-      pendingScanRef.current = foundCard;
-      const popSound = new Audio('/correct.mp3'); // ピコンという確認音
-      popSound.volume = 0.5;
-      popSound.play().catch(e=>e);
-
-      setMessage('1枚目を確認！\n続けてペアのカードをスキャン！');
-      setIsSuccess(true);
-      
-      // 1.5秒間メッセージを見せた後、2枚目のスキャンを許可
-      setTimeout(() => {
-        setMessage(''); setIsSuccess(null);
-        isProcessingScanRef.current = false;
-      }, 1500);
-
-    } else {
-      // 【2枚目のスキャン】
-      if (pendingScanRef.current.id === foundCard.id) {
-        // ペア成立！ミッション発動
-        pendingScanRef.current = null; // リセット
-        setActiveMissionCard(foundCard);
-        // ※カメラはコンポーネントが切り替わって見えなくなるのでストップ不要
-      } else {
-        // ペア不成立（間違った組み合わせ）
-        triggerError('INCORRECT\nペアが間違っています！');
-      }
-    }
+    // ③ 正しい未スキャンのペアだった場合 ➔ ミッションへ即突入！
+    // 正解音は ScannerMission 側でド派手な演出と共に鳴らします
+    setActiveMissionCard(foundCard);
+    // ※ミッションが始まるとカメラ部分は自動で非表示になるため、ストップ処理は不要です
   };
 
   const handleMissionComplete = (earnedPoints) => {
@@ -341,7 +318,7 @@ function App() {
     }).then(() => {
       setActiveMissionCard(null); 
       isProcessingScanRef.current = false;
-      // ★ フリーズの元凶だった resume() 処理も完全削除
+      // ★ フリーズの原因だった resume() も使いません
     });
   };
 
