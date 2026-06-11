@@ -1090,37 +1090,52 @@ html, body, #root {
 .choice-style-3 { background-color: #a2c2e6; }
 .choice-style-4 { background-color: #ffd8b1; }
 
-/* 🎤 Speaking UI */
+/* 🎤 Speaking UI (iPadはみ出し防止・完全版) */
+.fullscreen-speaking-layout {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+}
+
 .speaking-target-card {
   width: 100%;
   max-width: 1100px;
   background: #ffffff;
-  padding: 5vh;
-  border-radius: 40px;
+  padding: 4vh; 
+  border-radius: 30px; 
   box-shadow: 0 15px 40px rgba(0,0,0,0.08);
   border: 4px solid #f1f2f6;
   text-align: center;
+  flex-grow: 0; 
+  flex-shrink: 1; 
+  margin: 2vh auto; 
+  max-height: 45vh; /* 🌟長すぎる英文はここでスクロールさせる */
+  overflow-y: auto; 
+  -webkit-overflow-scrolling: touch; 
 }
+
 .target-text-huge {
-  font-size: clamp(2.2rem, 5.5vh, 4rem);
+  font-size: clamp(2rem, 5vh, 3.2rem); 
   line-height: 1.3;
   color: #2d3436;
   font-weight: 900;
-  margin-top: 2vh;
+  margin-top: 1.5vh;
+  padding-bottom: 20px; 
 }
 
 .speaking-control-area {
   width: 100%;
   max-width: 800px;
-  margin-top: 3vh;
+  margin: auto auto 2vh auto; /* 🌟ボタンを絶対に画面下部に固定する */
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .giant-start-btn, .giant-stop-btn {
   width: 100%;
-  padding: 4vh;
+  padding: 3vh; 
   border-radius: 100px;
   border: none;
-  font-size: 2.5rem;
+  font-size: 2.2rem; 
   font-weight: 900;
   cursor: pointer;
   color: white;
@@ -1135,18 +1150,21 @@ html, body, #root {
   align-items: center;
   gap: 2vh;
 }
+
 .live-text-display {
-  font-size: 1.8rem;
+  font-size: 1.6rem; 
   color: #7f8c8d;
   background: #f8f9fa;
-  padding: 3vh;
+  padding: 2.5vh;
   border-radius: 20px;
   width: 100%;
-  min-height: 15vh;
+  height: 12vh; /* 🌟文字起こしエリアが広がりすぎないように固定 */
+  min-height: 100px;
+  overflow-y: auto; 
   text-align: left;
   border: 2px dashed #bdc3c7;
+  margin-bottom: 2vh;
 }
-
 /* 🌟 Fullscreen Feedback Overlay */
 .mission-feedback-fullscreen {
   width: 100vw; height: 100vh;
