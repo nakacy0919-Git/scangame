@@ -61,6 +61,7 @@ function App() {
   const [isMuted, setIsMuted] = useState(false);
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isDownloadOpen, setIsDownloadOpen] = useState(false); // ★ここを追加！
   const [activeQrTab, setActiveQrTab] = useState('A'); 
   const [fullScreenQrTeam, setFullScreenQrTeam] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
@@ -399,6 +400,13 @@ const onScanMobile = (decodedText) => {
               <button onClick={() => selectTheme('volunteer')} className="custom-btn"><span>🤝 Volunteer</span><span className="arrow"></span></button> 
               <button onClick={() => selectTheme('revitalization')} className="custom-btn"><span>🏙️ Revitalize</span><span className="arrow"></span></button> 
             </div>
+
+            {/* ▼▼ ここから追加：ダウンロード画面を開くボタン ▼▼ */}
+            <button className="dl-trigger-btn shadow-pop" onClick={() => setIsDownloadOpen(true)}>
+              📥 教材カード（PDF）をダウンロード
+            </button>
+            {/* ▲▲ ここまで追加 ▲▲ */}
+
           </div>
           <div className="menu-right-block">
             <h3 className="qr-section-title">📱 Student Scanner QR</h3>
@@ -487,6 +495,30 @@ const onScanMobile = (decodedText) => {
             <h2 className={`team-title-huge team-title-${fullScreenQrTeam.toLowerCase()}`}>TEAM {fullScreenQrTeam}</h2>
             <img src={`https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + fullScreenQrTeam)}`} alt="Fullscreen QR" className="huge-qr-img" />
             <button className="btn-save" onClick={() => setFullScreenQrTeam(null)}>閉じる</button>
+          </div>
+        </div>
+      )}
+      {isDownloadOpen && (
+        <div className="modal-overlay" onClick={() => setIsDownloadOpen(false)} style={{zIndex: 400}}>
+          <div className="modal-content" onClick={e => e.stopPropagation()} style={{padding: '30px', maxWidth: '700px', width: '90%'}}>
+            <h2 style={{color: '#2c3e50', marginBottom: '10px'}}>📥 教材カードダウンロード</h2>
+            <p style={{color: '#7f8c8d', marginBottom: '25px'}}>印刷して生徒に配布してください（A4サイズ推奨）</p>
+            
+            <div className="pdf-btn-group">
+              <a href="/materials/airport.pdf" download="Scannect_Airport_Cards.pdf" className="pdf-dl-btn">📄 Airport (空港)</a>
+              <a href="/materials/cafe.pdf" download="Scannect_Cafe_Cards.pdf" className="pdf-dl-btn">📄 Cafe (カフェ)</a>
+              <a href="/materials/help.pdf" download="Scannect_Help_Cards.pdf" className="pdf-dl-btn">📄 Help (人助け)</a>
+              <a href="/materials/hotel.pdf" download="Scannect_Hotel_Cards.pdf" className="pdf-dl-btn">📄 Hotel (ホテル)</a>
+              <a href="/materials/media.pdf" download="Scannect_Media_Cards.pdf" className="pdf-dl-btn">📄 Media (メディア)</a>
+              <a href="/materials/revitalization.pdf" download="Scannect_Revitalization_Cards.pdf" className="pdf-dl-btn">📄 Revitalization (地域活性化)</a>
+              <a href="/materials/sdgs.pdf" download="Scannect_SDGs_Cards.pdf" className="pdf-dl-btn">📄 SDGs</a>
+              <a href="/materials/volunteer.pdf" download="Scannect_Volunteer_Cards.pdf" className="pdf-dl-btn">📄 Volunteer (ボランティア)</a>
+              <a href="/materials/zoo.pdf" download="Scannect_Zoo_Cards.pdf" className="pdf-dl-btn">📄 Zoo (動物園)</a>
+            </div>
+
+            <button className="btn-save" onClick={() => setIsDownloadOpen(false)} style={{marginTop: '30px', backgroundColor: '#95a5a6'}}>
+              閉じる
+            </button>
           </div>
         </div>
       )}
