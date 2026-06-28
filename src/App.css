@@ -1240,23 +1240,75 @@ html, body, #root {
   box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 /* =========================================
-   📥 ダウンロード画面の起動ボタン
+   📥 ダウンロード画面の起動ボタン (修正版)
 ========================================= */
 .dl-trigger-btn {
-  width: 100%;
-  margin-top: 25px;
-  padding: 15px;
+  /* 幅を100%から自動調整に変更し、中央に配置します */
+  width: auto;
+  min-width: 320px;
+  margin: 25px auto 0 auto; 
+  display: block;
+  
+  /* ボタンの高さを少し抑えてスタイリッシュに */
+  padding: 12px 30px; 
+  
   background: linear-gradient(135deg, #34495e, #2c3e50);
   color: white;
   border: none;
-  border-radius: 15px;
-  font-size: 1.1rem;
+  border-radius: 50px; /* 丸みを持たせて柔らかい印象に */
+  font-size: 1rem; /* 少し小さく */
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.2);
 }
 
 .dl-trigger-btn:hover {
   filter: brightness(1.1);
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(44, 62, 80, 0.3);
+}
+
+/* =========================================
+   📥 教材ダウンロードボタン UI (ポップアップ内・修正版)
+========================================= */
+.pdf-btn-group {
+  /* FlexboxからGridレイアウトに変更し、完璧に整列させます */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* きれいに3列に並べる */
+  gap: 15px; /* ボタン同士の隙間 */
+  width: 100%;
+}
+
+.pdf-dl-btn {
+  background-color: #34495e;
+  color: white;
+  padding: 12px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem; /* 文字がはみ出さないように少し調整 */
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  
+  /* ボタン内の文字を常にど真ん中に配置 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pdf-dl-btn:hover {
+  background-color: #2c3e50;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+/* 画面が小さい時（iPad縦やスマホ）は2列にする安全設計 */
+@media (max-width: 600px) {
+  .pdf-btn-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

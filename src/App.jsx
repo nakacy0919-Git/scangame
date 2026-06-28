@@ -510,7 +510,7 @@ const onScanMobile = (decodedText) => {
               <a href="/materials/help.pdf" download="Scannect_Help_Cards.pdf" className="pdf-dl-btn">📄 Help (人助け)</a>
               <a href="/materials/hotel.pdf" download="Scannect_Hotel_Cards.pdf" className="pdf-dl-btn">📄 Hotel (ホテル)</a>
               <a href="/materials/media.pdf" download="Scannect_Media_Cards.pdf" className="pdf-dl-btn">📄 Media (メディア)</a>
-              <a href="/materials/revitalization.pdf" download="Scannect_Revitalization_Cards.pdf" className="pdf-dl-btn">📄 Revitalization (地域活性化)</a>
+              <a href="/materials/revitalization.pdf" download="Scannect_Revitalization_Cards.pdf" className="pdf-dl-btn">📄 Revitalization (地域活性)</a>
               <a href="/materials/sdgs.pdf" download="Scannect_SDGs_Cards.pdf" className="pdf-dl-btn">📄 SDGs</a>
               <a href="/materials/volunteer.pdf" download="Scannect_Volunteer_Cards.pdf" className="pdf-dl-btn">📄 Volunteer (ボランティア)</a>
               <a href="/materials/zoo.pdf" download="Scannect_Zoo_Cards.pdf" className="pdf-dl-btn">📄 Zoo (動物園)</a>
