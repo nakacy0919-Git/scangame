@@ -1,0 +1,512 @@
+[
+  {
+    "id": "ENGLISH_001",
+    "situation_ja": "単語帳の単語が多すぎる",
+    "situation_en": "Too Many Words",
+    "card_a": {
+      "text": "[A worried student] English vocabulary books have too many words.",
+      "text_ja": "【悩む生徒】英語の単語帳は単語が多すぎます。"
+    },
+    "card_b": {
+      "text": "Learn five words every day. Do not try too much.",
+      "text_ja": "毎日5語ずつ覚えよう。無理しすぎないでね。"
+    },
+    "vocabulary": [
+      {"word": "vocabulary", "part_of_speech": "noun", "meaning": "語彙、単語", "level": "A2"},
+      {"word": "learn", "part_of_speech": "verb", "meaning": "学ぶ、覚える", "level": "A1"}
+    ]
+  },
+  {
+    "id": "ENGLISH_002",
+    "situation_ja": "似ている単語の混乱",
+    "situation_en": "Confusing Words",
+    "card_a": {
+      "text": "[A confused student] Similar English words confuse me.",
+      "text_ja": "【混乱する生徒】似ている英語の単語に混乱してしまいます。"
+    },
+    "card_b": {
+      "text": "Write them side by side. Check their differences carefully.",
+      "text_ja": "それらを横並びに書こう。違いを注意深く確認してみて。"
+    },
+    "vocabulary": [
+      {"word": "similar", "part_of_speech": "adjective", "meaning": "似ている", "level": "A2"},
+      {"word": "confuse", "part_of_speech": "verb", "meaning": "混乱させる", "level": "B1"},
+      {"word": "carefully", "part_of_speech": "adverb", "meaning": "注意深く", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_003",
+    "situation_ja": "新しい単語を忘れる",
+    "situation_en": "Forgetting New Words",
+    "card_a": {
+      "text": "[A discouraged student] I forget new words the next day.",
+      "text_ja": "【落胆する生徒】次の日に新しい単語を忘れてしまいます。"
+    },
+    "card_b": {
+      "text": "Review them before you sleep. Check them again tomorrow.",
+      "text_ja": "寝る前に復習しよう。明日もう一度チェックしてみて。"
+    },
+    "vocabulary": [
+      {"word": "forget", "part_of_speech": "verb", "meaning": "忘れる", "level": "A2"},
+      {"word": "review", "part_of_speech": "verb", "meaning": "復習する、見直す", "level": "B1"}
+    ]
+  },
+  {
+    "id": "ENGLISH_004",
+    "situation_ja": "関係代名詞が難しい",
+    "situation_en": "Difficult Relative Pronouns",
+    "card_a": {
+      "text": "[A struggling student] Relative pronouns are too difficult.",
+      "text_ja": "【苦戦する生徒】関係代名詞が難しすぎます。"
+    },
+    "card_b": {
+      "text": "Make two simple sentences first. Connect them with \"who\" or \"which\".",
+      "text_ja": "まずは2つの簡単な文を作ろう。それらを who や which でつなげてみて。"
+    },
+    "vocabulary": [
+      {"word": "difficult", "part_of_speech": "adjective", "meaning": "難しい", "level": "A1"},
+      {"word": "connect", "part_of_speech": "verb", "meaning": "つなぐ、接続する", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_005",
+    "situation_ja": "文法ルールでの混乱",
+    "situation_en": "Confusing Grammar Rules",
+    "card_a": {
+      "text": "[A confused student] English grammar rules confuse me.",
+      "text_ja": "【混乱する生徒】英語の文法規則に混乱してしまいます。"
+    },
+    "card_b": {
+      "text": "Learn one rule today. Write three example sentences.",
+      "text_ja": "今日は1つのルールだけ学ぼう。例文を3つ書いてみて。"
+    },
+    "vocabulary": [
+      {"word": "grammar", "part_of_speech": "noun", "meaning": "文法", "level": "A2"},
+      {"word": "rule", "part_of_speech": "noun", "meaning": "規則、ルール", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_006",
+    "situation_ja": "不定詞が分からない",
+    "situation_en": "Understanding To-infinitives",
+    "card_a": {
+      "text": "[A puzzled student] I do not understand to-infinitives.",
+      "text_ja": "【戸惑う生徒】不定詞（to+動詞の原形）が分かりません。"
+    },
+    "card_b": {
+      "text": "Look at the words before \"to\". Practice many easy questions.",
+      "text_ja": "\"to\"の前の単語を見よう。簡単な問題をたくさん練習してみて。"
+    },
+    "vocabulary": [
+      {"word": "understand", "part_of_speech": "verb", "meaning": "理解する、分かる", "level": "A1"},
+      {"word": "practice", "part_of_speech": "verb", "meaning": "練習する", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_007",
+    "situation_ja": "長文読解での疲れ",
+    "situation_en": "Tiring Long Stories",
+    "card_a": {
+      "text": "[A tired student] Reading long stories tires me.",
+      "text_ja": "【疲れた生徒】長い文章を読むと疲れてしまいます。"
+    },
+    "card_b": {
+      "text": "Read one paragraph first. Take a short break.",
+      "text_ja": "まずは1パラグラフ（段落）読もう。少し休憩してね。"
+    },
+    "vocabulary": [
+      {"word": "tire", "part_of_speech": "verb", "meaning": "疲れさせる", "level": "B1"},
+      {"word": "paragraph", "part_of_speech": "noun", "meaning": "段落", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_008",
+    "situation_ja": "単語の区切りが苦手",
+    "situation_en": "Poor Word Grouping",
+    "card_a": {
+      "text": "[A stuck student] I cannot group English words well.",
+      "text_ja": "【行き詰まった生徒】英語の単語をうまく区切れません。"
+    },
+    "card_b": {
+      "text": "Put slashes after punctuation like commas. Do not think too hard.",
+      "text_ja": "カンマなどの区切り記号の後にスラッシュを入れよう。深く考えすぎないで。"
+    },
+    "vocabulary": [
+      {"word": "group", "part_of_speech": "verb", "meaning": "グループに分ける、区切る", "level": "B1"},
+      {"word": "punctuation", "part_of_speech": "noun", "meaning": "句読点、区切り記号", "level": "B2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_009",
+    "situation_ja": "知らない単語で止まる",
+    "situation_en": "Stopped by Unknown Words",
+    "card_a": {
+      "text": "[A frustrated student] Unknown words stop my reading.",
+      "text_ja": "【不満を持つ生徒】知らない単語があると読むのが止まってしまいます。"
+    },
+    "card_b": {
+      "text": "Skip that word for now. Guess the meaning from other words.",
+      "text_ja": "今はその単語を飛ばそう。他の単語から意味を推測してみて。"
+    },
+    "vocabulary": [
+      {"word": "unknown", "part_of_speech": "adjective", "meaning": "知られていない、未知の", "level": "A2"},
+      {"word": "guess", "part_of_speech": "verb", "meaning": "推測する", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_010",
+    "situation_ja": "テストで読み終わらない",
+    "situation_en": "Cannot Finish Reading",
+    "card_a": {
+      "text": "[An anxious student] I cannot finish reading during tests.",
+      "text_ja": "【焦る生徒】テスト中に読み終わりません。"
+    },
+    "card_b": {
+      "text": "Read the questions first. Find key words quickly.",
+      "text_ja": "最初に問題を読もう。キーワードを素早く見つけてね。"
+    },
+    "vocabulary": [
+      {"word": "finish", "part_of_speech": "verb", "meaning": "終わらせる", "level": "A1"},
+      {"word": "quickly", "part_of_speech": "adverb", "meaning": "素早く、速く", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_011",
+    "situation_ja": "ネイティブが早すぎる",
+    "situation_en": "Native Speakers are Fast",
+    "card_a": {
+      "text": "[A overwhelmed student] Native speakers talk too fast.",
+      "text_ja": "【圧倒された生徒】ネイティブスピーカーの話すスピードが速すぎます。"
+    },
+    "card_b": {
+      "text": "Listen to slow English videos. Enjoy watching simple dramas.",
+      "text_ja": "ゆっくりな英語の動画を聴こう。簡単なドラマを見るのを楽しんで。"
+    },
+    "vocabulary": [
+      {"word": "native", "part_of_speech": "adjective", "meaning": "母語の、ネイティブの", "level": "A2"},
+      {"word": "simple", "part_of_speech": "adjective", "meaning": "簡単な、シンプルな", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_012",
+    "situation_ja": "つながる音が難しい",
+    "situation_en": "Difficult Connected Sounds",
+    "card_a": {
+      "text": "[A confused student] Connected sounds are difficult for me.",
+      "text_ja": "【混乱する生徒】つながる音が私には難しいです。"
+    },
+    "card_b": {
+      "text": "Read English lyrics aloud. Copy the native speaker's voice.",
+      "text_ja": "英語の歌詞を音読しよう。ネイティブの声を真似してみて。"
+    },
+    "vocabulary": [
+      {"word": "aloud", "part_of_speech": "adverb", "meaning": "声に出して", "level": "B1"},
+      {"word": "copy", "part_of_speech": "verb", "meaning": "真似する、コピーする", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_013",
+    "situation_ja": "リスニングで見失う",
+    "situation_en": "Lost in Listening Tests",
+    "card_a": {
+      "text": "[A panicked student] I lost my way during listening tests.",
+      "text_ja": "【パニックの生徒】リスニングテスト中、聞き失ってしまいます。"
+    },
+    "card_b": {
+      "text": "Do not think about past questions. Just listen to the next sound.",
+      "text_ja": "過ぎた問題のことは考えないで。次の音を聴くことだけに集中しよう。"
+    },
+    "vocabulary": [
+      {"word": "lose one's way", "part_of_speech": "idiom", "meaning": "道に迷う、見失う", "level": "A2"},
+      {"word": "past", "part_of_speech": "adjective", "meaning": "過去の、過ぎた", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_014",
+    "situation_ja": "英会話で緊張する",
+    "situation_en": "Nervous in Conversations",
+    "card_a": {
+      "text": "[A shy student] I get nervous in English conversations.",
+      "text_ja": "【内気な生徒】英語の会話で緊張してしまいます。"
+    },
+    "card_b": {
+      "text": "Smile and say \"Good morning\" first. Use short and easy words.",
+      "text_ja": "まずは笑顔で「おはよう」と言おう。短くて簡単な単語を使ってね。"
+    },
+    "vocabulary": [
+      {"word": "nervous", "part_of_speech": "adjective", "meaning": "緊張した、神経質な", "level": "B1"},
+      {"word": "conversation", "part_of_speech": "noun", "meaning": "会話", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_015",
+    "situation_ja": "発音の心配",
+    "situation_en": "Worried About Pronunciation",
+    "card_a": {
+      "text": "[A self-conscious student] I worry about my English pronunciation.",
+      "text_ja": "【自意識過剰な生徒】英語の発音が心配です。"
+    },
+    "card_b": {
+      "text": "Pronunciation is just a tool. Speak loudly with confidence.",
+      "text_ja": "発音はただの道具だよ。自信を持って大きな声で話そう。"
+    },
+    "vocabulary": [
+      {"word": "pronunciation", "part_of_speech": "noun", "meaning": "発音", "level": "A2"},
+      {"word": "confidence", "part_of_speech": "noun", "meaning": "自信", "level": "B2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_016",
+    "situation_ja": "ALTとの対面で緊張",
+    "situation_en": "Nervous Meeting ALT",
+    "card_a": {
+      "text": "[A nervous student] Meeting the ALT teacher makes me nervous.",
+      "text_ja": "【緊張する生徒】ALTの先生に会うと緊張します。"
+    },
+    "card_b": {
+      "text": "Just wave your hand happily. Say \"See you\" with a smile.",
+      "text_ja": "楽しそうに手を振るだけでいいよ。笑顔で「またね」と言ってみて。"
+    },
+    "vocabulary": [
+      {"word": "wave", "part_of_speech": "verb", "meaning": "手を振る", "level": "A2"},
+      {"word": "happily", "part_of_speech": "adverb", "meaning": "幸せそうに、楽しそうに", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_017",
+    "situation_ja": "エッセイの書き出し",
+    "situation_en": "Same Essay Openings",
+    "card_a": {
+      "text": "[A stuck student] My essay openings are always the same.",
+      "text_ja": "【行き詰まった生徒】エッセイの書き出しがいつも同じになってしまいます。"
+    },
+    "card_b": {
+      "text": "Use phrases like \"I think...\". Memorize three good opening patterns.",
+      "text_ja": "「私は～と思う」などの表現を使おう。3つの良い書き出しパターンを覚えてみて。"
+    },
+    "vocabulary": [
+      {"word": "phrase", "part_of_speech": "noun", "meaning": "フレーズ、言い回し", "level": "A2"},
+      {"word": "memorize", "part_of_speech": "verb", "meaning": "暗記する、記憶する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "ENGLISH_018",
+    "situation_ja": "アイデアを英語にできない",
+    "situation_en": "Cannot Translate Ideas",
+    "card_a": {
+      "text": "[A frustrated student] I cannot translate my ideas into English.",
+      "text_ja": "【もどかしい生徒】アイデアを英語に翻訳できません。"
+    },
+    "card_b": {
+      "text": "Think in very simple Japanese first. Use easy English words.",
+      "text_ja": "まずはとても簡単な日本語で考えよう。易しい英語の単語を使ってね。"
+    },
+    "vocabulary": [
+      {"word": "translate", "part_of_speech": "verb", "meaning": "翻訳する", "level": "A2"},
+      {"word": "idea", "part_of_speech": "noun", "meaning": "考え、アイデア", "level": "A1"}
+    ]
+  },
+  {
+    "id": "ENGLISH_019",
+    "situation_ja": "sやedの付け忘れ",
+    "situation_en": "Forgetting 's' and 'ed'",
+    "card_a": {
+      "text": "[A careless student] I always forget simple \"s\" or \"ed\".",
+      "text_ja": "【うっかりする生徒】簡単な \"s\" や \"ed\" をいつも忘れてしまいます。"
+    },
+    "card_b": {
+      "text": "Check your sentences after writing. Read them aloud carefully.",
+      "text_ja": "書いた後に文をチェックしよう。注意深く音読してみて。"
+    },
+    "vocabulary": [
+      {"word": "simple", "part_of_speech": "adjective", "meaning": "簡単な、単純な", "level": "A2"},
+      {"word": "carefully", "part_of_speech": "adverb", "meaning": "注意深く", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_020",
+    "situation_ja": "教科書の丸暗記が辛い",
+    "situation_en": "Hard to Memorize Textbooks",
+    "card_a": {
+      "text": "[A tired student] Memorizing whole English textbooks is hard.",
+      "text_ja": "【疲れた生徒】教科書を丸ごと暗記するのは大変です。"
+    },
+    "card_b": {
+      "text": "Understand the story background first. Group words into small parts.",
+      "text_ja": "まずは物語の背景を理解しよう。単語を小さなパーツに分けてみて。"
+    },
+    "vocabulary": [
+      {"word": "memorize", "part_of_speech": "verb", "meaning": "暗記する", "level": "B1"},
+      {"word": "background", "part_of_speech": "noun", "meaning": "背景", "level": "B1"}
+    ]
+  },
+  {
+    "id": "ENGLISH_021",
+    "situation_ja": "文法ワークが多すぎる",
+    "situation_en": "Too Many Worksheets",
+    "card_a": {
+      "text": "[An overwhelmed student] I have too many grammar worksheets.",
+      "text_ja": "【圧倒された生徒】文法のワークシートが多すぎます。"
+    },
+    "card_b": {
+      "text": "Do three questions every day. Ask friends for help.",
+      "text_ja": "毎日3問ずつやろう。友達に助けを求めてみて。"
+    },
+    "vocabulary": [
+      {"word": "grammar", "part_of_speech": "noun", "meaning": "文法", "level": "A2"},
+      {"word": "worksheet", "part_of_speech": "noun", "meaning": "ワークシート、プリント", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_022",
+    "situation_ja": "英検スピーキングの恐怖",
+    "situation_en": "Scary Eiken Speaking",
+    "card_a": {
+      "text": "[A scared student] Eiken speaking tests scare me.",
+      "text_ja": "【おびえる生徒】英検のスピーキングテストが怖いです。"
+    },
+    "card_b": {
+      "text": "Practice with your school teachers. Say \"Pardon?\" if you miss it.",
+      "text_ja": "学校の先生と練習しよう。聞き逃したら「もう一度言ってください」と言ってね。"
+    },
+    "vocabulary": [
+      {"word": "scare", "part_of_speech": "verb", "meaning": "怖がらせる、おびえさせる", "level": "B1"},
+      {"word": "miss", "part_of_speech": "verb", "meaning": "聞き逃す", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_023",
+    "situation_ja": "英検リスニングが不明瞭",
+    "situation_en": "Unclear Eiken Listening",
+    "card_a": {
+      "text": "[A confused student] Eiken listening questions are unclear to me.",
+      "text_ja": "【混乱する生徒】英検のリスニング問題がよく分かりません。"
+    },
+    "card_b": {
+      "text": "Listen to past test CDs many times. Check the script text.",
+      "text_ja": "過去問のCDを何回も聴こう。台本のテキストを確認してみて。"
+    },
+    "vocabulary": [
+      {"word": "unclear", "part_of_speech": "adjective", "meaning": "不明瞭な、よく分からない", "level": "B1"},
+      {"word": "script", "part_of_speech": "noun", "meaning": "台本、スクリプト", "level": "B2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_024",
+    "situation_ja": "授業で当てられる",
+    "situation_en": "Called on in Class",
+    "card_a": {
+      "text": "[A tense student] Teachers call my name in English class.",
+      "text_ja": "【緊張する生徒】英語の授業で先生に名前を呼ばれます（当てられます）。"
+    },
+    "card_b": {
+      "text": "Take a deep breath first. Use easy sentences like \"I think so.\"",
+      "text_ja": "まずは深呼吸しよう。「私もそう思います」のような簡単な文を使ってね。"
+    },
+    "vocabulary": [
+      {"word": "deep breath", "part_of_speech": "noun", "meaning": "深呼吸", "level": "B1"},
+      {"word": "sentence", "part_of_speech": "noun", "meaning": "文、文章", "level": "A1"}
+    ]
+  },
+  {
+    "id": "ENGLISH_025",
+    "situation_ja": "クラスメイトがペラペラ",
+    "situation_en": "Fluent Classmate",
+    "card_a": {
+      "text": "[An intimidated student] My classmate speaks English very well.",
+      "text_ja": "【自信をなくした生徒】クラスメイトが英語をとても上手に話します。"
+    },
+    "card_b": {
+      "text": "Do not compare with them. Just show your best smile.",
+      "text_ja": "彼らと比べないで。最高の笑顔を見せるだけでいいよ。"
+    },
+    "vocabulary": [
+      {"word": "compare", "part_of_speech": "verb", "meaning": "比べる、比較する", "level": "B1"}
+    ]
+  },
+  {
+    "id": "ENGLISH_026",
+    "situation_ja": "電子辞書に時間がかかる",
+    "situation_en": "Slow Dictionary Use",
+    "card_a": {
+      "text": "[An impatient student] Using electronic dictionaries takes too much time.",
+      "text_ja": "【もどかしい生徒】電子辞書を使うのに時間がかかりすぎます。"
+    },
+    "card_b": {
+      "text": "Practice typing fast at home. Mark important words in advance.",
+      "text_ja": "家で早くタイピングする練習をしよう。重要な単語は事前にマークしておいてね。"
+    },
+    "vocabulary": [
+      {"word": "electronic", "part_of_speech": "adjective", "meaning": "電子の", "level": "B1"},
+      {"word": "in advance", "part_of_speech": "idiom", "meaning": "事前に、あらかじめ", "level": "B1"}
+    ]
+  },
+  {
+    "id": "ENGLISH_027",
+    "situation_ja": "なぜ日本で英語を学ぶのか",
+    "situation_en": "Why Study in Japan",
+    "card_a": {
+      "text": "[An unmotivated student] Why do I study English in Japan?",
+      "text_ja": "【やる気のない生徒】なぜ日本で英語を勉強するのですか？"
+    },
+    "card_b": {
+      "text": "English helps you watch foreign videos. You can meet international friends.",
+      "text_ja": "英語は海外の動画を見るのに役立つよ。海外の友達にも出会えます。"
+    },
+    "vocabulary": [
+      {"word": "foreign", "part_of_speech": "adjective", "meaning": "外国の、海外の", "level": "A2"},
+      {"word": "international", "part_of_speech": "adjective", "meaning": "国際的な", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_028",
+    "situation_ja": "洋楽は好きだが教科書は嫌い",
+    "situation_en": "Western Music vs Textbooks",
+    "card_a": {
+      "text": "[A picky student] I like western music but hate textbook English.",
+      "text_ja": "【好みが激しい生徒】洋楽は好きですが、教科書の英語は嫌いです。"
+    },
+    "card_b": {
+      "text": "Translate your favorite songs into Japanese. Enjoy English through your hobbies.",
+      "text_ja": "お気に入りの歌を日本語に訳してみよう。趣味を通して英語を楽しんで。"
+    },
+    "vocabulary": [
+      {"word": "western", "part_of_speech": "adjective", "meaning": "西洋の（洋楽の）", "level": "A2"},
+      {"word": "hobby", "part_of_speech": "noun", "meaning": "趣味", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_029",
+    "situation_ja": "勉強中のスマホ",
+    "situation_en": "Smartphone During Study",
+    "card_a": {
+      "text": "[A distracted student] I use my smartphone during English study.",
+      "text_ja": "【集中できない生徒】英語の勉強中にスマホを使ってしまいます。"
+    },
+    "card_b": {
+      "text": "Use study apps for ten minutes. Put your phone in your bag.",
+      "text_ja": "10分間だけ勉強アプリを使おう。スマホはバッグにしまってね。"
+    },
+    "vocabulary": [
+      {"word": "smartphone", "part_of_speech": "noun", "meaning": "スマートフォン", "level": "A2"},
+      {"word": "app", "part_of_speech": "noun", "meaning": "アプリ", "level": "A2"}
+    ]
+  },
+  {
+    "id": "ENGLISH_030",
+    "situation_ja": "学校と塾の英語の違い",
+    "situation_en": "School vs Cram School",
+    "card_a": {
+      "text": "[A confused student] School English and cram school English are different.",
+      "text_ja": "【混乱する生徒】学校の英語と塾の英語が違います。"
+    },
+    "card_b": {
+      "text": "Focus on school tests first. Ask your school teachers for advice.",
+      "text_ja": "まずは学校のテストに集中しよう。学校の先生にアドバイスをもらってみて。"
+    },
+    "vocabulary": [
+      {"word": "different", "part_of_speech": "adjective", "meaning": "違う、異なる", "level": "A1"},
+      {"word": "focus on", "part_of_speech": "phrasal verb", "meaning": "〜に集中する", "level": "B1"}
+    ]
+  }
+]

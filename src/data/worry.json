@@ -1,0 +1,513 @@
+[
+  {
+    "id": "WORRY_001",
+    "situation_ja": "テストの点数が悪い",
+    "situation_en": "Poor Test Scores",
+    "card_a": {
+      "text": "[A worried student] My high school test scores are bad.",
+      "text_ja": "【悩む生徒】高校のテストの点数が悪いです。"
+    },
+    "card_b": {
+      "text": "Change your study plan. Ask smart friends for ideas.",
+      "text_ja": "勉強計画を変えましょう。頭の良い友達にアイデアを聞いてみて。"
+    },
+    "vocabulary": [
+      {"word": "score", "part_of_speech": "noun", "meaning": "点数、得点", "level": "A2"},
+      {"word": "smart", "part_of_speech": "adjective", "meaning": "頭の良い、賢い", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_002",
+    "situation_ja": "夢が分からない",
+    "situation_en": "No Future Dream",
+    "card_a": {
+      "text": "[An anxious student] I do not know my dream.",
+      "text_ja": "【不安な生徒】自分の夢が分かりません。"
+    },
+    "card_b": {
+      "text": "Do not hurry now. Read about many jobs first.",
+      "text_ja": "今は焦らなくて大丈夫。まずは多くの仕事について読もう。"
+    },
+    "vocabulary": [
+      {"word": "dream", "part_of_speech": "noun", "meaning": "夢", "level": "A2"},
+      {"word": "hurry", "part_of_speech": "verb", "meaning": "急ぐ、焦る", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_003",
+    "situation_ja": "スマホの誘惑",
+    "situation_en": "Smartphone Distraction",
+    "card_a": {
+      "text": "[A distracted student] I watch YouTube on my phone.",
+      "text_ja": "【集中できない生徒】スマホでYouTubeを見てしまいます。"
+    },
+    "card_b": {
+      "text": "Put your phone away. Study at the library.",
+      "text_ja": "スマホを遠ざけましょう。図書館で勉強してみて。"
+    },
+    "vocabulary": [
+      {"word": "put away", "part_of_speech": "phrasal verb", "meaning": "片付ける、遠ざける", "level": "B1"},
+      {"word": "library", "part_of_speech": "noun", "meaning": "図書館", "level": "A1"}
+    ]
+  },
+  {
+    "id": "WORRY_004",
+    "situation_ja": "模試の点数が悪い",
+    "situation_en": "Bad Mock Test Results",
+    "card_a": {
+      "text": "[A depressed student] My mock test score was bad.",
+      "text_ja": "【落ち込む生徒】模試の点数が悪かったです。"
+    },
+    "card_b": {
+      "text": "Do not worry about it. Try hard next time.",
+      "text_ja": "気にしないで。次は頑張ろう。"
+    },
+    "vocabulary": [
+      {"word": "mock test", "part_of_speech": "noun", "meaning": "模擬試験", "level": "B2"},
+      {"word": "worry", "part_of_speech": "verb", "meaning": "心配する、気にする", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_005",
+    "situation_ja": "数学が苦手",
+    "situation_en": "Difficulty with Math",
+    "card_a": {
+      "text": "[A confused student] Math is too difficult for me.",
+      "text_ja": "【困惑する生徒】数学が私には難しすぎます。"
+    },
+    "card_b": {
+      "text": "Start from very easy questions. Ask your teacher quickly.",
+      "text_ja": "とても簡単な問題から始めよう。すぐ先生に聞いてみて。"
+    },
+    "vocabulary": [
+      {"word": "difficult", "part_of_speech": "adjective", "meaning": "難しい", "level": "A2"},
+      {"word": "quickly", "part_of_speech": "adverb", "meaning": "すぐに、早く", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_006",
+    "situation_ja": "作文（志望理由書）が書けない",
+    "situation_en": "Struggling with Essays",
+    "card_a": {
+      "text": "[A stuck student] I cannot write my essay.",
+      "text_ja": "【行き詰まった生徒】作文（志望理由書）が書けません。"
+    },
+    "card_b": {
+      "text": "Write down your favorite things. Teachers can help you.",
+      "text_ja": "好きなことを書き出そう。先生たちが手伝ってくれます。"
+    },
+    "vocabulary": [
+      {"word": "essay", "part_of_speech": "noun", "meaning": "作文、小論文", "level": "B1"},
+      {"word": "favorite", "part_of_speech": "adjective", "meaning": "お気に入りの、好きな", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_007",
+    "situation_ja": "親の過干渉",
+    "situation_en": "Overprotective Parents",
+    "card_a": {
+      "text": "[A stressed student] My parents always check my university.",
+      "text_ja": "【ストレスを抱える生徒】親がいつも大学のことを気にしてきます。"
+    },
+    "card_b": {
+      "text": "They love you. Talk to them softly.",
+      "text_ja": "彼らはあなたを愛しています。優しく話してみよう。"
+    },
+    "vocabulary": [
+      {"word": "check", "part_of_speech": "verb", "meaning": "確認する、気にする", "level": "A2"},
+      {"word": "softly", "part_of_speech": "adverb", "meaning": "優しく、穏やかに", "level": "B1"}
+    ]
+  },
+  {
+    "id": "WORRY_008",
+    "situation_ja": "塾の費用",
+    "situation_en": "Expensive Cram Schools",
+    "card_a": {
+      "text": "[A considerate student] Cram schools cost too much money.",
+      "text_ja": "【気遣う生徒】塾はお金がかかりすぎます。"
+    },
+    "card_b": {
+      "text": "Use free study videos. Talk with your parents.",
+      "text_ja": "無料の勉強動画を使おう。親と話し合ってみて。"
+    },
+    "vocabulary": [
+      {"word": "cram school", "part_of_speech": "noun", "meaning": "学習塾", "level": "B2"},
+      {"word": "cost", "part_of_speech": "verb", "meaning": "（費用が）かかる", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_009",
+    "situation_ja": "グループと趣味が合わない",
+    "situation_en": "Different Hobbies in a Group",
+    "card_a": {
+      "text": "[A lonely student] My group has different hobbies.",
+      "text_ja": "【孤独な生徒】グループの人と趣味が合いません。"
+    },
+    "card_b": {
+      "text": "Do not stay together always. Talk to other classmates.",
+      "text_ja": "いつも一緒にいなくていいよ。他のクラスメイトとも話そう。"
+    },
+    "vocabulary": [
+      {"word": "different", "part_of_speech": "adjective", "meaning": "違う、異なる", "level": "A2"},
+      {"word": "stay together", "part_of_speech": "phrasal verb", "meaning": "一緒にいる", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_010",
+    "situation_ja": "断れない性格",
+    "situation_en": "Can't Say No",
+    "card_a": {
+      "text": "[An obliging student] I always say \"Yes\" to friends.",
+      "text_ja": "【断れない生徒】友達にいつも「イエス」と言ってしまいます。"
+    },
+    "card_b": {
+      "text": "True friends understand you. Show your real opinion.",
+      "text_ja": "本当の友達なら理解してくれます。本当の意見を見せよう。"
+    },
+    "vocabulary": [
+      {"word": "understand", "part_of_speech": "verb", "meaning": "理解する", "level": "A2"},
+      {"word": "opinion", "part_of_speech": "noun", "meaning": "意見、考え", "level": "B1"}
+    ]
+  },
+  {
+    "id": "WORRY_011",
+    "situation_ja": "部活での無視",
+    "situation_en": "Ignored by Club Members",
+    "card_a": {
+      "text": "[A hurt student] Some club members ignore me.",
+      "text_ja": "【傷ついた生徒】部活の一部のメンバーに無視されます。"
+    },
+    "card_b": {
+      "text": "Talk to a family member. Take a short break.",
+      "text_ja": "家族に話してみよう。少し休むのもいいよ。"
+    },
+    "vocabulary": [
+      {"word": "ignore", "part_of_speech": "verb", "meaning": "無視する", "level": "B2"},
+      {"word": "break", "part_of_speech": "noun", "meaning": "休憩", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_012",
+    "situation_ja": "LINEのメッセージ疲れ",
+    "situation_en": "LINE Message Fatigue",
+    "card_a": {
+      "text": "[An exhausted student] LINE messages make me busy.",
+      "text_ja": "【疲れ切った生徒】LINEのメッセージのせいで忙しいです。"
+    },
+    "card_b": {
+      "text": "Turn off your phone early. Sleep well without worrying.",
+      "text_ja": "スマホを早く切ろう。気にせずよく眠ってね。"
+    },
+    "vocabulary": [
+      {"word": "turn off", "part_of_speech": "phrasal verb", "meaning": "電源を切る", "level": "A2"},
+      {"word": "worrying", "part_of_speech": "noun", "meaning": "心配すること", "level": "B1"}
+    ]
+  },
+  {
+    "id": "WORRY_013",
+    "situation_ja": "好きな人に話しかけられない",
+    "situation_en": "Too Shy to Talk to Crush",
+    "card_a": {
+      "text": "[A shy student] I cannot talk to my favorite student.",
+      "text_ja": "【内気な生徒】好きな生徒に話しかけられません。"
+    },
+    "card_b": {
+      "text": "Say \"Good morning\" tomorrow. Smile with big confidence.",
+      "text_ja": "明日「おはよう」と言おう。大きな自信を持って笑顔でね。"
+    },
+    "vocabulary": [
+      {"word": "favorite", "part_of_speech": "adjective", "meaning": "お気に入りの、大好きな", "level": "A2"},
+      {"word": "confidence", "part_of_speech": "noun", "meaning": "自信", "level": "B2"}
+    ]
+  },
+  {
+    "id": "WORRY_014",
+    "situation_ja": "親の言葉にイライラする",
+    "situation_en": "Irritated by Mother's Words",
+    "card_a": {
+      "text": "[An irritated student] My mother's words make me angry.",
+      "text_ja": "【イライラする生徒】お母さんの言葉にイライラします。"
+    },
+    "card_b": {
+      "text": "Go to your room. Listen to nice music.",
+      "text_ja": "自分の部屋に行こう。素敵な音楽を聴いてみて。"
+    },
+    "vocabulary": [
+      {"word": "angry", "part_of_speech": "adjective", "meaning": "怒った、腹を立てた", "level": "A2"},
+      {"word": "listen", "part_of_speech": "verb", "meaning": "聴く", "level": "A1"}
+    ]
+  },
+  {
+    "id": "WORRY_015",
+    "situation_ja": "親友の変化",
+    "situation_en": "Best Friend Changed",
+    "card_a": {
+      "text": "[A sad student] My old best friend changed.",
+      "text_ja": "【悲しむ生徒】昔の大親友が変わってしまいました。"
+    },
+    "card_b": {
+      "text": "People change at new schools. Send a birthday message.",
+      "text_ja": "新しい学校では人は変わるもの。誕生日に連絡してみて。"
+    },
+    "vocabulary": [
+      {"word": "change", "part_of_speech": "verb", "meaning": "変わる、変化する", "level": "A2"},
+      {"word": "message", "part_of_speech": "noun", "meaning": "伝言、メッセージ", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_016",
+    "situation_ja": "SNSで他人がよく見える",
+    "situation_en": "Instagram Envy",
+    "card_a": {
+      "text": "[A jealous student] My classmates look great on Instagram.",
+      "text_ja": "【羨ましがる生徒】インスタのクラスメイトが素敵に見えます。"
+    },
+    "card_b": {
+      "text": "Everyone looks happy on SNS. Do not look at it.",
+      "text_ja": "SNSではみんな幸せそうに見えるもの。見ないようにしよう。"
+    },
+    "vocabulary": [
+      {"word": "look", "part_of_speech": "verb", "meaning": "〜のように見える", "level": "A2"},
+      {"word": "happy", "part_of_speech": "adjective", "meaning": "幸せな", "level": "A1"}
+    ]
+  },
+  {
+    "id": "WORRY_017",
+    "situation_ja": "自信がない",
+    "situation_en": "Lack of Confidence",
+    "card_a": {
+      "text": "[An insecure student] I have no confidence.",
+      "text_ja": "【自信のない生徒】自分に自信がありません。"
+    },
+    "card_b": {
+      "text": "Write down your good points. Praise your small success.",
+      "text_ja": "良いところを書き出そう。小さな成功を褒めてみて。"
+    },
+    "vocabulary": [
+      {"word": "confidence", "part_of_speech": "noun", "meaning": "自信", "level": "B2"},
+      {"word": "praise", "part_of_speech": "verb", "meaning": "褒める", "level": "B2"}
+    ]
+  },
+  {
+    "id": "WORRY_018",
+    "situation_ja": "感情の起伏が激しい",
+    "situation_en": "Mood Swings",
+    "card_a": {
+      "text": "[An unstable student] My feelings change too fast.",
+      "text_ja": "【不安定な生徒】感情の変化が激しすぎます。"
+    },
+    "card_b": {
+      "text": "You are growing now. Take a deep breath.",
+      "text_ja": "あなたは今成長しています。深呼吸をしよう。"
+    },
+    "vocabulary": [
+      {"word": "feelings", "part_of_speech": "noun", "meaning": "感情、気持ち", "level": "B1"},
+      {"word": "grow", "part_of_speech": "verb", "meaning": "成長する", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_019",
+    "situation_ja": "恥ずかしがり屋",
+    "situation_en": "Too Shy to Speak",
+    "card_a": {
+      "text": "[A timid student] I am too shy to speak.",
+      "text_ja": "【内気な生徒】恥ずかしがり屋でうまく話せません。"
+    },
+    "card_b": {
+      "text": "Do not be too cheerful. Being a listener is wonderful.",
+      "text_ja": "無理に明るくならなくていいよ。聞き上手は素敵です。"
+    },
+    "vocabulary": [
+      {"word": "shy", "part_of_speech": "adjective", "meaning": "内気な、恥ずかしがりの", "level": "B1"},
+      {"word": "cheerful", "part_of_speech": "adjective", "meaning": "快活な、明るい", "level": "B1"},
+      {"word": "listener", "part_of_speech": "noun", "meaning": "聞き手、聞き上手", "level": "B2"}
+    ]
+  },
+  {
+    "id": "WORRY_020",
+    "situation_ja": "将来への不安",
+    "situation_en": "Worried About the Future",
+    "card_a": {
+      "text": "[An uncertain student] I am worried about my future.",
+      "text_ja": "【不安な生徒】将来が心配です。"
+    },
+    "card_b": {
+      "text": "Many students feel the same. Just do your best today.",
+      "text_ja": "多くの生徒が同じです。今日は今日のできる限りのことをしよう。"
+    },
+    "vocabulary": [
+      {"word": "worried", "part_of_speech": "adjective", "meaning": "心配している", "level": "A2"},
+      {"word": "future", "part_of_speech": "noun", "meaning": "未来、将来", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_021",
+    "situation_ja": "肌荒れ（ニキビ）",
+    "situation_en": "Skin Problems",
+    "card_a": {
+      "text": "[A sad student] A big pimple makes me sad.",
+      "text_ja": "【悲しむ生徒】大きなニキビのせいで悲しいです。"
+    },
+    "card_b": {
+      "text": "Wash your face gently. Drink a lot of water.",
+      "text_ja": "顔を優しく洗おう。水をたくさん飲んでね。"
+    },
+    "vocabulary": [
+      {"word": "pimple", "part_of_speech": "noun", "meaning": "ニキビ", "level": "B2"},
+      {"word": "gently", "part_of_speech": "adverb", "meaning": "優しく", "level": "B1"}
+    ]
+  },
+  {
+    "id": "WORRY_022",
+    "situation_ja": "部活がきつい",
+    "situation_en": "Exhausting Club Practice",
+    "card_a": {
+      "text": "[An exhausted student] My club practice is too hard.",
+      "text_ja": "【疲れ切った生徒】部活の練習がきつすぎます。"
+    },
+    "card_b": {
+      "text": "Your happiness is most important. Talk to your parents.",
+      "text_ja": "あなたの幸せが一番大切。親に相談してみて。"
+    },
+    "vocabulary": [
+      {"word": "practice", "part_of_speech": "noun", "meaning": "練習", "level": "A2"},
+      {"word": "happiness", "part_of_speech": "noun", "meaning": "幸せ、幸福", "level": "B1"}
+    ]
+  },
+  {
+    "id": "WORRY_023",
+    "situation_ja": "レギュラーになれない",
+    "situation_en": "Not a Regular Player",
+    "card_a": {
+      "text": "[A disappointed student] I could not become a regular.",
+      "text_ja": "【がっかりした生徒】レギュラーになれませんでした。"
+    },
+    "card_b": {
+      "text": "Keep practicing hard. Your team will see you.",
+      "text_ja": "一生懸命練習を続けよう。チームはあなたを見ています。"
+    },
+    "vocabulary": [
+      {"word": "regular", "part_of_speech": "noun", "meaning": "レギュラー選手、正規のメンバー", "level": "B1"},
+      {"word": "keep doing", "part_of_speech": "idiom", "meaning": "〜し続ける", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_024",
+    "situation_ja": "校則が厳しい",
+    "situation_en": "Strict School Rules",
+    "card_a": {
+      "text": "[A frustrated student] Our school rules are too strict.",
+      "text_ja": "【不満を持つ生徒】校則が厳しすぎます。"
+    },
+    "card_b": {
+      "text": "Enjoy fashion on weekends. Follow rules for now.",
+      "text_ja": "週末にファッションを楽しもう。今はルールを守ってみて。"
+    },
+    "vocabulary": [
+      {"word": "strict", "part_of_speech": "adjective", "meaning": "厳しい", "level": "B1"},
+      {"word": "follow", "part_of_speech": "verb", "meaning": "（規則に）従う、守る", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_025",
+    "situation_ja": "通学疲れ",
+    "situation_en": "Tired from Commuting",
+    "card_a": {
+      "text": "[A sleepy student] A long commute made me tired today.",
+      "text_ja": "【眠い生徒】長い通学のせいで疲れました。"
+    },
+    "card_b": {
+      "text": "Listen to your favorite music. Sleep early at night.",
+      "text_ja": "お気に入りの音楽を聴こう。夜は早く寝てね。"
+    },
+    "vocabulary": [
+      {"word": "commute", "part_of_speech": "noun", "meaning": "通勤、通学", "level": "B2"},
+      {"word": "tired", "part_of_speech": "adjective", "meaning": "疲れた", "level": "A1"}
+    ]
+  },
+  {
+    "id": "WORRY_026",
+    "situation_ja": "文化祭が楽しめない",
+    "situation_en": "Not Enjoying the Festival",
+    "card_a": {
+      "text": "[A quiet student] I cannot enjoy the school festival.",
+      "text_ja": "【静かな生徒】文化祭を楽しめません。"
+    },
+    "card_b": {
+      "text": "You do not need to shout. Find a quiet job.",
+      "text_ja": "大声を出す必要はないよ。静かな仕事を見つけよう。"
+    },
+    "vocabulary": [
+      {"word": "enjoy", "part_of_speech": "verb", "meaning": "楽しむ", "level": "A1"},
+      {"word": "shout", "part_of_speech": "verb", "meaning": "叫ぶ、大声を出す", "level": "B1"}
+    ]
+  },
+  {
+    "id": "WORRY_027",
+    "situation_ja": "時間がない",
+    "situation_en": "No Free Time",
+    "card_a": {
+      "text": "[A busy student] I have no time every day.",
+      "text_ja": "【忙しい生徒】毎日時間がありません。"
+    },
+    "card_b": {
+      "text": "Write down your daily schedule. Find some free time.",
+      "text_ja": "日々の予定を書き出そう。自由時間が見つかるはず。"
+    },
+    "vocabulary": [
+      {"word": "daily", "part_of_speech": "adjective", "meaning": "日々の、毎日の", "level": "A2"},
+      {"word": "schedule", "part_of_speech": "noun", "meaning": "予定、スケジュール", "level": "A2"}
+    ]
+  },
+  {
+    "id": "WORRY_028",
+    "situation_ja": "夜更かししてしまう",
+    "situation_en": "Staying Up Late",
+    "card_a": {
+      "text": "[A sleepy student] I watched TikTok until 3 a.m.",
+      "text_ja": "【眠い生徒】夜3時までTikTokを見てしまいました。"
+    },
+    "card_b": {
+      "text": "Turn off your phone early. See the morning sun.",
+      "text_ja": "スマホを早く切ろう。朝の太陽の光を浴びてみて。"
+    },
+    "vocabulary": [
+      {"word": "until", "part_of_speech": "preposition", "meaning": "〜まで", "level": "A2"},
+      {"word": "early", "part_of_speech": "adverb", "meaning": "早く", "level": "A1"}
+    ]
+  },
+  {
+    "id": "WORRY_029",
+    "situation_ja": "お金がない",
+    "situation_en": "No Money for Cafes",
+    "card_a": {
+      "text": "[A broke student] I have no money for cafes.",
+      "text_ja": "【金欠の生徒】カフェに行くお金がありません。"
+    },
+    "card_b": {
+      "text": "Help your parents with housework. Enjoy cheap hobbies.",
+      "text_ja": "親の家事を手伝ってみよう。お金のかからない趣味を楽しんで。"
+    },
+    "vocabulary": [
+      {"word": "housework", "part_of_speech": "noun", "meaning": "家事", "level": "A2"},
+      {"word": "cheap", "part_of_speech": "adjective", "meaning": "安い、安価な", "level": "A1"}
+    ]
+  },
+  {
+    "id": "WORRY_030",
+    "situation_ja": "家族の騒音",
+    "situation_en": "Noisy Brother",
+    "card_a": {
+      "text": "[An annoyed student] My brother watches TV loudly.",
+      "text_ja": "【イライラする生徒】弟が大きな音でテレビを見ます。"
+    },
+    "card_b": {
+      "text": "Use headphones with quiet music. Go to a park.",
+      "text_ja": "静かな音楽をヘッドホンで聴こう。公園に行くのもいいね。"
+    },
+    "vocabulary": [
+      {"word": "loudly", "part_of_speech": "adverb", "meaning": "大声で、大きな音で", "level": "A2"},
+      {"word": "quiet", "part_of_speech": "adjective", "meaning": "静かな", "level": "A2"}
+    ]
+  }
+]

@@ -19,6 +19,8 @@ import worldData from './data/world.json';
 import mediaData from './data/media.json'; 
 import volunteerData from './data/volunteer.json'; 
 import revitalizationData from './data/revitalization.json';
+import worryData from './data/worry.json';
+import englishData from './data/english.json';
 
 const GAME_DATA = {
   cafe: { title: 'Scannect : Cafe', codes: cafeData },
@@ -30,7 +32,9 @@ const GAME_DATA = {
   world: { title: 'Scannect : World', codes: worldData },
   media: { title: 'Scannect : Media', codes: mediaData },
   volunteer: { title: 'Scannect : Volunteer', codes: volunteerData },
-  revitalization: { title: 'Scannect : Revitalization', codes: revitalizationData }
+  revitalization: { title: 'Scannect : Revitalization', codes: revitalizationData },
+  worry: { title: 'Scannect : Worries', codes: worryData },
+  english: { title: 'Scannect : English Learning', codes: englishData }
 };
 
 const ALL_TEAMS = ['A', 'B', 'C', 'D'];
@@ -399,6 +403,8 @@ const onScanMobile = (decodedText) => {
               <button onClick={() => selectTheme('media')} className="custom-btn"><span>📱 Media</span><span className="arrow"></span></button> 
               <button onClick={() => selectTheme('volunteer')} className="custom-btn"><span>🤝 Volunteer</span><span className="arrow"></span></button> 
               <button onClick={() => selectTheme('revitalization')} className="custom-btn"><span>🏙️ Revitalize</span><span className="arrow"></span></button> 
+              <button onClick={() => selectTheme('worry')} className="custom-btn"><span>🤔 Worries</span><span className="arrow"></span></button> 
+              <button onClick={() => selectTheme('english')} className="custom-btn"><span>📚 English</span><span className="arrow"></span></button>
             </div>
 
             {/* ▼▼ ここから追加：ダウンロード画面を開くボタン ▼▼ */}
@@ -514,6 +520,8 @@ const onScanMobile = (decodedText) => {
               <a href="/materials/sdgs.pdf" download="Scannect_SDGs_Cards.pdf" className="pdf-dl-btn">📄 SDGs</a>
               <a href="/materials/volunteer.pdf" download="Scannect_Volunteer_Cards.pdf" className="pdf-dl-btn">📄 Volunteer (ボランティア)</a>
               <a href="/materials/zoo.pdf" download="Scannect_Zoo_Cards.pdf" className="pdf-dl-btn">📄 Zoo (動物園)</a>
+              <a href="/materials/worry.pdf" download="Scannect_Worry_Cards.pdf" className="pdf-dl-btn">📄 Worries (高校生の悩み)</a>
+              <a href="/materials/english.pdf" download="Scannect_English_Cards.pdf" className="pdf-dl-btn">📄 English (英語学習の悩み)</a>
             </div>
 
             <button className="btn-save" onClick={() => setIsDownloadOpen(false)} style={{marginTop: '30px', backgroundColor: '#95a5a6'}}>
