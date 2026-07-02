@@ -67,6 +67,10 @@ export default function ScannerMission({ card, themeData, onComplete }) {
     recognitionRef.current = recognition;
     recognition.lang = 'en-US';
     recognition.interimResults = true;
+    
+    // ★ 今回追加した修正（Chromebook等での自動停止対策）
+    recognition.continuous = true; 
+
     recognition.onstart = () => { setIsListening(true); setLiveText(''); };
     recognition.onresult = (event) => {
       const currentTranscript = Array.from(event.results).map(res => res[0].transcript).join('');
