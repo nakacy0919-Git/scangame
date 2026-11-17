@@ -48,8 +48,15 @@ try {
   const validScan = {
     team: 'A', code: 'CAFE_001', points: 3, uid: 'student-1', timestamp: serverTimestamp(),
   };
-  await assertSucceeds(set(ref(student.database(), scansPath + '/student-1_CAFE_001'), validScan));
   await assertFails(set(ref(student.database(), scansPath + '/student-1_CAFE_001'), validScan));
+  await assertFails(set(ref(teacher.database(), scansPath + '/teacher-1_CAFE_001'), {
+    ...validScan, uid: 'teacher-1',
+  }));
+  await env.withSecurityRulesDisabled(async context => {
+    await set(ref(context.database(), scansPath + '/student-1_CAFE_001'), {
+      ...validScan, timestamp: Date.now(),
+    });
+  });
 
   await assertFails(set(ref(student.database(), scansPath + '/student-1_CAFE_031'), {
     ...validScan, code: 'CAFE_031',
