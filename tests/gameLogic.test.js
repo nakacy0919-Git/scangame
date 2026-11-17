@@ -59,6 +59,7 @@ test('round summary deduplicates simultaneous team-card scans and computes combo
   assert.equal(result.scores.A, 3 + 5 + 10 + 2);
   assert.equal(result.scores.B, 1);
   assert.equal(result.maxCombos.A, 3);
+  assert.equal(result.acceptedEvents.find(event => event.key === 'last').earnedPoints, 12);
   assert.equal(result.scannedCodes.A.CAFE_001, true);
   assert.equal(result.scannedCodes.B.CAFE_001, true);
 });
