@@ -1,0 +1,25 @@
+name: Temporary Firebase security emulator verification
+on:
+  push:
+    branches: [fix/security-and-gameplay-20261117]
+permissions:
+  contents: read
+jobs:
+  verify-rules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - run: npm ci --no-fund
+      - name: Install emulator test library only for CI run
+        run: npm install --no-save --package-lock=false --legacy-peer-deps --ignore-scripts @firebase/rules-unit-testing@6.0.0
+      - name: Verify database rules with real Firebase Emulator
+        run: npx -y firebase-tools@15.36.0 emulators:exec --only database --project demo-scannect "node tests/firebaseRulesEmulator.mjs"
