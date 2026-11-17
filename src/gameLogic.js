@@ -85,6 +85,7 @@ export function summarizeRound(records, cards, teams = ALL_TEAMS, endsAt = Infin
   const currentCombos = Object.fromEntries(ALL_TEAMS.map(team => [team, 0]));
   const scannedCodes = {};
   const acceptedKeys = [];
+  const acceptedEvents = [];
 
   const known = new Map(
     (Array.isArray(cards) ? cards : [])
@@ -114,9 +115,11 @@ export function summarizeRound(records, cards, teams = ALL_TEAMS, endsAt = Infin
     acceptedKeys.push(key);
 
     const combo = ++currentCombos[event.team];
-    scores[event.team] += event.points + (combo % 3 === 0 ? 2 : 0);
+    const bonus = combo % 3 === 0 ? 2 : 0;
+    scores[event.team] += event.points + bonus;
+    acceptedEvents.push({ key, team: event.team, cardId, earnedPoints: event.points + bonus, bonus });
     maxCombos[event.team] = Math.max(maxCombos[event.team], combo);
   }
 
-  return { scores, maxCombos, scannedCodes, acceptedKeys };
+  return { scores, maxCombos, scannedCodes, acceptedKeys, acceptedEvents };
 }
