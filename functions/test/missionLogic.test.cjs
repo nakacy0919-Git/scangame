@@ -25,7 +25,9 @@ test('server determines vocabulary points and does not disclose answer in challe
   assert.equal('correct' in visible,false);
   assert.equal(visible.choices.includes(challenge.correct),true);
   assert.equal(gradeChallenge(challenge,challenge.correct),3);
-  assert.equal(gradeChallenge(challenge,'incorrect'),1);
+  const incorrect = visible.choices.find(choice => choice !== challenge.correct);
+  assert.equal(gradeChallenge(challenge,incorrect),1);
+  assert.throws(() => gradeChallenge(challenge,'made-up-choice'));
 });
 test('client-reported speech scores cannot reach the server',()=>{
   const card=matchingCard('cafe','CAFE_001');
