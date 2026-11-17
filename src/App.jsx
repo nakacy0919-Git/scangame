@@ -93,9 +93,6 @@ function App() {
   const scannerInstanceRef = useRef(null); 
   const isProcessingScanRef = useRef(false);
 
-  // 👇この1行を新しく追加してください👇
-  const pendingScanRef = useRef(null);
-
   useBGM(appMode, gameStatus, bgmVolume, isMuted);
 
   useEffect(() => {
@@ -449,6 +446,7 @@ const onScanMobile = (decodedText) => {
              {/* ★ 修正ポイント：ミッション中は表示し、カメラ部分は「display: none」で隠すだけにする */}
              {activeMissionCard && (
                 <ScannerMission 
+                  key={activeMissionCard.id}
                   card={activeMissionCard} 
                   themeData={GAME_DATA[serverGameState.theme]?.codes || []} 
                   onComplete={handleMissionComplete} 
