@@ -93,7 +93,7 @@ function App() {
   const [activeMissionCard, setActiveMissionCard] = useState(null);
   const [serverChallenge, setServerChallenge] = useState(null); 
 
-  const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
+  const [, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
 
 
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
