@@ -72,3 +72,51 @@ export function validMissionPoints(points) {
 export function isValidTheme(theme, gameData) {
   return typeof theme === 'string' && Object.prototype.hasOwnProperty.call(gameData, theme);
 }
+
+
+/**
+ * Derive the scoreboard from server-accepted scan records.
+ * Stable timestamp/key ordering avoids changing combo bonuses after a reconnect.
+ * The host remains responsible for verifying the actual QR card identifiers.
+ */
+export function summarizeRound(records, cards, teams = ALL_TEAMS, endsAt = Infinity) {
+  const scores = Object.fromEntries(ALL_TEAMS.map(team => [team, 0]));
+  const maxCombos = Object.fromEntries(ALL_TEAMS.map(team => [team, 0]));
+  const currentCombos = Object.fromEntries(ALL_TEAMS.map(team => [team, 0]));
+  const scannedCodes = {};
+  const acceptedKeys = [];
+
+  const known = new Map(
+    (Array.isArray(cards) ? cards : [])
+      .filter(card => typeof card.id === 'string')
+      .map(card => [card.id, card.id])
+  );
+  for (const card of Array.isArray(cards) ? cards : []) {
+    if (typeof card.code === 'string' && card.code) known.set(card.code, card.id);
+  }
+
+  const events = Object.entries(records && typeof records === 'object' ? records : {})
+    .filter(([, item]) => item && typeof item === 'object')
+    .sort(([keyA, a], [keyB, b]) =>
+      Number(a.timestamp ?? 0) - Number(b.timestamp ?? 0) || keyA.localeCompare(keyB)
+    );
+
+  for (const [key, event] of events) {
+    if (!teams.includes(event.team) || !validMissionPoints(event.points) ||
+        !Number.isFinite(event.timestamp) || event.timestamp <= 0 ||
+        event.timestamp > endsAt) continue;
+
+    const cardId = known.get(event.code);
+    if (!cardId) continue;
+
+    if (scannedCodes[event.team]?.[cardId]) continue;
+    (scannedCodes[event.team] ??= {})[cardId] = true;
+    acceptedKeys.push(key);
+
+    const combo = ++currentCombos[event.team];
+    scores[event.team] += event.points + (combo % 3 === 0 ? 2 : 0);
+    maxCombos[event.team] = Math.max(maxCombos[event.team], combo);
+  }
+
+  return { scores, maxCombos, scannedCodes, acceptedKeys };
+}
