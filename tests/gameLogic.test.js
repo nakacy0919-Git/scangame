@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { findCard, getVocabQuestion, speechAccuracy, speechPoints, shuffle, validMissionPoints, isValidTheme } from '../src/gameLogic.js';
+import { findCard, getVocabQuestion, speechAccuracy, speechPoints, shuffle, validMissionPoints, isValidTheme, summarizeRound } from '../src/gameLogic.js';
 
 const codes = [
   { id: 'CAFE_001', card_a: { text: 'Hello' }, vocabulary: [{ word: 'hello', meaning: 'こんにちは' }, { word: 'hi', meaning: 'こんにちは' }] },
@@ -43,4 +43,35 @@ test('rejects fabricated scores and unknown themes', () => {
 });
 test('shuffle preserves membership', () => {
   assert.deepEqual(shuffle([1, 2, 3], () => 0).sort(), [1, 2, 3]);
+});
+
+
+test('round summary deduplicates simultaneous team-card scans and computes combo bonus', () => {
+  const records = {
+    last: { team: 'A', code: 'CAFE_003', points: 10, timestamp: 300 },
+    first: { team: 'A', code: 'CAFE_001', points: 3, timestamp: 100 },
+    duplicate: { team: 'A', code: 'CAFE_001', points: 10, timestamp: 110 },
+    second: { team: 'A', code: 'CAFE_002', points: 5, timestamp: 200 },
+    otherTeam: { team: 'B', code: 'CAFE_001', points: 1, timestamp: 250 },
+  };
+  const result = summarizeRound(records, codes, ['A', 'B'], 350);
+  assert.deepEqual(result.acceptedKeys, ['first', 'second', 'otherTeam', 'last']);
+  assert.equal(result.scores.A, 3 + 5 + 10 + 2);
+  assert.equal(result.scores.B, 1);
+  assert.equal(result.maxCombos.A, 3);
+  assert.equal(result.scannedCodes.A.CAFE_001, true);
+  assert.equal(result.scannedCodes.B.CAFE_001, true);
+});
+
+test('round summary rejects invalid identifiers, malformed points, disabled teams and late records', () => {
+  const summary = summarizeRound({
+    forged: { team: 'A', code: 'NOT_A_CARD', points: 10, timestamp: 10 },
+    invalidPoints: { team: 'A', code: 'CAFE_001', points: 999, timestamp: 20 },
+    late: { team: 'A', code: 'CAFE_001', points: 3, timestamp: 2000 },
+    inactiveTeam: { team: 'D', code: 'CAFE_001', points: 3, timestamp: 30 },
+    good: { team: 'A', code: 'CAFE_002', points: 5, timestamp: 50 },
+  }, codes, ['A', 'B'], 100);
+  assert.equal(summary.scores.A, 5);
+  assert.equal(summary.scores.D, 0);
+  assert.deepEqual(summary.acceptedKeys, ['good']);
 });
