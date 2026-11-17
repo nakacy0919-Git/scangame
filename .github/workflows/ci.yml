@@ -24,8 +24,10 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build
-      - name: Block high-severity production dependency advisories
-        run: npm audit --omit=dev --audit-level=high
-      - name: Report all dependency advisories (including development tools)
-        continue-on-error: true
+      - name: Audit all frontend dependencies (including build tools)
         run: npm audit --audit-level=high
+      - name: Validate secure scoring server source and tests
+        run: |
+          node --check functions/index.cjs
+          node --check functions/missionLogic.cjs
+          node --test functions/test/*.test.cjs
