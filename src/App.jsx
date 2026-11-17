@@ -232,6 +232,26 @@ function App() {
     }
   };
 
+  const beginNewClass = async () => {
+    if (!sessionId || !authUser || gameStatus === 'PLAYING') return;
+    try {
+      await set(ref(database, `sessions/${sessionId}/gameState/status`), 'MENU');
+      try { localStorage.removeItem('scannect_teacher_session_' + authUser.uid); } catch { /* Private browsing */ }
+      scanStreamRef.current = { roundKey: null, accepted: new Set() };
+      syncedScansRef.current = '';
+      setSessionId(null);
+      setRoundId(null);
+      setGameEndsAt(null);
+      setActiveTheme(null);
+      setScores({ A: 0, B: 0, C: 0, D: 0 });
+      setMaxCombos({ A: 0, B: 0, C: 0, D: 0 });
+      setGameStatus('MENU');
+      setFirebaseError('');
+    } catch (error) {
+      setFirebaseError(`新しい授業を作成できません: ${error.message}`);
+    }
+  };
+
   const backToMenu = () => {
     setActiveTheme(null);
     setGameStatus('MENU');
@@ -343,12 +363,12 @@ const onScanMobile = (decodedText) => {
 
     if (!isValidTheme(currentGameState.theme, GAME_DATA)) {
       setMessage('不明なゲームテーマです');
-      isProcessingScanRef.current = false;
+      setTimeout(() => { setMessage(''); isProcessingScanRef.current = false; }, 2000);
       return;
     }
     if (!ALL_TEAMS.slice(0, currentGameState.teamCount ?? 2).includes(scannerTeam)) {
       setMessage('このチームは現在のゲームに参加できません');
-      isProcessingScanRef.current = false;
+      setTimeout(() => { setMessage(''); isProcessingScanRef.current = false; }, 2000);
       return;
     }
     const foundCard = findCard(GAME_DATA[currentGameState.theme].codes, decodedText);
@@ -408,6 +428,7 @@ const onScanMobile = (decodedText) => {
           decodedText => onCameraScan(decodedText),
           () => {}
         );
+        if (mounted) setCameraError('');
         if (!mounted) await instance.stop().catch(() => {});
       } catch (error) {
         if (mounted) setCameraError(`カメラを起動できません: ${error.message}`);
@@ -510,7 +531,10 @@ const onScanMobile = (decodedText) => {
              )}
              
              <div id="reader" style={{ display: activeMissionCard ? 'none' : 'block' }}></div>
-             {cameraError && <p role="alert" className="scanner-msg error-full">{cameraError}</p>}
+             {cameraError && <div role="alert" className="scanner-msg error-full">
+                <p>{cameraError}</p>
+                <button className="btn-save" onClick={() => window.location.reload()}>カメラを再起動</button>
+              </div>}
              
              {/* ★ 修正：不正解時は全画面エラー、待機時は通常のメッセージ */}
              {!activeMissionCard && message && (
@@ -575,6 +599,9 @@ const onScanMobile = (decodedText) => {
               <div className="qr-hint">🔍 クリックで拡大表示</div>
             </div>
             <p className="qr-display-desc">生徒は自分のチームのタブを選んでスキャンしてください</p>
+            <button type="button" className="btn-text-only" onClick={beginNewClass} title="新しい授業用のQRコードに切り替えます">
+              🔄 新しい授業用QRを作成
+            </button>
           </div>
           <button className="settings-btn shadow-pop" onClick={() => setIsSettingsOpen(true)}>⚙️</button>
           <button className="solo-learning-btn shadow-pop" onClick={() => setGameStatus('SOLO_LEARNING')}>🎓 Solo Learning</button>
