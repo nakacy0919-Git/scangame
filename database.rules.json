@@ -37,6 +37,9 @@
           ".read": "auth != null && data.parent().child('hostUid').exists()",
           "endsAt": {
             ".validate": "newData.isNumber() && newData.val() > 0"
+          },
+          "durationSec": {
+            ".validate": "newData.isNumber() && newData.val() >= 180 && newData.val() <= 900"
           }
         },
         "rounds": {
