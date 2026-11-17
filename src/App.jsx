@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useEffectEvent } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
 import { QRCodeSVG } from 'qrcode.react'; 
-import { database, auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup, ref, get, onValue, set, serverTimestamp } from './firebase';
-import { ALL_TEAMS, findCard, isValidTheme, newId, validMissionPoints, summarizeRound } from './gameLogic'; 
+import { database, auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup, ref, get, onValue, set, startMission, submitMission } from './firebase';
+import { ALL_TEAMS, findCard, isValidTheme, newId, summarizeRound } from './gameLogic'; 
 
 import './App.css';
 
@@ -90,7 +90,8 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(0);
   const [gameEndsAt, setGameEndsAt] = useState(null);
 
-  const [activeMissionCard, setActiveMissionCard] = useState(null); 
+  const [activeMissionCard, setActiveMissionCard] = useState(null);
+  const [serverChallenge, setServerChallenge] = useState(null); 
 
   const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
 
@@ -341,13 +342,14 @@ function App() {
       setServerGameState(state);
       if (previousRound && previousRound !== state.roundId) {
         setActiveMissionCard(null);
+        setServerChallenge(null);
         isProcessingScanRef.current = false;
       }
     }, error => setFirebaseError(`ゲーム状態を取得できません: ${error.message}`));
   }, [appMode, sessionId, authUser]);
 
 
-const onScanMobile = (decodedText) => {
+const onScanMobile = async (decodedText) => {
     // 処理中（エラー表示など）は新しいスキャンを無視する
     if (isProcessingScanRef.current) return;
     isProcessingScanRef.current = true;
@@ -405,10 +407,24 @@ const onScanMobile = (decodedText) => {
       return; 
     }
 
-    // ③ 正しい未スキャンのペアだった場合 ➔ ミッションへ即突入！
-    // 正解音は ScannerMission 側でド派手な演出と共に鳴らします
-    setActiveMissionCard(foundCard);
-    // ※ミッションが始まるとカメラ部分は自動で非表示になるため、ストップ処理は不要です
+    // Only the trusted backend may issue a mission; the answer remains private.
+    try {
+      setMessage('ミッションを準備しています...');
+      const response = await startMission({
+        sessionId, roundId: currentGameState.roundId, team: scannerTeam,
+        cardId: foundCard.id, supportsSpeech: Boolean(window.SpeechRecognition || window.webkitSpeechRecognition)
+      });
+      if (serverGameStateRef.current.roundId !== currentGameState.roundId ||
+          serverGameStateRef.current.status !== 'PLAYING') {
+        throw new Error('ゲームが終了または切り替わりました。');
+      }
+      setMessage('');
+      setServerChallenge(response.data);
+      setActiveMissionCard(foundCard);
+    } catch (error) {
+      setServerChallenge(null);
+      triggerError('ミッションを開始できません: ' + error.message);
+    }
   };
 
 
@@ -451,30 +467,35 @@ const onScanMobile = (decodedText) => {
 
 
 
-  const handleMissionComplete = async (earnedPoints) => {
+  const handleMissionComplete = async (answer) => {
     const state = serverGameStateRef.current;
-    if (!activeMissionCard || !sessionId || !auth.currentUser || !state.roundId ||
-        state.status !== 'PLAYING' || !validMissionPoints(earnedPoints)) {
+    if (!activeMissionCard || !serverChallenge || !sessionId || !auth.currentUser ||
+        !state.roundId || state.status !== 'PLAYING') {
       setMessage('ゲームの状態が変わりました。もう一度スキャンしてください。');
       setActiveMissionCard(null);
+      setServerChallenge(null);
       isProcessingScanRef.current = false;
       return;
     }
     try {
-      const entryId = auth.currentUser.uid + '_' + activeMissionCard.id;
-      await set(ref(database, `sessions/${sessionId}/rounds/${state.roundId}/scans/${entryId}`), {
-        team: scannerTeam,
-        code: activeMissionCard.id,
-        points: earnedPoints,
-        uid: auth.currentUser.uid,
-        timestamp: serverTimestamp()
+      const response = await submitMission({
+        sessionId, roundId: state.roundId, team: scannerTeam,
+        cardId: activeMissionCard.id, answer
       });
+      const awarded = response.data.points;
+      setMessage(response.data.correct === null
+        ? `✅ 音読練習完了（チームに+${awarded}点）`
+        : `${response.data.correct ? '✅ CORRECT' : '❌ MISS'}（チームに+${awarded}点）`);
+      setIsSuccess(response.data.correct !== false);
+      setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2200);
       setActiveMissionCard(null);
+      setServerChallenge(null);
       isProcessingScanRef.current = false;
     } catch (error) {
-      setMessage(`送信に失敗しました。もう一度カードをスキャンしてください: ${error.message}`);
+      setMessage(`サーバー採点に失敗しました。もう一度スキャンしてください: ${error.message}`);
       setIsSuccess(false);
       setActiveMissionCard(null);
+      setServerChallenge(null);
       isProcessingScanRef.current = false;
     }
   };
@@ -526,11 +547,11 @@ const onScanMobile = (decodedText) => {
              <div className={`scanner-header team-${scannerTeam}`}>TEAM {scannerTeam} PLAYING</div>
              
              {/* ★ 修正ポイント：ミッション中は表示し、カメラ部分は「display: none」で隠すだけにする */}
-             {activeMissionCard && (
+             {activeMissionCard && serverChallenge && (
                 <ScannerMission 
                   key={activeMissionCard.id}
                   card={activeMissionCard} 
-                  themeData={GAME_DATA[serverGameState.theme]?.codes || []} 
+                  mission={serverChallenge} 
                   onComplete={handleMissionComplete} 
                 />
              )}
