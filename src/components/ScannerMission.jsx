@@ -62,7 +62,7 @@ export default function ScannerMission({ card, themeData, onComplete }) {
     const message = !spokenText.trim()
       ? '💦 音声が聞き取れませんでした\nスコア: 1 / 10 点'
       : (points === 10 ? '👑 EXCELLENT!!' : points === 5 ? '👍 GOOD!' : '💦 TRY HARDER') +
-        '\nスコア: ' + points + ' / 10 点\n(認識精度: ' + Math.floor(accuracy * 100) + '%)';
+        '\nスコア: ' + points + ' / 10 点\n(単語一致率: ' + Math.floor(accuracy * 100) + '%)';
     setFeedback({ status, message });
     scheduleCompletion(points, 3000);
   };
@@ -187,7 +187,18 @@ export default function ScannerMission({ card, themeData, onComplete }) {
                     disabled={isEvaluating || feedback !== null}
                     onClick={startSpeaking}>{isEvaluating ? '判定中...' : '🎙️ タップして開始'}</button>
                 )}
-                {speechError && <p role="alert">{speechError}</p>}
+                {speechError && (
+                  <div role="alert" className="speaking-fallback">
+                    <p>{speechError}</p>
+                    <button className="btn-save" onClick={() => {
+                      if (decisionLockedRef.current) return;
+                      setFeedback({ status: 'correct', message: '手動音読を完了しました (+1 pt)' });
+                      scheduleCompletion(1, 1500);
+                    }}>
+                      マイクなしで音読完了 (+1点)
+                    </button>
+                  </div>
+                )}
               </div>
             </main>
           </div>
