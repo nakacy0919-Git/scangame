@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useEffectEvent } from 'react';
 import { Html5Qrcode } from 'html5-qrcode'; 
 import { database, auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup, ref, push, onChildAdded, onValue, set, serverTimestamp } from './firebase';
 import { ALL_TEAMS, findCard, isValidTheme, newId, validMissionPoints } from './gameLogic'; 
@@ -38,6 +38,13 @@ const GAME_DATA = {
   english: { title: 'Scannect : English Learning', codes: englishData }
 };
 
+function playFeedbackSound(file, volume, isMuted) {
+  if (isMuted) return;
+  const sound = new Audio(file);
+  sound.volume = Math.max(0, Math.min(1, volume));
+  sound.play().catch(() => {});
+}
+
 function App() {
   const searchParams = new URLSearchParams(window.location.search);
   const initMode = searchParams.get('mode') === 'scanner' ? 'SCANNER' : 'HOST_MENU';
@@ -45,7 +52,7 @@ function App() {
   const requestedSession = searchParams.get('session');
   const initSession = requestedSession && /^[a-f0-9]{32}$/.test(requestedSession) ? requestedSession : null;
 
-  const [appMode, setAppMode] = useState(initMode); 
+  const appMode = initMode; 
   const [scannerTeam, setScannerTeam] = useState(initTeam);
   const [sessionId, setSessionId] = useState(initMode === 'SCANNER' ? initSession : null);
   const [roundId, setRoundId] = useState(null);
@@ -61,7 +68,7 @@ function App() {
   const activeTeams = ALL_TEAMS.slice(0, teamCount); 
 
   const [scores, setScores] = useState({ A: 0, B: 0, C: 0, D: 0 });
-  const [combos, setCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
+  const [, setCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
   const [maxCombos, setMaxCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
 
   const [message, setMessage] = useState('');
@@ -81,9 +88,6 @@ function App() {
 
   const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
 
-  const inputBuffer = useRef('');
-  const correctSound = useMemo(() => new Audio('/correct.mp3'), []);
-  const incorrectSound = useMemo(() => new Audio('/incorrect.mp3'), []);
 
   const latestStateRef = useRef({ status: gameStatus, theme: activeTheme, teamCount });
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
@@ -184,33 +188,6 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    let timer;
-    if (appMode === 'HOST_MENU' && gameStatus === 'PLAYING' && timeLeft > 0) {
-      timer = setInterval(() => { setTimeLeft((prev) => prev - 1); }, 1000);
-    } else if (timeLeft === 0 && gameStatus === 'PLAYING') {
-      setGameStatus('GAMEOVER');
-      if (sessionId) {
-        set(ref(database, `sessions/${sessionId}/gameState/status`), 'GAMEOVER')
-          .catch(error => setFirebaseError(`終了通知に失敗しました: ${error.message}`));
-      }
-    }
-    return () => clearInterval(timer);
-  }, [appMode, gameStatus, timeLeft, sessionId]);
-
-  useEffect(() => {
-    if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING' || !sessionId || !roundId) return;
-    const scansRef = ref(database, `sessions/${sessionId}/rounds/${roundId}/scans`);
-    const unsubscribe = onChildAdded(scansRef, snapshot => {
-      const data = snapshot.val();
-      if (!data || !validMissionPoints(data.points)) return;
-      const state = latestStateRef.current;
-      if (state.status === 'PLAYING') {
-        executeScanCheck(data.team, data.code, state.theme, data.points);
-      }
-    }, error => setFirebaseError(`得点の受信に失敗しました: ${error.message}`));
-    return unsubscribe;
-  }, [appMode, gameStatus, sessionId, roundId]);
 
   const executeScanCheck = (team, scannedCode, theme, points = 1) => {
     const currentActiveTeams = ALL_TEAMS.slice(0, latestStateRef.current.teamCount);
@@ -220,11 +197,7 @@ function App() {
       if (scannedCodesRef.current[team].includes(card.id)) {
         setMessage(`⚠️ ALREADY SCANNED: Team ${team}`);
         setIsSuccess(false);
-        if (!isMuted) {
-          incorrectSound.volume = bgmVolume;
-          incorrectSound.currentTime = 0;
-          incorrectSound.play().catch(() => {});
-        }
+        playFeedbackSound('/incorrect.mp3', bgmVolume, isMuted);
         setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
         return;
       }
@@ -241,24 +214,51 @@ function App() {
       setMaxCombos(prev => newCombo > prev[team] ? { ...prev, [team]: newCombo } : prev);
       setMessage(`✅ MATCH: Team ${team} (+${points} pts)${isComboBonus ? ' 🌟 COMBO BONUS +2!' : ''}`);
       setIsSuccess(true);
-      if (!isMuted) {
-        correctSound.volume = bgmVolume;
-        correctSound.currentTime = 0;
-        correctSound.play().catch(() => {});
-      }
+      playFeedbackSound('/correct.mp3', bgmVolume, isMuted);
     } else {
       combosRef.current[team] = 0;
       setCombos(prev => ({ ...prev, [team]: 0 }));
       setMessage(`⚠️ MISS: Team ${team}`);
       setIsSuccess(false);
-      if (!isMuted) {
-        incorrectSound.volume = bgmVolume;
-        incorrectSound.currentTime = 0;
-        incorrectSound.play().catch(() => {});
-      }
+      playFeedbackSound('/incorrect.mp3', bgmVolume, isMuted);
     }
     setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
   };
+
+  const onIncomingScan = useEffectEvent(data => {
+    const state = latestStateRef.current;
+    if (state.status === 'PLAYING') {
+      executeScanCheck(data.team, data.code, state.theme, data.points);
+    }
+  });
+
+  useEffect(() => {
+    if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING') return;
+    const timer = setTimeout(() => {
+      if (timeLeft <= 1) {
+        setTimeLeft(0);
+        setGameStatus('GAMEOVER');
+        if (sessionId) {
+          set(ref(database, `sessions/${sessionId}/gameState/status`), 'GAMEOVER')
+            .catch(error => setFirebaseError(`終了通知に失敗しました: ${error.message}`));
+        }
+      } else {
+        setTimeLeft(timeLeft - 1);
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [appMode, gameStatus, timeLeft, sessionId]);
+
+  useEffect(() => {
+    if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING' || !sessionId || !roundId) return;
+    const scansRef = ref(database, `sessions/${sessionId}/rounds/${roundId}/scans`);
+    const unsubscribe = onChildAdded(scansRef, snapshot => {
+      const data = snapshot.val();
+      if (!data || !validMissionPoints(data.points)) return;
+      onIncomingScan(data);
+    }, error => setFirebaseError(`得点の受信に失敗しました: ${error.message}`));
+    return unsubscribe;
+  }, [appMode, gameStatus, sessionId, roundId]);
 
   useEffect(() => {
     if (appMode !== 'SCANNER' || !sessionId || !authUser) return;
@@ -274,41 +274,6 @@ function App() {
       }
     }, error => setFirebaseError(`ゲーム状態を取得できません: ${error.message}`));
   }, [appMode, sessionId, authUser]);
-
-  useEffect(() => {
-    if (appMode !== 'SCANNER' || !scannerTeam || !sessionId || !authUser) return;
-    let mounted = true;
-    let startTimer;
-    const startCamera = async () => {
-      if (!mounted) return;
-      if (!document.getElementById('reader')) {
-        startTimer = setTimeout(startCamera, 250);
-        return;
-      }
-      const instance = new Html5Qrcode('reader');
-      scannerInstanceRef.current = instance;
-      try {
-        await instance.start(
-          { facingMode: 'environment' },
-          { fps: 10, qrbox: { width: 180, height: 180 }, aspectRatio: 1.0 },
-          decodedText => onScanMobile(decodedText),
-          () => {}
-        );
-        if (!mounted) await instance.stop().catch(() => {});
-      } catch (error) {
-        if (mounted) setCameraError(`カメラを起動できません: ${error.message}`);
-      }
-    };
-    startTimer = setTimeout(startCamera, 300);
-    return () => {
-      mounted = false;
-      clearTimeout(startTimer);
-      const instance = scannerInstanceRef.current;
-      scannerInstanceRef.current = null;
-      if (instance) instance.stop().catch(() => {});
-    };
-  }, [appMode, scannerTeam, sessionId, authUser]);
-
 
 
 const onScanMobile = (decodedText) => {
@@ -374,6 +339,45 @@ const onScanMobile = (decodedText) => {
     setActiveMissionCard(foundCard);
     // ※ミッションが始まるとカメラ部分は自動で非表示になるため、ストップ処理は不要です
   };
+
+
+  const onCameraScan = useEffectEvent(onScanMobile);
+
+  useEffect(() => {
+    if (appMode !== 'SCANNER' || !scannerTeam || !sessionId || !authUser) return;
+    let mounted = true;
+    let startTimer;
+    const startCamera = async () => {
+      if (!mounted) return;
+      if (!document.getElementById('reader')) {
+        startTimer = setTimeout(startCamera, 250);
+        return;
+      }
+      const instance = new Html5Qrcode('reader');
+      scannerInstanceRef.current = instance;
+      try {
+        await instance.start(
+          { facingMode: 'environment' },
+          { fps: 10, qrbox: { width: 180, height: 180 }, aspectRatio: 1.0 },
+          decodedText => onCameraScan(decodedText),
+          () => {}
+        );
+        if (!mounted) await instance.stop().catch(() => {});
+      } catch (error) {
+        if (mounted) setCameraError(`カメラを起動できません: ${error.message}`);
+      }
+    };
+    startTimer = setTimeout(startCamera, 300);
+    return () => {
+      mounted = false;
+      clearTimeout(startTimer);
+      const instance = scannerInstanceRef.current;
+      scannerInstanceRef.current = null;
+      if (instance) instance.stop().catch(() => {});
+    };
+  }, [appMode, scannerTeam, sessionId, authUser]);
+
+
 
   const handleMissionComplete = async (earnedPoints) => {
     const state = serverGameStateRef.current;
