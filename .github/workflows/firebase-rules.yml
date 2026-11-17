@@ -1,6 +1,13 @@
 name: Firebase Rules Emulator
 on:
   workflow_dispatch:
+  push:
+    branches: [main, fix/security-and-gameplay-20261117]
+    paths:
+      - database.rules.json
+      - tests/firebaseRulesEmulator.mjs
+      - firebase.json
+      - .github/workflows/firebase-rules.yml
   pull_request:
     paths:
       - database.rules.json
