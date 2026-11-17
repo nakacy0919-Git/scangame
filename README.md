@@ -48,6 +48,16 @@ Only **allowlisted teachers authenticated by Google** can create session ownersh
 
 Each JSON file in src/data/ has 30 unique cards and vocabulary entries. The PDF downloads in public/materials/ exist for Cafe, English, Media, Revitalization, SDGs, Volunteer, World and Worries. Airport, Help, Hotel and Zoo PDFs are not supplied yet; their broken links were removed.
 
+## Firebase Rules emulator security test
+
+A dedicated non-production database emulator test is included. It validates the teacher allowlist, private scan reads, student scan permissions, correct theme-specific card IDs, duplicate submissions, and the game deadline. These tests do not contact the real scannect database.
+
+    npm ci
+    npm install --no-save --package-lock=false --legacy-peer-deps --ignore-scripts @firebase/rules-unit-testing@6.0.0
+    npx -y firebase-tools@15.36.0 emulators:exec --only database --project demo-scannect "node tests/firebaseRulesEmulator.mjs"
+
+Run this after every database.rules.json change, then verify real teacher/student devices in a test environment before applying rules in production. The Firebase Emulator requires Java 21 and does not replace live integration tests.
+
 ## QA / release checklist
 
 - [ ] npm ci, ESLint, node --test, Vite build and the **production-dependency** high-severity audit pass in GitHub Actions.
