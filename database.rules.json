@@ -45,32 +45,8 @@
         "rounds": {
           "$roundId": {
             "scans": {
-              ".indexOn": [
-                "timestamp"
-              ],
-              "$scanId": {
-                ".write": "auth != null && !data.exists() && root.child('sessions').child($sessionId).child('gameState').child('status').val() === 'PLAYING' && root.child('sessions').child($sessionId).child('gameState').child('roundId').val() === $roundId && $scanId === (auth.uid + '_' + newData.child('code').val()) && now <= root.child('sessions').child($sessionId).child('gameState').child('endsAt').val()",
-                ".validate": "newData.hasChildren(['team', 'code', 'points', 'uid', 'timestamp']) && newData.child('uid').val() === auth.uid && newData.child('timestamp').val() === now && (newData.child('points').val() === 1 || newData.child('points').val() === 3 || newData.child('points').val() === 5 || newData.child('points').val() === 10) && newData.child('code').isString() && newData.child('code').val().matches(/^[A-Z0-9_]{3,48}$/) && ((newData.child('team').val() === 'A') || (newData.child('team').val() === 'B') || (newData.child('team').val() === 'C' && root.child('sessions').child($sessionId).child('gameState').child('teamCount').val() >= 3) || (newData.child('team').val() === 'D' && root.child('sessions').child($sessionId).child('gameState').child('teamCount').val() >= 4)) && newData.child('team').isString() && newData.child('code').isString() && newData.child('uid').isString() && ((root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'airport' && newData.child('code').val().matches(/^AIR_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'cafe' && newData.child('code').val().matches(/^CAFE_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'english' && newData.child('code').val().matches(/^ENGLISH_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'help' && newData.child('code').val().matches(/^HELP_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'hotel' && newData.child('code').val().matches(/^HOTEL_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'media' && newData.child('code').val().matches(/^ML_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'revitalization' && newData.child('code').val().matches(/^REV_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'sdgs' && newData.child('code').val().matches(/^SDG_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'volunteer' && newData.child('code').val().matches(/^VOL_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'world' && newData.child('code').val().matches(/^WORLD_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'worry' && newData.child('code').val().matches(/^WORRY_(00[1-9]|0[12][0-9]|030)$/)) || (root.child('sessions').child($sessionId).child('gameState').child('theme').val() === 'zoo' && newData.child('code').val().matches(/^ZOO_(00[1-9]|0[12][0-9]|030)$/)))",
-                "$other": {
-                  ".validate": false
-                },
-                "team": {
-                  ".validate": "newData.isString()"
-                },
-                "code": {
-                  ".validate": "newData.isString()"
-                },
-                "points": {
-                  ".validate": "newData.isNumber()"
-                },
-                "uid": {
-                  ".validate": "newData.isString()"
-                },
-                "timestamp": {
-                  ".validate": "newData.isNumber()"
-                }
-              },
-              ".read": "auth != null && auth.uid === root.child('sessions').child($sessionId).child('hostUid').val()"
+              ".read": "auth != null && auth.uid === root.child('sessions').child($sessionId).child('hostUid').val()",
+              ".write": false
             }
           }
         },
