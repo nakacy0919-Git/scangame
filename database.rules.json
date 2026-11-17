@@ -4,9 +4,8 @@
     ".write": false,
     "sessions": {
       "$sessionId": {
-        ".read": "auth != null && data.child('hostUid').exists()",
         "hostUid": {
-          ".write": "auth != null && auth.token.firebase.sign_in_provider === 'google.com' && !data.exists() && newData.val() === auth.uid",
+          ".write": "auth != null && auth.token.firebase.sign_in_provider === 'google.com' && root.child('teachers').child(auth.uid).val() === true && !data.exists() && newData.val() === auth.uid",
           ".validate": "newData.isString() && newData.val() === auth.uid"
         },
         "gameState": {
@@ -33,7 +32,8 @@
           },
           "$other": {
             ".validate": false
-          }
+          },
+          ".read": "auth != null && data.parent().child('hostUid').exists()"
         },
         "rounds": {
           "$roundId": {
@@ -42,7 +42,7 @@
                 "timestamp"
               ],
               "$scanId": {
-                ".write": "auth != null && !data.exists() && root.child('sessions').child($sessionId).child('gameState').child('status').val() === 'PLAYING' && root.child('sessions').child($sessionId).child('gameState').child('roundId').val() === $roundId",
+                ".write": "auth != null && !data.exists() && root.child('sessions').child($sessionId).child('gameState').child('status').val() === 'PLAYING' && root.child('sessions').child($sessionId).child('gameState').child('roundId').val() === $roundId && $scanId === (auth.uid + '_' + newData.child('code').val())",
                 ".validate": "newData.hasChildren(['team', 'code', 'points', 'uid', 'timestamp']) && newData.child('uid').val() === auth.uid && newData.child('timestamp').val() === now && (newData.child('points').val() === 1 || newData.child('points').val() === 3 || newData.child('points').val() === 5 || newData.child('points').val() === 10) && newData.child('code').isString() && newData.child('code').val().matches(/^[A-Z0-9_]{3,48}$/) && ((newData.child('team').val() === 'A') || (newData.child('team').val() === 'B') || (newData.child('team').val() === 'C' && root.child('sessions').child($sessionId).child('gameState').child('teamCount').val() >= 3) || (newData.child('team').val() === 'D' && root.child('sessions').child($sessionId).child('gameState').child('teamCount').val() >= 4))",
                 "$other": {
                   ".validate": false
@@ -62,13 +62,20 @@
                 "timestamp": {
                   ".validate": "newData.isNumber()"
                 }
-              }
+              },
+              ".read": "auth != null && auth.uid === root.child('sessions').child($sessionId).child('hostUid').val()"
             }
           }
         },
         "$other": {
           ".validate": false
         }
+      }
+    },
+    "teachers": {
+      "$uid": {
+        ".read": false,
+        ".write": false
       }
     }
   }
