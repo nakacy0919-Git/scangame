@@ -11,6 +11,7 @@ export default function ScannerMission({ card, themeData, onComplete }) {
     return { type: supportsSpeech ? 'SPEAKING' : 'MANUAL' };
   });
   const [isListening, setIsListening] = useState(false);
+  const [isEvaluating, setIsEvaluating] = useState(false);
   const [liveText, setLiveText] = useState('');
   const [speechError, setSpeechError] = useState('');
   const [feedback, setFeedback] = useState(null);
@@ -25,10 +26,11 @@ export default function ScannerMission({ card, themeData, onComplete }) {
     const sound = new Audio('/correct.mp3');
     sound.play().catch(() => {});
     const timer = window.setTimeout(() => setPhase('MISSION'), 2000);
+    const timers = timersRef.current;
     return () => {
       window.clearTimeout(timer);
-      timersRef.current.forEach(id => window.clearTimeout(id));
-      timersRef.current.clear();
+      timers.forEach(id => window.clearTimeout(id));
+      timers.clear();
       recognitionRef.current?.abort();
       recognitionRef.current = null;
     };
@@ -68,6 +70,7 @@ export default function ScannerMission({ card, themeData, onComplete }) {
   const finishPendingSpeech = () => {
     if (!pendingEvaluationRef.current) return;
     pendingEvaluationRef.current = false;
+    setIsEvaluating(false);
     evaluateSpeech(liveTextRef.current);
   };
 
@@ -84,6 +87,7 @@ export default function ScannerMission({ card, themeData, onComplete }) {
     recognition.interimResults = true;
     recognition.continuous = true;
     pendingEvaluationRef.current = false;
+    setIsEvaluating(false);
     liveTextRef.current = '';
     setLiveText('');
     setSpeechError('');
@@ -112,6 +116,7 @@ export default function ScannerMission({ card, themeData, onComplete }) {
   const stopSpeaking = () => {
     if (!recognitionRef.current || pendingEvaluationRef.current || decisionLockedRef.current) return;
     pendingEvaluationRef.current = true;
+    setIsEvaluating(true);
     setIsListening(false);
     try {
       recognitionRef.current.stop();
@@ -152,7 +157,7 @@ export default function ScannerMission({ card, themeData, onComplete }) {
               </div>
               <div className="vocab-choices-grid-large">
                 {mission.vocab.choices.map((choice, i) => (
-                  <button key={choice} disabled={decisionLockedRef.current}
+                  <button key={choice} disabled={feedback !== null}
                     className={'large-choice-btn choice-style-' + (i + 1)}
                     onClick={() => handleVocabAnswer(choice)}>
                     <span className="choice-text">{choice}</span><div className="btn-stitch"></div>
@@ -179,8 +184,8 @@ export default function ScannerMission({ card, themeData, onComplete }) {
                   </div>
                 ) : (
                   <button className="giant-start-btn shadow-pop"
-                    disabled={pendingEvaluationRef.current || decisionLockedRef.current}
-                    onClick={startSpeaking}>{pendingEvaluationRef.current ? '判定中...' : '🎙️ タップして開始'}</button>
+                    disabled={isEvaluating || feedback !== null}
+                    onClick={startSpeaking}>{isEvaluating ? '判定中...' : '🎙️ タップして開始'}</button>
                 )}
                 {speechError && <p role="alert">{speechError}</p>}
               </div>
