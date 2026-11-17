@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useEffectEvent } from 'react';
-import { Html5Qrcode } from 'html5-qrcode'; 
+import { Html5Qrcode } from 'html5-qrcode';
+import { QRCodeSVG } from 'qrcode.react'; 
 import { database, auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup, ref, get, onValue, set, serverTimestamp } from './firebase';
 import { ALL_TEAMS, findCard, isValidTheme, newId, validMissionPoints, summarizeRound } from './gameLogic'; 
 
@@ -567,7 +568,10 @@ const onScanMobile = (decodedText) => {
               ))}
             </div>
             <div className="qr-display-box clickable-qr" onClick={() => setFullScreenQrTeam(activeQrTab)}>
-              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(window.location.origin + window.location.pathname + '?mode=scanner&team=' + activeQrTab + '&session=' + sessionId)}`} alt="Join QR" />
+              <QRCodeSVG
+                value={window.location.origin + window.location.pathname + '?mode=scanner&team=' + activeQrTab + '&session=' + sessionId}
+                size={320} marginSize={4} level="M" title={`Join Team ${activeQrTab}`}
+              />
               <div className="qr-hint">🔍 クリックで拡大表示</div>
             </div>
             <p className="qr-display-desc">生徒は自分のチームのタブを選んでスキャンしてください</p>
@@ -644,7 +648,11 @@ const onScanMobile = (decodedText) => {
         <div className="modal-overlay" onClick={() => setFullScreenQrTeam(null)} style={{zIndex: 300}}>
           <div className="modal-content" onClick={e => e.stopPropagation()} style={{width: 'auto', padding: '40px', maxWidth: '90vw'}}>
             <h2 className={`team-title-huge team-title-${fullScreenQrTeam.toLowerCase()}`}>TEAM {fullScreenQrTeam}</h2>
-            <img src={`https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=${encodeURIComponent(window.location.origin + window.location.pathname + '?mode=scanner&team=' + fullScreenQrTeam + '&session=' + sessionId)}`} alt="Fullscreen QR" className="huge-qr-img" />
+            <QRCodeSVG
+              value={window.location.origin + window.location.pathname + '?mode=scanner&team=' + fullScreenQrTeam + '&session=' + sessionId}
+              size={600} marginSize={4} level="M" title={`Join Team ${fullScreenQrTeam}`}
+              className="huge-qr-img"
+            />
             <button className="btn-save" onClick={() => setFullScreenQrTeam(null)}>閉じる</button>
           </div>
         </div>
