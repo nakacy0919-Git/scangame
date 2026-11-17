@@ -1,5 +1,14 @@
-import { useState, useEffect, useMemo, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { shuffle } from '../gameLogic';
+
+function readHighScore(theme, questionCount) {
+  try {
+    const saved = Number(localStorage.getItem('scannect_highscore_' + theme + '_' + questionCount) ?? 0);
+    return Number.isFinite(saved) ? saved : 0;
+  } catch {
+    return 0;
+  }
+}
 
 export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
   const [learningPhase, setLearningPhase] = useState('SELECT_THEME'); 
@@ -22,26 +31,24 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
   const [showTranslation, setShowTranslation] = useState(false);
   const [answerHistory, setAnswerHistory] = useState([]);
 
-  const correctSound = useMemo(() => new Audio('/correct.mp3'), []);
-  const incorrectSound = useMemo(() => new Audio('/incorrect.mp3'), []);
   const answerLockedRef = useRef(false);
   const transitionTimerRef = useRef(null);
-  useEffect(() => () => clearTimeout(transitionTimerRef.current), []);
+  useEffect(() => {
+    const timerRef = transitionTimerRef;
+    return () => clearTimeout(timerRef.current);
+  }, []);
 
   const selectTheme = themeKey => {
     setActiveTheme(themeKey);
+    setHighScore(readHighScore(themeKey, questionCount));
     setLearningPhase('MENU');
   };
 
-  useEffect(() => {
-    if (learningPhase !== 'MENU' || !activeTheme) return;
-    try {
-      const saved = Number(localStorage.getItem('scannect_highscore_' + activeTheme + '_' + questionCount) ?? 0);
-      setHighScore(Number.isFinite(saved) ? saved : 0);
-    } catch {
-      setHighScore(0);
-    }
-  }, [learningPhase, activeTheme, questionCount]);
+  const chooseQuestionCount = count => {
+    setQuestionCount(count);
+    setHighScore(readHighScore(activeTheme, count));
+  };
+
 
   const startVocab = () => setLearningPhase('VOCAB');
 
@@ -70,13 +77,13 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
     setChoices(shuffle([...wrongChoices, correctCard]));
   };
 
-  const playSound = (sound) => {
-    if (!isMuted) { 
-      sound.volume = bgmVolume;
-      sound.currentTime = 0;
-      sound.play().catch(e=>e);
-    }
+  const playSound = filename => {
+    if (isMuted) return;
+    const sound = new Audio(filename);
+    sound.volume = Math.max(0, Math.min(1, bgmVolume));
+    sound.play().catch(() => {});
   };
+
 
   const finishGame = finalScore => {
     setLearningPhase('RESULT');
@@ -121,7 +128,7 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
     setEarnedPoints(points);
     setScore(finalScore);
     setFeedback(isCorrect ? 'correct' : selectedCard ? 'incorrect' : 'timeout');
-    playSound(isCorrect ? correctSound : incorrectSound);
+    playSound(isCorrect ? '/correct.mp3' : '/incorrect.mp3');
     transitionTimerRef.current = setTimeout(() => {
       setFeedback(null);
       if (currentIndex + 1 < questions.length) {
@@ -191,9 +198,9 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
         
         <h3 style={{color: '#7f8c8d', marginBottom: '15px'}}>挑戦する問題数</h3>
         <div className="count-selector">
-          <button className={`count-btn ${questionCount === 10 ? 'active' : ''}`} onClick={() => setQuestionCount(10)}>10問</button>
-          <button className={`count-btn ${questionCount === 20 ? 'active' : ''}`} onClick={() => setQuestionCount(20)}>20問</button>
-          <button className={`count-btn ${questionCount === 'ALL' ? 'active' : ''}`} onClick={() => setQuestionCount('ALL')}>ALL ({gameData[activeTheme].codes.length}問)</button>
+          <button className={`count-btn ${questionCount === 10 ? 'active' : ''}`} onClick={() => chooseQuestionCount(10)}>10問</button>
+          <button className={`count-btn ${questionCount === 20 ? 'active' : ''}`} onClick={() => chooseQuestionCount(20)}>20問</button>
+          <button className={`count-btn ${questionCount === 'ALL' ? 'active' : ''}`} onClick={() => chooseQuestionCount('ALL')}>ALL ({gameData[activeTheme].codes.length}問)</button>
         </div>
 
         <div style={{display: 'flex', gap: '30px', marginTop: '30px', width: '100%', justifyContent: 'center'}}>
