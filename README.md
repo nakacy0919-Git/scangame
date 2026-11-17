@@ -19,13 +19,14 @@ Requires Node.js 22+.
 1. Open the existing Firebase project **scannect** in Firebase Console.
 2. Under **Authentication → Sign-in method**, enable **Google** for the teacher and **Anonymous** for student scanners.
 3. Under **Authentication → Settings → Authorized domains**, add the production site domain (not a wildcard). Only add domains you control.
-4. Open **Realtime Database → Rules** for the **asia-southeast1** database. Back up the current rules and review the included database.rules.json file; publish those rules to the correct database.
-5. Verify with two browser profiles: sign in as teacher on the host screen, use the generated team QR on a student phone, scan a printed card, complete the mission, and confirm the score changes. A second host/browser must not be able to edit the first session.
-6. Check the browser console, Firebase Authentication users, and RTDB permission-denied errors before wider distribution.
+4. Sign in once with the intended teacher Google account, then find that account's Firebase Authentication **UID** in the Authentication → Users list. In Realtime Database → Data, create a node named **teachers**, with a child whose key is the exact UID and whose Boolean value is **true**. Add each teacher explicitly; do not allow ordinary students to create or edit this allowlist. Google login by itself is not authorization to host.
+5. Open **Realtime Database → Rules** for the **asia-southeast1** database. Back up the current rules and review the included database.rules.json file; publish those rules to the correct database.
+6. Verify with two browser profiles: sign in as teacher on the host screen, use the generated team QR on a student phone, scan a printed card, complete the mission, and confirm the score changes. A second host/browser must not be able to edit the first session.
+7. Check the browser console, Firebase Authentication users, and RTDB permission-denied errors before wider distribution.
 
 The new format stores rounds in sessions/{random-session-id}/rounds/{random-round-id}/scans and the current state in sessions/{random-session-id}/gameState. The old shared /gameState and /scans paths are no longer used. **Do not delete old data without backing it up.** Existing QR codes from the previous version are incompatible; distribute fresh QR codes.
 
-Only authenticated Google users can create session ownership records; only the session's host UID can write game state. Anonymous student scanners can submit only limited-format scan records to the current playing round. The database rules must be deployed and verified, not merely committed to GitHub.
+Only **allowlisted teachers authenticated by Google** can create session ownership records; only the session's host UID can write game state and read raw scan submissions. Anonymous student scanners can read the current game state and submit only limited-format scan records to the current playing round. Each student UID can submit a particular card ID only once per round. The database rules must be deployed and verified, not merely committed to GitHub.
 
 ### Known security limits
 
