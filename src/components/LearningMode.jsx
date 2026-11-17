@@ -52,6 +52,14 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
 
   const startVocab = () => setLearningPhase('VOCAB');
 
+  const abortGame = () => {
+    clearTimeout(transitionTimerRef.current);
+    transitionTimerRef.current = null;
+    answerLockedRef.current = true;
+    setFeedback(null);
+    setLearningPhase('MENU');
+  };
+
   const startGame = () => {
     const allCards = gameData[activeTheme]?.codes ?? [];
     if (!allCards.length) return;
@@ -267,7 +275,7 @@ if (learningPhase === 'GAME') {
                 <span className="score-number">{score}</span>
                 <span className="score-unit">pts</span>
               </div>
-              <button onClick={() => setLearningPhase('MENU')} className="abort-mini-btn">← 中断</button>
+              <button onClick={abortGame} className="abort-mini-btn">← 中断</button>
             </div>
           </div>
           
