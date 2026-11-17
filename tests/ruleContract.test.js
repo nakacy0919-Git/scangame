@@ -17,15 +17,11 @@ test('Firebase rule contract requires allowlisted host and isolates raw scans', 
   assert.match(session.hostUid['.read'], /auth.uid/);
   assert.match(session.rounds.$roundId.scans['.read'], /hostUid/);
 });
-test('Firebase rule contract blocks edits and rejects submissions after the deadline', () => {
-  const scan = rules.sessions.$sessionId.rounds.$roundId.scans.$scanId;
-  assert.match(scan['.write'], /!data\.exists\(\)/);
-  assert.match(scan['.write'], /endsAt/);
-  assert.match(scan['.write'], /auth\.uid/);
-  assert.match(scan['.validate'], /timestamp/);
-  assert.match(scan['.validate'], /points/);
-  assert.match(scan['.validate'], /child\('theme'\)/);
-  assert.match(scan['.validate'], /matches/);
+test('No browser user, including the host, can write to scan awards', () => {
+  const scans = rules.sessions.$sessionId.rounds.$roundId.scans;
+  assert.equal(scans['.write'], false);
+  assert.equal(scans.$scanId, undefined);
+  assert.equal(rules.sessions.$sessionId.rounds.$roundId.challenges, undefined);
   assert.match(rules.sessions.$sessionId.gameState.durationSec['.validate'], /900/);
 });
 
