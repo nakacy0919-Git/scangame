@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useEffectEvent } from 'react';
 import { Html5Qrcode } from 'html5-qrcode'; 
-import { database, auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup, ref, onChildAdded, onValue, set, serverTimestamp } from './firebase';
-import { ALL_TEAMS, findCard, isValidTheme, newId, validMissionPoints } from './gameLogic'; 
+import { database, auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup, ref, get, onValue, set, serverTimestamp } from './firebase';
+import { ALL_TEAMS, findCard, isValidTheme, newId, validMissionPoints, summarizeRound } from './gameLogic'; 
 
 import './App.css';
 
@@ -59,7 +59,12 @@ function App() {
   const [authUser, setAuthUser] = useState(null);
   const [firebaseError, setFirebaseError] = useState('');
   const [cameraError, setCameraError] = useState('');
-  const sessionCreationRef = useRef(false); 
+  const sessionCreationRef = useRef(false);
+  const [sessionRetry, setSessionRetry] = useState(0);
+  const serverOffsetRef = useRef(0);
+  const scanStreamRef = useRef({ roundKey: null, accepted: new Set() });
+  const syncedScansRef = useRef('');
+  const feedbackTimerRef = useRef(null); 
 
   const [activeTheme, setActiveTheme] = useState(null);
   const [gameStatus, setGameStatus] = useState('MENU'); 
@@ -68,7 +73,6 @@ function App() {
   const activeTeams = ALL_TEAMS.slice(0, teamCount); 
 
   const [scores, setScores] = useState({ A: 0, B: 0, C: 0, D: 0 });
-  const [, setCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
   const [maxCombos, setMaxCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
 
   const [message, setMessage] = useState('');
@@ -83,21 +87,29 @@ function App() {
   const [activeQrTab, setActiveQrTab] = useState('A'); 
   const [fullScreenQrTeam, setFullScreenQrTeam] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [gameEndsAt, setGameEndsAt] = useState(null);
 
   const [activeMissionCard, setActiveMissionCard] = useState(null); 
 
   const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
 
 
-  const latestStateRef = useRef({ status: gameStatus, theme: activeTheme, teamCount });
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
-  const scannedCodesRef = useRef({ A: [], B: [], C: [], D: [] }); 
-  const combosRef = useRef({ A: 0, B: 0, C: 0, D: 0 });
   
   const scannerInstanceRef = useRef(null); 
   const isProcessingScanRef = useRef(false);
 
   useBGM(appMode, gameStatus, bgmVolume, isMuted);
+
+  useEffect(() => {
+    return onValue(ref(database, '.info/serverTimeOffset'), snapshot => {
+      serverOffsetRef.current = Number(snapshot.val()) || 0;
+    }, () => {});
+  }, []);
+
+  useEffect(() => {
+    return () => clearTimeout(feedbackTimerRef.current);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -110,25 +122,66 @@ function App() {
   }, [appMode]);
 
   useEffect(() => {
-    if (appMode !== 'HOST_MENU' || !authUser || authUser.isAnonymous || sessionId || sessionCreationRef.current) return;
+    if (appMode !== 'HOST_MENU' || !authUser || authUser.isAnonymous ||
+        sessionId || sessionCreationRef.current) return;
     sessionCreationRef.current = true;
-    const createSession = async () => {
+    const currentUid = authUser.uid;
+    const storageKey = 'scannect_teacher_session_' + currentUid;
+
+    const restoreOrCreate = async () => {
       try {
+        let savedId = null;
+        try { savedId = localStorage.getItem(storageKey); } catch { /* Private browsing */ }
+
+        if (savedId && /^[a-f0-9]{32}$/.test(savedId)) {
+          const ownership = await get(ref(database, `sessions/${savedId}/hostUid`));
+          if (ownership.val() === currentUid) {
+            const snapshot = await get(ref(database, `sessions/${savedId}/gameState`));
+            const state = snapshot.val();
+            if (state && ['MENU', 'PLAYING', 'GAMEOVER'].includes(state.status)) {
+              const theme = isValidTheme(state.theme, GAME_DATA) ? state.theme : null;
+              const endsAt = Number(state.endsAt) || null;
+              const count = Number(state.teamCount);
+              if (count >= 2 && count <= 4) setTeamCount(count);
+              if (state.durationSec >= 180 && state.durationSec <= 900) {
+                setSelectedMinutes(Math.round(state.durationSec / 60));
+              }
+              setActiveTheme(theme);
+              setRoundId(state.roundId || null);
+              setGameEndsAt(endsAt);
+              const expired = state.status === 'PLAYING' && endsAt !== null &&
+                endsAt <= Date.now() + serverOffsetRef.current;
+              setTimeLeft(state.status === 'PLAYING' && endsAt
+                ? Math.max(0, Math.ceil((endsAt - Date.now() - serverOffsetRef.current) / 1000))
+                : 0);
+              setGameStatus(expired ? 'GAMEOVER' : (state.status === 'PLAYING' && (!theme || !endsAt)
+                ? 'MENU' : state.status));
+              if (expired) {
+                await set(ref(database, `sessions/${savedId}/gameState/status`), 'GAMEOVER');
+              }
+            }
+            setSessionId(savedId);
+            setFirebaseError('');
+            return;
+          }
+        }
+
         const id = newId();
-        await set(ref(database, `sessions/${id}/hostUid`), authUser.uid);
+        await set(ref(database, `sessions/${id}/hostUid`), currentUid);
         await set(ref(database, `sessions/${id}/gameState`), {
-          status: 'MENU', theme: null, teamCount, scannedCodes: {}
+          status: 'MENU', teamCount: 2, scannedCodes: {}
         });
+        try { localStorage.setItem(storageKey, id); } catch { /* Private browsing */ }
         setSessionId(id);
         setFirebaseError('');
       } catch (error) {
-        setFirebaseError(`授業セッションを作成できません: ${error.message}`);
+        setFirebaseError(`授業セッションの接続・復旧に失敗しました: ${error.message}`);
       } finally {
         sessionCreationRef.current = false;
       }
     };
-    createSession();
-  }, [appMode, authUser, sessionId, teamCount]);
+    restoreOrCreate();
+  }, [appMode, authUser, sessionId, sessionRetry]);
 
   const signInAsHost = async () => {
     setFirebaseError('');
@@ -139,9 +192,7 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    latestStateRef.current = { status: gameStatus, theme: activeTheme, teamCount };
-  }, [gameStatus, activeTheme, teamCount]);
+
 
   const selectTheme = (theme) => {
     setActiveTheme(theme);
@@ -155,20 +206,23 @@ function App() {
     }
     try {
       const nextRoundId = newId();
+      const expiresAt = Math.round(Date.now() + serverOffsetRef.current + selectedMinutes * 60_000);
       await set(ref(database, `sessions/${sessionId}/gameState`), {
         status: 'PLAYING',
         theme: activeTheme,
         roundId: nextRoundId,
+        endsAt: expiresAt,
+        durationSec: selectedMinutes * 60,
         teamCount,
         scannedCodes: {}
       });
       setRoundId(nextRoundId);
+      setGameEndsAt(expiresAt);
       setScores({ A: 0, B: 0, C: 0, D: 0 });
-      setCombos({ A: 0, B: 0, C: 0, D: 0 });
       setMaxCombos({ A: 0, B: 0, C: 0, D: 0 });
       setTimeLeft(selectedMinutes * 60);
-      scannedCodesRef.current = { A: [], B: [], C: [], D: [] };
-      combosRef.current = { A: 0, B: 0, C: 0, D: 0 };
+      scanStreamRef.current = { roundKey: null, accepted: new Set() };
+      syncedScansRef.current = '';
       setMessage('');
       setGameStatus('PLAYING');
       setFirebaseError('');
@@ -180,6 +234,8 @@ function App() {
   const backToMenu = () => {
     setActiveTheme(null);
     setGameStatus('MENU');
+    setRoundId(null);
+    setGameEndsAt(null);
     setIsSettingsOpen(false);
     setFullScreenQrTeam(null);
     if (sessionId) {
@@ -189,75 +245,64 @@ function App() {
   };
 
 
-  const executeScanCheck = (team, scannedCode, theme, points = 1) => {
-    const currentActiveTeams = ALL_TEAMS.slice(0, latestStateRef.current.teamCount);
-    if (!isValidTheme(theme, GAME_DATA) || !currentActiveTeams.includes(team) || !validMissionPoints(points)) return;
-    const card = findCard(GAME_DATA[theme].codes, scannedCode);
-    if (card) {
-      if (scannedCodesRef.current[team].includes(card.id)) {
-        setMessage(`⚠️ ALREADY SCANNED: Team ${team}`);
-        setIsSuccess(false);
-        playFeedbackSound('/incorrect.mp3', bgmVolume, isMuted);
-        setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
-        return;
-      }
-      scannedCodesRef.current[team].push(card.id);
-      set(ref(database, `sessions/${sessionId}/gameState/scannedCodes/${team}/${card.id}`), true)
-        .catch(error => setFirebaseError(`スキャン済み状態を保存できません: ${error.message}`));
+  const onRoundSnapshot = useEffectEvent(snapshot => {
+    if (!isValidTheme(activeTheme, GAME_DATA) || !sessionId || !roundId) return;
 
-      const newCombo = combosRef.current[team] + 1;
-      combosRef.current[team] = newCombo;
-      const isComboBonus = newCombo % 3 === 0;
-      const earnedPoints = points + (isComboBonus ? 2 : 0);
-      setCombos(prev => ({ ...prev, [team]: newCombo }));
-      setScores(prev => ({ ...prev, [team]: prev[team] + earnedPoints }));
-      setMaxCombos(prev => newCombo > prev[team] ? { ...prev, [team]: newCombo } : prev);
-      setMessage(`✅ MATCH: Team ${team} (+${points} pts)${isComboBonus ? ' 🌟 COMBO BONUS +2!' : ''}`);
+    const summary = summarizeRound(
+      snapshot.val(), GAME_DATA[activeTheme].codes,
+      ALL_TEAMS.slice(0, teamCount), gameEndsAt ?? Infinity
+    );
+
+    setScores(summary.scores);
+    setMaxCombos(summary.maxCombos);
+
+    // The host is the only client permitted to publish the accepted-code map.
+    const serial = JSON.stringify(summary.scannedCodes);
+    if (serial !== syncedScansRef.current && gameStatus === 'PLAYING') {
+      syncedScansRef.current = serial;
+      set(ref(database, `sessions/${sessionId}/gameState/scannedCodes`), summary.scannedCodes)
+        .catch(error => {
+          syncedScansRef.current = '';
+          setFirebaseError(`スキャン済み情報の更新に失敗しました: ${error.message}`);
+        });
+    }
+
+    const key = sessionId + '/' + roundId;
+    if (scanStreamRef.current.roundKey !== key) {
+      scanStreamRef.current = { roundKey: key, accepted: new Set(summary.acceptedKeys) };
+      return;
+    }
+    const newlyAccepted = summary.acceptedKeys.filter(id => !scanStreamRef.current.accepted.has(id));
+    scanStreamRef.current.accepted = new Set(summary.acceptedKeys);
+    if (newlyAccepted.length && gameStatus === 'PLAYING') {
+      setMessage(newlyAccepted.length === 1 ? '✅ MATCH! + points' : `✅ ${newlyAccepted.length} NEW MATCHES!`);
       setIsSuccess(true);
       playFeedbackSound('/correct.mp3', bgmVolume, isMuted);
-    } else {
-      combosRef.current[team] = 0;
-      setCombos(prev => ({ ...prev, [team]: 0 }));
-      setMessage(`⚠️ MISS: Team ${team}`);
-      setIsSuccess(false);
-      playFeedbackSound('/incorrect.mp3', bgmVolume, isMuted);
-    }
-    setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
-  };
-
-  const onIncomingScan = useEffectEvent(data => {
-    const state = latestStateRef.current;
-    if (state.status === 'PLAYING') {
-      executeScanCheck(data.team, data.code, state.theme, data.points);
+      clearTimeout(feedbackTimerRef.current);
+      feedbackTimerRef.current = setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
     }
   });
 
   useEffect(() => {
-    if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING') return;
-    const timer = setTimeout(() => {
-      if (timeLeft <= 1) {
-        setTimeLeft(0);
+    if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING' || !sessionId || !gameEndsAt) return;
+    const timer = setInterval(() => {
+      const remaining = Math.max(0, Math.ceil((gameEndsAt - Date.now() - serverOffsetRef.current) / 1000));
+      setTimeLeft(remaining);
+      if (remaining === 0) {
         setGameStatus('GAMEOVER');
-        if (sessionId) {
-          set(ref(database, `sessions/${sessionId}/gameState/status`), 'GAMEOVER')
-            .catch(error => setFirebaseError(`終了通知に失敗しました: ${error.message}`));
-        }
-      } else {
-        setTimeLeft(timeLeft - 1);
+        set(ref(database, `sessions/${sessionId}/gameState/status`), 'GAMEOVER')
+          .catch(error => setFirebaseError(`終了通知に失敗しました: ${error.message}`));
       }
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [appMode, gameStatus, timeLeft, sessionId]);
+    }, 500);
+    return () => clearInterval(timer);
+  }, [appMode, gameStatus, gameEndsAt, sessionId]);
 
   useEffect(() => {
-    if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING' || !sessionId || !roundId) return;
+    if (appMode !== 'HOST_MENU' || !['PLAYING', 'GAMEOVER'].includes(gameStatus) ||
+        !sessionId || !roundId) return;
     const scansRef = ref(database, `sessions/${sessionId}/rounds/${roundId}/scans`);
-    const unsubscribe = onChildAdded(scansRef, snapshot => {
-      const data = snapshot.val();
-      if (!data || !validMissionPoints(data.points)) return;
-      onIncomingScan(data);
-    }, error => setFirebaseError(`得点の受信に失敗しました: ${error.message}`));
-    return unsubscribe;
+    return onValue(scansRef, snapshot => onRoundSnapshot(snapshot),
+      error => setFirebaseError(`得点の受信に失敗しました: ${error.message}`));
   }, [appMode, gameStatus, sessionId, roundId]);
 
   useEffect(() => {
@@ -418,7 +463,8 @@ const onScanMobile = (decodedText) => {
   if (appMode === 'SCANNER' && (!sessionId || !authUser || firebaseError)) {
     return <div className="main-viewport pattern-bg"><div className="content-wrap glass-card" style={{ padding: 30 }}>
       <h2>Scannect Scanner</h2>
-      <p>{firebaseError || (sessionId ? 'Firebaseに接続しています...' : '先生の画面に表示されたQRコードから参加してください。')}</p>
+      <p role="alert">{firebaseError || (sessionId ? 'Firebaseに接続しています...' : '先生の画面に表示されたQRコードから参加してください。')}</p>
+      {firebaseError && <button className="btn-save" onClick={() => window.location.reload()}>接続を再試行</button>}
     </div></div>;
   }
 
@@ -426,7 +472,11 @@ const onScanMobile = (decodedText) => {
     return <div className="main-viewport pattern-bg"><div className="content-wrap glass-card" style={{ padding: 30 }}>
       <h2>Scannect — Teacher</h2>
       <p>授業ゲームの管理にはGoogleログインが必要です。生徒はQRコードから匿名で参加できます。</p>
-      <button className="start-btn shadow-pop" onClick={signInAsHost}>Googleで先生としてログイン</button>
+      {(!authUser || authUser.isAnonymous) && <button className="start-btn shadow-pop" onClick={signInAsHost}>Googleで先生としてログイン</button>}
+      {authUser && !authUser.isAnonymous && !sessionId && <button className="start-btn shadow-pop" onClick={() => {
+        setFirebaseError('');
+        setSessionRetry(value => value + 1);
+      }}>接続を再試行</button>}
       <button className="btn-text-only" onClick={() => setGameStatus('SOLO_LEARNING')}>🎓 Solo Learning（ログイン不要）</button>
       <p role="alert">{firebaseError || 'ログイン後、授業専用QRコードを生成します。'}</p>
     </div></div>;
