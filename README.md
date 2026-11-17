@@ -31,16 +31,16 @@ Only **allowlisted teachers authenticated by Google** can create session ownersh
 ### Known security limits
 
 - Client-side speech recognition and quiz answers are **not cryptographically verifiable**; a sophisticated student can forge a valid-looking submission with a score from the allowed set. The host validates card identifiers and deduplicates scores, but this is a classroom activity, **not a tamper-proof examination or grading system**. For graded assessments, move validation and scoring to a trusted backend (e.g. Cloud Functions), bind submissions to server-issued challenges, and apply server-side rate limiting.
-- The QR is rendered by the third-party service api.qrserver.com. That service receives the joining URL with its random session identifier. Do not include student personal data in the URL; for confidential settings replace this with local QR rendering.
+- Team join QR codes are rendered locally as SVG by qrcode.react; join URLs are not sent to an external QR-image service. Keep the random session URL within the class, as anybody who receives it can join as a scanner.
 - Session data remains in Realtime Database until an administrator deletes it or a retention policy is implemented. The app does not transmit names, emails or voice recordings in scan submissions, but Authentication tracks account identifiers.
 - Do not rely on a Firebase **web API key** as a secret. Authorization depends on Authentication + Realtime Database Rules, never on concealing the public config.
 - A secure HTTPS origin is required for camera access, microphone permission and cryptographically random session IDs.
 
 ## Usage
 
-**Teacher:** Sign in using Google, select a theme, display a team QR (A–D), and press START GAME. A new round ID is created each time.
+**Teacher:** Sign in using Google, select a theme, display a team QR (A–D), and press START GAME. Each round has its own ID and server-enforced end deadline. A refresh of the same teacher browser restores the last session from localStorage, and reconstructs scores from stored scan records. At the end of each class, click **新しい授業用QRを作成** to rotate the session ID and prevent old class QR links from joining the next class. Never share the same session between unrelated classes.
 
-**Students:** Open the team's generated QR using a smartphone, allow anonymous Firebase sign-in and camera access, scan the matching printed card, then complete the vocabulary or speaking mission. Only the first accepted scan for the same team and card earns points within a round.
+**Students:** Open the team's generated QR using a smartphone, allow anonymous Firebase sign-in and camera access, scan the matching printed card, then complete the vocabulary or speaking mission. Only the first accepted scan for the same team and card earns points within a round. Network interruptions may delay the score; only confirmed Firebase scan records count.
 
 **Solo Learning:** Available without signing in. High scores are kept locally per theme **and question count** (10, 20, all); no student data is shared with Firebase by this mode.
 
@@ -50,7 +50,8 @@ Each JSON file in src/data/ has 30 unique cards and vocabulary entries. The PDF 
 
 ## QA / release checklist
 
-- [ ] npm ci, ESLint, node --test, Vite build and npm audit --audit-level=high pass in GitHub Actions.
+- [ ] npm ci, ESLint, node --test, Vite build and the **production-dependency** high-severity audit pass in GitHub Actions.
+- [ ] Review the full npm audit report; unresolved development-only advisories are not ignored, but do not block production assets.
 - [ ] Publish the **new Firebase rules** in the correct environment; enable both sign-in providers.
 - [ ] Test teacher login, anonymous scanner login, QR display and a complete round.
 - [ ] Verify that another host cannot overwrite the teacher's game.
@@ -58,5 +59,9 @@ Each JSON file in src/data/ has 30 unique cards and vocabulary entries. The PDF 
 - [ ] Check Safari/iOS, Chrome/Android and student Chromebooks with real QR cards.
 - [ ] Confirm scanning, point awards and timer expiry across two simultaneous sessions.
 - [ ] Manually approve the pull request before production release.
+
+### Advisory tracking
+
+As of November 18, 2026, npm audit reports GHSA-fc5q-39xc-vjpf (picomatch, a transitive dependency of the Vite development toolchain) with no patched release in the current Vite dependency range. The CI continues to display the full npm audit as a warning and **blocks on high-severity production dependencies**. Do not use untrusted glob expressions with local build tooling and reevaluate when a safe picomatch patch becomes available.
 
 No production deployment or database-rules publication is performed by the code changes in this pull request.
