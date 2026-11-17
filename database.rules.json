@@ -1,0 +1,42 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "sessions": {
+      "$sessionId": {
+        ".read": "auth != null && data.child('hostUid').exists()",
+        "hostUid": {
+          ".write": "auth != null && auth.token.firebase.sign_in_provider === 'google.com' && !data.exists() && newData.val() === auth.uid",
+          ".validate": "newData.isString() && newData.val() === auth.uid"
+        },
+        "gameState": {
+          ".write": "auth != null && auth.uid === data.parent().child('hostUid').val()",
+          ".validate": "newData.hasChildren(['status']) && newData.child('status').isString()",
+          "status": { ".validate": "newData.val() === 'MENU' || newData.val() === 'PLAYING' || newData.val() === 'GAMEOVER'" },
+          "theme": { ".validate": "newData.isString() || newData.val() === null" },
+          "roundId": { ".validate": "newData.isString() && newData.val().matches(/^[a-f0-9]{32}$/)" },
+          "teamCount": { ".validate": "newData.isNumber() && newData.val() >= 2 && newData.val() <= 4" },
+          "scannedCodes": {
+            "$team": {
+              "$code": { ".validate": "newData.val() === true" }
+            }
+          },
+          "$other": { ".validate": false }
+        },
+        "rounds": {
+          "$roundId": {
+            "scans": {
+              ".indexOn": ["timestamp"],
+              "$scanId": {
+                ".write": "auth != null && !data.exists() && root.child('sessions').child($sessionId).child('gameState').child('status').val() === 'PLAYING' && root.child('sessions').child($sessionId).child('gameState').child('roundId').val() === $roundId",
+                ".validate": "newData.hasChildren(['team', 'code', 'points', 'uid', 'timestamp']) && newData.child('uid').val() === auth.uid && newData.child('timestamp').val() === now && (newData.child('points').val() === 1 || newData.child('points').val() === 3 || newData.child('points').val() === 5 || newData.child('points').val() === 10) && newData.child('code').isString() && newData.child('code').val().matches(/^[A-Z0-9_]{3,48}$/) && ((newData.child('team').val() === 'A') || (newData.child('team').val() === 'B') || (newData.child('team').val() === 'C' && root.child('sessions').child($sessionId).child('gameState').child('teamCount').val() >= 3) || (newData.child('team').val() === 'D' && root.child('sessions').child($sessionId).child('gameState').child('teamCount').val() >= 4))",
+                "$other": { ".validate": false }
+              }
+            }
+          }
+        },
+        "$other": { ".validate": false }
+      }
+    }
+  }
+}
