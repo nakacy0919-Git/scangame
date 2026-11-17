@@ -38,7 +38,7 @@ try {
 
   await assertSucceeds(set(ref(teacher.database(), path + '/gameState'), {
     status: 'PLAYING', theme: 'cafe', roundId, endsAt: Date.now() + 60_000,
-    teamCount: 2, durationSec: 60, scannedCodes: {},
+    teamCount: 2, durationSec: 300, scannedCodes: {},
   }));
 
   await assertSucceeds(get(ref(student.database(), path + '/gameState')));
