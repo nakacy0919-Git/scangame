@@ -54,7 +54,12 @@ function presentChallenge(challenge) {
 }
 
 function gradeChallenge(challenge, answer) {
-  if (challenge.type === 'VOCAB') return answer === challenge.correct ? 3 : 1;
+  if (challenge.type === 'VOCAB') {
+    if (!Array.isArray(challenge.choices) || !challenge.choices.includes(answer)) {
+      throw new Error('Answer is not one of the issued choices');
+    }
+    return answer === challenge.correct ? 3 : 1;
+  }
   // An untrusted browser cannot prove that speech happened, or grade its own
   // transcript. A speaking task awards 1 participation point only.
   if (challenge.type === 'SPEAKING' && answer === 'completed') return 1;
