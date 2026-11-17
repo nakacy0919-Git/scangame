@@ -56,7 +56,7 @@ A dedicated non-production database emulator test is included. It validates the 
     npm install --no-save --package-lock=false --legacy-peer-deps --ignore-scripts @firebase/rules-unit-testing@6.0.0
     npx -y firebase-tools@15.36.0 emulators:exec --only database --project demo-scannect "node tests/firebaseRulesEmulator.mjs"
 
-Run this after every database.rules.json change, then verify real teacher/student devices in a test environment before applying rules in production. The Firebase Emulator requires Java 21 and does not replace live integration tests.
+Run this after every database.rules.json change, then verify real teacher/student devices in a test environment before applying rules in production. The Firebase Emulator requires **Node.js 24.12+** and Java 21 and does not replace live integration tests. For hosted CI, the dedicated Firebase Rules Emulator workflow runs when the rule files change or when manually dispatched. The normal Vite build still supports Node.js 22+.
 
 ## QA / release checklist
 
