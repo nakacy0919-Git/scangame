@@ -24,6 +24,8 @@ test('Firebase rule contract blocks edits and rejects submissions after the dead
   assert.match(scan['.write'], /auth\.uid/);
   assert.match(scan['.validate'], /timestamp/);
   assert.match(scan['.validate'], /points/);
+  assert.match(scan['.validate'], /child\('theme'\)/);
+  assert.match(scan['.validate'], /matches/);
 });
 
 // These are static contract checks. Firebase Emulator integration testing remains
