@@ -1,15 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { getVocabQuestion, speechAccuracy, speechPoints } from '../gameLogic';
+import { speechAccuracy, speechPoints } from '../gameLogic';
 
-export default function ScannerMission({ card, themeData, onComplete }) {
+export default function ScannerMission({ card, mission, onComplete }) {
   const [phase, setPhase] = useState('ENTRY');
-  const [mission] = useState(() => {
-    const supportsSpeech = Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
-    const vocab = getVocabQuestion(card, themeData);
-    if (supportsSpeech && Math.random() < 0.5) return { type: 'SPEAKING' };
-    if (vocab) return { type: 'VOCAB', vocab };
-    return { type: supportsSpeech ? 'SPEAKING' : 'MANUAL' };
-  });
   const [isListening, setIsListening] = useState(false);
   const [isEvaluating, setIsEvaluating] = useState(false);
   const [liveText, setLiveText] = useState('');
@@ -36,35 +29,28 @@ export default function ScannerMission({ card, themeData, onComplete }) {
     };
   }, []);
 
-  const scheduleCompletion = (points, delay) => {
+  const scheduleCompletion = (answer, delay) => {
     if (decisionLockedRef.current) return;
     decisionLockedRef.current = true;
-    const timer = window.setTimeout(() => onComplete(points), delay);
+    const timer = window.setTimeout(() => onComplete(answer), delay);
     timersRef.current.add(timer);
   };
 
   const handleVocabAnswer = selected => {
     if (decisionLockedRef.current || feedback) return;
-    const isCorrect = selected === mission.vocab.correct;
-    const points = isCorrect ? 3 : 1;
-    setFeedback({
-      status: isCorrect ? 'correct' : 'incorrect',
-      message: isCorrect ? '✅ CORRECT! (+3 pts)' : '❌ MISS... (+1 pt)'
-    });
-    scheduleCompletion(points, 2000);
+    setFeedback({ status: 'correct', message: '回答をサーバーで採点しています...' });
+    scheduleCompletion(selected, 500);
   };
 
   const evaluateSpeech = spokenText => {
     if (decisionLockedRef.current) return;
     const accuracy = speechAccuracy(card.card_a.text, spokenText);
-    const points = speechPoints(accuracy);
-    const status = points >= 5 ? 'correct' : 'incorrect';
-    const message = !spokenText.trim()
-      ? '💦 音声が聞き取れませんでした\nスコア: 1 / 10 点'
-      : (points === 10 ? '👑 EXCELLENT!!' : points === 5 ? '👍 GOOD!' : '💦 TRY HARDER') +
-        '\nスコア: ' + points + ' / 10 点\n(単語一致率: ' + Math.floor(accuracy * 100) + '%)';
-    setFeedback({ status, message });
-    scheduleCompletion(points, 3000);
+    const practiceScore = speechPoints(accuracy);
+    setFeedback({ status: 'correct',
+      message: '音読練習の単語一致率: ' + Math.floor(accuracy * 100) +
+        '%（練習評価 ' + practiceScore + '/10）\nチーム得点はサーバー認証の参加点 +1点です。'
+    });
+    scheduleCompletion('completed', 2000);
   };
 
   const finishPendingSpeech = () => {
@@ -153,10 +139,10 @@ export default function ScannerMission({ card, themeData, onComplete }) {
             <main className="mission-body">
               <div className="vocab-question-box">
                 <p className="q-instruction">意味を選んでください</p>
-                <h1 className="target-word-huge">{mission.vocab.word}</h1>
+                <h1 className="target-word-huge">{mission.word}</h1>
               </div>
               <div className="vocab-choices-grid-large">
-                {mission.vocab.choices.map((choice, i) => (
+                {mission.choices.map((choice, i) => (
                   <button key={choice} disabled={feedback !== null}
                     className={'large-choice-btn choice-style-' + (i + 1)}
                     onClick={() => handleVocabAnswer(choice)}>
@@ -173,7 +159,7 @@ export default function ScannerMission({ card, themeData, onComplete }) {
             <main className="mission-body">
               <div className="speaking-target-card">
                 <p className="q-instruction">英文を声に出して読んでください</p>
-                <h1 className="target-text-huge">{card.card_a.text}</h1>
+                <h1 className="target-text-huge">{mission.text || card.card_a.text}</h1>
               </div>
               <div className="speaking-control-area">
                 {isListening ? (
@@ -192,8 +178,8 @@ export default function ScannerMission({ card, themeData, onComplete }) {
                     <p>{speechError}</p>
                     <button className="btn-save" onClick={() => {
                       if (decisionLockedRef.current) return;
-                      setFeedback({ status: 'correct', message: '手動音読を完了しました (+1 pt)' });
-                      scheduleCompletion(1, 1500);
+                      setFeedback({ status: 'correct', message: '手動音読を完了しました（サーバー認証の参加点 +1）' });
+                      scheduleCompletion('completed', 1500);
                     }}>
                       マイクなしで音読完了 (+1点)
                     </button>
@@ -209,10 +195,10 @@ export default function ScannerMission({ card, themeData, onComplete }) {
             <main className="mission-body">
               <div className="speaking-target-card">
                 <p className="q-instruction">このカードの英文を声に出して読んでください</p>
-                <h1 className="target-text-huge">{card.card_a.text}</h1>
+                <h1 className="target-text-huge">{mission.text || card.card_a.text}</h1>
               </div>
               <button className="giant-start-btn shadow-pop"
-                onClick={() => { setFeedback({ status: 'correct', message: '練習完了 (+1 pt)' }); scheduleCompletion(1, 1500); }}>
+                onClick={() => { setFeedback({ status: 'correct', message: '練習完了（サーバー認証の参加点 +1）' }); scheduleCompletion('completed', 1500); }}>
                 読み終わったら進む (+1)
               </button>
             </main>
