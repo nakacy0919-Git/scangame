@@ -1,0 +1,30 @@
+name: Repair npm lockfile on security branch
+on:
+  push:
+    branches: [fix/security-and-gameplay-20261117]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  repair:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate package lock file without running install scripts
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Commit corrected lockfile only when changed
+        run: |
+          if ! git diff --quiet -- package-lock.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add package-lock.json
+            git commit -m "fix: synchronize npm lockfile"
+            git push origin HEAD:refs/heads/fix/security-and-gameplay-20261117
+          fi
