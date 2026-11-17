@@ -26,8 +26,12 @@ jobs:
       - run: npm run build
       - name: Audit all frontend dependencies (including build tools)
         run: npm audit --audit-level=high
-      - name: Validate secure scoring server source and tests
+      - name: Install locked secure scoring server dependencies
+        run: npm --prefix functions ci
+      - name: Validate scoring server and mission tests
         run: |
-          node --check functions/index.cjs
-          node --check functions/missionLogic.cjs
-          node --test functions/test/*.test.cjs
+          npm --prefix functions run lint
+          npm --prefix functions test
+          node -e "require('./functions/index.cjs')"
+      - name: Audit the scoring server production dependencies
+        run: npm --prefix functions audit --omit=dev --audit-level=high
