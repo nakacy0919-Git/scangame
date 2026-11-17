@@ -1,0 +1,28 @@
+name: Scannect quality and security checks
+on:
+  push:
+    branches:
+      - main
+      - fix/security-and-gameplay-20261117
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: Check high-severity npm advisories
+        run: npm audit --audit-level=high
