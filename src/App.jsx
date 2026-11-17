@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useEffectEvent } from 'react';
 import { Html5Qrcode } from 'html5-qrcode'; 
-import { database, auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup, ref, push, onChildAdded, onValue, set, serverTimestamp } from './firebase';
+import { database, auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup, ref, onChildAdded, onValue, set, serverTimestamp } from './firebase';
 import { ALL_TEAMS, findCard, isValidTheme, newId, validMissionPoints } from './gameLogic'; 
 
 import './App.css';
@@ -389,7 +389,8 @@ const onScanMobile = (decodedText) => {
       return;
     }
     try {
-      await push(ref(database, `sessions/${sessionId}/rounds/${state.roundId}/scans`), {
+      const entryId = auth.currentUser.uid + '_' + activeMissionCard.id;
+      await set(ref(database, `sessions/${sessionId}/rounds/${state.roundId}/scans/${entryId}`), {
         team: scannerTeam,
         code: activeMissionCard.id,
         points: earnedPoints,
