@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup } from 'firebase/auth';
-import { getDatabase, ref, push, onChildAdded, onValue, set, serverTimestamp } from 'firebase/database';
+import { getDatabase, ref, get, onValue, set, serverTimestamp } from 'firebase/database';
 
 // Firebase web configuration identifies this project; it is not an authorization secret.
 // Access is restricted by database.rules.json and Firebase Authentication.
@@ -19,4 +19,4 @@ const database = getDatabase(app);
 const auth = getAuth(app);
 
 export { auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup };
-export { database, ref, push, onChildAdded, onValue, set, serverTimestamp };
+export { database, ref, get, onValue, set, serverTimestamp };
