@@ -296,7 +296,12 @@ function App() {
     const newlyAccepted = summary.acceptedKeys.filter(id => !scanStreamRef.current.accepted.has(id));
     scanStreamRef.current.accepted = new Set(summary.acceptedKeys);
     if (newlyAccepted.length && gameStatus === 'PLAYING') {
-      setMessage(newlyAccepted.length === 1 ? '✅ MATCH! + points' : `✅ ${newlyAccepted.length} NEW MATCHES!`);
+      const justAccepted = summary.acceptedEvents.filter(event => newlyAccepted.includes(event.key));
+      const single = justAccepted[0];
+      const text = newlyAccepted.length === 1
+        ? `✅ MATCH: Team ${single.team} (+${single.earnedPoints} pts)${single.bonus ? ' 🌟 COMBO BONUS!' : ''}`
+        : `✅ ${newlyAccepted.length} NEW MATCHES!`;
+      setMessage(text);
       setIsSuccess(true);
       playFeedbackSound('/correct.mp3', bgmVolume, isMuted);
       clearTimeout(feedbackTimerRef.current);
