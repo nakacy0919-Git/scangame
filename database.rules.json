@@ -1,0 +1,65 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "sessions": {
+      "$sessionId": {
+        "hostUid": {
+          ".write": "auth != null && auth.token.firebase.sign_in_provider === 'google.com' && root.child('teachers').child(auth.uid).val() === true && !data.exists() && newData.val() === auth.uid",
+          ".validate": "newData.isString() && newData.val() === auth.uid",
+          ".read": "auth != null && auth.uid === data.val()"
+        },
+        "gameState": {
+          ".write": "auth != null && auth.uid === data.parent().child('hostUid').val()",
+          ".validate": "newData.hasChildren(['status', 'teamCount']) && newData.child('status').isString() && (newData.child('status').val() !== 'PLAYING' || newData.hasChildren(['theme', 'roundId', 'endsAt']))",
+          "status": {
+            ".validate": "newData.val() === 'MENU' || newData.val() === 'PLAYING' || newData.val() === 'GAMEOVER'"
+          },
+          "theme": {
+            ".validate": "newData.val() === 'airport' || newData.val() === 'cafe' || newData.val() === 'english' || newData.val() === 'help' || newData.val() === 'hotel' || newData.val() === 'media' || newData.val() === 'revitalization' || newData.val() === 'sdgs' || newData.val() === 'volunteer' || newData.val() === 'world' || newData.val() === 'worry' || newData.val() === 'zoo'"
+          },
+          "roundId": {
+            ".validate": "newData.isString() && newData.val().matches(/^[a-f0-9]{32}$/)"
+          },
+          "teamCount": {
+            ".validate": "newData.isNumber() && newData.val() >= 2 && newData.val() <= 4"
+          },
+          "scannedCodes": {
+            "$team": {
+              "$code": {
+                ".validate": "newData.val() === true"
+              }
+            }
+          },
+          "$other": {
+            ".validate": false
+          },
+          ".read": "auth != null && data.parent().child('hostUid').exists()",
+          "endsAt": {
+            ".validate": "newData.isNumber() && newData.val() > 0"
+          },
+          "durationSec": {
+            ".validate": "newData.isNumber() && newData.val() >= 180 && newData.val() <= 900"
+          }
+        },
+        "rounds": {
+          "$roundId": {
+            "scans": {
+              ".read": "auth != null && auth.uid === root.child('sessions').child($sessionId).child('hostUid').val()",
+              ".write": false
+            }
+          }
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "teachers": {
+      "$uid": {
+        ".read": false,
+        ".write": false
+      }
+    }
+  }
+}

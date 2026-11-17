@@ -1,6 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
-import { Html5Qrcode } from 'html5-qrcode'; 
-import { database, ref, push, onChildAdded, onValue, set, serverTimestamp } from './firebase'; 
+import { useState, useEffect, useRef, useEffectEvent } from 'react';
+import { Html5Qrcode } from 'html5-qrcode';
+import { QRCodeSVG } from 'qrcode.react'; 
+import { database, auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup, ref, get, onValue, set, startMission, submitMission } from './firebase';
+import { ALL_TEAMS, findCard, isValidTheme, newId, summarizeRound } from './gameLogic'; 
 
 import './App.css';
 
@@ -37,15 +39,33 @@ const GAME_DATA = {
   english: { title: 'Scannect : English Learning', codes: englishData }
 };
 
-const ALL_TEAMS = ['A', 'B', 'C', 'D'];
+function playFeedbackSound(file, volume, isMuted) {
+  if (isMuted) return;
+  const sound = new Audio(file);
+  sound.volume = Math.max(0, Math.min(1, volume));
+  sound.play().catch(() => {});
+}
 
 function App() {
   const searchParams = new URLSearchParams(window.location.search);
   const initMode = searchParams.get('mode') === 'scanner' ? 'SCANNER' : 'HOST_MENU';
   const initTeam = ALL_TEAMS.includes(searchParams.get('team')) ? searchParams.get('team') : null;
+  const requestedSession = searchParams.get('session');
+  const initSession = requestedSession && /^[a-f0-9]{32}$/.test(requestedSession) ? requestedSession : null;
 
-  const [appMode, setAppMode] = useState(initMode); 
-  const [scannerTeam, setScannerTeam] = useState(initTeam); 
+  const appMode = initMode; 
+  const [scannerTeam, setScannerTeam] = useState(initTeam);
+  const [sessionId, setSessionId] = useState(initMode === 'SCANNER' ? initSession : null);
+  const [roundId, setRoundId] = useState(null);
+  const [authUser, setAuthUser] = useState(null);
+  const [firebaseError, setFirebaseError] = useState('');
+  const [cameraError, setCameraError] = useState('');
+  const sessionCreationRef = useRef(false);
+  const [sessionRetry, setSessionRetry] = useState(0);
+  const serverOffsetRef = useRef(0);
+  const scanStreamRef = useRef({ roundKey: null, accepted: new Set() });
+  const syncedScansRef = useRef('');
+  const feedbackTimerRef = useRef(null); 
 
   const [activeTheme, setActiveTheme] = useState(null);
   const [gameStatus, setGameStatus] = useState('MENU'); 
@@ -54,7 +74,6 @@ function App() {
   const activeTeams = ALL_TEAMS.slice(0, teamCount); 
 
   const [scores, setScores] = useState({ A: 0, B: 0, C: 0, D: 0 });
-  const [combos, setCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
   const [maxCombos, setMaxCombos] = useState({ A: 0, B: 0, C: 0, D: 0 });
 
   const [message, setMessage] = useState('');
@@ -69,201 +88,268 @@ function App() {
   const [activeQrTab, setActiveQrTab] = useState('A'); 
   const [fullScreenQrTeam, setFullScreenQrTeam] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [gameEndsAt, setGameEndsAt] = useState(null);
 
-  const [activeMissionCard, setActiveMissionCard] = useState(null); 
+  const [activeMissionCard, setActiveMissionCard] = useState(null);
+  const [serverChallenge, setServerChallenge] = useState(null); 
 
-  const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
+  const [, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
 
-  const inputBuffer = useRef('');
-  const correctSound = new Audio('/correct.mp3');
-  const incorrectSound = new Audio('/incorrect.mp3');
 
-  const latestStateRef = useRef({ status: gameStatus, theme: activeTheme, teamCount });
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
-  const scannedCodesRef = useRef({ A: [], B: [], C: [], D: [] }); 
-  const combosRef = useRef({ A: 0, B: 0, C: 0, D: 0 });
   
   const scannerInstanceRef = useRef(null); 
   const isProcessingScanRef = useRef(false);
 
-  // 👇この1行を新しく追加してください👇
-  const pendingScanRef = useRef(null);
-
   useBGM(appMode, gameStatus, bgmVolume, isMuted);
 
   useEffect(() => {
-    latestStateRef.current = { status: gameStatus, theme: activeTheme, teamCount };
-  }, [gameStatus, activeTheme, teamCount]);
+    return onValue(ref(database, '.info/serverTimeOffset'), snapshot => {
+      serverOffsetRef.current = Number(snapshot.val()) || 0;
+    }, () => {});
+  }, []);
+
+  useEffect(() => {
+    return () => clearTimeout(feedbackTimerRef.current);
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      setAuthUser(user);
+      if (!user && appMode === 'SCANNER') {
+        signInAnonymously(auth).catch(error => setFirebaseError(`接続認証に失敗しました: ${error.message}`));
+      }
+    }, error => setFirebaseError(`認証に失敗しました: ${error.message}`));
+    return unsubscribe;
+  }, [appMode]);
+
+  useEffect(() => {
+    if (appMode !== 'HOST_MENU' || !authUser || authUser.isAnonymous ||
+        sessionId || sessionCreationRef.current) return;
+    sessionCreationRef.current = true;
+    const currentUid = authUser.uid;
+    const storageKey = 'scannect_teacher_session_' + currentUid;
+
+    const restoreOrCreate = async () => {
+      try {
+        let savedId = null;
+        try { savedId = localStorage.getItem(storageKey); } catch { /* Private browsing */ }
+
+        if (savedId && /^[a-f0-9]{32}$/.test(savedId)) {
+          const ownership = await get(ref(database, `sessions/${savedId}/hostUid`));
+          if (ownership.val() === currentUid) {
+            const snapshot = await get(ref(database, `sessions/${savedId}/gameState`));
+            const state = snapshot.val();
+            if (state && ['MENU', 'PLAYING', 'GAMEOVER'].includes(state.status)) {
+              const theme = isValidTheme(state.theme, GAME_DATA) ? state.theme : null;
+              const endsAt = Number(state.endsAt) || null;
+              const count = Number(state.teamCount);
+              if (count >= 2 && count <= 4) setTeamCount(count);
+              if (state.durationSec >= 180 && state.durationSec <= 900) {
+                setSelectedMinutes(Math.round(state.durationSec / 60));
+              }
+              setActiveTheme(theme);
+              setRoundId(state.roundId || null);
+              setGameEndsAt(endsAt);
+              const expired = state.status === 'PLAYING' && endsAt !== null &&
+                endsAt <= Date.now() + serverOffsetRef.current;
+              setTimeLeft(state.status === 'PLAYING' && endsAt
+                ? Math.max(0, Math.ceil((endsAt - Date.now() - serverOffsetRef.current) / 1000))
+                : 0);
+              setGameStatus(expired ? 'GAMEOVER' : (state.status === 'PLAYING' && (!theme || !endsAt)
+                ? 'MENU' : state.status));
+              if (expired) {
+                await set(ref(database, `sessions/${savedId}/gameState/status`), 'GAMEOVER');
+              }
+            }
+            setSessionId(savedId);
+            setFirebaseError('');
+            return;
+          }
+        }
+
+        const id = newId();
+        await set(ref(database, `sessions/${id}/hostUid`), currentUid);
+        await set(ref(database, `sessions/${id}/gameState`), {
+          status: 'MENU', teamCount: 2, scannedCodes: {}
+        });
+        try { localStorage.setItem(storageKey, id); } catch { /* Private browsing */ }
+        setSessionId(id);
+        setFirebaseError('');
+      } catch (error) {
+        setFirebaseError(`授業セッションの接続・復旧に失敗しました: ${error.message}`);
+      } finally {
+        sessionCreationRef.current = false;
+      }
+    };
+    restoreOrCreate();
+  }, [appMode, authUser, sessionId, sessionRetry]);
+
+  const signInAsHost = async () => {
+    setFirebaseError('');
+    try {
+      await signInWithPopup(auth, new GoogleAuthProvider());
+    } catch (error) {
+      setFirebaseError(`先生のログインに失敗しました: ${error.message}`);
+    }
+  };
+
+
 
   const selectTheme = (theme) => {
     setActiveTheme(theme);
     setGameStatus('READY');
   };
 
-  const handleStartGame = () => {
-    setScores({ A: 0, B: 0, C: 0, D: 0 });
-    setCombos({ A: 0, B: 0, C: 0, D: 0 });
-    setMaxCombos({ A: 0, B: 0, C: 0, D: 0 });
-    setTimeLeft(selectedMinutes * 60); 
-    setGameStatus('PLAYING');
-    setMessage(''); 
-    
-    scannedCodesRef.current = { A: [], B: [], C: [], D: [] };
-    combosRef.current = { A: 0, B: 0, C: 0, D: 0 };
+  const handleStartGame = async () => {
+    if (!sessionId || !authUser || authUser.isAnonymous || !isValidTheme(activeTheme, GAME_DATA)) {
+      setFirebaseError('先生の認証と授業セッションを確認してください。');
+      return;
+    }
+    try {
+      const nextRoundId = newId();
+      const expiresAt = Math.round(Date.now() + serverOffsetRef.current + selectedMinutes * 60_000);
+      await set(ref(database, `sessions/${sessionId}/gameState`), {
+        status: 'PLAYING',
+        theme: activeTheme,
+        roundId: nextRoundId,
+        endsAt: expiresAt,
+        durationSec: selectedMinutes * 60,
+        teamCount,
+        scannedCodes: {}
+      });
+      setRoundId(nextRoundId);
+      setGameEndsAt(expiresAt);
+      setScores({ A: 0, B: 0, C: 0, D: 0 });
+      setMaxCombos({ A: 0, B: 0, C: 0, D: 0 });
+      setTimeLeft(selectedMinutes * 60);
+      scanStreamRef.current = { roundKey: null, accepted: new Set() };
+      syncedScansRef.current = '';
+      setMessage('');
+      setGameStatus('PLAYING');
+      setFirebaseError('');
+    } catch (error) {
+      setFirebaseError(`ゲーム開始に失敗しました: ${error.message}`);
+    }
+  };
 
-    set(ref(database, 'scans'), null);
-    set(ref(database, 'gameState'), { 
-      status: 'PLAYING', 
-      theme: activeTheme, 
-      scannedCodes: { A: {}, B: {}, C: {}, D: {} } 
-    });
+  const beginNewClass = async () => {
+    if (!sessionId || !authUser || gameStatus === 'PLAYING') return;
+    try {
+      await set(ref(database, `sessions/${sessionId}/gameState/status`), 'MENU');
+      try { localStorage.removeItem('scannect_teacher_session_' + authUser.uid); } catch { /* Private browsing */ }
+      scanStreamRef.current = { roundKey: null, accepted: new Set() };
+      syncedScansRef.current = '';
+      setSessionId(null);
+      setRoundId(null);
+      setGameEndsAt(null);
+      setActiveTheme(null);
+      setScores({ A: 0, B: 0, C: 0, D: 0 });
+      setMaxCombos({ A: 0, B: 0, C: 0, D: 0 });
+      setGameStatus('MENU');
+      setFirebaseError('');
+    } catch (error) {
+      setFirebaseError(`新しい授業を作成できません: ${error.message}`);
+    }
   };
 
   const backToMenu = () => {
     setActiveTheme(null);
     setGameStatus('MENU');
+    setRoundId(null);
+    setGameEndsAt(null);
     setIsSettingsOpen(false);
     setFullScreenQrTeam(null);
-    set(ref(database, 'gameState'), { status: 'MENU', theme: null, scannedCodes: {} });
+    if (sessionId) {
+      set(ref(database, `sessions/${sessionId}/gameState/status`), 'MENU')
+        .catch(error => setFirebaseError(`ゲームの終了を送信できません: ${error.message}`));
+    }
   };
 
-  useEffect(() => {
-    let timer;
-    if (appMode === 'HOST_MENU' && gameStatus === 'PLAYING' && timeLeft > 0) {
-      timer = setInterval(() => { setTimeLeft((prev) => prev - 1); }, 1000);
-    } else if (timeLeft === 0 && gameStatus === 'PLAYING') {
-      setGameStatus('GAMEOVER');
-      set(ref(database, 'gameState'), { status: 'GAMEOVER', theme: activeTheme });
+
+  const onRoundSnapshot = useEffectEvent(snapshot => {
+    if (!isValidTheme(activeTheme, GAME_DATA) || !sessionId || !roundId) return;
+
+    const summary = summarizeRound(
+      snapshot.val(), GAME_DATA[activeTheme].codes,
+      ALL_TEAMS.slice(0, teamCount), gameEndsAt ?? Infinity
+    );
+
+    setScores(summary.scores);
+    setMaxCombos(summary.maxCombos);
+
+    // The host is the only client permitted to publish the accepted-code map.
+    const serial = JSON.stringify(summary.scannedCodes);
+    if (serial !== syncedScansRef.current && gameStatus === 'PLAYING') {
+      syncedScansRef.current = serial;
+      set(ref(database, `sessions/${sessionId}/gameState/scannedCodes`), summary.scannedCodes)
+        .catch(error => {
+          syncedScansRef.current = '';
+          setFirebaseError(`スキャン済み情報の更新に失敗しました: ${error.message}`);
+        });
     }
-    return () => clearInterval(timer);
-  }, [appMode, gameStatus, timeLeft, activeTheme]);
 
-  useEffect(() => {
-    if (appMode !== 'HOST_MENU') return;
-    const scansRef = ref(database, 'scans');
-    
-    const unsubscribe = onChildAdded(scansRef, (snapshot) => {
-      const data = snapshot.val();
-      if (!data) return;
-      const currentStatus = latestStateRef.current.status;
-      const currentTheme = latestStateRef.current.theme;
-      if (currentStatus === 'PLAYING') {
-         executeScanCheck(data.team, data.code, currentTheme, data.points);
-      }
-    });
-
-    return () => unsubscribe();
-  }, [appMode]);
-
-  const executeScanCheck = (team, scannedCode, theme, points = 1) => {
-    const currentActiveTeams = ALL_TEAMS.slice(0, latestStateRef.current.teamCount);
-    if (!theme || !currentActiveTeams.includes(team)) return;
-    
-    const currentThemeData = GAME_DATA[theme].codes;
-    let isCorrect = false;
-
-    if (Array.isArray(currentThemeData)) {
-      isCorrect = currentThemeData.some(item => item.id === scannedCode || item.code === scannedCode);
-    } else if (typeof currentThemeData === 'object' && currentThemeData !== null) {
-      isCorrect = currentThemeData[scannedCode] || Object.values(currentThemeData).some(item => item.id === scannedCode || item.code === scannedCode);
+    const key = sessionId + '/' + roundId;
+    if (scanStreamRef.current.roundKey !== key) {
+      scanStreamRef.current = { roundKey: key, accepted: new Set(summary.acceptedKeys) };
+      return;
     }
-    
-    if (isCorrect) {
-      if (scannedCodesRef.current[team].includes(scannedCode)) {
-        setMessage(`⚠️ ALREADY SCANNED: Team ${team}`);
-        setIsSuccess(false);
-        if (!isMuted) {
-          incorrectSound.volume = bgmVolume; 
-          incorrectSound.currentTime = 0;
-          incorrectSound.play().catch(e => console.log(e));
-        }
-        setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
-        return; 
-      }
-
-      scannedCodesRef.current[team].push(scannedCode);
-      set(ref(database, `gameState/scannedCodes/${team}/${scannedCode}`), true);
-
-      const newCombo = combosRef.current[team] + 1;
-      combosRef.current[team] = newCombo;
-      const isComboBonus = (newCombo > 0 && newCombo % 3 === 0);
-      
-      const earnedPoints = points + (isComboBonus ? 2 : 0); 
-
-      setCombos(prev => ({ ...prev, [team]: newCombo }));
-      setScores(prev => ({ ...prev, [team]: prev[team] + earnedPoints }));
-      setMaxCombos(prev => newCombo > prev[team] ? { ...prev, [team]: newCombo } : prev);
-
-      setMessage(`✅ MATCH: Team ${team} (+${points} pts)${isComboBonus ? ' 🌟 COMBO BONUS +2!' : ''}`);
+    const newlyAccepted = summary.acceptedKeys.filter(id => !scanStreamRef.current.accepted.has(id));
+    scanStreamRef.current.accepted = new Set(summary.acceptedKeys);
+    if (newlyAccepted.length && gameStatus === 'PLAYING') {
+      const justAccepted = summary.acceptedEvents.filter(event => newlyAccepted.includes(event.key));
+      const single = justAccepted[0];
+      const text = newlyAccepted.length === 1
+        ? `✅ MATCH: Team ${single.team} (+${single.earnedPoints} pts)${single.bonus ? ' 🌟 COMBO BONUS!' : ''}`
+        : `✅ ${newlyAccepted.length} NEW MATCHES!`;
+      setMessage(text);
       setIsSuccess(true);
-      if (!isMuted) {
-        correctSound.volume = bgmVolume;
-        correctSound.currentTime = 0;
-        correctSound.play().catch(e => console.log(e));
-      }
-    } else {
-      combosRef.current[team] = 0;
-      setCombos(prev => ({ ...prev, [team]: 0 }));
-      setMessage(`⚠️ MISS: Team ${team}`);
-      setIsSuccess(false);
-      if (!isMuted) {
-        incorrectSound.volume = bgmVolume;
-        incorrectSound.currentTime = 0;
-        incorrectSound.play().catch(e => console.log(e));
-      }
+      playFeedbackSound('/correct.mp3', bgmVolume, isMuted);
+      clearTimeout(feedbackTimerRef.current);
+      feedbackTimerRef.current = setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
     }
-    setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2000);
-  };
+  });
 
   useEffect(() => {
-    if (appMode === 'SCANNER') {
-      const gameStateRef = ref(database, 'gameState');
-      const unsubscribe = onValue(gameStateRef, (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-          setServerGameState(data);
-          serverGameStateRef.current = data;
-        }
-      });
-      return () => unsubscribe();
-    }
-  }, [appMode]);
+    if (appMode !== 'HOST_MENU' || gameStatus !== 'PLAYING' || !sessionId || !gameEndsAt) return;
+    const timer = setInterval(() => {
+      const remaining = Math.max(0, Math.ceil((gameEndsAt - Date.now() - serverOffsetRef.current) / 1000));
+      setTimeLeft(remaining);
+      if (remaining === 0) {
+        setGameStatus('GAMEOVER');
+        set(ref(database, `sessions/${sessionId}/gameState/status`), 'GAMEOVER')
+          .catch(error => setFirebaseError(`終了通知に失敗しました: ${error.message}`));
+      }
+    }, 500);
+    return () => clearInterval(timer);
+  }, [appMode, gameStatus, gameEndsAt, sessionId]);
 
-  // ★ 修正ポイント：ミッション発動時もカメラを止めないように依存配列から activeMissionCard を削除
   useEffect(() => {
-    if (appMode === 'SCANNER' && scannerTeam) {
-      let isMounted = true;
-      const startCamera = () => {
-        setTimeout(async () => {
-          if (!isMounted) return;
-          const element = document.getElementById("reader");
-          if (!element) { startCamera(); return; }
-          try {
-            const html5QrCode = new Html5Qrcode("reader");
-            scannerInstanceRef.current = html5QrCode;
-            await html5QrCode.start(
-              { facingMode: "environment" },
-              { 
-                fps: 15, // 読み取り精度を少し上げる
-                // ★修正：読み取り枠を狭くし、背景の別のカードを誤読するのを防ぐ
-                qrbox: { width: 180, height: 180 },
-                aspectRatio: 1.0 
-              },
-              (decodedText) => { onScanMobile(decodedText); },
-              () => {} 
-            );
-          } catch (err) { console.error("Camera open error:", err); }
-        }, 300);
-      };
-      startCamera();
-      return () => {
-        isMounted = false;
-        if (scannerInstanceRef.current) scannerInstanceRef.current.stop().catch(e=>e);
-      };
-    }
-  }, [appMode, scannerTeam]);
+    if (appMode !== 'HOST_MENU' || !['PLAYING', 'GAMEOVER'].includes(gameStatus) ||
+        !sessionId || !roundId) return;
+    const scansRef = ref(database, `sessions/${sessionId}/rounds/${roundId}/scans`);
+    return onValue(scansRef, snapshot => onRoundSnapshot(snapshot),
+      error => setFirebaseError(`得点の受信に失敗しました: ${error.message}`));
+  }, [appMode, gameStatus, sessionId, roundId]);
 
-const onScanMobile = (decodedText) => {
+  useEffect(() => {
+    if (appMode !== 'SCANNER' || !sessionId || !authUser) return;
+    const gameStateRef = ref(database, `sessions/${sessionId}/gameState`);
+    return onValue(gameStateRef, snapshot => {
+      const state = snapshot.val() ?? { status: 'MENU', theme: null, scannedCodes: {} };
+      const previousRound = serverGameStateRef.current.roundId;
+      serverGameStateRef.current = state;
+      setServerGameState(state);
+      if (previousRound && previousRound !== state.roundId) {
+        setActiveMissionCard(null);
+        setServerChallenge(null);
+        isProcessingScanRef.current = false;
+      }
+    }, error => setFirebaseError(`ゲーム状態を取得できません: ${error.message}`));
+  }, [appMode, sessionId, authUser]);
+
+
+const onScanMobile = async (decodedText) => {
     // 処理中（エラー表示など）は新しいスキャンを無視する
     if (isProcessingScanRef.current) return;
     isProcessingScanRef.current = true;
@@ -282,9 +368,17 @@ const onScanMobile = (decodedText) => {
       return;
     }
 
-    const currentThemeData = GAME_DATA[currentGameState.theme].codes;
-    // 読み取った文字列が、現在のテーマのカードIDに含まれているかチェック
-    const foundCard = currentThemeData.find(item => item.id === decodedText || item.code === decodedText);
+    if (!isValidTheme(currentGameState.theme, GAME_DATA)) {
+      setMessage('不明なゲームテーマです');
+      setTimeout(() => { setMessage(''); isProcessingScanRef.current = false; }, 2000);
+      return;
+    }
+    if (!ALL_TEAMS.slice(0, currentGameState.teamCount ?? 2).includes(scannerTeam)) {
+      setMessage('このチームは現在のゲームに参加できません');
+      setTimeout(() => { setMessage(''); isProcessingScanRef.current = false; }, 2000);
+      return;
+    }
+    const foundCard = findCard(GAME_DATA[currentGameState.theme].codes, decodedText);
 
     // ▼ エラー発動用の共通関数（全画面の真っ赤なエラーを出します）
     const triggerError = (msg) => {
@@ -313,23 +407,97 @@ const onScanMobile = (decodedText) => {
       return; 
     }
 
-    // ③ 正しい未スキャンのペアだった場合 ➔ ミッションへ即突入！
-    // 正解音は ScannerMission 側でド派手な演出と共に鳴らします
-    setActiveMissionCard(foundCard);
-    // ※ミッションが始まるとカメラ部分は自動で非表示になるため、ストップ処理は不要です
+    // Only the trusted backend may issue a mission; the answer remains private.
+    try {
+      setMessage('ミッションを準備しています...');
+      const response = await startMission({
+        sessionId, roundId: currentGameState.roundId, team: scannerTeam,
+        cardId: foundCard.id, supportsSpeech: Boolean(window.SpeechRecognition || window.webkitSpeechRecognition)
+      });
+      if (serverGameStateRef.current.roundId !== currentGameState.roundId ||
+          serverGameStateRef.current.status !== 'PLAYING') {
+        throw new Error('ゲームが終了または切り替わりました。');
+      }
+      setMessage('');
+      setServerChallenge(response.data);
+      setActiveMissionCard(foundCard);
+    } catch (error) {
+      setServerChallenge(null);
+      triggerError('ミッションを開始できません: ' + error.message);
+    }
   };
 
-  const handleMissionComplete = (earnedPoints) => {
-    push(ref(database, 'scans'), {
-      team: scannerTeam,
-      code: activeMissionCard.id,
-      points: earnedPoints,
-      timestamp: serverTimestamp() 
-    }).then(() => {
-      setActiveMissionCard(null); 
+
+  const onCameraScan = useEffectEvent(onScanMobile);
+
+  useEffect(() => {
+    if (appMode !== 'SCANNER' || !scannerTeam || !sessionId || !authUser) return;
+    let mounted = true;
+    let startTimer;
+    const startCamera = async () => {
+      if (!mounted) return;
+      if (!document.getElementById('reader')) {
+        startTimer = setTimeout(startCamera, 250);
+        return;
+      }
+      const instance = new Html5Qrcode('reader');
+      scannerInstanceRef.current = instance;
+      try {
+        await instance.start(
+          { facingMode: 'environment' },
+          { fps: 10, qrbox: { width: 180, height: 180 }, aspectRatio: 1.0 },
+          decodedText => onCameraScan(decodedText),
+          () => {}
+        );
+        if (mounted) setCameraError('');
+        if (!mounted) await instance.stop().catch(() => {});
+      } catch (error) {
+        if (mounted) setCameraError(`カメラを起動できません: ${error.message}`);
+      }
+    };
+    startTimer = setTimeout(startCamera, 300);
+    return () => {
+      mounted = false;
+      clearTimeout(startTimer);
+      const instance = scannerInstanceRef.current;
+      scannerInstanceRef.current = null;
+      if (instance) instance.stop().catch(() => {});
+    };
+  }, [appMode, scannerTeam, sessionId, authUser]);
+
+
+
+  const handleMissionComplete = async (answer) => {
+    const state = serverGameStateRef.current;
+    if (!activeMissionCard || !serverChallenge || !sessionId || !auth.currentUser ||
+        !state.roundId || state.status !== 'PLAYING') {
+      setMessage('ゲームの状態が変わりました。もう一度スキャンしてください。');
+      setActiveMissionCard(null);
+      setServerChallenge(null);
       isProcessingScanRef.current = false;
-      // ★ フリーズの原因だった resume() も使いません
-    });
+      return;
+    }
+    try {
+      const response = await submitMission({
+        sessionId, roundId: state.roundId, team: scannerTeam,
+        cardId: activeMissionCard.id, answer
+      });
+      const awarded = response.data.points;
+      setMessage(response.data.correct === null
+        ? `✅ 音読練習完了（チームに+${awarded}点）`
+        : `${response.data.correct ? '✅ CORRECT' : '❌ MISS'}（チームに+${awarded}点）`);
+      setIsSuccess(response.data.correct !== false);
+      setTimeout(() => { setMessage(''); setIsSuccess(null); }, 2200);
+      setActiveMissionCard(null);
+      setServerChallenge(null);
+      isProcessingScanRef.current = false;
+    } catch (error) {
+      setMessage(`サーバー採点に失敗しました。もう一度スキャンしてください: ${error.message}`);
+      setIsSuccess(false);
+      setActiveMissionCard(null);
+      setServerChallenge(null);
+      isProcessingScanRef.current = false;
+    }
   };
 
   const formatTime = (seconds) => {
@@ -339,6 +507,28 @@ const onScanMobile = (decodedText) => {
   };
 
   const maxScoreValue = Math.max(...activeTeams.map(t => scores[t]));
+
+  if (appMode === 'SCANNER' && (!sessionId || !authUser || firebaseError)) {
+    return <div className="main-viewport pattern-bg"><div className="content-wrap glass-card" style={{ padding: 30 }}>
+      <h2>Scannect Scanner</h2>
+      <p role="alert">{firebaseError || (sessionId ? 'Firebaseに接続しています...' : '先生の画面に表示されたQRコードから参加してください。')}</p>
+      {firebaseError && <button className="btn-save" onClick={() => window.location.reload()}>接続を再試行</button>}
+    </div></div>;
+  }
+
+  if (appMode === 'HOST_MENU' && gameStatus !== 'SOLO_LEARNING' && (!authUser || authUser.isAnonymous || !sessionId)) {
+    return <div className="main-viewport pattern-bg"><div className="content-wrap glass-card" style={{ padding: 30 }}>
+      <h2>Scannect — Teacher</h2>
+      <p>授業ゲームの管理にはGoogleログインが必要です。生徒はQRコードから匿名で参加できます。</p>
+      {(!authUser || authUser.isAnonymous) && <button className="start-btn shadow-pop" onClick={signInAsHost}>Googleで先生としてログイン</button>}
+      {authUser && !authUser.isAnonymous && !sessionId && <button className="start-btn shadow-pop" onClick={() => {
+        setFirebaseError('');
+        setSessionRetry(value => value + 1);
+      }}>接続を再試行</button>}
+      <button className="btn-text-only" onClick={() => setGameStatus('SOLO_LEARNING')}>🎓 Solo Learning（ログイン不要）</button>
+      <p role="alert">{firebaseError || 'ログイン後、授業専用QRコードを生成します。'}</p>
+    </div></div>;
+  }
 
   if (appMode === 'SCANNER') {
     return (
@@ -357,15 +547,20 @@ const onScanMobile = (decodedText) => {
              <div className={`scanner-header team-${scannerTeam}`}>TEAM {scannerTeam} PLAYING</div>
              
              {/* ★ 修正ポイント：ミッション中は表示し、カメラ部分は「display: none」で隠すだけにする */}
-             {activeMissionCard && (
+             {activeMissionCard && serverChallenge && (
                 <ScannerMission 
+                  key={activeMissionCard.id}
                   card={activeMissionCard} 
-                  themeData={GAME_DATA[serverGameState.theme]?.codes || []} 
+                  mission={serverChallenge} 
                   onComplete={handleMissionComplete} 
                 />
              )}
              
              <div id="reader" style={{ display: activeMissionCard ? 'none' : 'block' }}></div>
+             {cameraError && <div role="alert" className="scanner-msg error-full">
+                <p>{cameraError}</p>
+                <button className="btn-save" onClick={() => window.location.reload()}>カメラを再起動</button>
+              </div>}
              
              {/* ★ 修正：不正解時は全画面エラー、待機時は通常のメッセージ */}
              {!activeMissionCard && message && (
@@ -373,7 +568,7 @@ const onScanMobile = (decodedText) => {
                  {message.split('\n').map((line, i) => <div key={i}>{line}</div>)}
                </div>
              )}
-             <button onClick={() => { window.location.href = window.location.origin + '?mode=scanner'; }} className="btn-text-only" style={{marginTop: '20px'}}>Change Team</button>
+             <button onClick={() => { window.location.href = window.location.pathname + '?mode=scanner&session=' + sessionId; }} className="btn-text-only" style={{marginTop: '20px'}}>Change Team</button>
           </div>
         )}
       </div>
@@ -386,6 +581,7 @@ const onScanMobile = (decodedText) => {
         {isMuted ? '🔇' : '🎵'}
       </button>
 
+      {firebaseError && <div role="alert" className="message-bar error">{firebaseError}</div>}
       {gameStatus === 'MENU' && <div className="particles">{[...Array(12)].map((_, i) => <div key={i} className="dot"></div>)}</div>}
 
       {gameStatus === 'MENU' && (
@@ -422,10 +618,16 @@ const onScanMobile = (decodedText) => {
               ))}
             </div>
             <div className="qr-display-box clickable-qr" onClick={() => setFullScreenQrTeam(activeQrTab)}>
-              <img src={`https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + activeQrTab)}`} alt="Join QR" />
+              <QRCodeSVG
+                value={window.location.origin + window.location.pathname + '?mode=scanner&team=' + activeQrTab + '&session=' + sessionId}
+                size={320} marginSize={4} level="M" title={`Join Team ${activeQrTab}`}
+              />
               <div className="qr-hint">🔍 クリックで拡大表示</div>
             </div>
             <p className="qr-display-desc">生徒は自分のチームのタブを選んでスキャンしてください</p>
+            <button type="button" className="btn-text-only" onClick={beginNewClass} title="新しい授業用のQRコードに切り替えます">
+              🔄 新しい授業用QRを作成
+            </button>
           </div>
           <button className="settings-btn shadow-pop" onClick={() => setIsSettingsOpen(true)}>⚙️</button>
           <button className="solo-learning-btn shadow-pop" onClick={() => setGameStatus('SOLO_LEARNING')}>🎓 Solo Learning</button>
@@ -499,7 +701,11 @@ const onScanMobile = (decodedText) => {
         <div className="modal-overlay" onClick={() => setFullScreenQrTeam(null)} style={{zIndex: 300}}>
           <div className="modal-content" onClick={e => e.stopPropagation()} style={{width: 'auto', padding: '40px', maxWidth: '90vw'}}>
             <h2 className={`team-title-huge team-title-${fullScreenQrTeam.toLowerCase()}`}>TEAM {fullScreenQrTeam}</h2>
-            <img src={`https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=${encodeURIComponent(window.location.origin + '/?mode=scanner&team=' + fullScreenQrTeam)}`} alt="Fullscreen QR" className="huge-qr-img" />
+            <QRCodeSVG
+              value={window.location.origin + window.location.pathname + '?mode=scanner&team=' + fullScreenQrTeam + '&session=' + sessionId}
+              size={600} marginSize={4} level="M" title={`Join Team ${fullScreenQrTeam}`}
+              className="huge-qr-img"
+            />
             <button className="btn-save" onClick={() => setFullScreenQrTeam(null)}>閉じる</button>
           </div>
         </div>
@@ -511,16 +717,14 @@ const onScanMobile = (decodedText) => {
             <p style={{color: '#7f8c8d', marginBottom: '25px'}}>印刷して生徒に配布してください（A4サイズ推奨）</p>
             
             <div className="pdf-btn-group">
-              <a href="/materials/airport.pdf" download="Scannect_Airport_Cards.pdf" className="pdf-dl-btn">📄 Airport (空港)</a>
               <a href="/materials/cafe.pdf" download="Scannect_Cafe_Cards.pdf" className="pdf-dl-btn">📄 Cafe (カフェ)</a>
-              <a href="/materials/help.pdf" download="Scannect_Help_Cards.pdf" className="pdf-dl-btn">📄 Help (人助け)</a>
-              <a href="/materials/hotel.pdf" download="Scannect_Hotel_Cards.pdf" className="pdf-dl-btn">📄 Hotel (ホテル)</a>
               <a href="/materials/media.pdf" download="Scannect_Media_Cards.pdf" className="pdf-dl-btn">📄 Media (メディア)</a>
               <a href="/materials/revitalization.pdf" download="Scannect_Revitalization_Cards.pdf" className="pdf-dl-btn">📄 Revitalization (地域活性)</a>
               <a href="/materials/sdgs.pdf" download="Scannect_SDGs_Cards.pdf" className="pdf-dl-btn">📄 SDGs</a>
               <a href="/materials/volunteer.pdf" download="Scannect_Volunteer_Cards.pdf" className="pdf-dl-btn">📄 Volunteer (ボランティア)</a>
-              <a href="/materials/zoo.pdf" download="Scannect_Zoo_Cards.pdf" className="pdf-dl-btn">📄 Zoo (動物園)</a>
               <a href="/materials/worry.pdf" download="Scannect_Worry_Cards.pdf" className="pdf-dl-btn">📄 Worries (高校生の悩み)</a>
+              <a href="/materials/world.pdf" download="Scannect_World_Cards.pdf" className="pdf-dl-btn">📄 World (世界)</a>
+              <p>Airport / Help / Hotel / Zoo のPDFは準備中です。</p>
               <a href="/materials/english.pdf" download="Scannect_English_Cards.pdf" className="pdf-dl-btn">📄 English (英語学習の悩み)</a>
             </div>
 

@@ -1,4 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { shuffle } from '../gameLogic';
+
+function readHighScore(theme, questionCount) {
+  try {
+    const saved = Number(localStorage.getItem('scannect_highscore_' + theme + '_' + questionCount) ?? 0);
+    return Number.isFinite(saved) ? saved : 0;
+  } catch {
+    return 0;
+  }
+}
 
 export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
   const [learningPhase, setLearningPhase] = useState('SELECT_THEME'); 
@@ -12,6 +22,7 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(20);
   const [highScore, setHighScore] = useState(0);
+  const [isNewRecord, setIsNewRecord] = useState(false);
   
   const [feedback, setFeedback] = useState(null); 
   const [earnedPoints, setEarnedPoints] = useState(0);
@@ -20,112 +31,137 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
   const [showTranslation, setShowTranslation] = useState(false);
   const [answerHistory, setAnswerHistory] = useState([]);
 
-  const correctSound = new Audio('/correct.mp3');
-  const incorrectSound = new Audio('/incorrect.mp3');
+  const answerLockedRef = useRef(false);
+  const transitionTimerRef = useRef(null);
+  useEffect(() => {
+    const timerRef = transitionTimerRef;
+    return () => clearTimeout(timerRef.current);
+  }, []);
 
-  const selectTheme = (themeKey) => {
+  const selectTheme = themeKey => {
     setActiveTheme(themeKey);
-    const savedHighScore = localStorage.getItem(`scannect_highscore_${themeKey}`);
-    setHighScore(savedHighScore ? parseInt(savedHighScore) : 0);
+    setHighScore(readHighScore(themeKey, questionCount));
     setLearningPhase('MENU');
   };
 
+  const chooseQuestionCount = count => {
+    setQuestionCount(count);
+    setHighScore(readHighScore(activeTheme, count));
+  };
+
+
   const startVocab = () => setLearningPhase('VOCAB');
 
+  const abortGame = () => {
+    clearTimeout(transitionTimerRef.current);
+    transitionTimerRef.current = null;
+    answerLockedRef.current = true;
+    setFeedback(null);
+    setLearningPhase('MENU');
+  };
+
   const startGame = () => {
-    const allCards = [...gameData[activeTheme].codes];
-    const limit = questionCount === 'ALL' ? allCards.length : questionCount;
-    const shuffled = allCards.sort(() => 0.5 - Math.random()).slice(0, limit);
-    
+    const allCards = gameData[activeTheme]?.codes ?? [];
+    if (!allCards.length) return;
+    const limit = questionCount === 'ALL' ? allCards.length : Math.min(questionCount, allCards.length);
+    const shuffled = shuffle(allCards).slice(0, limit);
+    answerLockedRef.current = false;
+    clearTimeout(transitionTimerRef.current);
     setQuestions(shuffled);
     setCurrentIndex(0);
     setScore(0);
     setTimeLeft(20);
-    setAnswerHistory([]); // 履歴をリセット
-    setShowTranslation(false); // 翻訳表示をデフォルトOFFにリセット
+    setAnswerHistory([]);
+    setShowTranslation(false);
+    setFeedback(null);
+    setIsNewRecord(false);
     setLearningPhase('GAME');
     generateChoices(shuffled[0], allCards);
   };
 
   const generateChoices = (correctCard, allCards) => {
-    const wrongChoices = allCards
-      .filter(c => c.id !== correctCard.id)
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 3);
-    const combined = [...wrongChoices, correctCard].sort(() => 0.5 - Math.random());
-    setChoices(combined);
+    if (!correctCard) { setChoices([]); return; }
+    const wrongChoices = shuffle(allCards.filter(c => c.id !== correctCard.id)).slice(0, 3);
+    setChoices(shuffle([...wrongChoices, correctCard]));
   };
 
-  const playSound = (sound) => {
-    if (!isMuted) { 
-      sound.volume = bgmVolume;
-      sound.currentTime = 0;
-      sound.play().catch(e=>e);
-    }
+  const playSound = filename => {
+    if (isMuted) return;
+    const sound = new Audio(filename);
+    sound.volume = Math.max(0, Math.min(1, bgmVolume));
+    sound.play().catch(() => {});
   };
 
-  useEffect(() => {
-    let timer;
-    if (learningPhase === 'GAME' && !feedback && timeLeft > 0) {
-      timer = setTimeout(() => setTimeLeft(prev => prev - 1), 1000);
-    } else if (learningPhase === 'GAME' && !feedback && timeLeft === 0) {
-      handleAnswer(null); 
-    }
-    return () => clearTimeout(timer);
-  }, [learningPhase, feedback, timeLeft]);
 
-  const handleAnswer = (selectedCard) => {
+  const finishGame = finalScore => {
+    setLearningPhase('RESULT');
+    const newRecord = finalScore > highScore;
+    setIsNewRecord(newRecord);
+    if (newRecord) {
+      setHighScore(finalScore);
+      try {
+        localStorage.setItem('scannect_highscore_' + activeTheme + '_' + questionCount, String(finalScore));
+      } catch { /* Storage may be disabled. */ }
+    }
+    const logEntry = {
+      date: new Date().toLocaleDateString('ja-JP'),
+      theme: gameData[activeTheme].title,
+      count: questions.length,
+      score: finalScore
+    };
+    try {
+      const stored = JSON.parse(localStorage.getItem('scannect_learning_logs') || '[]');
+      const logs = Array.isArray(stored) ? stored : [];
+      logs.push(logEntry);
+      localStorage.setItem('scannect_learning_logs', JSON.stringify(logs.slice(-100)));
+    } catch { /* Corrupt or disabled storage should never crash the result screen. */ }
+  };
+
+  const handleAnswer = selectedCard => {
+    if (answerLockedRef.current || !questions[currentIndex]) return;
+    answerLockedRef.current = true;
     const currentCard = questions[currentIndex];
-    const isCorrect = selectedCard && selectedCard.id === currentCard.id;
+    const isCorrect = selectedCard?.id === currentCard.id;
+    const points = isCorrect ? 100 + timeLeft * 10 : 0;
+    const finalScore = score + points;
 
-    // ★ 履歴に保存
-    const historyEntry = {
+    setAnswerHistory(prev => [...prev, {
       qNum: currentIndex + 1,
       qText: currentCard.card_a.text,
       userAns: selectedCard ? selectedCard.card_b.text : 'Time Up',
       correctAns: currentCard.card_b.text,
-      isCorrect: isCorrect
-    };
-    setAnswerHistory(prev => [...prev, historyEntry]);
+      isCorrect
+    }]);
 
-    if (isCorrect) {
-      playSound(correctSound);
-      const points = 100 + (timeLeft * 10);
-      setEarnedPoints(points);
-      setScore(prev => prev + points);
-      setFeedback('correct');
-    } else {
-      playSound(incorrectSound);
-      setEarnedPoints(0);
-      setFeedback(selectedCard ? 'incorrect' : 'timeout');
-    }
-
-    setTimeout(() => {
+    setEarnedPoints(points);
+    setScore(finalScore);
+    setFeedback(isCorrect ? 'correct' : selectedCard ? 'incorrect' : 'timeout');
+    playSound(isCorrect ? '/correct.mp3' : '/incorrect.mp3');
+    transitionTimerRef.current = setTimeout(() => {
       setFeedback(null);
       if (currentIndex + 1 < questions.length) {
-        setCurrentIndex(prev => prev + 1);
+        setCurrentIndex(currentIndex + 1);
         setTimeLeft(20);
+        setShowTranslation(false);
         generateChoices(questions[currentIndex + 1], gameData[activeTheme].codes);
+        answerLockedRef.current = false;
       } else {
-        finishGame();
+        finishGame(finalScore);
       }
     }, 1500);
   };
 
-  const finishGame = () => {
-    setLearningPhase('RESULT');
-    let newHighScore = highScore;
-    if (score > highScore) {
-      newHighScore = score;
-      setHighScore(score);
-      localStorage.setItem(`scannect_highscore_${activeTheme}`, score.toString());
+  useEffect(() => {
+    if (learningPhase !== 'GAME' || feedback || answerLockedRef.current) return;
+    if (timeLeft === 0) {
+      handleAnswer(null);
+      return;
     }
-    const today = new Date().toLocaleDateString('ja-JP');
-    const logEntry = { date: today, theme: gameData[activeTheme].title, score: score };
-    const existingLogs = JSON.parse(localStorage.getItem('scannect_learning_logs') || '[]');
-    existingLogs.push(logEntry);
-    localStorage.setItem('scannect_learning_logs', JSON.stringify(existingLogs));
-  };
+    const timer = setTimeout(() => setTimeLeft(prev => Math.max(0, prev - 1)), 1000);
+    return () => clearTimeout(timer);
+    // handleAnswer uses the current question and score; the timer is restarted on each tick.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [learningPhase, feedback, timeLeft]);
 
   const highlightVocab = (text, vocabList) => {
     if (!vocabList || vocabList.length === 0) return text;
@@ -170,9 +206,9 @@ export default function LearningMode({ gameData, onBack, bgmVolume, isMuted }) {
         
         <h3 style={{color: '#7f8c8d', marginBottom: '15px'}}>挑戦する問題数</h3>
         <div className="count-selector">
-          <button className={`count-btn ${questionCount === 10 ? 'active' : ''}`} onClick={() => setQuestionCount(10)}>10問</button>
-          <button className={`count-btn ${questionCount === 20 ? 'active' : ''}`} onClick={() => setQuestionCount(20)}>20問</button>
-          <button className={`count-btn ${questionCount === 'ALL' ? 'active' : ''}`} onClick={() => setQuestionCount('ALL')}>ALL ({gameData[activeTheme].codes.length}問)</button>
+          <button className={`count-btn ${questionCount === 10 ? 'active' : ''}`} onClick={() => chooseQuestionCount(10)}>10問</button>
+          <button className={`count-btn ${questionCount === 20 ? 'active' : ''}`} onClick={() => chooseQuestionCount(20)}>20問</button>
+          <button className={`count-btn ${questionCount === 'ALL' ? 'active' : ''}`} onClick={() => chooseQuestionCount('ALL')}>ALL ({gameData[activeTheme].codes.length}問)</button>
         </div>
 
         <div style={{display: 'flex', gap: '30px', marginTop: '30px', width: '100%', justifyContent: 'center'}}>
@@ -239,7 +275,7 @@ if (learningPhase === 'GAME') {
                 <span className="score-number">{score}</span>
                 <span className="score-unit">pts</span>
               </div>
-              <button onClick={() => setLearningPhase('MENU')} className="abort-mini-btn">← 中断</button>
+              <button onClick={abortGame} className="abort-mini-btn">← 中断</button>
             </div>
           </div>
           
@@ -297,7 +333,7 @@ if (learningPhase === 'GAME') {
   if (learningPhase === 'RESULT') {
     return (
       <div className="learning-container glass-card" style={{padding: '50px', maxWidth: '1000px', width: '90%'}}>
-        {score >= highScore && score > 0 && <h2 className="new-record-text">🎉 NEW HIGH SCORE! 🎉</h2>}
+        {isNewRecord && <h2 className="new-record-text">🎉 NEW HIGH SCORE! 🎉</h2>}
         <div className="final-score-box">
           <p>TOTAL SCORE</p>
           <div className="res-num" style={{color: '#3498db', fontSize: '6rem'}}>{score}</div>
