@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup } from 'firebase/auth';
-import { getDatabase, ref, get, onValue, set, serverTimestamp } from 'firebase/database';
+import { getDatabase, ref, get, onValue, set } from 'firebase/database';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 
 // Firebase web configuration identifies this project; it is not an authorization secret.
 // Access is restricted by database.rules.json and Firebase Authentication.
@@ -17,6 +18,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
+const functions = getFunctions(app, 'asia-southeast1');
+const startMission = httpsCallable(functions, 'startMission');
+const submitMission = httpsCallable(functions, 'submitMission');
 
 export { auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup };
-export { database, ref, get, onValue, set, serverTimestamp };
+export { database, ref, get, onValue, set, startMission, submitMission };
