@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useEffectEvent } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
 import { QRCodeSVG } from 'qrcode.react'; 
 import { database, auth, GoogleAuthProvider, onAuthStateChanged, signInAnonymously, signInWithPopup, ref, get, onValue, set, startMission, submitMission } from './firebase';
-import { ALL_TEAMS, findCard, isValidTheme, newId, summarizeRound } from './gameLogic'; 
+import { ALL_TEAMS, findCard, isValidTheme, newId, summarizeRound, selectableTeams } from './gameLogic'; 
 
 import './App.css';
 
@@ -111,13 +111,25 @@ function App() {
   const [activeMissionCard, setActiveMissionCard] = useState(null);
   const [serverChallenge, setServerChallenge] = useState(null); 
 
-  const [, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
+  const [serverGameState, setServerGameState] = useState({ status: 'MENU', theme: null, scannedCodes: {} });
 
 
   const serverGameStateRef = useRef({ status: 'MENU', theme: null, scannedCodes: {} });
   
   const scannerInstanceRef = useRef(null); 
   const isProcessingScanRef = useRef(false);
+
+  // A team selected from an old QR may no longer exist in the new round.
+  useEffect(() => {
+    if (appMode !== 'SCANNER' || !scannerTeam ||
+        !Number.isInteger(serverGameState.teamCount) ||
+        selectableTeams(serverGameState.teamCount).includes(scannerTeam)) return;
+    setScannerTeam(null);
+    setActiveMissionCard(null);
+    setServerChallenge(null);
+    isProcessingScanRef.current = false;
+    setMessage('参加チームが変更されました。チームを選び直してください。');
+  }, [appMode, scannerTeam, serverGameState.teamCount]);
 
   useBGM(appMode, gameStatus, bgmVolume, isMuted);
 
@@ -566,7 +578,7 @@ const onScanMobile = async (decodedText) => {
           <div className="content-wrap glass-card" style={{padding: '40px'}}>
             <h2 style={{fontSize: '2rem', marginBottom: '30px', color: '#2c3e50'}}>Select Team</h2>
             <div style={{display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center'}}>
-               {ALL_TEAMS.map(t => (
+               {selectableTeams(serverGameState.teamCount).map(t => (
                  <button key={t} onClick={() => setScannerTeam(t)} className={`team-btn team-btn-${t.toLowerCase()}`}>TEAM {t}</button>
                ))}
             </div>
