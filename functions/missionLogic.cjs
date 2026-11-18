@@ -10,8 +10,10 @@ function assertRequestInput(data, includeAnswer = false) {
   if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
   const keys = includeAnswer ? ['sessionId','roundId','team','cardId','answer'] : ['sessionId','roundId','team','cardId','supportsSpeech'];
   if (Object.keys(data).some(key => !keys.includes(key))) return false;
-  if (!ID_PATTERN.test(data.sessionId) || !ID_PATTERN.test(data.roundId)) return false;
-  if (!TEAMS.includes(data.team) || typeof data.cardId !== 'string' || data.cardId.length > 48) return false;
+  if (typeof data.sessionId !== 'string' || !ID_PATTERN.test(data.sessionId) ||
+      typeof data.roundId !== 'string' || !ID_PATTERN.test(data.roundId)) return false;
+  if (!TEAMS.includes(data.team) || typeof data.cardId !== 'string' ||
+      !/^[A-Z][A-Z0-9_]{3,47}$/.test(data.cardId)) return false;
   if (!includeAnswer && typeof data.supportsSpeech !== 'boolean') return false;
   if (includeAnswer && (typeof data.answer !== 'string' || data.answer.length > 256)) return false;
   return true;
