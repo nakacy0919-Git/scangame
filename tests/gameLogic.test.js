@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { findCard, getVocabQuestion, speechAccuracy, speechPoints, shuffle, validMissionPoints, isValidTheme, summarizeRound } from '../src/gameLogic.js';
+import { findCard, getVocabQuestion, speechAccuracy, speechPoints, shuffle, validMissionPoints, isValidTheme, summarizeRound, selectableTeams } from '../src/gameLogic.js';
 
 const codes = [
   { id: 'CAFE_001', card_a: { text: 'Hello' }, vocabulary: [{ word: 'hello', meaning: 'こんにちは' }, { word: 'hi', meaning: 'こんにちは' }] },
@@ -75,4 +75,12 @@ test('round summary rejects invalid identifiers, malformed points, disabled team
   assert.equal(summary.scores.A, 5);
   assert.equal(summary.scores.D, 0);
   assert.deepEqual(summary.acceptedKeys, ['good']);
+});
+
+test('scanner displays only current round teams', () => {
+  assert.deepEqual(selectableTeams(2), ['A','B']);
+  assert.deepEqual(selectableTeams(3), ['A','B','C']);
+  assert.deepEqual(selectableTeams(4), ['A','B','C','D']);
+  assert.deepEqual(selectableTeams(999), ['A','B']);
+  assert.deepEqual(selectableTeams(undefined), ['A','B']);
 });
