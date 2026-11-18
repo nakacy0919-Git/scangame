@@ -119,18 +119,6 @@ function App() {
   const scannerInstanceRef = useRef(null); 
   const isProcessingScanRef = useRef(false);
 
-  // A team selected from an old QR may no longer exist in the new round.
-  useEffect(() => {
-    if (appMode !== 'SCANNER' || !scannerTeam ||
-        !Number.isInteger(serverGameState.teamCount) ||
-        selectableTeams(serverGameState.teamCount).includes(scannerTeam)) return;
-    setScannerTeam(null);
-    setActiveMissionCard(null);
-    setServerChallenge(null);
-    isProcessingScanRef.current = false;
-    setMessage('参加チームが変更されました。チームを選び直してください。');
-  }, [appMode, scannerTeam, serverGameState.teamCount]);
-
   useBGM(appMode, gameStatus, bgmVolume, isMuted);
 
   useEffect(() => {
@@ -370,13 +358,21 @@ function App() {
       const previousRound = serverGameStateRef.current.roundId;
       serverGameStateRef.current = state;
       setServerGameState(state);
+      if (Number.isInteger(state.teamCount) && scannerTeam &&
+          !selectableTeams(state.teamCount).includes(scannerTeam)) {
+        setScannerTeam(null);
+        setActiveMissionCard(null);
+        setServerChallenge(null);
+        isProcessingScanRef.current = false;
+        setMessage('参加チームが変更されました。チームを選び直してください。');
+      }
       if (previousRound && previousRound !== state.roundId) {
         setActiveMissionCard(null);
         setServerChallenge(null);
         isProcessingScanRef.current = false;
       }
     }, error => setFirebaseError(`ゲーム状態を取得できません: ${error.message}`));
-  }, [appMode, sessionId, authUser]);
+  }, [appMode, sessionId, authUser, scannerTeam]);
 
 
 const onScanMobile = async (decodedText) => {
