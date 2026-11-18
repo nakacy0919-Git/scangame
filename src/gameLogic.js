@@ -1,5 +1,10 @@
 export const ALL_TEAMS = ['A', 'B', 'C', 'D'];
 
+export function selectableTeams(teamCount) {
+  return ALL_TEAMS.slice(0, Number.isInteger(teamCount) && teamCount >= 2 && teamCount <= 4 ? teamCount : 2);
+}
+
+
 export function newId() {
   if (!globalThis.crypto?.randomUUID) {
     throw new Error('A secure HTTPS connection is required for game sessions.');
