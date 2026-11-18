@@ -1,6 +1,7 @@
 import { initializeTestEnvironment, assertSucceeds, assertFails } from '@firebase/rules-unit-testing';
 import { get, ref, set, serverTimestamp, runTransaction } from 'firebase/database';
 import { readFileSync } from 'node:fs';
+import assert from 'node:assert/strict';
 
 const projectId = 'demo-scannect';
 const roundId = 'a'.repeat(32);
