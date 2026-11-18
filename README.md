@@ -89,3 +89,13 @@ No production deployment or database-rules publication is performed by the code 
 5. **Deployment order is critical**: deploy the Functions and verify them in a test database, then publish `database.rules.json` (which denies direct scan writes), then deploy the matching frontend. Do not mix old/new components.
 6. **No charges or production deployment have been made.** This implementation uses Cloud Functions and therefore is not a zero-cost Spark-plan solution. Cloud Functions has no-cost quotas on Blaze but billing is still required and usage can incur costs.
 7. Anonymous accounts can be created in multiple browsers; these safeguards prevent arbitrary point values from a single authenticated caller, but cannot prove a student physically scanned a QR or did the work. Verify student identity and consider Firebase App Check if this is used competitively.
+
+## Classroom reliability pass (November 18, 2026)
+
+- Vercel automatic deployments are **explicitly disabled** through `vercel.json` `git.deploymentEnabled:false`, and project-level Ignored Build Step is set to exit successfully without building. GitHub CI may still run tests but must not publish to Vercel.
+- One award now belongs to **one team × one card × one round**, regardless of how many student devices scan it. The trusted backend's atomic transaction decides the winner; different anonymous accounts cannot create duplicate awards for the same team and card.
+- A challenge can be renewed when it expires or the student changes teams. Active challenges remain stable when the same student reconnects, preventing answer changes from repeated requests.
+- The backend limits new challenges to 65 per anonymous UID per round, spaced at least 900ms apart. This is not full DDoS protection; additional App Check / Cloud protection is required for public exposure.
+- A repeated score request from the *same winning student* returns the previously awarded points without creating another score, so a lost network response does not double-count. The UI retries transient network failures once.
+- Firebase emulator tests check that challenge answer data cannot be read by students or teachers, and that concurrent score claims resolve to a single winner.
+- **Do not merge or publish the draft PR until controlled Firebase Functions + rules deployment and physical device testing are approved.**
