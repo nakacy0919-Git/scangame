@@ -53,6 +53,23 @@ function presentChallenge(challenge) {
   throw new Error('Unsupported challenge');
 }
 
+// A valid classroom round must still be live when a mission is submitted.
+function isRoundActive(state, data, now) {
+  return Boolean(state && state.status === 'PLAYING' &&
+    state.roundId === data.roundId && Number.isFinite(state.endsAt) &&
+    state.endsAt > now && Number.isInteger(state.teamCount) &&
+    state.teamCount >= 2 && state.teamCount <= TEAMS.length &&
+    TEAMS.slice(0, state.teamCount).includes(data.team) &&
+    matchingCard(state.theme, data.cardId));
+}
+
+// A challenge may be renewed after expiration, and changing to the correct
+// team invalidates the old challenge rather than locking the student out.
+function shouldReplaceChallenge(current, team, now) {
+  return !current || !Number.isFinite(current.expiresAt) ||
+    current.expiresAt <= now || current.team !== team;
+}
+
 function gradeChallenge(challenge, answer) {
   if (challenge.type === 'VOCAB') {
     if (!Array.isArray(challenge.choices) || !challenge.choices.includes(answer)) {
@@ -65,4 +82,4 @@ function gradeChallenge(challenge, answer) {
   if (challenge.type === 'SPEAKING' && answer === 'completed') return 1;
   throw new Error('Invalid mission answer');
 }
-module.exports = { THEMES, TEAMS, assertRequestInput, matchingCard, issueChallenge, presentChallenge, gradeChallenge };
+module.exports = { THEMES, TEAMS, assertRequestInput, matchingCard, issueChallenge, presentChallenge, gradeChallenge, isRoundActive, shouldReplaceChallenge };
