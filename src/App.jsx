@@ -46,6 +46,24 @@ function playFeedbackSound(file, volume, isMuted) {
   sound.play().catch(() => {});
 }
 
+function missionErrorMessage(error) {
+  switch (error?.code) {
+    case 'functions/already-exists':
+      return 'このカードはすでにチームで得点済みです。別のカードを読み取ってください。';
+    case 'functions/resource-exhausted':
+      return '短時間に操作が集中しました。少し間隔を空けて再挑戦してください。';
+    case 'functions/failed-precondition':
+      return '制限時間終了・チーム変更・問題の期限切れの可能性があります。別のカードを確認してください。';
+    case 'functions/unavailable':
+    case 'functions/deadline-exceeded':
+      return 'ネットワーク接続に失敗しました。通信状態を確認してください。';
+    case 'functions/unauthenticated':
+      return '生徒用の認証が必要です。ページを読み込み直してください。';
+    default:
+      return error?.message || '原因不明のエラーが発生しました。';
+  }
+}
+
 function App() {
   const searchParams = new URLSearchParams(window.location.search);
   const initMode = searchParams.get('mode') === 'scanner' ? 'SCANNER' : 'HOST_MENU';
@@ -423,7 +441,7 @@ const onScanMobile = async (decodedText) => {
       setActiveMissionCard(foundCard);
     } catch (error) {
       setServerChallenge(null);
-      triggerError('ミッションを開始できません: ' + error.message);
+      triggerError('ミッションを開始できません: ' + missionErrorMessage(error));
     }
   };
 
@@ -478,10 +496,21 @@ const onScanMobile = async (decodedText) => {
       return;
     }
     try {
-      const response = await submitMission({
+      const payload = {
         sessionId, roundId: state.roundId, team: scannerTeam,
         cardId: activeMissionCard.id, answer
-      });
+      };
+      let response;
+      try {
+        response = await submitMission(payload);
+      } catch (networkError) {
+        // The server makes retries idempotent when a response was lost.
+        if (['functions/unavailable', 'functions/deadline-exceeded'].includes(networkError?.code)) {
+          response = await submitMission(payload);
+        } else {
+          throw networkError;
+        }
+      }
       const awarded = response.data.points;
       setMessage(response.data.correct === null
         ? `✅ 音読練習完了（チームに+${awarded}点）`
@@ -492,7 +521,7 @@ const onScanMobile = async (decodedText) => {
       setServerChallenge(null);
       isProcessingScanRef.current = false;
     } catch (error) {
-      setMessage(`サーバー採点に失敗しました。もう一度スキャンしてください: ${error.message}`);
+      setMessage('サーバー採点に失敗しました: ' + missionErrorMessage(error));
       setIsSuccess(false);
       setActiveMissionCard(null);
       setServerChallenge(null);
