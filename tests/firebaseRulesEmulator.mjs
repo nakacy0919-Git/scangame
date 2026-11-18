@@ -1,5 +1,5 @@
 import { initializeTestEnvironment, assertSucceeds, assertFails } from '@firebase/rules-unit-testing';
-import { get, ref, set, serverTimestamp } from 'firebase/database';
+import { get, ref, set, serverTimestamp, runTransaction } from 'firebase/database';
 import { readFileSync } from 'node:fs';
 
 const projectId = 'demo-scannect';
@@ -73,6 +73,34 @@ try {
   await assertFails(set(ref(student.database(), path + '/rounds/' + 'b'.repeat(32) + '/scans/student-1_CAFE_002'), {
     ...validScan, code: 'CAFE_002',
   }));
+  // Clients cannot view private server-issued challenge answers.
+  await env.withSecurityRulesDisabled(async context => {
+    await set(ref(context.database(), path + '/rounds/' + roundId + '/challenges/student-1/CAFE_001'), {
+      type:'VOCAB', team:'A', word:'awake', correct:'目が覚めて、眠気のない',
+      choices:['目が覚めて、眠気のない','眠る','回復する','走る'],
+      createdAt:Date.now(), expiresAt:Date.now()+10000,
+    });
+  });
+  await assertFails(get(ref(student.database(), path + '/rounds/' + roundId + '/challenges/student-1/CAFE_001')));
+  await assertFails(get(ref(teacher.database(), path + '/rounds/' + roundId + '/challenges/student-1/CAFE_001')));
+  await assertFails(set(ref(student.database(), path + '/rounds/' + roundId + '/startLimits/student-1'), {last:Date.now(),count:1}));
+
+  // The same first-write-wins transaction used by the trusted backend allows
+  // only one competing student to claim a team/card score.
+  await env.withSecurityRulesDisabled(async context => {
+    const awardRef = ref(context.database(), scansPath + '/A_CAFE_002');
+    const startAt = Date.now();
+    const [first, second] = await Promise.all([
+      runTransaction(awardRef, current => current === null
+        ? {team:'A', code:'CAFE_002', uid:'student-1', points:3, timestamp:startAt}
+        : undefined),
+      runTransaction(awardRef, current => current === null
+        ? {team:'A', code:'CAFE_002', uid:'student-2', points:1, timestamp:startAt}
+        : undefined),
+    ]);
+    assert.equal([first.committed,second.committed].filter(Boolean).length,1,
+      'Only one device should win each team/card');
+  });
   await assertFails(get(ref(student.database(), scansPath)));
   await assertSucceeds(get(ref(teacher.database(), scansPath)));
 
